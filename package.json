@@ -1,0 +1,19 @@
+{
+  "name": "Picktus",
+  "version": "0.0.1",
+  "description": "Picktus application",
+  "main": "index.js",
+  "author": "Hugo Martinez",
+  "license": "public",
+  "private": false,
+  "dependencies": {
+      "next": "^6.1.1",
+      "react": "^16.4.2",
+      "react-dom": "^16.4.2"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  }
+}
