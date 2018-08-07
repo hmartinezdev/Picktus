@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import Header from "@components/Header";
-import Logo from "@components/Logo";
-import colors from "../../constants/colors";
+import React, { Component } from 'react';
+import Header from '@components/Header';
+import Logo from '@components/Logo';
+import colors from '../../constants/colors';
 
 class App extends Component {
   render() {

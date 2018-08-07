@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import colors from "../../constants/colors";
+import React, { Component } from 'react';
+import colors from '../../constants/colors';
 
 class Logo extends Component {
   render() {
@@ -9,7 +9,7 @@ class Logo extends Component {
         <h1 className="title">Picktus</h1>
         <style jsx>{`
           .title {
-            font-family: "Caveat", cursive;
+            font-family: 'Caveat', cursive;
             font-size: 10rem;
             margin-left: 1rem;
             color: ${colors.secondary};
