@@ -4,10 +4,9 @@
     [
       "module-resolver",
       {
-        "root": ["./"],
         "alias": {
-          "@components": "components",
-          "@containers": "containers"
+          "@containers": "./containers",
+          "@components": "./components"
         }
       }
     ]

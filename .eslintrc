@@ -21,10 +21,9 @@
   "settings": {
     "import/resolver": {
       "babel-module": {
-        "root": ["./"],
         "alias": {
-          "@containers": "containers",
-          "@components": "components"
+          "@containers": "./containers",
+          "@components": "./components"
         }
       }
     }
