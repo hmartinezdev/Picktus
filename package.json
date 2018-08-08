@@ -6,6 +6,9 @@
   "author": "Hugo Martinez",
   "license": "public",
   "dependencies": {
+    "@types/next": "^6.1.2",
+    "@types/react": "^16.4.8",
+    "@zeit/next-typescript": "^1.1.0",
     "next": "^6.1.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
@@ -14,16 +17,16 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint components containers pages",
-    "prettier": "prettier --write **/*.js --write **/*.jsx"
+    "lint": "tslint src/**/*.ts src/**/*.tsx",
+    "prettier": "prettier --write **/*.ts --write **/*.tsx"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.6",
     "babel-plugin-module-resolver": "^3.1.1",
-    "eslint": "^5.3.0",
-    "eslint-import-resolver-babel-module": "^5.0.0-beta.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-react": "^7.10.0",
-    "prettier": "^1.14.0"
+    "prettier": "^1.14.0",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.14.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.0.1",
+    "typescript-eslint-parser": "^18.0.0"
   }
 }
