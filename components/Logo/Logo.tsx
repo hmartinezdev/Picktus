@@ -16,13 +16,11 @@ class Logo extends Component {
           }
 
           .logoContainer {
-            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 1rem;
           }
-
           .logo {
             width: 200px;
           }

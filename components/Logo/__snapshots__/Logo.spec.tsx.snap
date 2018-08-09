@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Logo /> should render properly 1`] = `
+<div
+  className="logoContainer"
+>
+  <img
+    className="logo"
+    src="/static/logo.png"
+  />
+  <h1
+    className="title"
+  >
+    Picktus
+  </h1>
+  <style
+    jsx={true}
+  >
+    
+          .title {
+            font-family: 'Caveat', cursive;
+            font-size: 10rem;
+            margin-left: 1rem;
+            color: #ffdfb9;
+          }
+
+          .logoContainer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+          }
+          .logo {
+            width: 200px;
+          }
+        
+  </style>
+</div>
+`;

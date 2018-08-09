@@ -1,17 +1,14 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
       "@containers/*": ["./containers/*"],
       "@components/*": ["./components/*"]
     },
-    "target": "esnext",
-    "module": "esnext",
-    "jsx": "preserve",
+    "jsx": "react",
     "allowJs": true,
-    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "removeComments": false,

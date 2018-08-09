@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> should render properly 1`] = `
+<div
+  className="page"
+>
+  <Header />
+  <Logo />
+  <style
+    jsx={true}
+  >
+    
+          .page {
+            min-height: 100vh;
+            background-color: #32302e;
+          }
+          :global(*) {
+            padding: 0;
+            margin: 0;
+          }
+
+          :global(html) {
+            font-size: 100%;
+          }
+        
+  </style>
+</div>
+`;
