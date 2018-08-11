@@ -6,9 +6,7 @@ class Logo extends Component {
     return (
       <div className="logoContainer">
         <img className="logo" src="/static/logo.png" />
-        <h1 className="title">
-          <span className="first-letter">P</span> <span className="title-little">icktus</span>
-        </h1>
+        <h1 className="title">Picktus</h1>
         <style jsx>{`
           .title {
             margin-left: 1rem;
@@ -16,18 +14,11 @@ class Logo extends Component {
             font-weight: 200;
             vertical-align: center;
             position: relative;
-          }
-          .first-letter {
-            font-family: 'Nanum Pen Script', cursive;
-            font-size: 12rem;
+            top: 1rem;
+            font-family: 'Caveat', cursive;
+            font-size: 6.5rem;
             line-height: 8rem;
-            position: relative;
-            top: 1.1rem;
-          }
-          .title-little {
             font-family: 'Josefin Sans', sans-serif;
-            font-size: 7.5rem;
-            margin-left: -0.7rem;
           }
 
           .logoContainer {
@@ -39,7 +30,7 @@ class Logo extends Component {
           }
 
           .logo {
-            max-width: 150px;
+            max-width: 130px;
           }
         `}</style>
       </div>

@@ -22,7 +22,7 @@ class Login extends Component {
             }
 
             .login {
-              background-color: rgba(50, 48, 46, 0.75);
+              background-color: #2d3047cd;
               padding-right: 2rem;
               box-shadow: 11px 10px 34px -7px rgba(0, 0, 0, 0.49);
             }
