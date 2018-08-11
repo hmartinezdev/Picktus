@@ -6,7 +6,7 @@ class Header extends Component {
     return (
       <Head>
         <title>Picktus</title>
-        <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400|Nanum+Pen+Script" rel="stylesheet" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
     );

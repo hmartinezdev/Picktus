@@ -6,7 +6,8 @@
       {
         "alias": {
           "@containers": "./containers",
-          "@components": "./components"
+          "@components": "./components",
+          "@constants": "./constants"
         }
       }
     ]

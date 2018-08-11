@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import Header from '@components/Header';
-import Logo from '@components/Logo';
 import colors from '../../constants/colors';
 
-class App extends Component {
+interface PropsType {
+  children: JSX.Element[] | JSX.Element;
+}
+class App extends Component<PropsType, {}> {
   render() {
+    const { children } = this.props;
+
     return (
       <div className="page">
         <Header />
-        <Logo />
+        {children}
         <style jsx>{`
           .page {
             min-height: 100vh;
-            background-color: ${colors.main};
+            background-color: ${colors.primary};
           }
           :global(*) {
             padding: 0;

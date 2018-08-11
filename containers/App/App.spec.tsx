@@ -4,7 +4,12 @@ import App from './App';
 
 let wrapper;
 
-const setup = () => shallow(<App />);
+const setup = () =>
+  shallow(
+    <App>
+      <div />
+    </App>
+  );
 
 describe('<App />', () => {
   test('should render properly', () => {
