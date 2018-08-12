@@ -19,7 +19,7 @@
     "start": "next start",
     "lint": "tslint src/**/*.ts src/**/*.tsx",
     "prettier": "prettier --write **/*.ts --write **/*.tsx",
-    "test:unit": "jest"
+    "test": "jest"
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
