@@ -18,10 +18,16 @@ exports[`<Logo /> should render properly 1`] = `
   >
     
           .title {
-            font-family: 'Caveat', cursive;
-            font-size: 10rem;
             margin-left: 1rem;
-            color: #ffdfb9;
+            color: #FAC9B8;
+            font-weight: 200;
+            vertical-align: center;
+            position: relative;
+            top: 1rem;
+            font-family: 'Caveat', cursive;
+            font-size: 6.5rem;
+            line-height: 8rem;
+            font-family: 'Josefin Sans', sans-serif;
           }
 
           .logoContainer {
@@ -29,9 +35,11 @@ exports[`<Logo /> should render properly 1`] = `
             align-items: center;
             justify-content: center;
             padding: 1rem;
+            box-sizing: border-box;
           }
+
           .logo {
-            width: 200px;
+            max-width: 130px;
           }
         
   </style>

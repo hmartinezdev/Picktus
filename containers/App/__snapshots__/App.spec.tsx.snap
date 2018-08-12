@@ -5,14 +5,14 @@ exports[`<App /> should render properly 1`] = `
   className="page"
 >
   <Header />
-  <Logo />
+  <div />
   <style
     jsx={true}
   >
     
           .page {
             min-height: 100vh;
-            background-color: #32302e;
+            background-color: #2d3047;
           }
           :global(*) {
             padding: 0;

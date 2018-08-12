@@ -1,17 +1,19 @@
-import React, { Component } from 'react';
-import Logo from '@components/Logo';
-import Background from '@components/Background';
-import colors from '@constants/colors';
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-class Login extends Component {
-  render() {
-    return (
-      <Background>
-        <div className="container">
-          <div className="login">
-            <Logo />
-          </div>
-          <style jsx>{`
+exports[`<Login /> should render properly 1`] = `
+<Background>
+  <div
+    className="container"
+  >
+    <div
+      className="login"
+    >
+      <Logo />
+    </div>
+    <style
+      jsx={true}
+    >
+      
             .container {
               width: 100%;
               height: 100vh;
@@ -23,7 +25,7 @@ class Login extends Component {
             }
 
             .login {
-              background-color: ${colors.primary}cd;
+              background-color: #2d3047cd;
               padding-right: 2rem;
               box-shadow: 11px 10px 34px -7px rgba(0, 0, 0, 0.49);
               display: flex;
@@ -39,14 +41,11 @@ class Login extends Component {
               width: calc(100% + 2rem);
               height: calc(100% + 2rem);
               border: 3px solid transparent;
-              border-image: linear-gradient(to bottom, ${colors.primary} 60%, ${colors.secondary} 100%);
+              border-image: linear-gradient(to bottom, #2d3047 60%, #FAC9B8 100%);
               border-image-slice: 1;
             }
-          `}</style>
-        </div>
-      </Background>
-    );
-  }
-}
-
-export default Login;
+          
+    </style>
+  </div>
+</Background>
+`;

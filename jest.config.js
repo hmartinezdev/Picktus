@@ -6,6 +6,7 @@ module.exports = {
   moduleNameMapper: {
     '^@containers(.*)$': '<rootDir>/containers$1',
     '^@components(.*)$': '<rootDir>/components$1',
+    '^@constants(.*)$': '<rootDir>/constants$1',
   },
   globals: {
     'ts-jest': {

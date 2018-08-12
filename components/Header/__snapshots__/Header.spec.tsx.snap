@@ -6,7 +6,7 @@ exports[`<Header /> should render properly 1`] = `
     Picktus
   </title>
   <link
-    href="https://fonts.googleapis.com/css?family=Caveat"
+    href="https://fonts.googleapis.com/css?family=Josefin+Sans:400|Caveat"
     rel="stylesheet"
   />
   <meta
