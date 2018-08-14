@@ -5,9 +5,9 @@
       "module-resolver",
       {
         "alias": {
-          "@containers": "./containers",
-          "@components": "./components",
-          "@constants": "./constants"
+          "@containers": "./src/app/containers",
+          "@components": "./src/app/components",
+          "@constants": "./src/app/constants"
         }
       }
     ]

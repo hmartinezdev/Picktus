@@ -1,8 +1,8 @@
 {
   "hosting": {
-    "public": "./public"
+    "public": "src/public"
   },
   "functions": {
-    "source": "./functions"
+    "source": "src/functions"
   }
 }

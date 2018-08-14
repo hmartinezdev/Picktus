@@ -4,9 +4,9 @@ module.exports = {
     '.(ts|tsx)': 'ts-jest',
   },
   moduleNameMapper: {
-    '^@containers(.*)$': '<rootDir>/containers$1',
-    '^@components(.*)$': '<rootDir>/components$1',
-    '^@constants(.*)$': '<rootDir>/constants$1',
+    '^@containers(.*)$': '<rootDir>/src/app/containers$1',
+    '^@components(.*)$': '<rootDir>/src/app/components$1',
+    '^@constants(.*)$': '<rootDir>/src/app/constants$1',
   },
   globals: {
     'ts-jest': {
@@ -15,7 +15,7 @@ module.exports = {
   },
   setupFiles: ['<rootDir>/config/spec.setup.ts'],
   cacheDirectory: '<rootDir>/.jest/',
-  roots: ['<rootDir>/components/', '<rootDir>/containers/'],
+  roots: ['<rootDir>/src/app'],
   testMatch: ['<rootDir>/**/*.spec.ts', '<rootDir>/**/*.spec.tsx'],
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
