@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { config } from './constants';
-import firebase from 'firebase/app';
+import firebase from '@firebase/app';
 import App from './App';
 
 let wrapper;
