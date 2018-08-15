@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '@components/Header';
 import colors from '../../constants/colors';
-import firebase from 'firebase/app';
+import firebase from '@firebase/app';
 import { config } from './constants';
 
 interface PropsType {
