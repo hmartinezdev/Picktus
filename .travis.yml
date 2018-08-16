@@ -1,11 +1,24 @@
 language: node_js
 node_js:
-  - "8"
+  - '8'
+
+cache:
+  directories:
+    - 'node_modules'
+
+install:
+  - npm install
+
 before_script:
-  - npm install -g firebase-tools
-  - npm install -g next
-script:
   - npm run test
   - npm run lint
-after_script:
-  - firebase deploy --token "$FIREBASE_TOKEN"
+
+script:
+  - npm run build:public && npm run build:funcs && npm run build:app && npm run deps:copy
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: npm run deploy:all
+  on:
+    branch: master
