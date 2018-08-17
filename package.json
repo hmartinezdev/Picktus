@@ -18,7 +18,7 @@
   },
   "scripts": {
     "dev": "next \"src/app\"",
-    "lint": "tslint src/app/**/*.ts src/app/**/*.tsx",
+    "lint": "tslint -c tslint.json 'src/app/**/*.tsx' 'src/app/**/*.ts'",
     "prettier": "prettier --write **/*.ts --write **/*.tsx",
     "test": "jest",
     "clean": "rimraf \"dist/functions\" && rimraf \"dist/public\"",

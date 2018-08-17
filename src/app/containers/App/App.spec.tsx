@@ -1,8 +1,8 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import { config } from './constants';
 import firebase from '@firebase/app';
+import { shallow } from 'enzyme';
+import React from 'react';
 import App from './App';
+import { config } from './constants';
 
 let wrapper;
 let spy;
@@ -16,7 +16,9 @@ const setup = () =>
 
 describe('<App />', () => {
   beforeAll(() => {
-    spy = jest.spyOn(firebase, 'initializeApp').mockImplementation(() => {});
+    spy = jest.spyOn(firebase, 'initializeApp').mockImplementation(() => {
+      return;
+    });
     wrapper = setup();
   });
 

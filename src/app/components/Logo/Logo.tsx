@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
 import colors from '@constants/colors';
+import React, { Component } from 'react';
 
 class Logo extends Component {
-  render() {
+  public render() {
     return (
       <div className="logoContainer">
         <img className="logo" src="/static/logo.png" />

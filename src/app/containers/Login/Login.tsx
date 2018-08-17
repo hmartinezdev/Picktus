@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import Logo from '@components/Logo';
 import Background from '@components/Background';
+import Logo from '@components/Logo';
 import colors from '@constants/colors';
+import React, { Component } from 'react';
 
 class Login extends Component {
-  render() {
+  public render() {
     return (
       <Background>
         <div className="container">

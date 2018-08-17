@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
 import Header from '@components/Header';
-import colors from '../../constants/colors';
 import firebase from '@firebase/app';
+import React, { Component } from 'react';
+import colors from '../../constants/colors';
 import { config } from './constants';
 
 interface PropsType {
   children: JSX.Element[] | JSX.Element;
 }
 class App extends Component<PropsType, {}> {
-  componentDidMount() {
+  public componentDidMount() {
     firebase.initializeApp(config);
   }
 
-  render() {
+  public render() {
     const { children } = this.props;
     return (
       <div className="page">

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
 import Head from 'next/head';
+import React, { Component } from 'react';
 
 class Header extends Component {
-  render() {
+  public render() {
     return (
       <Head>
         <title>Picktus</title>
