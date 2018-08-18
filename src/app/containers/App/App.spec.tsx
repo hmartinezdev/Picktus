@@ -1,5 +1,5 @@
-import firebase from '@firebase/app';
 import { shallow } from 'enzyme';
+import firebase from 'firebase/app';
 import React from 'react';
 import App from './App';
 import { config } from './constants';

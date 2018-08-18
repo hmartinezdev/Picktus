@@ -1,5 +1,5 @@
 import Header from '@components/Header';
-import firebase from '@firebase/app';
+import firebase from 'firebase/app';
 import React, { Component } from 'react';
 import colors from '../../constants/colors';
 import { config } from './constants';
