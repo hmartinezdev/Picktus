@@ -12,7 +12,7 @@ class App extends Component<PropsType, {}> {
     firebase.initializeApp(config);
   }
 
-  public render() {
+  public render(): React.ReactElement<App> {
     const { children } = this.props;
     return (
       <div className="page">

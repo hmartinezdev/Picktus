@@ -1,10 +1,13 @@
+import { ActionTypes } from '../action.type';
+import { TypeKeys } from './user-actions';
+
 const initial = {};
 
-export default function counter(state = initial, action) {
+export default function counter(state: object, action: ActionTypes) {
   switch (action.type) {
-    case 'LOGIN_SUCCESS':
+    case TypeKeys.USER_LOGIN_SUCCESS:
       return { ...state, authenticated: true };
-    case 'LOGIN_FAILED':
+    case TypeKeys.USER_LOGIN_FAILED:
       return { ...state, authenticated: false };
     default:
       return state;

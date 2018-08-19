@@ -2,7 +2,7 @@ import colors from '@constants/colors';
 import React, { Component } from 'react';
 
 class Logo extends Component {
-  public render() {
+  public render(): React.ReactElement<Logo> {
     return (
       <div className="logoContainer">
         <img className="logo" src="/static/logo.png" />
