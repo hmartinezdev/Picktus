@@ -4,7 +4,7 @@ import colors from '@constants/colors';
 import React, { Component } from 'react';
 
 class Login extends Component {
-  public render() {
+  public render(): React.ReactElement<Login> {
     return (
       <Background>
         <div className="container">

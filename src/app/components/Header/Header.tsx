@@ -2,7 +2,7 @@ import Head from 'next/head';
 import React, { Component } from 'react';
 
 class Header extends Component {
-  public render() {
+  public render(): React.ReactElement<Header> {
     return (
       <Head>
         <title>Picktus</title>

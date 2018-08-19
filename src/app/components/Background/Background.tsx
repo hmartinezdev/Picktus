@@ -5,7 +5,7 @@ interface PropsType {
 }
 
 class Background extends Component<PropsType, {}> {
-  public render() {
+  public render(): React.ReactElement<Background> {
     const { children } = this.props;
 
     return (
