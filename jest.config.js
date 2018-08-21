@@ -7,6 +7,8 @@ module.exports = {
     '^@containers(.*)$': '<rootDir>/src/app/containers$1',
     '^@components(.*)$': '<rootDir>/src/app/components$1',
     '^@constants(.*)$': '<rootDir>/src/app/constants$1',
+    '^@libs(.*)$': '<rootDir>/src/app/libs$1',
+    '^@services(.*)$': '<rootDir>/src/app/services$1',
   },
   globals: {
     'ts-jest': {

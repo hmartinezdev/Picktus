@@ -4,7 +4,9 @@
     "paths": {
       "@containers/*": ["./src/app/containers/*"],
       "@components/*": ["./src/app/components/*"],
-      "@constants/*": ["./src/app/constants/*"]
+      "@constants/*": ["./src/app/constants/*"],
+      "@libs/*": ["./src/app/libs/*"],
+      "@services/*": ["./src/app/services/*"]
     },
     "jsx": "react",
     "allowJs": true,
