@@ -1,8 +1,8 @@
+import withReduxStore from '@libs/with-redux-store';
 import App, { Container } from 'next/app';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
-import withReduxStore from '../libs/with-redux-store';
 
 interface PropsType {
   reduxStore: Store;
