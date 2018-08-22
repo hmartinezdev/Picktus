@@ -19,6 +19,7 @@ class Logo extends Component {
             font-size: 6.5rem;
             line-height: 8rem;
             font-family: 'Josefin Sans', sans-serif;
+            padding: 1.7rem 0;
           }
 
           .logoContainer {
