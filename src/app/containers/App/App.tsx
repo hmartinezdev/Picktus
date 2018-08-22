@@ -9,7 +9,9 @@ interface PropsType {
 }
 class App extends Component<PropsType, {}> {
   public componentDidMount() {
-    firebase.initializeApp(config);
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config);
+    }
   }
 
   public render(): React.ReactElement<App> {

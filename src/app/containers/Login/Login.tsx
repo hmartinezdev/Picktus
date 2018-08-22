@@ -1,3 +1,4 @@
+import AuthHandler from '@components/AuthHandler';
 import Background from '@components/Background';
 import Logo from '@components/Logo';
 import colors from '@constants/colors';
@@ -11,15 +12,26 @@ class Login extends Component {
           <div className="login">
             <Logo />
           </div>
+          <div className="form">
+            <AuthHandler />
+          </div>
           <style jsx>{`
             .container {
               width: 100%;
               height: 100vh;
               display: flex;
-              justify-content: center;
-              align-items: flex-start;
+              align-items: center;
+              flex-direction: column;
               padding: 2rem;
               box-sizing: border-box;
+            }
+
+            .form {
+              height: 100%;
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
             }
 
             .login {
