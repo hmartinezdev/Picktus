@@ -9,6 +9,8 @@ interface PropsType {
 }
 
 class MyApp extends App<PropsType> {
+  public static getInitialProps = undefined;
+
   public render(): React.ReactElement<MyApp> {
     const { Component, pageProps, reduxStore } = this.props;
     return (

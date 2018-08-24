@@ -1,8 +1,23 @@
 import React, { Component } from 'react';
+import { Store } from 'redux';
 import { initializeStore } from '../store';
 
 const isServer = typeof window === 'undefined';
 const __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__';
+
+declare global {
+  interface Window {
+    [__NEXT_REDUX_STORE__]: Store;
+  }
+}
+
+interface State {
+  reduxStore: any;
+}
+
+interface PropTypes {
+  initialReduxState: object;
+}
 
 function getOrCreateStore(initialState?: object) {
   // Always make a new store if server, otherwise state is shared between requests
@@ -17,13 +32,13 @@ function getOrCreateStore(initialState?: object) {
   return window[__NEXT_REDUX_STORE__];
 }
 
-interface State {
-  reduxStore: any;
+interface ExtendedElement extends React.ComponentClass<any> {
+  getInitialProps: any;
 }
 
-export default (App) => {
-  return class AppWithRedux extends Component<{}, State> {
-    public static async getInitialProps(appContext) {
+export default (App: ExtendedElement) => {
+  return class AppWithRedux extends Component<PropTypes, State> {
+    public static async getInitialProps(appContext: any) {
       // Get or Create the store with `undefined` as initialState
       // This allows you to set a custom default initialState
       const reduxStore = getOrCreateStore();
@@ -42,7 +57,7 @@ export default (App) => {
       };
     }
 
-    constructor(props) {
+    constructor(props: PropTypes) {
       super(props);
       this.state = {
         reduxStore: getOrCreateStore(props.initialReduxState),
