@@ -1,5 +1,5 @@
-import AuthHandler from '@components/AuthHandler';
 import Background from '@components/Background';
+import LoginHandler from '@components/LoginHandler';
 import Logo from '@components/Logo';
 import colors from '@constants/colors';
 import React, { Component } from 'react';
@@ -13,7 +13,7 @@ class Login extends Component {
             <Logo />
           </div>
           <div className="form">
-            <AuthHandler />
+            <LoginHandler />
           </div>
           <style jsx>{`
             .container {
