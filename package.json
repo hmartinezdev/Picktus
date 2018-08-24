@@ -8,6 +8,7 @@
   "dependencies": {
     "@material-ui/core": "^1.5.1",
     "@material-ui/icons": "^2.0.3",
+    "@types/enzyme": "^3.1.13",
     "firebase": "^5.4.0",
     "isomorphic-unfetch": "^2.1.1",
     "next": "^6.1.1",
