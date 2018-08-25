@@ -14,24 +14,23 @@ class Logo extends Component {
             font-weight: 200;
             vertical-align: center;
             position: relative;
-            top: 1rem;
+            top: 0.7rem;
             font-family: 'Caveat', cursive;
-            font-size: 6.5rem;
-            line-height: 8rem;
+            font-size: 6rem;
+            line-height: 5rem;
             font-family: 'Josefin Sans', sans-serif;
-            padding: 1.7rem 0;
           }
 
           .logoContainer {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
+            padding: 1.7rem 1rem 1.7rem 0.8rem;
             box-sizing: border-box;
           }
 
           .logo {
-            max-width: 130px;
+            max-width: 100px;
           }
         `}</style>
       </div>
