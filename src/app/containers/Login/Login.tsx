@@ -36,10 +36,10 @@ class Login extends Component {
 
             .login {
               background-color: ${colors.primary}cd;
-              padding-right: 2rem;
               box-shadow: 11px 10px 34px -7px rgba(0, 0, 0, 0.49);
               display: flex;
               position: relative;
+              border-radius: 3px;
             }
 
             .login::after {

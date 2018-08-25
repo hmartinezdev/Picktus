@@ -1,28 +1,49 @@
+import colors from '@constants/colors';
 import React, { Component } from 'react';
 
-class Input extends Component {
+interface PropTypes {
+  type?: string;
+  placeholder: string;
+}
+class Input extends Component<PropTypes> {
+  private static defaultProps = {
+    placeholder: '',
+    type: 'text',
+  };
+
   public render(): React.ReactElement<Input> {
+    const { placeholder, type } = this.props;
     return (
       <div className="container">
-        <input className="input" type="text" placeholder="Placeholder Text" />
+        <input className="input" type={type} placeholder={placeholder} />
         <span className="focus-border">
           <i />
         </span>
         <style jsx>{`
           .container {
             position: relative;
+            width: 75%;
+            margin: 0.5rem 0;
+            border-radius: 3px;
           }
 
           .input {
-            font: 15px/24px 'Lato', Arial, sans-serif;
-            color: #333;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.9rem;
+            color: ${colors.secondary};
             width: 100%;
             box-sizing: border-box;
             letter-spacing: 1px;
-            border: 1px solid #ccc;
-            padding: 7px 14px 9px;
+            border: 1px solid ${colors.secondary};
+            padding: 0.9rem 0.8rem 0.9rem;
             transition: 0.4s;
             outline: none;
+            background-color: ${colors.primary}00;
+            border-radius: 3px;
+          }
+
+          .input::placeholder {
+            color: ${colors.secondary}bb;
           }
 
           .input ~ .focus-border:before,
@@ -32,8 +53,8 @@ class Input extends Component {
             top: 0;
             left: 0;
             width: 0;
-            height: 2px;
-            background-color: #3399ff;
+            height: 3px;
+            background-color: ${colors.secondary};
             transition: 0.3s;
           }
           .input ~ .focus-border:after {
@@ -48,9 +69,9 @@ class Input extends Component {
             position: absolute;
             top: 0;
             left: 0;
-            width: 2px;
+            width: 3px;
             height: 0;
-            background-color: #3399ff;
+            background-color: ${colors.secondary};
             transition: 0.4s;
           }
           .input ~ .focus-border i:after {
