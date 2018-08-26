@@ -24,7 +24,6 @@ class Input extends Component<PropTypes> {
             position: relative;
             width: 75%;
             margin: 0.5rem 0;
-            border-radius: 3px;
           }
 
           .input {
@@ -53,10 +52,11 @@ class Input extends Component<PropTypes> {
             top: 0;
             left: 0;
             width: 0;
-            height: 3px;
+            height: 2px;
             background-color: ${colors.secondary};
-            transition: 0.3s;
+            transition: 0.3s ease-out;
           }
+
           .input ~ .focus-border:after {
             top: auto;
             bottom: 0;
@@ -69,10 +69,10 @@ class Input extends Component<PropTypes> {
             position: absolute;
             top: 0;
             left: 0;
-            width: 3px;
+            width: 2px;
             height: 0;
             background-color: ${colors.secondary};
-            transition: 0.4s;
+            transition: 0.3s ease-out;
           }
           .input ~ .focus-border i:after {
             left: auto;
@@ -83,12 +83,12 @@ class Input extends Component<PropTypes> {
           .input:focus ~ .focus-border:before,
           .input:focus ~ .focus-border:after {
             width: 100%;
-            transition: 0.3s;
+            transition: 0.3s ease-out;
           }
           .input:focus ~ .focus-border i:before,
           .input:focus ~ .focus-border i:after {
             height: 100%;
-            transition: 0.4s;
+            transition: 0.3s ease-out;
           }
         `}</style>
       </div>
