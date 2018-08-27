@@ -1,3 +1,4 @@
+import colors from '@constants/colors';
 import React, { Component } from 'react';
 
 class Button extends Component {
@@ -7,7 +8,7 @@ class Button extends Component {
         <span>Login</span>
         <style jsx>{`
           .button {
-            color: rgba(255, 255, 255, 1);
+            color: #ffffffd7;
             transition: all 0.5s;
             position: relative;
             text-align: center;
@@ -20,11 +21,13 @@ class Button extends Component {
             width: 75%;
             margin: 0.5rem 0;
           }
+
           .button a {
             color: rgba(51, 51, 51, 1);
             text-decoration: none;
             display: block;
           }
+
           .button::before {
             content: '';
             position: absolute;
@@ -33,7 +36,7 @@ class Button extends Component {
             width: 100%;
             height: 100%;
             z-index: 1;
-            background-color: rgba(255, 255, 255, 0.25);
+            background-color: ${colors.blue}45;
             transition: all 0.3s;
           }
           .button:hover::before {
@@ -50,8 +53,8 @@ class Button extends Component {
             z-index: 1;
             opacity: 0;
             transition: all 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            transform: scale(1.2, 1.2);
+            border: 1px solid ${colors.green}ca;
+            transform: scale(0.7, 0.7);
           }
           .button:hover::after {
             opacity: 1;

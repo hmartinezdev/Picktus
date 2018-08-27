@@ -1,5 +1,6 @@
 import Button from '@components/Button';
 import Input from '@components/Input';
+import SubscribeHandler from '@components/SubscribeHandler';
 import colors from '@constants/colors';
 import React, { Component } from 'react';
 
@@ -7,11 +8,14 @@ class LoginHandler extends Component {
   public render(): React.ReactElement<LoginHandler> {
     return (
       <div className="container">
-        <Input placeholder="Mail" />
-        <Input placeholder="Password" type="password" />
-        <Button />
+        <SubscribeHandler />
+        <div className="login">
+          <Input placeholder="Mail" />
+          <Input placeholder="Password" type="password" />
+          <Button />
+        </div>
         <style jsx>{`
-          .container {
+          .login {
             display: flex;
             flex-direction: column;
             align-items: center;

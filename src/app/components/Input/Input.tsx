@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 interface PropTypes {
   type?: string;
-  placeholder: string;
+  placeholder?: string;
 }
 class Input extends Component<PropTypes> {
   private static defaultProps = {
