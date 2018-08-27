@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SubscribeHandler /> should render properly 1`] = `
+<div
+  className="container"
+>
+  <h1
+    className="text"
+  >
+    It's my first time here!
+  </h1>
+  <style
+    jsx={true}
+  >
+    
+          .text {
+            font-size: 0.9rem;
+          }
+
+          .container {
+            background-color: #2d3047cd;
+            padding: 0.9rem 0.8rem 0.9rem;
+            position: relative;
+            font-family: 'Josefin Sans', sans-serif;
+            color: #FAC9B8;
+            border-radius: 3px;
+          }
+        
+  </style>
+</div>
+`;
