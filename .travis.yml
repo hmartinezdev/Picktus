@@ -5,6 +5,7 @@ node_js:
 cache:
   directories:
     - 'node_modules'
+    - '$HOME/.sonar/cache'
 
 install:
   - npm install
@@ -12,6 +13,13 @@ install:
 before_script:
   - npm run test:ci
   - npm run lint
+  - sonar-scanner
+
+addons:
+  sonarcloud:
+    organization: "hmartinezdev-github" # the key of the org you chose at step #3
+script:
+  
 
 script:
   - npm run build:public && npm run build:funcs && npm run build:app && npm run deps:copy

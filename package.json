@@ -25,10 +25,10 @@
   },
   "scripts": {
     "dev": "next \"src/app\"",
-    "lint": "tslint -c tslint.json 'src/app/**/*.tsx' 'src/app/**/*.ts'",
+    "lint": "tslint -t json -o tslint-report.json -c tslint.json 'src/app/**/*.tsx' 'src/app/**/*.ts'",
     "prettier": "prettier --write **/*.ts --write **/*.tsx",
     "test": "jest",
-    "test:ci": "jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "test:ci": "jest --coverage",
     "clean": "rimraf \"dist/functions\" && rimraf \"dist/public\"",
     "preserve": "npm run build:public && npm run build:funcs && npm run build:app && npm run deps:copy && npm run deps:install",
     "serve": "NODE_ENV=production firebase serve --only functions,hosting",
