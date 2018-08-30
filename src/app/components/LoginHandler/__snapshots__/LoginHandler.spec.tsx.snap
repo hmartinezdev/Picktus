@@ -16,12 +16,19 @@ exports[`<LoginHandler /> should render properly 1`] = `
       placeholder="Password"
       type="password"
     />
-    <Button />
+    <Button
+      onClick={[Function]}
+      text="Login"
+    />
   </div>
   <style
     jsx={true}
   >
     
+          .container {
+            position: relative;
+          }
+
           .login {
             display: flex;
             flex-direction: column;
