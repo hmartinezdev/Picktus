@@ -1,11 +1,23 @@
 import colors from '@constants/colors';
 import React, { Component } from 'react';
 
-class Button extends Component {
+export interface PropTypes {
+  text?: string;
+  onClick?(): void;
+}
+
+class Button extends Component<PropTypes, {}> {
+  public static defaultProps = {
+    onClick: (): void => undefined,
+    text: '',
+  };
+
   public render(): React.ReactElement<Button> {
+    const { onClick, text } = this.props;
+
     return (
-      <div className="button">
-        <span>Login</span>
+      <button onClick={onClick} className="button">
+        <span>{text}</span>
         <style jsx>{`
           .button {
             color: #ffffffd7;
@@ -20,6 +32,13 @@ class Button extends Component {
             font-size: 0.9rem;
             width: 75%;
             margin: 0.5rem 0;
+            background: none;
+            border: none;
+            outline: none;
+          }
+
+          .button:active::after {
+            background-color: ${colors.green}ca;
           }
 
           .button a {
@@ -38,6 +57,7 @@ class Button extends Component {
             z-index: 1;
             background-color: ${colors.blue}45;
             transition: all 0.3s;
+            boder-radius: 3px;
           }
           .button:hover::before {
             opacity: 0;
@@ -55,13 +75,14 @@ class Button extends Component {
             transition: all 0.3s;
             border: 1px solid ${colors.green}ca;
             transform: scale(0.7, 0.7);
+            boder-radius: 3px;
           }
           .button:hover::after {
             opacity: 1;
             transform: scale(1, 1);
           }
         `}</style>
-      </div>
+      </button>
     );
   }
 }

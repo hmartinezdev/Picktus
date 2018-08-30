@@ -4,26 +4,65 @@ exports[`<SubscribeHandler /> should render properly 1`] = `
 <div
   className="container"
 >
-  <h1
-    className="text"
+  <button
+    className="trigger"
   >
-    It's my first time here!
-  </h1>
+    You don't have an account?
+  </button>
+  <div
+    className="form"
+  >
+    <Input
+      placeholder="Mail"
+      type="text"
+    />
+    <Input
+      placeholder="Password"
+      type="password"
+    />
+    <Input
+      placeholder="Confirm password"
+      type="password"
+    />
+  </div>
   <style
     jsx={true}
   >
     
-          .text {
-            font-size: 0.9rem;
+          .trigger {
+            font-size: 1.2rem;
+            line-height: 2.8rem;
+            background-color: #FAC9B889;
+            padding: 0 0.8rem;
+            height: 2.8rem;
+            font-family: 'Josefin Sans', sans-serif;
+            color: #2d3047;
+            border-radius: 3px;
+            margin-bottom: 1.3rem;
+            transition: background-color ease-in 200ms;
+            border: none;
+            width: 100%;
+            outline: none;
+            cursor: pointer;
           }
 
-          .container {
-            background-color: #2d3047cd;
-            padding: 0.9rem 0.8rem 0.9rem;
-            position: relative;
-            font-family: 'Josefin Sans', sans-serif;
-            color: #FAC9B8;
+          .trigger:hover {
+            background-color: #FAC9B8cd;
+          }
+
+          .form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 4.1rem;
+            left: 0;
             border-radius: 3px;
+            width: 100%;
+            height: calc(100% - 4.1rem);
+            background-color: #2d3047;
+            z-index: 2;
           }
         
   </style>

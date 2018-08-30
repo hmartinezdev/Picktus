@@ -12,9 +12,13 @@ class LoginHandler extends Component {
         <div className="login">
           <Input placeholder="Mail" />
           <Input placeholder="Password" type="password" />
-          <Button />
+          <Button text="Login" />
         </div>
         <style jsx>{`
+          .container {
+            position: relative;
+          }
+
           .login {
             display: flex;
             flex-direction: column;
