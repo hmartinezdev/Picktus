@@ -1,5 +1,8 @@
+export interface FirebaseError extends Error {
+  code?: string;
+}
 export default class AuthenticationError extends Error {
-  constructor(...args) {
+  constructor(...args: any[]) {
     super(...args);
     Error.captureStackTrace(this, AuthenticationError);
   }

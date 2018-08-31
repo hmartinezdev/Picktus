@@ -1,21 +1,25 @@
 import colors from '@constants/colors';
-import React, { Component } from 'react';
+import React, { ChangeEvent, Component } from 'react';
 
 interface PropTypes {
   type?: string;
   placeholder?: string;
+  onChange?(e: ChangeEvent<HTMLInputElement>): void;
+  name?: string;
 }
 class Input extends Component<PropTypes> {
   private static defaultProps = {
+    name: '',
+    onChange: () => undefined,
     placeholder: '',
     type: 'text',
   };
 
   public render(): React.ReactElement<Input> {
-    const { placeholder, type } = this.props;
+    const { placeholder, type, onChange, name } = this.props;
     return (
       <div className="container">
-        <input className="input" type={type} placeholder={placeholder} />
+        <input name={name} className="input" type={type} placeholder={placeholder} onChange={onChange} />
         <span className="focus-border">
           <i />
         </span>

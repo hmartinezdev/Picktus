@@ -1,5 +1,5 @@
 import auth from 'firebase/auth';
-import AuthenticationError from './AuthenticationError';
+import AuthenticationError, { FirebaseError } from './AuthenticationError';
 
 class Authentication extends Object {
   constructor() {
@@ -9,7 +9,7 @@ class Authentication extends Object {
   public async createUser(email: string, password: string) {
     await auth()
       .createUserWithEmailAndPassword(email, password)
-      .catch((error) => {
+      .catch((error: FirebaseError) => {
         throw new AuthenticationError(`Error code ${error.code}: ${error.message}`);
       });
   }
