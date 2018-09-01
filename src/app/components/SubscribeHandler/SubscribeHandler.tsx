@@ -1,18 +1,13 @@
 import Button from '@components/Button';
 import Input from '@components/Input';
 import colors from '@constants/colors';
-import React, { ChangeEvent, PureComponent } from 'react';
+import Authentication from '@services/authentication';
+import React, { ChangeEvent, PureComponent, SyntheticEvent } from 'react';
 
 export interface SubscribeHandlerState {
   mail: string;
   password: string;
   comfirmPassword: string;
-}
-
-export enum Inputs {
-  password = 'password',
-  mail = 'mail',
-  comfirmPassword = 'comfirmPassword',
 }
 
 class SubscribeHandler extends PureComponent<{}, SubscribeHandlerState> {
@@ -26,22 +21,39 @@ class SubscribeHandler extends PureComponent<{}, SubscribeHandlerState> {
     };
   }
 
-  private onChange(e: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target;
-    if (Object.values(Inputs).include('name')) {
-      this.setState({ [name]: value });
-    }
-  }
+  private onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    this.setState({ password: value });
+  };
+
+  private onMailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    this.setState({ mail: value });
+  };
+
+  private onComfirmPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    this.setState({ comfirmPassword: value });
+  };
+
+  private onSubscribeClick = () => {
+    Authentication.createUser(this.state.mail, this.state.password);
+  };
 
   public render(): React.ReactElement<SubscribeHandler> {
     return (
       <div className="container">
         <button className="trigger">You don't have an account?</button>
         <div className="form">
-          <Input name={Inputs.mail} placeholder="Mail" onChange={this.onChange} />
-          <Input name={Inputs.password} placeholder="Password" type="password" />
-          <Input name={Inputs.comfirmPassword} placeholder="Confirm password" type="password" />
-          <Button text="Subscribe" />
+          <Input name="mail" placeholder="Mail" onChange={this.onMailChange} />
+          <Input name="password" placeholder="Password" type="password" onChange={this.onPasswordChange} />
+          <Input
+            name="comfirmPassword"
+            placeholder="Confirm password"
+            type="password"
+            onChange={this.onComfirmPasswordChange}
+          />
+          <Button text="Subscribe" onClick={this.onSubscribeClick} />
         </div>
         <style jsx>{`
           .trigger {
