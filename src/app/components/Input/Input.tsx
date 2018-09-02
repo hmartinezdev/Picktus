@@ -8,7 +8,7 @@ interface PropTypes {
   name?: string;
 }
 class Input extends Component<PropTypes> {
-  private static defaultProps = {
+  public static defaultProps = {
     name: '',
     onChange: () => undefined,
     placeholder: '',
@@ -27,18 +27,18 @@ class Input extends Component<PropTypes> {
           .container {
             position: relative;
             width: 75%;
-            margin: 0.5rem 0;
+            margin: 0.7rem 0;
           }
 
           .input {
             font-family: 'Josefin Sans', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             color: ${colors.secondary};
             width: 100%;
             box-sizing: border-box;
             letter-spacing: 1px;
             border: 1px solid ${colors.secondary};
-            padding: 0.9rem 0.8rem 0.9rem;
+            padding: 0.8rem 0.7rem 0.8rem;
             transition: 0.4s;
             outline: none;
             background-color: ${colors.primary}00;

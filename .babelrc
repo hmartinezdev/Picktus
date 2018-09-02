@@ -13,6 +13,7 @@
         }
       }
     ],
-    ["styled-jsx/babel", { "optimizeForSpeed": true }]
+    ["styled-jsx/babel", { "optimizeForSpeed": true }],
+    "inline-react-svg"
   ]
 }

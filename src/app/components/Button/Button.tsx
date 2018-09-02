@@ -20,16 +20,15 @@ class Button extends Component<PropTypes, {}> {
         <span>{text}</span>
         <style jsx>{`
           .button {
-            color: #ffffffd7;
+            color: ${colors.white};
             transition: all 0.5s;
             position: relative;
             text-align: center;
-            width: 60%;
             cursor: pointer;
             font-family: 'Josefin Sans', sans-serif;
             boder-radius: 3px;
-            padding: 0.9rem 0.8rem 0.9rem;
-            font-size: 0.9rem;
+            padding: 0.8rem 0.7rem 0.8rem;
+            font-size: 0.75rem;
             width: 75%;
             margin: 0.5rem 0;
             background: none;

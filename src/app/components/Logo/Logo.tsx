@@ -16,8 +16,8 @@ class Logo extends Component {
             position: relative;
             top: 0.7rem;
             font-family: 'Caveat', cursive;
-            font-size: 6rem;
-            line-height: 5rem;
+            font-size: 5rem;
+            line-height: 4rem;
             font-family: 'Josefin Sans', sans-serif;
           }
 
@@ -30,7 +30,7 @@ class Logo extends Component {
           }
 
           .logo {
-            max-width: 100px;
+            max-width: 85px;
           }
         `}</style>
       </div>
