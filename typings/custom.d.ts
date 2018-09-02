@@ -7,3 +7,8 @@ declare module 'react' {
     global?: boolean;
   }
 }
+
+declare module '*.svg' {
+  const content: any;
+  export default content;
+}

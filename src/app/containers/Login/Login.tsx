@@ -24,6 +24,7 @@ class Login extends Component {
               flex-direction: column;
               padding: 2rem;
               box-sizing: border-box;
+              overflow: auto;
             }
 
             .form {
@@ -31,8 +32,9 @@ class Login extends Component {
               width: 100%;
               display: flex;
               flex-direction: column;
-              justify-content: center;
+              justify-content: flex-start;
               align-items: center;
+              margin-top: 2.5rem;
             }
 
             .login {
@@ -49,9 +51,9 @@ class Login extends Component {
               left: 50%;
               transform: translate(-50%, -50%);
               content: '';
-              width: calc(100% + 2rem);
-              height: calc(100% + 2rem);
-              border: 3px solid transparent;
+              width: calc(100% + 1.2rem);
+              height: calc(100% + 1.2rem);
+              border: 2px solid transparent;
               border-image: linear-gradient(to bottom, ${colors.primary} 60%, ${colors.secondary} 100%);
               border-image-slice: 1;
             }
