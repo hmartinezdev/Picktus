@@ -22,17 +22,17 @@ class SubscribeHandler extends PureComponent<{}, SubscribeHandlerState> {
     };
   }
 
-  private onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+  public onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     this.setState({ password: value });
   };
 
-  private onMailChange = (e: ChangeEvent<HTMLInputElement>) => {
+  public onMailChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     this.setState({ mail: value });
   };
 
-  private onComfirmPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+  public onComfirmPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     this.setState({ comfirmPassword: value });
   };
@@ -57,7 +57,10 @@ class SubscribeHandler extends PureComponent<{}, SubscribeHandlerState> {
             />
             <Button text="Subscribe" onClick={this.onSubscribeClick} />
           </div>
-          <FormError text="Password must be minimum eight characters, at least one letter, one number and one special character" />
+          <FormError
+            text="Password must be minimum eight characters, 
+            at least one letter, one number and one special character"
+          />
           <FormError text="You must use a valid mail address" />
           <FormError text="Password comfirmation does not match password" />
         </div>

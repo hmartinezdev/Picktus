@@ -9,6 +9,9 @@ module.exports = {
     '^@constants(.*)$': '<rootDir>/src/app/constants$1',
     '^@libs(.*)$': '<rootDir>/src/app/libs$1',
     '^@services(.*)$': '<rootDir>/src/app/services$1',
+    '\\.(jpg|svg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>/mocks/fileMock.js',
+    '\\.(css)$': '<rootDir>/mocks/styleMock.js',
   },
   globals: {
     'ts-jest': {
@@ -19,8 +22,10 @@ module.exports = {
   cacheDirectory: '<rootDir>/.jest/',
   roots: ['<rootDir>/src/app'],
   testMatch: ['<rootDir>/**/*.spec.ts', '<rootDir>/**/*.spec.tsx'],
+  collectCoverageFrom: ['<rootDir>/src/app/**/*.ts', '<rootDir>/src/app/**/*.tsx'],
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   testEnvironmentOptions: { resources: 'usable' },
+  coveragePathIgnorePatterns: ['/src/app/.*/index.*', '/src/app/libs/.*', '/src/app/pages/_app.tsx'],
   testURL: 'http://localhost',
 };

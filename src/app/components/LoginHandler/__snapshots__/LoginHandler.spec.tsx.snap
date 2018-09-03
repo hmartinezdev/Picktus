@@ -9,15 +9,16 @@ exports[`<LoginHandler /> should render properly 1`] = `
     className="login"
   >
     <Input
+      name=""
       placeholder="Mail"
       type="text"
     />
     <Input
+      name=""
       placeholder="Password"
       type="password"
     />
     <Button
-      onClick={[Function]}
       text="Login"
     />
   </div>
