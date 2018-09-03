@@ -1,5 +1,5 @@
-import { shallow } from 'enzyme';
-import firebase from 'firebase/app';
+import { mount, shallow } from 'enzyme';
+import firebase, { initializeApp } from 'firebase/app';
 import React from 'react';
 import App from './App';
 import { config } from './constants';
@@ -13,7 +13,6 @@ const setup = () =>
       <div />
     </App>
   );
-
 describe('<App />', () => {
   beforeAll(() => {
     spy = jest.spyOn(firebase, 'initializeApp').mockImplementation(() => {
@@ -22,7 +21,7 @@ describe('<App />', () => {
     wrapper = setup();
   });
 
-  afterAll(() => {
+  afterEach(() => {
     jest.restoreAllMocks();
   });
 
@@ -31,8 +30,23 @@ describe('<App />', () => {
   });
 
   describe('componentDidMount', () => {
+    beforeEach(() => {
+      spy = jest.spyOn(firebase, 'initializeApp').mockImplementation(() => {
+        return;
+      });
+    });
+
     test('it should configure firebase properly', () => {
+      wrapper = setup();
       expect(spy).toHaveBeenCalledWith(config);
+    });
+
+    test('it should configure firebase properly', () => {
+      const switcher = firebase;
+      firebase = { initializeApp: () => 'test', apps: ['test'] };
+      wrapper = setup();
+      expect(spy).toHaveBeenCalledTimes(0);
+      firebase = switcher;
     });
   });
 });

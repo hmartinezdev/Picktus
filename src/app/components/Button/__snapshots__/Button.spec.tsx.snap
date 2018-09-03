@@ -1,0 +1,231 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> should put the onClick props on the button 1`] = `
+<button
+  className="button"
+  onClick={[Function]}
+>
+  <span />
+  <style
+    jsx={true}
+  >
+    
+          .button {
+            color: #F8F8F7;
+            transition: all 0.5s;
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+            font-family: 'Josefin Sans', sans-serif;
+            boder-radius: 3px;
+            padding: 0.8rem 0.7rem 0.8rem;
+            font-size: 0.75rem;
+            width: 75%;
+            margin: 0.5rem 0;
+            background: none;
+            border: none;
+            outline: none;
+          }
+
+          .button:active::after {
+            background-color: #75ab88ca;
+          }
+
+          .button a {
+            color: rgba(51, 51, 51, 1);
+            text-decoration: none;
+            display: block;
+          }
+
+          .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-color: #9fcbe745;
+            transition: all 0.3s;
+            boder-radius: 3px;
+          }
+          .button:hover::before {
+            opacity: 0;
+            transform: scale(0.5, 0.5);
+          }
+          .button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0;
+            transition: all 0.3s;
+            border: 1px solid #75ab88ca;
+            transform: scale(0.7, 0.7);
+            boder-radius: 3px;
+          }
+          .button:hover::after {
+            opacity: 1;
+            transform: scale(1, 1);
+          }
+        
+  </style>
+</button>
+`;
+
+exports[`<Button /> should put the text props inside the button 1`] = `
+<button
+  className="button"
+  onClick={[Function]}
+>
+  <span>
+    test
+  </span>
+  <style
+    jsx={true}
+  >
+    
+          .button {
+            color: #F8F8F7;
+            transition: all 0.5s;
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+            font-family: 'Josefin Sans', sans-serif;
+            boder-radius: 3px;
+            padding: 0.8rem 0.7rem 0.8rem;
+            font-size: 0.75rem;
+            width: 75%;
+            margin: 0.5rem 0;
+            background: none;
+            border: none;
+            outline: none;
+          }
+
+          .button:active::after {
+            background-color: #75ab88ca;
+          }
+
+          .button a {
+            color: rgba(51, 51, 51, 1);
+            text-decoration: none;
+            display: block;
+          }
+
+          .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-color: #9fcbe745;
+            transition: all 0.3s;
+            boder-radius: 3px;
+          }
+          .button:hover::before {
+            opacity: 0;
+            transform: scale(0.5, 0.5);
+          }
+          .button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0;
+            transition: all 0.3s;
+            border: 1px solid #75ab88ca;
+            transform: scale(0.7, 0.7);
+            boder-radius: 3px;
+          }
+          .button:hover::after {
+            opacity: 1;
+            transform: scale(1, 1);
+          }
+        
+  </style>
+</button>
+`;
+
+exports[`<Button /> should render properly 1`] = `
+<button
+  className="button"
+  onClick={[Function]}
+>
+  <span />
+  <style
+    jsx={true}
+  >
+    
+          .button {
+            color: #F8F8F7;
+            transition: all 0.5s;
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+            font-family: 'Josefin Sans', sans-serif;
+            boder-radius: 3px;
+            padding: 0.8rem 0.7rem 0.8rem;
+            font-size: 0.75rem;
+            width: 75%;
+            margin: 0.5rem 0;
+            background: none;
+            border: none;
+            outline: none;
+          }
+
+          .button:active::after {
+            background-color: #75ab88ca;
+          }
+
+          .button a {
+            color: rgba(51, 51, 51, 1);
+            text-decoration: none;
+            display: block;
+          }
+
+          .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-color: #9fcbe745;
+            transition: all 0.3s;
+            boder-radius: 3px;
+          }
+          .button:hover::before {
+            opacity: 0;
+            transform: scale(0.5, 0.5);
+          }
+          .button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0;
+            transition: all 0.3s;
+            border: 1px solid #75ab88ca;
+            transform: scale(0.7, 0.7);
+            boder-radius: 3px;
+          }
+          .button:hover::after {
+            opacity: 1;
+            transform: scale(1, 1);
+          }
+        
+  </style>
+</button>
+`;

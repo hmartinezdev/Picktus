@@ -1,16 +1,15 @@
 import colors from '@constants/colors';
 import React, { ChangeEvent, Component } from 'react';
 
-interface PropTypes {
+export interface InputPropTypes {
   type?: string;
   placeholder?: string;
-  onChange?(e: ChangeEvent<HTMLInputElement>): void;
+  onChange(e: ChangeEvent<HTMLInputElement>): void;
   name?: string;
 }
-class Input extends Component<PropTypes> {
+class Input extends Component<InputPropTypes> {
   public static defaultProps = {
     name: '',
-    onChange: () => undefined,
     placeholder: '',
     type: 'text',
   };

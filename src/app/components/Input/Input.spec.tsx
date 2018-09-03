@@ -1,10 +1,11 @@
 import enzyme, { shallow } from 'enzyme';
 import React from 'react';
-import Input from './Input';
+import Input, { InputPropTypes } from './Input';
 
 let wrapper: enzyme.ShallowWrapper;
 
-const setup = (props = {}) => shallow(<Input {...props} />);
+const baseProps = { onChange: () => undefined };
+const setup = (props: InputPropTypes = baseProps) => shallow(<Input {...props} />);
 
 describe('<Input />', () => {
   beforeEach(() => {
@@ -16,12 +17,20 @@ describe('<Input />', () => {
   });
 
   test('should display the correct text', () => {
-    wrapper = setup({ type: 'password' });
+    wrapper = setup({ ...baseProps, type: 'password' });
     expect(wrapper).toMatchSnapshot();
   });
 
   test('should display the correct placeholder', () => {
-    wrapper = setup({ placeholder: 'placeholder' });
+    wrapper = setup({ ...baseProps, placeholder: 'placeholder' });
     expect(wrapper).toMatchSnapshot();
+  });
+
+  test('should call onChange when a value is entered', () => {
+    const onChange = jest.fn();
+    const event = { target: { name: 'change', value: 'test' } };
+    wrapper = setup({ onChange, placeholder: 'placeholder' });
+    wrapper.find('input').simulate('change', event);
+    expect(onChange).toHaveBeenCalled();
   });
 });

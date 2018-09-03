@@ -1,19 +1,19 @@
-import colors from '@constants/colors';
-import React, { Component } from 'react';
-import ErrorSvg from '../../static/svg/error.svg';
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-export interface FormErrorPropsType {
-  text: string;
-}
-class FormError extends Component<FormErrorPropsType> {
-  public render(): React.ReactElement<FormError> {
-    const { text } = this.props;
-
-    return (
-      <div className="container">
-        <ErrorSvg className="icon" />
-        <p>{text}</p>
-        <style jsx>{`
+exports[`<FormError /> should render properly 1`] = `
+<div
+  className="container"
+>
+  <Component
+    className="icon"
+  />
+  <p>
+    erreur
+  </p>
+  <style
+    jsx={true}
+  >
+    
           p {
             line-height: 1rem;
             margin-top: 0.2rem;
@@ -25,27 +25,24 @@ class FormError extends Component<FormErrorPropsType> {
             align-items: center;
             font-family: 'Josefin Sans', sans-serif;
             font-size: 0.7rem;
-            color: ${colors.white};
+            color: #F8F8F7;
             width: 100%;
             box-sizing: border-box;
             letter-spacing: 0.05rem;
             padding: 0.5rem 0rem 0.5rem 0.2rem;
             transition: 0.4s;
             outline: none;
-            background-color: ${colors.error}cd;
+            background-color: #982649cd;
             border-radius: 3px;
             margin: 0.8rem 0;
           }
 
           .icon {
-            fill: ${colors.secondary};
+            fill: #FAC9B8;
             min-width: 1.8rem;
             margin-right: 0.2rem;
           }
-        `}</style>
-      </div>
-    );
-  }
-}
-
-export default FormError;
+        
+  </style>
+</div>
+`;

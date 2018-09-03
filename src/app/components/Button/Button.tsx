@@ -1,14 +1,13 @@
 import colors from '@constants/colors';
 import React, { Component } from 'react';
 
-export interface PropTypes {
+export interface ButtonPropTypes {
   text?: string;
-  onClick?(): void;
+  onClick(): void;
 }
 
-class Button extends Component<PropTypes, {}> {
+class Button extends Component<ButtonPropTypes, {}> {
   public static defaultProps = {
-    onClick: (): void => undefined,
     text: '',
   };
 

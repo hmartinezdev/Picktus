@@ -27,6 +27,7 @@ exports[`<Login /> should render properly 1`] = `
               flex-direction: column;
               padding: 2rem;
               box-sizing: border-box;
+              overflow: auto;
             }
 
             .form {
@@ -34,8 +35,9 @@ exports[`<Login /> should render properly 1`] = `
               width: 100%;
               display: flex;
               flex-direction: column;
-              justify-content: center;
+              justify-content: flex-start;
               align-items: center;
+              margin-top: 2.5rem;
             }
 
             .login {
@@ -52,9 +54,9 @@ exports[`<Login /> should render properly 1`] = `
               left: 50%;
               transform: translate(-50%, -50%);
               content: '';
-              width: calc(100% + 2rem);
-              height: calc(100% + 2rem);
-              border: 3px solid transparent;
+              width: calc(100% + 1.2rem);
+              height: calc(100% + 1.2rem);
+              border: 2px solid transparent;
               border-image: linear-gradient(to bottom, #2d3047 60%, #FAC9B8 100%);
               border-image-slice: 1;
             }

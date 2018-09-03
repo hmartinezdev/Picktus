@@ -1,13 +1,10 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import AuthenticationError, { FirebaseError } from './AuthenticationError';
+import AuthenticationError from './AuthenticationError';
+import { FirebaseError } from './AuthenticationError/AuthenticationError.type';
 
-class Authentication extends Object {
-  constructor() {
-    super();
-  }
-
-  public async createUser(email: string, password: string) {
+class Authentication {
+  public static async createUser(email: string, password: string) {
     await firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -17,4 +14,4 @@ class Authentication extends Object {
   }
 }
 
-export default new Authentication();
+export default Authentication;

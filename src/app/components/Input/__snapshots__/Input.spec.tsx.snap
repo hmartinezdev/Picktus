@@ -6,6 +6,8 @@ exports[`<Input /> should display the correct placeholder 1`] = `
 >
   <input
     className="input"
+    name=""
+    onChange={[Function]}
     placeholder="placeholder"
     type="text"
   />
@@ -21,18 +23,18 @@ exports[`<Input /> should display the correct placeholder 1`] = `
           .container {
             position: relative;
             width: 75%;
-            margin: 0.5rem 0;
+            margin: 0.7rem 0;
           }
 
           .input {
             font-family: 'Josefin Sans', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             color: #FAC9B8;
             width: 100%;
             box-sizing: border-box;
             letter-spacing: 1px;
             border: 1px solid #FAC9B8;
-            padding: 0.9rem 0.8rem 0.9rem;
+            padding: 0.8rem 0.7rem 0.8rem;
             transition: 0.4s;
             outline: none;
             background-color: #2d304700;
@@ -99,6 +101,8 @@ exports[`<Input /> should display the correct text 1`] = `
 >
   <input
     className="input"
+    name=""
+    onChange={[Function]}
     placeholder=""
     type="password"
   />
@@ -114,18 +118,18 @@ exports[`<Input /> should display the correct text 1`] = `
           .container {
             position: relative;
             width: 75%;
-            margin: 0.5rem 0;
+            margin: 0.7rem 0;
           }
 
           .input {
             font-family: 'Josefin Sans', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             color: #FAC9B8;
             width: 100%;
             box-sizing: border-box;
             letter-spacing: 1px;
             border: 1px solid #FAC9B8;
-            padding: 0.9rem 0.8rem 0.9rem;
+            padding: 0.8rem 0.7rem 0.8rem;
             transition: 0.4s;
             outline: none;
             background-color: #2d304700;
@@ -192,6 +196,8 @@ exports[`<Input /> should render properly 1`] = `
 >
   <input
     className="input"
+    name=""
+    onChange={[Function]}
     placeholder=""
     type="text"
   />
@@ -207,18 +213,18 @@ exports[`<Input /> should render properly 1`] = `
           .container {
             position: relative;
             width: 75%;
-            margin: 0.5rem 0;
+            margin: 0.7rem 0;
           }
 
           .input {
             font-family: 'Josefin Sans', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             color: #FAC9B8;
             width: 100%;
             box-sizing: border-box;
             letter-spacing: 1px;
             border: 1px solid #FAC9B8;
-            padding: 0.9rem 0.8rem 0.9rem;
+            padding: 0.8rem 0.7rem 0.8rem;
             transition: 0.4s;
             outline: none;
             background-color: #2d304700;

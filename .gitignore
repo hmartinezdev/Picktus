@@ -3,4 +3,6 @@ node_modules/
 .next/
 .jest/
 dist/
+.vscode/
+coverage/
 tslint-report.json
