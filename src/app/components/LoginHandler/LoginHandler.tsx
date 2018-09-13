@@ -23,7 +23,7 @@ class LoginHandler extends Component {
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: ${colors.primary}cd;
+            background-color: ${colors.primary};
             min-width: 22rem;
             padding: 1.5rem;
             box-sizing: border-box;

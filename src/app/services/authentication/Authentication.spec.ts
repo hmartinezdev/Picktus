@@ -21,7 +21,7 @@ describe('Authentication service', () => {
     test('it should throw an error if the user creation fails', async () => {
       jest.spyOn(firebase, 'auth').mockImplementation(() => ({
         createUserWithEmailAndPassword: () =>
-          new Promise((resolve) => {
+          new Promise(() => {
             throw new Error('test');
           }),
       }));
