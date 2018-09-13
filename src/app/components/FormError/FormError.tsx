@@ -1,6 +1,6 @@
+import ErrorSvg from '@assets/svg/error.svg';
 import colors from '@constants/colors';
 import React, { Component } from 'react';
-import ErrorSvg from '../../static/svg/error.svg';
 
 export interface FormErrorPropsType {
   text: string;

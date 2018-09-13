@@ -9,7 +9,8 @@
           "@components": "./src/app/components",
           "@constants": "./src/app/constants",
           "@libs": "./src/app/libs",
-          "@services": "./src/app/services"
+          "@services": "./src/app/services",
+          "@assets": "./src/app/assets"
         }
       }
     ],
