@@ -6,49 +6,27 @@ exports[`<SubscribeHandler /> should render properly 1`] = `
 >
   <button
     className="trigger"
+    onClick={[Function]}
   >
     You don't have an account?
   </button>
-  <div
-    className="formContainer"
+  <Transition
+    appear={false}
+    enter={true}
+    exit={true}
+    in={false}
+    mountOnEnter={true}
+    onEnter={[Function]}
+    onEntered={[Function]}
+    onEntering={[Function]}
+    onExit={[Function]}
+    onExited={[Function]}
+    onExiting={[Function]}
+    timeout={200}
+    unmountOnExit={true}
   >
-    <div
-      className="form"
-    >
-      <Input
-        name="mail"
-        onChange={[Function]}
-        placeholder="Mail"
-        type="text"
-      />
-      <Input
-        name="password"
-        onChange={[Function]}
-        placeholder="Password"
-        type="password"
-      />
-      <Input
-        name="comfirmPassword"
-        onChange={[Function]}
-        placeholder="Confirm password"
-        type="password"
-      />
-      <Button
-        onClick={[Function]}
-        text="Subscribe"
-      />
-    </div>
-    <FormError
-      text="Password must be minimum eight characters, 
-            at least one letter, one number and one special character"
-    />
-    <FormError
-      text="You must use a valid mail address"
-    />
-    <FormError
-      text="Password comfirmation does not match password"
-    />
-  </div>
+    <Component />
+  </Transition>
   <style
     jsx={true}
   >
@@ -62,7 +40,7 @@ exports[`<SubscribeHandler /> should render properly 1`] = `
             font-family: 'Josefin Sans', sans-serif;
             color: #2d3047;
             border-radius: 3px;
-            margin-bottom: 1.3rem;
+            margin-bottom: 0.8rem;
             transition: background-color ease-in 200ms;
             border: none;
             width: 100%;
@@ -80,9 +58,23 @@ exports[`<SubscribeHandler /> should render properly 1`] = `
             position: absolute;
             width: 100%;
             z-index: 2;
+            transition: all 200ms ease-in;
+            opacity: 0;
+            transform: scale(1.2, 1.2);
           }
 
-          .form {
+          .formContainer--entered {
+            opacity: 1;
+            transform: scale(1, 1);
+          }
+
+          .formContainer--exiting,
+          .formContainer--exited {
+            opacity: 0;
+            transform: scale(1.2, 1.2);
+          }
+
+          .formContainer .form {
             display: flex;
             flex-direction: column;
             justify-content: center;

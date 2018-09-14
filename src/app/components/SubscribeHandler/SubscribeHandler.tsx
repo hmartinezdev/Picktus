@@ -3,7 +3,7 @@ import FormError from '@components/FormError';
 import Input from '@components/Input';
 import colors from '@constants/colors';
 import Authentication from '@services/authentication';
-import React, { ChangeEvent, PureComponent } from 'react';
+import React, { ChangeEvent, PureComponent, ReactText } from 'react';
 import Transition from 'react-transition-group/Transition';
 
 export interface SubscribeHandlerState {
@@ -11,6 +11,7 @@ export interface SubscribeHandlerState {
   mail: string;
   password: string;
   comfirmPassword: string;
+  errors: ReactText[];
 }
 
 class SubscribeHandler extends PureComponent<{}, SubscribeHandlerState> {
@@ -19,32 +20,47 @@ class SubscribeHandler extends PureComponent<{}, SubscribeHandlerState> {
 
     this.state = {
       comfirmPassword: '',
+      errors: [],
       mail: '',
       open: false,
       password: '',
     };
   }
 
+  private pushError = (error: string): void => {
+    this.setState((prevState) => ({
+      errors: [...prevState.errors, this.state.errors.push(error)],
+    }));
+  };
+
   public onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     this.setState({ password: value });
+
+    this.pushError(
+      'Password must be minimum eight characters,  at least one letter, one number and one special character'
+    );
   };
 
   public onMailChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     this.setState({ mail: value });
+
+    this.pushError('You must use a valid mail address');
   };
 
   public onComfirmPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     this.setState({ comfirmPassword: value });
+
+    this.pushError('Password comfirmation does not match password');
   };
 
-  private onSubscribeClick = () => {
+  public onSubscribeClick = () => {
     Authentication.createUser(this.state.mail, this.state.password);
   };
 
-  private onTriggerClick = () => {
+  public onTriggerClick = () => {
     this.setState({ open: !this.state.open });
   };
 

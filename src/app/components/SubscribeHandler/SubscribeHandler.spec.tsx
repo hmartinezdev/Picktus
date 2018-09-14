@@ -23,6 +23,13 @@ describe('<SubscribeHandler />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  test('onTriggerClick', () => {
+    const instance = mountWrapper.instance();
+    const spy = jest.spyOn(instance, 'setState');
+    instance.onTriggerClick();
+    expect(spy).toBeCalledWith({ open: true });
+  });
+
   test('onPasswordChange', () => {
     const instance = mountWrapper.instance();
     const spy = jest.spyOn(instance, 'setState');
@@ -37,7 +44,7 @@ describe('<SubscribeHandler />', () => {
     expect(spy).toBeCalledWith({ mail: 'test' });
   });
 
-  test('onPasswordChange', () => {
+  test('onComfirmPasswordChange', () => {
     const instance = mountWrapper.instance();
     const spy = jest.spyOn(instance, 'setState');
     instance.onComfirmPasswordChange({ target: { value: 'test' } });
