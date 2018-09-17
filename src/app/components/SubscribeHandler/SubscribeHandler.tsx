@@ -6,12 +6,14 @@ import Authentication from '@services/authentication';
 import React, { ChangeEvent, PureComponent, ReactText } from 'react';
 import Transition from 'react-transition-group/Transition';
 
+export interface StringMap {
+  [s: string]: string;
+}
 export interface SubscribeHandlerState {
   open: boolean;
-  mail: string;
-  password: string;
-  comfirmPassword: string;
-  errors: ReactText[];
+  inputs: StringMap;
+  errors: StringMap;
+  errorCount: number;
 }
 
 class SubscribeHandler extends PureComponent<{}, SubscribeHandlerState> {
@@ -19,45 +21,77 @@ class SubscribeHandler extends PureComponent<{}, SubscribeHandlerState> {
     super(props);
 
     this.state = {
-      comfirmPassword: '',
-      errors: [],
-      mail: '',
+      errorCount: 0,
+      errors: {},
+      inputs: {},
       open: false,
-      password: '',
     };
   }
 
-  private pushError = (error: string): void => {
-    this.setState((prevState) => ({
-      errors: [...prevState.errors, this.state.errors.push(error)],
-    }));
+  private pushError = (key: string, error: string): void => {
+    if (!this.state.errors[key]) {
+      this.setState({
+        errorCount: this.state.errorCount + 1,
+        errors: { ...this.state.errors, [key]: error },
+      });
+    }
   };
 
-  public onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    this.setState({ password: value });
-
-    this.pushError(
-      'Password must be minimum eight characters,  at least one letter, one number and one special character'
-    );
+  private removeError = (key: string): void => {
+    if (this.state.errors[key]) {
+      this.setState({
+        errorCount: this.state.errorCount - 1,
+        errors: { ...this.state.errors, [key]: '' },
+      });
+    }
   };
 
-  public onMailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    this.setState({ mail: value });
-
-    this.pushError('You must use a valid mail address');
+  public onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.target;
+    if (name !== 'open') {
+      this.setState({ inputs: { ...this.state.inputs, [name]: value } });
+    }
   };
 
-  public onComfirmPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    this.setState({ comfirmPassword: value });
+  public validity(errorKey: string, valid: boolean, error: string) {
+    if (valid) {
+      this.removeError(errorKey);
+      return true;
+    }
 
-    this.pushError('Password comfirmation does not match password');
-  };
+    this.pushError(errorKey, error);
+    return false;
+  }
 
   public onSubscribeClick = () => {
-    Authentication.createUser(this.state.mail, this.state.password);
+    const { password, comfirmPassword, mail } = this.state.inputs;
+    const mailRegex = new RegExp( // tslint:disable-next-line
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+    const passwordRegex = new RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$');
+
+    if (
+      !this.validity(
+        'missingValue',
+        Boolean(password && comfirmPassword && mail),
+        'Every field is required to subscribe'
+      )
+    ) {
+      return;
+    }
+
+    this.validity('comfirmPassword', comfirmPassword === password, 'Password comfirmation does not match password');
+    this.validity('mail', !!mail.match(mailRegex), 'You must use a valid mail address');
+    this.validity(
+      'password',
+      !!password.match(passwordRegex),
+      'Password must be minimum eight characters,  at least one letter, one number and one special character'
+    );
+
+    if (!this.state.errorCount) {
+      console.log('caca');
+      Authentication.createUser(mail, password);
+    }
   };
 
   public onTriggerClick = () => {
@@ -74,22 +108,18 @@ class SubscribeHandler extends PureComponent<{}, SubscribeHandlerState> {
           {(state) => (
             <div className={`formContainer formContainer--${state}`}>
               <div className="form">
-                <Input name="mail" placeholder="Mail" onChange={this.onMailChange} />
-                <Input name="password" placeholder="Password" type="password" onChange={this.onPasswordChange} />
-                <Input
-                  name="comfirmPassword"
-                  placeholder="Confirm password"
-                  type="password"
-                  onChange={this.onComfirmPasswordChange}
-                />
+                <Input name="mail" placeholder="Mail" onChange={this.onChange} />
+                <Input name="password" placeholder="Password" type="password" onChange={this.onChange} />
+                <Input name="comfirmPassword" placeholder="Confirm password" type="password" onChange={this.onChange} />
                 <Button text="Subscribe" onClick={this.onSubscribeClick} />
               </div>
-              <FormError
-                text="Password must be minimum eight characters, 
-            at least one letter, one number and one special character"
-              />
-              <FormError text="You must use a valid mail address" />
-              <FormError text="Password comfirmation does not match password" />
+              {Object.keys(this.state.errors).map((key) => {
+                const value = this.state.errors[key];
+
+                if (value) {
+                  return <FormError key={key} text={value} />;
+                }
+              })}
             </div>
           )}
         </Transition>
@@ -134,7 +164,7 @@ class SubscribeHandler extends PureComponent<{}, SubscribeHandlerState> {
           .formContainer--exiting,
           .formContainer--exited {
             opacity: 0;
-            transform: scale(1.2, 1.2);
+            transform: scale3D(1.2, 1.2);
           }
 
           .formContainer .form {

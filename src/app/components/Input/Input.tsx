@@ -7,18 +7,40 @@ export interface InputPropTypes {
   onChange(e: ChangeEvent<HTMLInputElement>): void;
   name?: string;
 }
-class Input extends Component<InputPropTypes> {
+
+export interface InputState {
+  changeTimeout?: number;
+}
+class Input extends Component<InputPropTypes, InputState> {
   public static defaultProps = {
     name: '',
     placeholder: '',
     type: 'text',
   };
+  constructor(props: InputPropTypes) {
+    super(props);
+
+    this.state = {};
+  }
+  private onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (this.state.changeTimeout) {
+      clearTimeout(this.state.changeTimeout);
+    }
+
+    e.persist();
+
+    const { onChange } = this.props;
+
+    this.setState({
+      changeTimeout: setTimeout(onChange.bind(null, e), 300),
+    });
+  };
 
   public render(): React.ReactElement<Input> {
-    const { placeholder, type, onChange, name } = this.props;
+    const { placeholder, type, name } = this.props;
     return (
       <div className="container">
-        <input name={name} className="input" type={type} placeholder={placeholder} onChange={onChange} />
+        <input name={name} className="input" type={type} placeholder={placeholder} onChange={this.onChange} />
         <span className="focus-border">
           <i />
         </span>
