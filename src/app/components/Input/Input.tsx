@@ -19,8 +19,6 @@ class Input extends Component<InputPropTypes, InputState> {
   };
   constructor(props: InputPropTypes) {
     super(props);
-
-    this.state = {};
   }
 
   public render(): React.ReactElement<Input> {

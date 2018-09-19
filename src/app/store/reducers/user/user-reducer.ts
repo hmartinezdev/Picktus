@@ -1,7 +1,12 @@
 import { ActionTypes } from '../action.type';
 import { TypeKeys } from './user-actions';
 
-export default function counter(state: object = {}, action: ActionTypes) {
+export interface UserState {
+  authenticated: boolean;
+  creation?: string;
+}
+
+export default function counter(state: UserState = { authenticated: false }, action: ActionTypes) {
   switch (action.type) {
     case TypeKeys.USER_LOGIN_SUCCESS:
       return { ...state, authenticated: true };
