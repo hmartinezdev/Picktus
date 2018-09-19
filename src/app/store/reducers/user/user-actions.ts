@@ -1,6 +1,14 @@
+import { ThunkAction } from 'redux-thunk';
+import { UserState } from './user-reducer';
+
+type ThunkResult<R> = ThunkAction<R, UserState, undefined, UserActions>;
+
 export enum TypeKeys {
   USER_LOGIN_FAILED = 'USER_LOGIN_FAILED',
   USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS',
+  USER_CREATION_START = 'USER_CREATION_START',
+  USER_CREATION_SUCCESS = 'USER_CREATION_SUCCESS',
+  USER_CREATION_FAILURE = 'USER_CREATION_FAILURE',
 }
 
 export interface UserLoginSuccess {
@@ -20,3 +28,40 @@ export interface UserLoginFailed {
 export const userLoginFailed = (): UserLoginFailed => ({
   type: TypeKeys.USER_LOGIN_FAILED,
 });
+
+export interface UserCreationStart {
+  type: TypeKeys.USER_CREATION_START;
+}
+
+export const userCreationStart = (): UserCreationStart => ({
+  type: TypeKeys.USER_CREATION_START,
+});
+
+export interface UserCreationSuccess {
+  type: TypeKeys.USER_CREATION_SUCCESS;
+}
+
+export const UserCreationSuccess = (): UserCreationSuccess => ({
+  type: TypeKeys.USER_CREATION_SUCCESS,
+});
+
+export interface UserCreationFailure {
+  type: TypeKeys.USER_CREATION_FAILURE;
+  error: string;
+}
+
+export const UserCreationFailure = (error: string): UserCreationFailure => ({
+  error,
+  type: TypeKeys.USER_CREATION_FAILURE,
+});
+
+export const userCreation = (): ThunkResult<void> => (dispatch) => {
+  dispatch(userCreationStart);
+};
+
+export type UserActions =
+  | UserLoginSuccess
+  | UserLoginFailed
+  | UserCreationStart
+  | UserCreationFailure
+  | UserCreationSuccess;
