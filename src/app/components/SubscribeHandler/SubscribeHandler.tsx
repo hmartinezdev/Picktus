@@ -3,7 +3,7 @@ import FormError from '@components/FormError';
 import Input from '@components/Input';
 import colors from '@constants/colors';
 import Authentication from '@services/authentication';
-import React, { ChangeEvent, PureComponent, ReactText } from 'react';
+import React, { ChangeEvent, PureComponent } from 'react';
 import Transition from 'react-transition-group/Transition';
 
 export interface StringMap {
@@ -89,7 +89,6 @@ class SubscribeHandler extends PureComponent<{}, SubscribeHandlerState> {
     );
 
     if (!this.state.errorCount) {
-      console.log('caca');
       Authentication.createUser(mail, password);
     }
   };
