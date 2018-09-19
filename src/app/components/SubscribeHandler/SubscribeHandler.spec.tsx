@@ -29,34 +29,4 @@ describe('<SubscribeHandler />', () => {
     instance.onTriggerClick();
     expect(spy).toBeCalledWith({ open: true });
   });
-
-  test('onPasswordChange', () => {
-    const instance = mountWrapper.instance();
-    const spy = jest.spyOn(instance, 'setState');
-    instance.onPasswordChange({ target: { value: 'test' } });
-    expect(spy).toBeCalledWith({ password: 'test' });
-  });
-
-  test('onMailChange', () => {
-    const instance = mountWrapper.instance();
-    const spy = jest.spyOn(instance, 'setState');
-    instance.onMailChange({ target: { value: 'test' } });
-    expect(spy).toBeCalledWith({ mail: 'test' });
-  });
-
-  test('onComfirmPasswordChange', () => {
-    const instance = mountWrapper.instance();
-    const spy = jest.spyOn(instance, 'setState');
-    instance.onComfirmPasswordChange({ target: { value: 'test' } });
-    expect(spy).toBeCalledWith({ comfirmPassword: 'test' });
-  });
-
-  test('onSubscribeClick', async () => {
-    const instance = mountWrapper.instance();
-    instance.setState({ password: 'test', mail: 'mail@mail' });
-    const mock = jest.fn();
-    Authentication.createUser = mock;
-    await instance.onSubscribeClick();
-    expect(mock).toBeCalledWith('mail@mail', 'test');
-  });
 });
