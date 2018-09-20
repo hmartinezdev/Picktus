@@ -7,7 +7,8 @@
       "@constants/*": ["./src/app/constants/*"],
       "@libs/*": ["./src/app/libs/*"],
       "@services/*": ["./src/app/services/*"],
-      "@assets/*": ["./src/app/assets/*"]
+      "@assets/*": ["./src/app/assets/*"],
+      "@store/*": ["./src/app/store/*"]
     },
     "jsx": "react",
     "allowJs": true,

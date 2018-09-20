@@ -2,22 +2,11 @@ import Button from '@components/Button';
 import FormError from '@components/FormError';
 import Input from '@components/Input';
 import colors from '@constants/colors';
-import Authentication from '@services/authentication';
 import React, { ChangeEvent, PureComponent } from 'react';
 import Transition from 'react-transition-group/Transition';
-
-export interface StringMap {
-  [s: string]: string;
-}
-export interface SubscribeHandlerState {
-  open: boolean;
-  inputs: StringMap;
-  errors: StringMap;
-  errorCount: number;
-}
-
-class SubscribeHandler extends PureComponent<{}, SubscribeHandlerState> {
-  constructor(props: {}) {
+import { ISubscribeHandlerProps, ISubscribeHandlerState } from './SubscribeHander.type';
+class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeHandlerState> {
+  constructor(props: ISubscribeHandlerProps) {
     super(props);
 
     this.state = {
@@ -65,6 +54,8 @@ class SubscribeHandler extends PureComponent<{}, SubscribeHandlerState> {
 
   public onSubscribeClick = () => {
     const { password, comfirmPassword, mail } = this.state.inputs;
+    const { userCreation } = this.props;
+
     const mailRegex = new RegExp( // tslint:disable-next-line
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
@@ -89,7 +80,7 @@ class SubscribeHandler extends PureComponent<{}, SubscribeHandlerState> {
     );
 
     if (!this.state.errorCount) {
-      Authentication.createUser(mail, password);
+      userCreation(mail, password);
     }
   };
 

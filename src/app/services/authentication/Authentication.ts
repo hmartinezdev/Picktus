@@ -5,7 +5,7 @@ import { FirebaseError } from './AuthenticationError/AuthenticationError.type';
 
 class Authentication {
   public static async createUser(email: string, password: string) {
-    await firebase
+    return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .catch((error: FirebaseError) => {
