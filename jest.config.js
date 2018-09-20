@@ -10,6 +10,7 @@ module.exports = {
     '^@libs(.*)$': '<rootDir>/src/app/libs$1',
     '^@services(.*)$': '<rootDir>/src/app/services$1',
     '^@assets/svg/(.*)$': '<rootDir>/mocks/fileMock.js',
+    '^@store(.*)$': '<rootDir>/src/app/store$1',
     '\\.(jpg|svg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/mocks/fileMock.js',
     '\\.(css)$': '<rootDir>/mocks/styleMock.js',
