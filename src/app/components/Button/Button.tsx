@@ -1,12 +1,12 @@
 import colors from '@constants/colors';
 import React, { Component } from 'react';
 
-export interface ButtonPropTypes {
+export interface IButtonPropTypes {
   text?: string;
   onClick(): void;
 }
 
-class Button extends Component<ButtonPropTypes, {}> {
+class Button extends Component<IButtonPropTypes, {}> {
   public static defaultProps = {
     text: '',
   };

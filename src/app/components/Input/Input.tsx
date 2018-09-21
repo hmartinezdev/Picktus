@@ -1,7 +1,7 @@
 import colors from '@constants/colors';
 import React, { ChangeEvent, Component } from 'react';
 
-export interface InputPropTypes {
+export interface IInputPropTypes {
   type?: string;
   placeholder?: string;
   onChange(e: ChangeEvent<HTMLInputElement>): void;
@@ -11,13 +11,13 @@ export interface InputPropTypes {
 export interface InputState {
   changeTimeout?: number;
 }
-class Input extends Component<InputPropTypes, InputState> {
+class Input extends Component<IInputPropTypes, InputState> {
   public static defaultProps = {
     name: '',
     placeholder: '',
     type: 'text',
   };
-  constructor(props: InputPropTypes) {
+  constructor(props: IInputPropTypes) {
     super(props);
   }
 

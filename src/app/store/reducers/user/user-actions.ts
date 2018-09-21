@@ -1,8 +1,8 @@
 import Authentication from '@services/authentication';
 import { ThunkAction } from 'redux-thunk';
-import { UserState } from './user.type';
+import { IUserState } from './user.type';
 
-export type ThunkResult<R> = ThunkAction<R, UserState, undefined, UserActions>;
+export type ThunkResult<R> = ThunkAction<R, IUserState, undefined, UserActions>;
 
 export enum TypeKeys {
   USER_LOGIN_FAILED = 'USER_LOGIN_FAILED',
@@ -60,7 +60,8 @@ export const userCreation = (mail: string, password: string): ThunkResult<void> 
   dispatch(userCreationStart());
 
   try {
-    const res = await Authentication.createUser(mail, password);
+    await Authentication.createUser(mail, password);
+    dispatch(UserCreationSuccess);
   } catch (e) {
     dispatch(UserCreationFailure(e.message));
   }

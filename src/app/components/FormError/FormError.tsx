@@ -2,10 +2,10 @@ import ErrorSvg from '@assets/svg/error.svg';
 import colors from '@constants/colors';
 import React, { Component } from 'react';
 
-export interface FormErrorPropsType {
+export interface IFormErrorPropsType {
   text: string;
 }
-class FormError extends Component<FormErrorPropsType> {
+class FormError extends Component<IFormErrorPropsType> {
   public render(): React.ReactElement<FormError> {
     const { text } = this.props;
 
