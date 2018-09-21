@@ -4,7 +4,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
 <div
   className="container"
 >
-  <SubscribeHandler />
+  <Connect(SubscribeHandler) />
   <div
     className="login"
   >

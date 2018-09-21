@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import user, { UserState } from './user';
+import user, { IUserState } from './user';
 
 export interface IReduxState {
-  user: UserState;
+  user: IUserState;
 }
 
 export default combineReducers({

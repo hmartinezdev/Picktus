@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-interface PropsType {
+interface IBackgroundPropsType {
   children: JSX.Element[] | JSX.Element;
 }
 
-class Background extends Component<PropsType, {}> {
+class Background extends Component<IBackgroundPropsType, {}> {
   public render(): React.ReactElement<Background> {
     const { children } = this.props;
 
