@@ -1,5 +1,5 @@
 module.exports = {
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   transform: {
     '.(ts|tsx)': 'ts-jest',
   },
@@ -23,7 +23,7 @@ module.exports = {
   setupFiles: ['<rootDir>/config/spec.setup.ts'],
   cacheDirectory: '<rootDir>/.jest/',
   roots: ['<rootDir>/src/app'],
-  testMatch: ['<rootDir>/**/*.spec.ts', '<rootDir>/**/*.spec.tsx'],
+  testMatch: ['<rootDir>/**/*.spec.ts', '<rootDir>/**/*.spec.tsx', '<rootDir>/**/*.spec.jsx'],
   collectCoverageFrom: ['<rootDir>/src/app/**/*.ts', '<rootDir>/src/app/**/*.tsx'],
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   snapshotSerializers: ['enzyme-to-json/serializer'],

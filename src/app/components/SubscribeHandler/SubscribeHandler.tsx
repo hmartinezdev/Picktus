@@ -45,11 +45,11 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
   public validity(errorKey: string, valid: boolean, error: string) {
     if (valid) {
       this.removeError(errorKey);
-      return true;
+      return valid;
     }
 
     this.pushError(errorKey, error);
-    return false;
+    return valid;
   }
 
   public onSubscribeClick = () => {
