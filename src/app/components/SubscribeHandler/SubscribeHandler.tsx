@@ -35,14 +35,14 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
     }
   };
 
-  public onChange = (e: ChangeEvent<HTMLInputElement>) => {
+  public onChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { value, name } = e.target;
     if (name !== 'open') {
       this.setState({ inputs: { ...this.state.inputs, [name]: value } });
     }
   };
 
-  public validity(errorKey: string, valid: boolean, error: string) {
+  public validity(errorKey: string, valid: boolean, error: string): boolean {
     if (valid) {
       this.removeError(errorKey);
       return valid;
@@ -52,7 +52,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
     return valid;
   }
 
-  public onSubscribeClick = () => {
+  public onSubscribeClick = (): void => {
     const { password, comfirmPassword, mail } = this.state.inputs;
     const { userCreation } = this.props;
 
@@ -84,8 +84,18 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
     }
   };
 
-  public onTriggerClick = () => {
+  public onTriggerClick = (): void => {
     this.setState({ open: !this.state.open });
+  };
+
+  public renderErrors = (): Array<JSX.Element | undefined> => {
+    return Object.keys(this.state.errors).map((key) => {
+      const value = this.state.errors[key];
+
+      if (value) {
+        return <FormError key={key} text={value} />;
+      }
+    });
   };
 
   public render(): React.ReactElement<SubscribeHandler> {
@@ -103,13 +113,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
                 <Input name="comfirmPassword" placeholder="Confirm password" type="password" onChange={this.onChange} />
                 <Button text="Subscribe" onClick={this.onSubscribeClick} />
               </div>
-              {Object.keys(this.state.errors).map((key) => {
-                const value = this.state.errors[key];
-
-                if (value) {
-                  return <FormError key={key} text={value} />;
-                }
-              })}
+              {this.renderErrors()}
             </div>
           )}
         </Transition>

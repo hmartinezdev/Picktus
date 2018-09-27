@@ -23,7 +23,7 @@ module.exports = {
   setupFiles: ['<rootDir>/config/spec.setup.ts'],
   cacheDirectory: '<rootDir>/.jest/',
   roots: ['<rootDir>/src/app'],
-  testMatch: ['<rootDir>/**/*.spec.ts', '<rootDir>/**/*.spec.tsx', '<rootDir>/**/*.spec.jsx'],
+  testMatch: ['<rootDir>/**/*.spec.ts', '<rootDir>/**/*.spec.tsx', '<rootDir>/**/*.spec.jsx', '<rootDir>/**/*.spec.js'],
   collectCoverageFrom: ['<rootDir>/src/app/**/*.ts', '<rootDir>/src/app/**/*.tsx'],
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   snapshotSerializers: ['enzyme-to-json/serializer'],

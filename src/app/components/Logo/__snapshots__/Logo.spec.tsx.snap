@@ -4,9 +4,8 @@ exports[`<Logo /> should render properly 1`] = `
 <div
   className="logoContainer"
 >
-  <img
+  <Component
     className="logo"
-    src="/static/logo.png"
   />
   <h1
     className="title"
@@ -39,7 +38,8 @@ exports[`<Logo /> should render properly 1`] = `
           }
 
           .logo {
-            max-width: 85px;
+            width: 50%;
+            height: 50%;
           }
         
   </style>
