@@ -24,9 +24,11 @@ export const userLoginSuccess = (userInfos: object): UserLoginSuccess => ({
 
 export interface UserLoginFailed {
   type: TypeKeys.USER_LOGIN_FAILED;
+  error: string;
 }
 
-export const userLoginFailed = (): UserLoginFailed => ({
+export const userLoginFailed = (error: string): UserLoginFailed => ({
+  error,
   type: TypeKeys.USER_LOGIN_FAILED,
 });
 
@@ -61,7 +63,7 @@ export const userCreation = (mail: string, password: string): ThunkResult<void> 
 
   try {
     await Authentication.createUser(mail, password);
-    dispatch(UserCreationSuccess);
+    dispatch(UserCreationSuccess());
   } catch (e) {
     dispatch(UserCreationFailure(e.message));
   }

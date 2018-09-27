@@ -74,6 +74,13 @@ describe('<SubscribeHandler />', () => {
       expect(spy).toHaveBeenCalled();
       expect(spy).toHaveBeenCalledWith({ inputs: { test: 'test' } });
     });
+
+    test('it should not change the input value if the name is open', () => {
+      const instance = mountWrapper.instance();
+      const spy = jest.spyOn(instance, 'setState');
+      instance.onChange({ target: { name: 'open', value: 'test' } });
+      expect(spy).toHaveBeenCalledTimes(0);
+    });
   });
 
   describe('validity', () => {
@@ -97,6 +104,63 @@ describe('<SubscribeHandler />', () => {
       expect(spyPush).toHaveBeenCalledTimes(0);
       expect(spyRemove).toBeCalledWith('test');
       expect(ret).toEqual(true);
+    });
+  });
+
+  describe('onSubscribeClick', () => {
+    test('it should call userCreation if all input values are correct', () => {
+      const userCreation = jest.fn();
+      const mountWrapper = mountSetup({ userCreation });
+      const instance = mountWrapper.instance();
+      const spyValidity = jest.spyOn(instance, 'validity');
+      instance.setState({ inputs: { password: 'Kako1234!', comfirmPassword: 'Kako1234!', mail: 'hugo@mail.com' } });
+      instance.onSubscribeClick();
+      expect(userCreation).toHaveBeenCalled();
+      expect(spyValidity).toHaveBeenCalledTimes(4);
+    });
+
+    test('if there is one or more error, it should not call userCreation', () => {
+      const userCreation = jest.fn();
+      const mountWrapper = mountSetup({ userCreation });
+      const instance = mountWrapper.instance();
+      const spyValidity = jest.spyOn(instance, 'validity');
+      instance.setState({ inputs: { password: 'k!', comfirmPassword: 'Kako1234!', mail: 'hugo@mail.com' } });
+      instance.onSubscribeClick();
+      expect(userCreation).toHaveBeenCalledTimes(0);
+      expect(spyValidity).toHaveBeenCalledTimes(4);
+    });
+
+    test('if there is a missing value it should only check that and return immediatly', () => {
+      const userCreation = jest.fn();
+      const mountWrapper = mountSetup({ userCreation });
+      const instance = mountWrapper.instance();
+      const spyValidity = jest.spyOn(instance, 'validity');
+      instance.setState({ inputs: { comfirmPassword: 'Kako1234!', mail: 'hugo@mail.com' } });
+      instance.onSubscribeClick();
+      expect(userCreation).toHaveBeenCalledTimes(0);
+      expect(spyValidity).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('renderErrors', () => {
+    test('it should return an array of element if there are errors', () => {
+      const instance = mountWrapper.instance();
+      instance.setState({ errors: { missingValues: 'test' } });
+      const result = instance.renderErrors();
+      expect(result).toHaveLength(1);
+    });
+
+    test('it should return an empty array if there are no errors', () => {
+      const instance = mountWrapper.instance();
+      const result = instance.renderErrors();
+      expect(result).toHaveLength(0);
+    });
+
+    test('it should return an empty array if an error is not defined anymore', () => {
+      const instance = mountWrapper.instance();
+      instance.setState({ errors: { missingValues: undefined } });
+      const result = instance.renderErrors();
+      expect(result).toEqual([undefined]);
     });
   });
 });
