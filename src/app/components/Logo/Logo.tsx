@@ -31,8 +31,8 @@ class Logo extends Component {
           }
 
           .logo {
-            width: 50%;
-            height: 50%;
+            width: 6rem;
+            height: 6rem;
           }
         `}</style>
       </div>
