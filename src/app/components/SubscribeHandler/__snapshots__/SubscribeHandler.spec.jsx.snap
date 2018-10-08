@@ -4,12 +4,11 @@ exports[`<SubscribeHandler /> should render properly 1`] = `
 <div
   className="container"
 >
-  <button
-    className="trigger"
+  <Button
+    activeText="I have an account!"
+    initialText="You don't have an account?"
     onClick={[Function]}
-  >
-    You don't have an account?
-  </button>
+  />
   <Transition
     appear={false}
     enter={true}
@@ -31,36 +30,24 @@ exports[`<SubscribeHandler /> should render properly 1`] = `
     jsx={true}
   >
     
-          .trigger {
-            font-size: 0.9rem;
-            line-height: 2.5rem;
-            background-color: #FAC9B889;
-            padding: 0 0.8rem;
-            height: 2.3rem;
-            font-family: 'Josefin Sans', sans-serif;
-            color: #2d3047;
-            border-radius: 3px;
-            margin-bottom: 0.8rem;
-            transition: background-color ease-in 200ms;
-            border: none;
-            width: 100%;
-            outline: none;
-            cursor: pointer;
-          }
-
-          .trigger:hover {
-            background-color: #FAC9B8cd;
-          }
-
           .formContainer {
             left: 0;
             top: 3rem;
             position: absolute;
             width: 100%;
-            z-index: 2;
-            transition: all 200ms ease-in;
+            z-index: 3;
             opacity: 0;
             transform: scale(1.2, 1.2);
+          }
+
+          .formContainer--loading::after {
+            position: absolute;
+          }
+
+          .formContainer--entering {
+            animation: fadein 200ms;
+            opacity: 1;
+            transform: scale(1, 1);
           }
 
           .formContainer--entered {
@@ -70,8 +57,9 @@ exports[`<SubscribeHandler /> should render properly 1`] = `
 
           .formContainer--exiting,
           .formContainer--exited {
+            transition: all 200ms ease-in;
             opacity: 0;
-            transform: scale3D(1.2, 1.2);
+            transform: scale(1.2, 1.2);
           }
 
           .formContainer .form {
@@ -84,6 +72,18 @@ exports[`<SubscribeHandler /> should render properly 1`] = `
             padding: 1rem 0;
             background-color: #2d3047;
             margin-bottom: 1.5rem;
+          }
+
+          @keyframes fadein {
+            0% {
+              opacity: 0;
+              transform: scale(1.2, 1.2);
+            }
+
+            100% {
+              opacity: 1;
+              transform: scale(1, 1);
+            }
           }
         
   </style>

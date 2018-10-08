@@ -1,4 +1,4 @@
-import Picktus from '@assets/svg/picktus.svg';
+import SvgLogo from '@assets/svg/logo.svg';
 import colors from '@constants/colors';
 import React, { Component } from 'react';
 
@@ -6,7 +6,7 @@ class Logo extends Component {
   public render(): React.ReactElement<Logo> {
     return (
       <div className="logoContainer">
-        <Picktus className="logo" />
+        <SvgLogo className="logo" />
         <h1 className="title">Picktus</h1>
         <style jsx>{`
           .title {
