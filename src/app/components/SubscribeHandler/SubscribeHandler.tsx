@@ -1,7 +1,9 @@
 import Button from '@components/Button';
 import FormError from '@components/FormError';
 import Input from '@components/Input';
+import TextSwitchButton from '@components/TextSwitchButton';
 import colors from '@constants/colors';
+import classnames from 'classnames';
 import React, { ChangeEvent, PureComponent } from 'react';
 import Transition from 'react-transition-group/Transition';
 import { ISubscribeHandlerProps, ISubscribeHandlerState } from './SubscribeHander.type';
@@ -99,14 +101,21 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
   };
 
   public render(): React.ReactElement<SubscribeHandler> {
+    const { loading } = this.props;
     return (
       <div className="container">
-        <button onClick={this.onTriggerClick} className="trigger">
-          You don't have an account?
-        </button>
+        <TextSwitchButton
+          initialText="You don't have an account?"
+          activeText="I have an account!"
+          onClick={this.onTriggerClick}
+        />
         <Transition in={this.state.open} timeout={200} mountOnEnter={true} unmountOnExit={true}>
           {(state) => (
-            <div className={`formContainer formContainer--${state}`}>
+            <div
+              className={classnames(`formContainer formContainer--${state}`, {
+                'formContainer--loading': loading,
+              })}
+            >
               <div className="form">
                 <Input name="mail" placeholder="Mail" onChange={this.onChange} />
                 <Input name="password" placeholder="Password" type="password" onChange={this.onChange} />
@@ -118,36 +127,24 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
           )}
         </Transition>
         <style jsx>{`
-          .trigger {
-            font-size: 0.9rem;
-            line-height: 2.5rem;
-            background-color: ${colors.secondary}89;
-            padding: 0 0.8rem;
-            height: 2.3rem;
-            font-family: 'Josefin Sans', sans-serif;
-            color: ${colors.primary};
-            border-radius: 3px;
-            margin-bottom: 0.8rem;
-            transition: background-color ease-in 200ms;
-            border: none;
-            width: 100%;
-            outline: none;
-            cursor: pointer;
-          }
-
-          .trigger:hover {
-            background-color: ${colors.secondary}cd;
-          }
-
           .formContainer {
             left: 0;
             top: 3rem;
             position: absolute;
             width: 100%;
-            z-index: 2;
-            transition: all 200ms ease-in;
+            z-index: 3;
             opacity: 0;
             transform: scale(1.2, 1.2);
+          }
+
+          .formContainer--loading::after {
+            position: absolute;
+          }
+
+          .formContainer--entering {
+            animation: fadein 200ms;
+            opacity: 1;
+            transform: scale(1, 1);
           }
 
           .formContainer--entered {
@@ -157,8 +154,9 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
 
           .formContainer--exiting,
           .formContainer--exited {
+            transition: all 200ms ease-in;
             opacity: 0;
-            transform: scale3D(1.2, 1.2);
+            transform: scale(1.2, 1.2);
           }
 
           .formContainer .form {
@@ -171,6 +169,18 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
             padding: 1rem 0;
             background-color: ${colors.primary};
             margin-bottom: 1.5rem;
+          }
+
+          @keyframes fadein {
+            0% {
+              opacity: 0;
+              transform: scale(1.2, 1.2);
+            }
+
+            100% {
+              opacity: 1;
+              transform: scale(1, 1);
+            }
           }
         `}</style>
       </div>
