@@ -22,7 +22,7 @@ class Login extends Component {
               display: flex;
               align-items: center;
               flex-direction: column;
-              padding: 2rem;
+              padding: 2rem 0;
               box-sizing: border-box;
               overflow: auto;
             }

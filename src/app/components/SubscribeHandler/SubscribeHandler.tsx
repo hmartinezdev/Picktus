@@ -87,7 +87,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
   };
 
   public onTriggerClick = (): void => {
-    this.setState({ open: !this.state.open });
+    this.setState({ open: !this.state.open , errors: {}});
   };
 
   public renderErrors = (): Array<JSX.Element | undefined> => {

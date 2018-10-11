@@ -34,7 +34,7 @@ class FormError extends Component<IFormErrorPropsType> {
             outline: none;
             background-color: ${colors.error}cd;
             border-radius: 3px;
-            margin: 0.8rem 0;
+            margin: 0.5rem 0;
           }
 
           .icon {
