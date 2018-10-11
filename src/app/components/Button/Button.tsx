@@ -43,6 +43,7 @@ class Button extends Component<IButtonPropTypes, {}> {
             color: rgba(51, 51, 51, 1);
             text-decoration: none;
             display: block;
+            cursor: pointer;
           }
 
           .button::before {
@@ -56,6 +57,7 @@ class Button extends Component<IButtonPropTypes, {}> {
             background-color: ${colors.blue}45;
             transition: all 0.3s;
             boder-radius: 3px;
+            cursor:pointer;
           }
           .button:hover::before {
             opacity: 0;
@@ -74,6 +76,7 @@ class Button extends Component<IButtonPropTypes, {}> {
             border: 1px solid ${colors.green}ca;
             transform: scale(0.7, 0.7);
             boder-radius: 3px;
+            cursor: pointer;
           }
           .button:hover::after {
             opacity: 1;

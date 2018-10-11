@@ -25,7 +25,7 @@ class LoginHandler extends Component {
             align-items: center;
             background-color: ${colors.primary};
             min-width: 22rem;
-            padding: 1.5rem;
+            padding: 1.5rem 0;
             box-sizing: border-box;
             border-radius: 3px;
             box-shadow: 11px 10px 34px -7px rgba(0, 0, 0, 0.49);
