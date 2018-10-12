@@ -31,6 +31,7 @@
     "lint": "tslint -t json -o tslint-report.json -c tslint.json 'src/app/**/*.tsx' 'src/app/**/*.ts'",
     "prettier": "prettier --write **/*.ts --write **/*.tsx",
     "test": "jest",
+    "test:update": "jest -u",
     "test:ci": "jest --coverage",
     "clean": "rimraf \"dist/functions\" && rimraf \"dist/public\"",
     "preserve": "npm run build:public && npm run build:funcs && npm run build:app && npm run deps:copy && npm run deps:install",
