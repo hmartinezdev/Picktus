@@ -34,7 +34,7 @@ exports[`<FormError /> should render properly 1`] = `
             outline: none;
             background-color: #982649cd;
             border-radius: 3px;
-            margin: 0.8rem 0;
+            margin: 0.5rem 0;
           }
 
           .icon {

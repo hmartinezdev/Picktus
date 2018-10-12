@@ -27,7 +27,7 @@ describe('<SubscribeHandler />', () => {
     const instance = mountWrapper.instance();
     const spy = jest.spyOn(instance, 'setState');
     instance.onTriggerClick();
-    expect(spy).toBeCalledWith({ open: true });
+    expect(spy).toBeCalledWith({ open: true, errors: {} });
   });
 
   describe('pushError', () => {
@@ -36,12 +36,12 @@ describe('<SubscribeHandler />', () => {
       const spy = jest.spyOn(instance, 'setState');
       instance.pushError('test', 'test');
       expect(spy).toHaveBeenCalled();
-      expect(spy).toHaveBeenLastCalledWith({ errorCount: 1, errors: { test: 'test' } });
+      expect(spy).toHaveBeenLastCalledWith({ errors: { test: 'test' } });
     });
 
     test('if error already exist, it should do nothing', () => {
       const instance = mountWrapper.instance();
-      instance.setState({ errorCount: 1, errors: { test: 'test' } });
+      instance.setState({ errors: { test: 'test' } });
       const spy = jest.spyOn(instance, 'setState');
       instance.pushError('test', 'test');
       expect(spy).toHaveBeenCalledTimes(0);
@@ -51,11 +51,11 @@ describe('<SubscribeHandler />', () => {
   describe('removeError', () => {
     test('it should remove an error from the component state', () => {
       const instance = mountWrapper.instance();
-      instance.setState({ errorCount: 1, errors: { test: 'test' } });
+      instance.setState({ errors: { test: 'test' } });
       const spy = jest.spyOn(instance, 'setState');
       instance.removeError('test');
       expect(spy).toHaveBeenCalled();
-      expect(spy).toHaveBeenCalledWith({ errorCount: 0, errors: { test: '' } });
+      expect(spy).toHaveBeenCalledWith({ errors: { test: '' } });
     });
 
     test('it should do nothing if the error does not exist', () => {
