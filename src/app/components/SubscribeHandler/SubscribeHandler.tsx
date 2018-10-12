@@ -12,7 +12,6 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
     super(props);
 
     this.state = {
-      errorCount: 0,
       errors: {},
       inputs: {},
       open: false,
@@ -22,7 +21,6 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
   private pushError = (key: string, error: string): void => {
     if (!this.state.errors[key]) {
       this.setState({
-        errorCount: this.state.errorCount + 1,
         errors: { ...this.state.errors, [key]: error },
       });
     }
@@ -31,7 +29,6 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
   private removeError = (key: string): void => {
     if (this.state.errors[key]) {
       this.setState({
-        errorCount: this.state.errorCount - 1,
         errors: { ...this.state.errors, [key]: '' },
       });
     }
@@ -73,21 +70,22 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
       return;
     }
 
-    this.validity('comfirmPassword', comfirmPassword === password, 'Password comfirmation does not match password');
-    this.validity('mail', !!mail.match(mailRegex), 'You must use a valid mail address');
-    this.validity(
-      'password',
-      !!password.match(passwordRegex),
-      'Password must be minimum eight characters,  at least one letter, one number and one special character'
-    );
+    const valid =
+      this.validity('comfirmPassword', comfirmPassword === password, 'Password comfirmation does not match password') ||
+      this.validity('mail', !!mail.match(mailRegex), 'You must use a valid mail address') ||
+      this.validity(
+        'password',
+        !!password.match(passwordRegex),
+        'Password must be minimum eight characters,  at least one letter, one number and one special character'
+      );
 
-    if (!this.state.errorCount) {
+    if (valid) {
       userCreation(mail, password);
     }
   };
 
   public onTriggerClick = (): void => {
-    this.setState({ open: !this.state.open , errors: {}});
+    this.setState({ open: !this.state.open, errors: {} });
   };
 
   public renderErrors = (): Array<JSX.Element | undefined> => {

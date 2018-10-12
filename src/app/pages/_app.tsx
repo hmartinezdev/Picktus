@@ -1,3 +1,4 @@
+import PicktusApp from '@containers/App';
 import withReduxStore from '@libs/with-redux-store';
 import App, { Container } from 'next/app';
 import React from 'react';
@@ -16,7 +17,9 @@ class MyApp extends App<PropsType> {
     return (
       <Container>
         <Provider store={reduxStore}>
-          <Component {...pageProps} />
+          <PicktusApp>
+            <Component {...pageProps} />
+          </PicktusApp>
         </Provider>
       </Container>
     );
