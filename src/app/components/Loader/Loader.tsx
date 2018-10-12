@@ -20,14 +20,14 @@ class Loader extends Component {
             left: 50%;
             transform: translate3D(-50%, -50%, 0);
             z-index: 1000;
-            width:100%;
-            min-height: 100vh;
+            width: 100%;
+            min-height: 100%;
             background-color: ${colors.primary}cd;
           }
 
           .photo {
-            max-width: 8rem;
-            max-height: 8rem;
+            max-width: 10rem;
+            max-height: 10rem;
             position: absolute;
           }
 
@@ -38,8 +38,8 @@ class Loader extends Component {
           .photo--second .check {
             stroke-dasharray: 1000;
             stroke-dashoffset: 1000;
-            stroke-width: 4;
-            stroke: #b3e099;
+            stroke-width: 22;
+            fill: none;
             stroke-meterlimit: 10;
             animation: check 3000ms ease-out infinite;
           }
@@ -59,29 +59,28 @@ class Loader extends Component {
               opacity: 1;
             }
 
-            80%, 100% {
+            80%,
+            100% {
               opacity: 1;
             }
           }
 
           @keyframes check {
             0% {
-              opacity:0;
               stroke-dashoffset: 1000;
             }
 
             40% {
-              opacity:0;
               stroke-dashoffset: 1000;
+              fill: ${colors.green};
             }
 
-            80%, 100% {
-              opacity:1;
+            80%,
+            100% {
+              fill: ${colors.lightGreen};
               stroke-dashoffset: 0;
             }
           }
-
-          
         `}</style>
       </div>
     );

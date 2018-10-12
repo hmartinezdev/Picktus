@@ -7,7 +7,6 @@ export interface ISubscribeHandlerState {
   open: boolean;
   inputs: IStringMap;
   errors: IStringMap;
-  errorCount: number;
 }
 
 export interface IReduxStateProps {

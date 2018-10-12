@@ -1,13 +1,15 @@
 import Header from '@components/Header';
+import Loader from '@components/Loader';
 import firebase from 'firebase/app';
 import React, { Component } from 'react';
 import colors from '../../constants/colors';
 import { config } from './constants';
 
-interface PropsType {
+interface IAppPropsType {
   children: JSX.Element[] | JSX.Element;
+  showLoader: boolean;
 }
-class App extends Component<PropsType, {}> {
+class App extends Component<IAppPropsType, {}> {
   public componentDidMount() {
     if (!firebase.apps.length) {
       firebase.initializeApp(config);
@@ -15,10 +17,11 @@ class App extends Component<PropsType, {}> {
   }
 
   public render(): React.ReactElement<App> {
-    const { children } = this.props;
+    const { children, showLoader } = this.props;
     return (
       <div className="page">
         <Header />
+        {showLoader && <Loader />}
         {children}
         <style jsx>{`
           .page {
