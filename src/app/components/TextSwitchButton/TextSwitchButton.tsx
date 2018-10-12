@@ -36,7 +36,7 @@ class Button extends Component<ITextSwitchButtonPropTypes, ITextSwitchButtonStat
     const { active } = this.state;
 
     return (
-      <button onClick={this.onClick} className="button">
+      <button onClick={this.onClick} className={`button ${active ? 'button--active' : ''}`}>
         <Transition key="initial" timeout={200} in={!active} mountOnEnter={true} unmountOnExit={true}>
           {(status) => <p className={`text text--${status}`}>{initialText}</p>}
         </Transition>
@@ -54,7 +54,7 @@ class Button extends Component<ITextSwitchButtonPropTypes, ITextSwitchButtonStat
             color: ${colors.primary};
             border-radius: 3px;
             margin-bottom: 0.8rem;
-            transition: background-color ease-in 200ms;
+            transition: all ease-in 200ms;
             border: none;
             width: 100%;
             outline: none;
@@ -64,7 +64,16 @@ class Button extends Component<ITextSwitchButtonPropTypes, ITextSwitchButtonStat
           }
 
           .button:hover {
-            background-color: ${colors.secondary}cd;
+            background-color: ${colors.secondary};
+          }
+
+          .button--active {
+            background-color: ${colors.primary}89;
+            color: ${colors.secondary};
+          }
+
+          .button--active:hover {
+            background-color: ${colors.primary};
           }
 
           .text {
