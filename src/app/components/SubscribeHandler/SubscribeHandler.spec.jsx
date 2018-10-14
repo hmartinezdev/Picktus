@@ -127,7 +127,7 @@ describe('<SubscribeHandler />', () => {
       instance.setState({ inputs: { password: 'k!', comfirmPassword: 'Kako1234!', mail: 'hugo@mail.com' } });
       instance.onSubscribeClick();
       expect(userCreation).toHaveBeenCalledTimes(0);
-      expect(spyValidity).toHaveBeenCalledTimes(4);
+      expect(spyValidity).toHaveBeenCalledTimes(2);
     });
 
     test('if there is a missing value it should only check that and return immediatly', () => {
