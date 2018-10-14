@@ -1,7 +1,7 @@
 module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   transform: {
-    '.(ts|tsx)': 'ts-jest',
+    '.(ts|tsx|js|jsx)': 'ts-jest',
   },
   moduleNameMapper: {
     '^@containers(.*)$': '<rootDir>/src/app/containers$1',
