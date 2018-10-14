@@ -1,1 +1,1 @@
-export default () => 'file';
+module.exports = () => 'file';
