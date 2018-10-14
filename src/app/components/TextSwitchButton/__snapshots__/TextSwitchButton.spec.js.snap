@@ -2,7 +2,7 @@
 
 exports[`<TextSwitchButton /> should render properly 1`] = `
 <button
-  className="button"
+  className="button "
   onClick={[Function]}
 >
   <Transition
@@ -55,7 +55,7 @@ exports[`<TextSwitchButton /> should render properly 1`] = `
             color: #2d3047;
             border-radius: 3px;
             margin-bottom: 0.8rem;
-            transition: background-color ease-in 200ms;
+            transition: all ease-in 200ms;
             border: none;
             width: 100%;
             outline: none;
@@ -65,7 +65,16 @@ exports[`<TextSwitchButton /> should render properly 1`] = `
           }
 
           .button:hover {
-            background-color: #FAC9B8cd;
+            background-color: #FAC9B8;
+          }
+
+          .button--active {
+            background-color: #2d304789;
+            color: #FAC9B8;
+          }
+
+          .button--active:hover {
+            background-color: #2d3047;
           }
 
           .text {

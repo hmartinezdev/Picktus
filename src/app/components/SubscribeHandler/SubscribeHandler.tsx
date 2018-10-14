@@ -71,8 +71,8 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
     }
 
     const valid =
-      this.validity('comfirmPassword', comfirmPassword === password, 'Password comfirmation does not match password') ||
-      this.validity('mail', !!mail.match(mailRegex), 'You must use a valid mail address') ||
+      this.validity('comfirmPassword', comfirmPassword === password, 'Password comfirmation does not match password') &&
+      this.validity('mail', !!mail.match(mailRegex), 'You must use a valid mail address') &&
       this.validity(
         'password',
         !!password.match(passwordRegex),
