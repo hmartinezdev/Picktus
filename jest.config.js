@@ -28,6 +28,6 @@ module.exports = {
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   testEnvironmentOptions: { resources: 'usable' },
-  coveragePathIgnorePatterns: ['/src/app/.*/index.*', '/src/app/libs/.*', '/src/app/pages/_app.tsx'],
+  coveragePathIgnorePatterns: ['/src/app/libs/.*', '/src/app/pages/_app.tsx'],
   testURL: 'http://localhost',
 };
