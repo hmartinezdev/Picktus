@@ -164,9 +164,8 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
             align-items: center;
             border-radius: 3px;
             min-height: calc(100% - 4.1rem);
-            padding: 1rem 0;
+            padding: 1.5rem 0;
             background-color: ${colors.primary};
-            margin-bottom: 1.5rem;
           }
 
           @keyframes fadein {

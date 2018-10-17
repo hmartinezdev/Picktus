@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 export interface IButtonPropTypes {
   text?: string;
+  children?: JSX.Element[] | JSX.Element;
   onClick(): void;
 }
 
@@ -12,27 +13,49 @@ class Button extends Component<IButtonPropTypes, {}> {
   };
 
   public render(): React.ReactElement<Button> {
-    const { onClick, text } = this.props;
+    const { onClick, text, children } = this.props;
 
     return (
       <button onClick={onClick} className="button">
-        <span>{text}</span>
+        {children ? children : <p className="text">{text}</p>}
         <style jsx>{`
           .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             color: ${colors.white};
             transition: all 0.5s;
             position: relative;
             text-align: center;
             cursor: pointer;
             font-family: 'Josefin Sans', sans-serif;
-            boder-radius: 3px;
-            padding: 0.8rem 0.7rem 0.8rem;
-            font-size: 0.75rem;
+            border-radius: 3px;
+            padding: 0 0.7rem;
             width: 75%;
-            margin: 0.5rem 0;
+            height: 2.35rem;
+            min-width: 28%;
+            margin: 0.7rem 0;
             background: none;
             border: none;
             outline: none;
+          }
+
+          :global(.button svg) {
+            fill: ${colors.white};
+            transition: all 0.5s;
+          }
+
+          .button:hover {
+            color: ${colors.blue};
+          }
+
+          :global(.button:hover svg) {
+            fill: ${colors.blue};
+          }
+
+          .text {
+            line-height: 2.35rem;
+            font-size: 0.75rem;
           }
 
           .button:active::after {
@@ -56,8 +79,8 @@ class Button extends Component<IButtonPropTypes, {}> {
             z-index: 1;
             background-color: ${colors.blue}45;
             transition: all 0.3s;
-            boder-radius: 3px;
-            cursor:pointer;
+            border-radius: 3px;
+            cursor: pointer;
           }
           .button:hover::before {
             opacity: 0;
@@ -75,7 +98,7 @@ class Button extends Component<IButtonPropTypes, {}> {
             transition: all 0.3s;
             border: 1px solid ${colors.green}ca;
             transform: scale(0.7, 0.7);
-            boder-radius: 3px;
+            border-radius: 3px;
             cursor: pointer;
           }
           .button:hover::after {
