@@ -120,14 +120,18 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
                 <Input name="comfirmPassword" placeholder="Confirm password" type="password" onChange={this.onChange} />
                 <Button text="Subscribe" onClick={this.onSubscribeClick} />
               </div>
-              {this.renderErrors()}
             </div>
           )}
         </Transition>
         <style jsx>{`
+          .errorContainer {
+            position: absolute;
+            width: 100%;
+          }
+
           .formContainer {
             left: 0;
-            top: 3rem;
+            bottom: 3.3rem;
             position: absolute;
             width: 100%;
             z-index: 3;
@@ -163,7 +167,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
             justify-content: center;
             align-items: center;
             border-radius: 3px;
-            min-height: calc(100% - 4.1rem);
+            min-height: calc(100% - 4.3rem);
             padding: 1.5rem 0;
             background-color: ${colors.primary};
           }

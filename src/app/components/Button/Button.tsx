@@ -56,6 +56,7 @@ class Button extends Component<IButtonPropTypes, {}> {
           .text {
             line-height: 2.35rem;
             font-size: 0.75rem;
+            z-index: 2;
           }
 
           .button:active::after {
@@ -76,7 +77,6 @@ class Button extends Component<IButtonPropTypes, {}> {
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
             background-color: ${colors.blue}45;
             transition: all 0.3s;
             border-radius: 3px;
@@ -96,11 +96,12 @@ class Button extends Component<IButtonPropTypes, {}> {
             z-index: 1;
             opacity: 0;
             transition: all 0.3s;
-            border: 1px solid ${colors.green}ca;
+            border: 1px solid ${colors.lightGreen}ca;
             transform: scale(0.7, 0.7);
             border-radius: 3px;
             cursor: pointer;
           }
+
           .button:hover::after {
             opacity: 1;
             transform: scale(1, 1);

@@ -1,4 +1,4 @@
-import firebase from 'firebase/app';
+import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import AuthenticationError from './AuthenticationError';
 import { FirebaseError } from './AuthenticationError/AuthenticationError.type';
@@ -36,6 +36,7 @@ class Authentication {
         // The firebase.auth.AuthCredential type that was used.
         const credential = error.credential;
         // ...
+        console.log(error);
       });
   }
 }
