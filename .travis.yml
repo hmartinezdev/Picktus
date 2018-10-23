@@ -12,7 +12,7 @@ install:
 
 before_script:
   - npm run test:ci
-  - npm run lint
+  - npm run lint:ci
   - sonar-scanner
 
 addons:

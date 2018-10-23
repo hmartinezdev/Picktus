@@ -17,7 +17,7 @@ class Background extends Component<IBackgroundPropsType, {}> {
             align-self: stretch;
             min-height: 100vh;
             width: 100%;
-            background: url('/static/background.jpg') no-repeat center center fixed;
+            background: url('/static/background.svg') no-repeat center center fixed;
             background-size: cover;
           }
         `}</style>

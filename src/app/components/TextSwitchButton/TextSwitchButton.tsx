@@ -53,7 +53,7 @@ class Button extends Component<ITextSwitchButtonPropTypes, ITextSwitchButtonStat
             font-family: 'Josefin Sans', sans-serif;
             color: ${colors.primary};
             border-radius: 3px;
-            margin-bottom: 0.8rem;
+            margin-top: 0.8rem;
             transition: all ease-in 200ms;
             border: none;
             width: 100%;

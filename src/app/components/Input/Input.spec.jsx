@@ -1,11 +1,11 @@
 import enzyme, { shallow } from 'enzyme';
 import React from 'react';
-import Input, { InputPropTypes } from './Input';
+import Input from './Input';
 
-let wrapper: enzyme.ShallowWrapper;
+let wrapper;
 
 const baseProps = { onChange: () => undefined };
-const setup = (props: InputPropTypes = baseProps) => shallow(<Input {...props} />);
+const setup = (props = baseProps) => shallow(<Input {...props} />);
 
 describe('<Input />', () => {
   beforeEach(() => {

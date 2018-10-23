@@ -4,8 +4,8 @@ import Button, { ButtonPropTypes } from './Button';
 
 let wrapper;
 const baseProps = { onClick: () => undefined };
-const setup = (props: ButtonPropTypes = baseProps) => shallow(<Button {...props} />);
-const mountSetup = (props: ButtonPropTypes = baseProps) => mount(<Button {...props} />);
+const setup = (props = baseProps) => shallow(<Button {...props} />);
+const mountSetup = (props = baseProps) => mount(<Button {...props} />);
 
 describe('<Button />', () => {
   test('should render properly', () => {
