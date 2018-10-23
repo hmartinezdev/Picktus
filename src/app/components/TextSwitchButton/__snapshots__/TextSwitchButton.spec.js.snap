@@ -54,7 +54,7 @@ exports[`<TextSwitchButton /> should render properly 1`] = `
             font-family: 'Josefin Sans', sans-serif;
             color: #2d3047;
             border-radius: 3px;
-            margin-bottom: 0.8rem;
+            margin-top: 0.8rem;
             transition: all ease-in 200ms;
             border: none;
             width: 100%;

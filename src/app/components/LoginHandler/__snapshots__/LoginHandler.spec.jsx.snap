@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginHandler /> should render properly 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="login"
+  >
+    <Input
+      name="mail"
+      onChange={[Function]}
+      placeholder="Mail"
+      type="text"
+    />
+    <Input
+      name="password"
+      onChange={[Function]}
+      placeholder="Password"
+      type="password"
+    />
+    <Button
+      onClick={[Function]}
+      text="Login"
+    />
+    <div
+      className="socialButtons"
+    >
+      <Button
+        onClick={[Function]}
+        text=""
+      >
+        <Component
+          className="social"
+        />
+      </Button>
+      <Button
+        onClick={[Function]}
+        text=""
+      >
+        <Component
+          className="social"
+        />
+      </Button>
+      <Button
+        onClick={[Function]}
+        text=""
+      >
+        <Component
+          className="social"
+        />
+      </Button>
+    </div>
+  </div>
+  <Connect(SubscribeHandler) />
+  <style
+    jsx={true}
+  >
+    
+          .container {
+            position: relative;
+          }
+
+          .login {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #2d3047;
+            min-width: 22rem;
+            padding: 1.5rem 0;
+            box-sizing: border-box;
+            border-radius: 3px;
+            box-shadow: 11px 10px 34px -7px rgba(0, 0, 0, 0.49);
+          }
+
+          .socialButtons {
+            display: flex;
+            justify-content: space-between;
+            width: 75%;
+          }
+
+          :global(.socialButtons.socialButtons &gt; button:nth-child(2)) {
+            margin: 0.7rem 1.4rem;
+          }
+        
+  </style>
+</div>
+`;

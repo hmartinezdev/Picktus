@@ -2,7 +2,7 @@ import enzyme, { shallow } from 'enzyme';
 import React from 'react';
 import LoginHandler from './LoginHandler';
 
-let wrapper: enzyme.ShallowWrapper;
+let wrapper;
 
 const setup = (props = {}) => shallow(<LoginHandler {...props} />);
 

@@ -1,8 +1,6 @@
 module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
-  transform: {
-    '.(ts|tsx|js|jsx)': 'ts-jest',
-  },
+  preset: 'ts-jest/presets/js-with-ts',
   moduleNameMapper: {
     '^@containers(.*)$': '<rootDir>/src/app/containers$1',
     '^@components(.*)$': '<rootDir>/src/app/components$1',
