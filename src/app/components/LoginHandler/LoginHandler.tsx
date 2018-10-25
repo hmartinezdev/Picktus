@@ -10,6 +10,13 @@ import React, { ChangeEvent, Component } from 'react';
 import { ILoginHandlerState } from './LoginHandler.type';
 
 class LoginHandler extends Component<{}, ILoginHandlerState> {
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      inputs: {},
+    };
+  }
+
   public onChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { value, name } = e.target;
     if (name !== 'open') {

@@ -7,9 +7,9 @@ import { config } from './constants';
 let wrapper;
 let spy;
 
-const setup = () =>
+const setup = (props = {}) =>
   shallow(
-    <App>
+    <App {...props}>
       <div />
     </App>
   );
@@ -29,6 +29,11 @@ describe('<App />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  test('should render loader is showLoader is at true', () => {
+    wrapper = setup({ showLoader: true });
+    expect(wrapper).toMatchSnapshot();
+  });
+
   describe('componentDidMount', () => {
     beforeEach(() => {
       spy = jest.spyOn(firebase, 'initializeApp').mockImplementation(() => {
@@ -37,15 +42,20 @@ describe('<App />', () => {
     });
 
     test('it should configure firebase properly', () => {
+      const switcher = firebase;
+      const mock = jest.fn().mockReturnValue('test');
+      firebase = { initializeApp: mock, apps: [] };
       wrapper = setup();
-      expect(spy).toHaveBeenCalledWith(config);
+      expect(mock).toHaveBeenCalled();
+      firebase = switcher;
     });
 
     test('it should configure firebase properly', () => {
       const switcher = firebase;
-      firebase = { initializeApp: () => 'test', apps: ['test'] };
+      const mock = jest.fn().mockReturnValue('test');
+      firebase = { initializeApp: mock, apps: ['test'] };
       wrapper = setup();
-      expect(spy).toHaveBeenCalledTimes(0);
+      expect(mock).toHaveBeenCalledTimes(0);
       firebase = switcher;
     });
   });

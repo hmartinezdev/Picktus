@@ -25,10 +25,10 @@ class Authentication {
       .signInWithPopup(provider)
       .then((result) => {
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-        console.log(result);
+        return result;
       })
       .catch((error) => {
-        console.log(error);
+        return error;
       });
   }
 }
