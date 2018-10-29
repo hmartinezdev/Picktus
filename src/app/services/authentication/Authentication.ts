@@ -9,7 +9,7 @@ class Authentication {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .catch((error: FirebaseError) => {
-        throw new AuthenticationError(`Error code ${error.code}: ${error.message}`);
+        throw new AuthenticationError(`Authentication::createUser Error code ${error.code}: ${error.message}`);
       });
   }
 
@@ -20,15 +20,11 @@ class Authentication {
     });
     firebase.auth().useDeviceLanguage();
 
-    firebase
+    return firebase
       .auth()
       .signInWithPopup(provider)
-      .then((result) => {
-        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-        return result;
-      })
       .catch((error) => {
-        return error;
+        throw new AuthenticationError(`Authentication::facebookAuth Error code ${error.code}: ${error.message}`);
       });
   }
 }
