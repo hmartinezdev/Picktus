@@ -7,10 +7,10 @@ import SubscribeHandler from '@components/SubscribeHandler';
 import colors from '@constants/colors';
 import Authentication from '@services/authentication';
 import React, { ChangeEvent, Component } from 'react';
-import { ILoginHandlerState } from './LoginHandler.type';
+import { ILoginHandlerProps, ILoginHandlerState } from './LoginHandler.type';
 
-class LoginHandler extends Component<{}, ILoginHandlerState> {
-  constructor(props: {}) {
+class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
+  constructor(props: ILoginHandlerProps) {
     super(props);
     this.state = {
       inputs: {},
@@ -29,6 +29,7 @@ class LoginHandler extends Component<{}, ILoginHandlerState> {
   };
 
   public render(): React.ReactElement<LoginHandler> {
+    const { facebookLogin, googleLogin } = this.props;
     return (
       <div className="container">
         <div className="login">
@@ -36,10 +37,10 @@ class LoginHandler extends Component<{}, ILoginHandlerState> {
           <Input placeholder="Password" type="password" onChange={this.onChange} name="password" />
           <Button text="Login" onClick={this.onClick} />
           <div className="socialButtons">
-            <Button onClick={Authentication.facebookAuth}>
+            <Button onClick={facebookLogin}>
               <Facebook className="social" />
             </Button>
-            <Button onClick={this.onClick}>
+            <Button onClick={googleLogin}>
               <Google className="social" />
             </Button>
             <Button onClick={this.onClick}>

@@ -69,6 +69,24 @@ export const userCreation = (mail: string, password: string): ThunkResult<void> 
   }
 };
 
+export const facebookLogin = (): ThunkResult<void> => async (dispatch) => {
+  try {
+    const user = await Authentication.facebookAuth();
+    console.log(user);
+  } catch (e) {
+    dispatch(userLoginFailed(e.message));
+  }
+};
+
+export const googleLogin = (): ThunkResult<void> => async (dispatch) => {
+  try {
+    const user = await Authentication.googleAuth();
+    console.log(user);
+  } catch (e) {
+    dispatch(userLoginFailed(e.message));
+  }
+};
+
 export type UserActions =
   | UserLoginSuccess
   | UserLoginFailed

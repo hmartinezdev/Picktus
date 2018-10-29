@@ -27,6 +27,17 @@ class Authentication {
         throw new AuthenticationError(`Authentication::facebookAuth Error code ${error.code}: ${error.message}`);
       });
   }
+
+  public async googleAuth() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().useDeviceLanguage();
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .catch((error) => {
+        throw new AuthenticationError(`Authentication::googleAuth Error code ${error.code}: ${error.message}`);
+      });
+  }
 }
 
 export default new Authentication();

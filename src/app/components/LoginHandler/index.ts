@@ -1,3 +1,3 @@
-import LoginHandler from './LoginHandler';
+import LoginHandlerConnected from './LoginHandlerConnected';
 
-export default LoginHandler;
+export default LoginHandlerConnected;
