@@ -13,7 +13,7 @@ exports[`<Login /> should render properly 1`] = `
     <div
       className="form"
     >
-      <LoginHandler />
+      <Connect(LoginHandler) />
     </div>
     <style
       jsx={true}

@@ -3,12 +3,19 @@ import * as actions from './user-actions';
 ​
 describe('actions', () => {
   it('should create an action to store user info when logged in', () => {
-    const userInfos = {user: 'toto'};
+    const user = { 
+      email:'ok',
+      emailVerified: true,
+      name: 'hugo',
+      photoUrl: 'url',
+      uid: 'id'
+    };
+
     const expectedAction = {
       type: actions.TypeKeys.USER_LOGIN_SUCCESS,
-      userInfos
+      user
     }
-    expect(actions.userLoginSuccess(userInfos)).toEqual(expectedAction)
+    expect(actions.userLoginSuccess(user)).toEqual(expectedAction)
   })
 
   it('should create an action to display an error when logging failed', () => {
@@ -69,5 +76,53 @@ describe('actions', () => {
       expect(dispatchSpy).toHaveBeenNthCalledWith(2, {type: actions.TypeKeys.USER_CREATION_FAILURE, "error": "test", });
     });
 
+  });
+
+  describe('facebookLogin', () => {
+    it('should return an async function when called', () => {
+      expect(typeof actions.facebookLogin() === 'function').toEqual(true);
+    });
+
+    it('should dispatch nothing if facebook auth is successfull', async () => {
+      const dispatchSpy = jest.fn();
+      const AuthSpy = jest.spyOn(Authentication, 'facebookAuth').mockImplementation(() => undefined);
+      await actions.facebookLogin()(dispatchSpy);
+      expect(AuthSpy).toHaveBeenCalled();
+    });
+
+
+    it('should dispatch a userLoginFailed error if the authentication failed', async  () => {
+      const dispatchSpy = jest.fn();
+      const AuthSpy = jest.spyOn(Authentication, 'facebookAuth').mockImplementation(() => {
+        throw new Error('test');
+      });
+      await actions.facebookLogin()(dispatchSpy);
+      expect(AuthSpy).toHaveBeenCalled();
+      expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_FAILED, error: 'test'});
+    });
+  });
+
+  describe('googleLogin', () => {
+    it('should return an async function when called', () => {
+      expect(typeof actions.googleLogin() === 'function').toEqual(true);
+    });
+
+    it('should dispatch nothing if facebook auth is successfull', async () => {
+      const dispatchSpy = jest.fn();
+      const AuthSpy = jest.spyOn(Authentication, 'googleAuth').mockImplementation(() => undefined);
+      await actions.googleLogin()(dispatchSpy);
+      expect(AuthSpy).toHaveBeenCalled();
+    });
+
+
+    it('should dispatch a userLoginFailed error if the authentication failed', async  () => {
+      const dispatchSpy = jest.fn();
+      const AuthSpy = jest.spyOn(Authentication, 'googleAuth').mockImplementation(() => {
+        throw new Error('test');
+      });
+      await actions.googleLogin()(dispatchSpy);
+      expect(AuthSpy).toHaveBeenCalled();
+      expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_FAILED, error: 'test'});
+    });
   });
 })

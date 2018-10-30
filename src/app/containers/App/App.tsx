@@ -1,19 +1,27 @@
 import Header from '@components/Header';
 import Loader from '@components/Loader';
+import colors from '@constants/colors';
+import Authentication from '@services/authentication';
 import firebase from 'firebase/app';
 import React, { Component } from 'react';
-import colors from '../../constants/colors';
+import { IAppPropsType } from './App.type';
 import { config } from './constants';
 
-interface IAppPropsType {
-  children: JSX.Element[] | JSX.Element;
-  showLoader: boolean;
-}
-class App extends Component<IAppPropsType, {}> {
-  public componentDidMount() {
+class App extends Component<IAppPropsType> {
+  constructor(props: IAppPropsType) {
+    super(props);
+
+    // If the firebase setup has not been done yet
+    // we do it here
     if (!firebase.apps.length) {
       firebase.initializeApp(config);
     }
+
+    Authentication.onUserStatusChange((user) => {
+      if (user) {
+        props.userLoginSuccess(user);
+      }
+    });
   }
 
   public render(): React.ReactElement<App> {

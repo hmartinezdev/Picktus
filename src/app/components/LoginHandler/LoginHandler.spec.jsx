@@ -1,6 +1,6 @@
 import enzyme, { shallow, mount } from 'enzyme';
 import React from 'react';
-import LoginHandler from './';
+import LoginHandler from './LoginHandler';
 
 let wrapper;
 let mountWrapper;

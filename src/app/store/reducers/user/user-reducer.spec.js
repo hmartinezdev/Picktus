@@ -15,7 +15,23 @@ describe('todos reducer', () => {
   });
 
   it(`it should handle ${TypeKeys.USER_LOGIN_SUCCESS}`, () => {
-    expect(reducer(undefined, {type:TypeKeys.USER_LOGIN_SUCCESS})).toEqual({authenticated: true});
+    const firebaseUser = { 
+      email:'ok',
+      emailVerified: true,
+      displayName: 'hugo',
+      photoURL: 'url',
+      uid: 'id'
+    };
+
+    const user = { 
+      email:'ok',
+      emailVerified: true,
+      name: 'hugo',
+      photoUrl: 'url',
+      uid: 'id'
+    };
+
+    expect(reducer(undefined, {type:TypeKeys.USER_LOGIN_SUCCESS, user:firebaseUser})).toEqual({authenticated: true, user});
   });
 
   it(`it should handle ${TypeKeys.USER_LOGIN_SUCCESS}`, () => {
