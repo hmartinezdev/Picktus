@@ -1,4 +1,5 @@
 import Authentication from '@services/authentication';
+import firebase from 'firebase';
 import { ThunkAction } from 'redux-thunk';
 import { IUserState } from './user.type';
 
@@ -10,16 +11,17 @@ export enum TypeKeys {
   USER_CREATION_START = 'USER_CREATION_START',
   USER_CREATION_SUCCESS = 'USER_CREATION_SUCCESS',
   USER_CREATION_FAILURE = 'USER_CREATION_FAILURE',
+  USER_LOGOUT = 'USER_LOGOUT',
 }
 
 export interface UserLoginSuccess {
   type: TypeKeys.USER_LOGIN_SUCCESS;
-  userInfos: object;
+  user: firebase.User;
 }
 
-export const userLoginSuccess = (userInfos: object): UserLoginSuccess => ({
+export const userLoginSuccess = (user: firebase.User): UserLoginSuccess => ({
   type: TypeKeys.USER_LOGIN_SUCCESS,
-  userInfos,
+  user,
 });
 
 export interface UserLoginFailed {
@@ -30,6 +32,14 @@ export interface UserLoginFailed {
 export const userLoginFailed = (error: string): UserLoginFailed => ({
   error,
   type: TypeKeys.USER_LOGIN_FAILED,
+});
+
+export interface UserLogout {
+  type: TypeKeys.USER_LOGOUT;
+}
+
+export const userLogout = (): UserLogout => ({
+  type: TypeKeys.USER_LOGOUT,
 });
 
 export interface UserCreationStart {
@@ -71,8 +81,7 @@ export const userCreation = (mail: string, password: string): ThunkResult<void> 
 
 export const facebookLogin = (): ThunkResult<void> => async (dispatch) => {
   try {
-    const user = await Authentication.facebookAuth();
-    console.log(user);
+    await Authentication.facebookAuth();
   } catch (e) {
     dispatch(userLoginFailed(e.message));
   }
@@ -80,8 +89,7 @@ export const facebookLogin = (): ThunkResult<void> => async (dispatch) => {
 
 export const googleLogin = (): ThunkResult<void> => async (dispatch) => {
   try {
-    const user = await Authentication.googleAuth();
-    console.log(user);
+    await Authentication.googleAuth();
   } catch (e) {
     dispatch(userLoginFailed(e.message));
   }
@@ -92,4 +100,5 @@ export type UserActions =
   | UserLoginFailed
   | UserCreationStart
   | UserCreationFailure
-  | UserCreationSuccess;
+  | UserCreationSuccess
+  | UserLogout;

@@ -5,7 +5,6 @@ import Button from '@components/Button';
 import Input from '@components/Input';
 import SubscribeHandler from '@components/SubscribeHandler';
 import colors from '@constants/colors';
-import Authentication from '@services/authentication';
 import React, { ChangeEvent, Component } from 'react';
 import { ILoginHandlerProps, ILoginHandlerState } from './LoginHandler.type';
 

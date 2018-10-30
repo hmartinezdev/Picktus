@@ -4,3 +4,15 @@ declare module '*.svg' {
   const value: SvgrComponent;
   export default value;
 }
+
+interface PicktusUser {
+  name: string;
+  email: string;
+  photoUrl: string;
+  emailVerified: boolean;
+  uid: string;
+}
+
+interface IStringMap {
+  [s: string]: string;
+}
