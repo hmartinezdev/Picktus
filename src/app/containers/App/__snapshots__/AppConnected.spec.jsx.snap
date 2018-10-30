@@ -2,7 +2,6 @@
 
 exports[`<App /> should render properly 1`] = `
 <App
-  dispatch={[Function]}
   showLoader={false}
   store={
     Object {
@@ -35,6 +34,7 @@ exports[`<App /> should render properly 1`] = `
       "unsubscribe": [Function],
     }
   }
+  userLoginSuccess={[Function]}
 >
   <div />
 </App>

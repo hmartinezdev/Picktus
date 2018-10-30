@@ -38,7 +38,7 @@ class Authentication {
   public async googleAuth() {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().useDeviceLanguage();
-    firebase
+    return firebase
       .auth()
       .signInWithPopup(provider)
       .catch((error) => {
@@ -47,7 +47,7 @@ class Authentication {
   }
 
   public async signin(email: string, password: string) {
-    firebase
+    return firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .catch((error) => {
