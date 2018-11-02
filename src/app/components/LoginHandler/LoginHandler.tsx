@@ -1,6 +1,6 @@
 import Facebook from '@assets/svg/facebook.svg';
 import Google from '@assets/svg/googleplus.svg';
-import Instagram from '@assets/svg/instagram.svg';
+import Twitter from '@assets/svg/twitter.svg';
 import Button from '@components/Button';
 import Input from '@components/Input';
 import SubscribeHandler from '@components/SubscribeHandler';
@@ -28,7 +28,7 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
   };
 
   public render(): React.ReactElement<LoginHandler> {
-    const { facebookLogin, googleLogin } = this.props;
+    const { facebookLogin, googleLogin, twitterLogin } = this.props;
     return (
       <div className="container">
         <div className="login">
@@ -42,8 +42,8 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
             <Button onClick={googleLogin}>
               <Google className="social" />
             </Button>
-            <Button onClick={this.onClick}>
-              <Instagram className="social" />
+            <Button onClick={twitterLogin}>
+              <Twitter className="social" />
             </Button>
           </div>
         </div>
