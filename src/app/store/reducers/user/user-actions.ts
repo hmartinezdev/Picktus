@@ -95,6 +95,14 @@ export const googleLogin = (): ThunkResult<void> => async (dispatch) => {
   }
 };
 
+export const twitterLogin = (): ThunkResult<void> => async (dispatch) => {
+  try {
+    await Authentication.twitterAuth();
+  } catch (e) {
+    dispatch(userLoginFailed(e.message));
+  }
+};
+
 export type UserActions =
   | UserLoginSuccess
   | UserLoginFailed

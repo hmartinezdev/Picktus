@@ -41,7 +41,6 @@ exports[`<LoginHandler /> should render properly 1`] = `
         />
       </Button>
       <Button
-        onClick={[Function]}
         text=""
       >
         <Component

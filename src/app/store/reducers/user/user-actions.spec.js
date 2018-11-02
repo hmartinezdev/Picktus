@@ -125,4 +125,28 @@ describe('actions', () => {
       expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_FAILED, error: 'test'});
     });
   });
+
+  describe('twitterLogin', () => {
+    it('should return an async function when called', () => {
+      expect(typeof actions.twitterLogin() === 'function').toEqual(true);
+    });
+
+    it('should dispatch nothing if facebook auth is successfull', async () => {
+      const dispatchSpy = jest.fn();
+      const AuthSpy = jest.spyOn(Authentication, 'twitterAuth').mockImplementation(() => undefined);
+      await actions.twitterLogin()(dispatchSpy);
+      expect(AuthSpy).toHaveBeenCalled();
+    });
+
+
+    it('should dispatch a userLoginFailed error if the authentication failed', async  () => {
+      const dispatchSpy = jest.fn();
+      const AuthSpy = jest.spyOn(Authentication, 'twitterAuth').mockImplementation(() => {
+        throw new Error('test');
+      });
+      await actions.twitterLogin()(dispatchSpy);
+      expect(AuthSpy).toHaveBeenCalled();
+      expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_FAILED, error: 'test'});
+    });
+  });
 })

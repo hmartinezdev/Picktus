@@ -138,6 +138,54 @@ describe('Authentication service', () => {
     });
   });
 
+  describe('twitterAuth', () => {
+    let spyUsedDevice = jest.fn();
+    let spySigninWP = jest.fn().mockImplementation(() => new Promise((resolve) => resolve()));
+    let authProvider;
+    beforeEach(() => {
+      const auth = function() {
+        return {
+          signInWithPopup: spySigninWP,
+          useDeviceLanguage: spyUsedDevice,
+        };
+      };
+
+      authProvider = jest.spyOn(firebase, 'auth').mockImplementation(auth);
+      authProvider.TwitterAuthProvider = class TwitterAuthProvider {};
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    test('it should call firebase to create the new user', async () => {
+      await Authentication.twitterAuth();
+
+      expect(firebase.auth).toHaveBeenCalledTimes(2);
+      expect(spySigninWP).toHaveBeenCalledWith(new authProvider.TwitterAuthProvider());
+    });
+
+    test('it should throw an error if the user creation fails', async () => {
+      spySigninWP.mockImplementation(
+        () =>
+          new Promise(() => {
+            throw new Error();
+          })
+      );
+
+      let error = null;
+
+      try {
+        await Authentication.twitterAuth();
+      } catch (e) {
+        error = e;
+      }
+
+      expect(spyUsedDevice).toHaveBeenCalledWith();
+      expect(error instanceof Error).toBe(true);
+    });
+  });
+
   describe('signin', () => {
     afterEach(() => {
       jest.restoreAllMocks();

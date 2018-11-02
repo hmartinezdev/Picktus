@@ -7,6 +7,7 @@ export interface ILoginHandlerState {
 export interface IDispatchProps {
   googleLogin: () => ThunkResult<void>;
   facebookLogin: () => ThunkResult<void>;
+  twitterLogin: () => ThunkResult<void>;
 }
 
 export type ILoginHandlerProps = IDispatchProps;

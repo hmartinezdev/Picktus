@@ -46,6 +46,17 @@ class Authentication {
       });
   }
 
+  public async twitterAuth() {
+    const provider = new firebase.auth.TwitterAuthProvider();
+    firebase.auth().useDeviceLanguage();
+    return firebase
+      .auth()
+      .signInWithPopup(provider)
+      .catch((error) => {
+        throw new AuthenticationError(`Authentication::twitterAuth Error code ${error.code}: ${error.message}`);
+      });
+  }
+
   public async signin(email: string, password: string) {
     return firebase
       .auth()
