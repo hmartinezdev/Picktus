@@ -50,7 +50,7 @@ describe('actions', () => {
     expect(actions.UserCreationFailure(error)).toEqual(expectedAction)
   })
 
-  describe('userCreationStart', () => {
+  describe('userCreation', () => {
     it('should return an async function when called', () => {
       expect(typeof actions.userCreation() === 'function').toEqual(true);
     });
@@ -149,4 +149,31 @@ describe('actions', () => {
       expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_FAILED, error: 'test'});
     });
   });
+
+  describe('classicLogin', () => {
+    it('should return an async function when called', () => {
+      expect(typeof actions.classicLogin() === 'function').toEqual(true);
+    });
+
+    it('should dispatch userLoginStart action and call signin Authentication method', async () => {
+      const dispatchSpy = jest.fn();
+      const AuthSpy = jest.spyOn(Authentication, 'signin').mockImplementation(() => undefined);
+      await actions.classicLogin()(dispatchSpy);
+      expect(AuthSpy).toHaveBeenCalled();
+      expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_START});
+    });
+
+    it('should dispatch userCreationStart action and then a userCreationFailure if the user creation failed', async  () => {
+      const dispatchSpy = jest.fn();
+      const AuthSpy = jest.spyOn(Authentication, 'signin').mockImplementation(() => {
+        throw new Error('test');
+      });
+      await actions.classicLogin()(dispatchSpy);
+      expect(AuthSpy).toHaveBeenCalled();
+      expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_START});
+      expect(dispatchSpy).toHaveBeenNthCalledWith(2, {type: actions.TypeKeys.USER_LOGIN_FAILED, "error": "test", });
+    });
+
+  });
+
 })

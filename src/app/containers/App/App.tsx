@@ -11,8 +11,6 @@ class App extends Component<IAppPropsType> {
   constructor(props: IAppPropsType) {
     super(props);
 
-    console.log(firebase);
-
     // If the firebase setup has not been done yet
     // we do it here
     if (!firebase.apps.length) {
