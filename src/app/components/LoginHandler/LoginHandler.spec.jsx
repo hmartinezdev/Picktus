@@ -1,6 +1,7 @@
 import enzyme, { shallow, mount } from 'enzyme';
 import React from 'react';
 import LoginHandler from './LoginHandler';
+import { classicLogin } from '@store/reducers/user/user-actions';
 
 let wrapper;
 let mountWrapper;
@@ -34,11 +35,14 @@ describe('<LoginHandler />', () => {
     });
   });
 
-  describe('onClick', () => {
-    test('it should do jack shit', () => {
+  describe('onLoginClick', () => {
+    test('it should change the input value in the component state', () => {
+      const spyLogin = jest.fn();
+      wrapper = setup({ classicLogin: spyLogin });
       const instance = wrapper.instance();
-      const result = instance.onClick();
-      expect(result).toBe(undefined);
+      instance.setState({ inputs: { password: 'test', mail: 'mail' } });
+      instance.onLoginClick();
+      expect(spyLogin).toHaveBeenCalledWith('mail', 'test');
     });
   });
 });

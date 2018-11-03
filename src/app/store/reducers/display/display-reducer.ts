@@ -8,9 +8,12 @@ export default function user(state: IDisplayState = { loader: false }, action: A
     case DisplayTypeKeys.DISPLAY_LOADER:
       return { ...state, loader: action.show };
     case UserTypeKeys.USER_CREATION_START:
+    case UserTypeKeys.USER_LOGIN_START:
       return { ...state, loader: true };
     case UserTypeKeys.USER_CREATION_FAILURE:
     case UserTypeKeys.USER_CREATION_SUCCESS:
+    case UserTypeKeys.USER_LOGIN_FAILED:
+    case UserTypeKeys.USER_LOGIN_SUCCESS:
       return { ...state, loader: false };
     default:
       return state;

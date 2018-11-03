@@ -8,6 +8,7 @@ export interface IDispatchProps {
   googleLogin: () => ThunkResult<void>;
   facebookLogin: () => ThunkResult<void>;
   twitterLogin: () => ThunkResult<void>;
+  classicLogin: (email: string, password: string) => ThunkResult<void>;
 }
 
 export type ILoginHandlerProps = IDispatchProps;

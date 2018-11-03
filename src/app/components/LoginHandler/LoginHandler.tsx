@@ -23,8 +23,11 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
     }
   };
 
-  public onClick = (): void => {
-    return undefined;
+  public onLoginClick = () => {
+    const { classicLogin } = this.props;
+    const { mail, password } = this.state.inputs;
+
+    classicLogin(mail, password);
   };
 
   public render(): React.ReactElement<LoginHandler> {
@@ -34,7 +37,7 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
         <div className="login">
           <Input placeholder="Mail" onChange={this.onChange} name="mail" />
           <Input placeholder="Password" type="password" onChange={this.onChange} name="password" />
-          <Button text="Login" onClick={this.onClick} />
+          <Button text="Login" onClick={this.onLoginClick} />
           <div className="socialButtons">
             <Button onClick={facebookLogin}>
               <Facebook className="social" />

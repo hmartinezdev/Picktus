@@ -8,11 +8,20 @@ export type ThunkResult<R> = ThunkAction<R, IUserState, undefined, UserActions>;
 export enum TypeKeys {
   USER_LOGIN_FAILED = 'USER_LOGIN_FAILED',
   USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS',
+  USER_LOGIN_START = 'USER_LOGIN_START',
   USER_CREATION_START = 'USER_CREATION_START',
   USER_CREATION_SUCCESS = 'USER_CREATION_SUCCESS',
   USER_CREATION_FAILURE = 'USER_CREATION_FAILURE',
   USER_LOGOUT = 'USER_LOGOUT',
 }
+
+export interface UserLoginStart {
+  type: TypeKeys.USER_LOGIN_START;
+}
+
+export const userLoginStart = (): UserLoginStart => ({
+  type: TypeKeys.USER_LOGIN_START,
+});
 
 export interface UserLoginSuccess {
   type: TypeKeys.USER_LOGIN_SUCCESS;
@@ -103,10 +112,21 @@ export const twitterLogin = (): ThunkResult<void> => async (dispatch) => {
   }
 };
 
+export const classicLogin = (mail: string, password: string): ThunkResult<void> => async (dispatch) => {
+  dispatch(userLoginStart());
+
+  try {
+    await Authentication.signin(mail, password);
+  } catch (e) {
+    dispatch(userLoginFailed(e.message));
+  }
+};
+
 export type UserActions =
   | UserLoginSuccess
   | UserLoginFailed
   | UserCreationStart
   | UserCreationFailure
   | UserCreationSuccess
-  | UserLogout;
+  | UserLogout
+  | UserLoginStart;
