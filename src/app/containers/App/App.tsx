@@ -18,9 +18,7 @@ class App extends Component<IAppPropsType> {
     }
 
     Authentication.onUserStatusChange((user) => {
-      if (user) {
-        props.userLoginSuccess(user);
-      }
+      props.userLoginSuccess(user);
     });
   }
 

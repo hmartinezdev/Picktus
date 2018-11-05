@@ -82,7 +82,6 @@ export const userCreation = (mail: string, password: string): ThunkResult<void> 
 
   try {
     await Authentication.createUser(mail, password);
-    dispatch(UserCreationSuccess());
   } catch (e) {
     dispatch(UserCreationFailure(e.message));
   }

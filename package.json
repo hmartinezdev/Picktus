@@ -12,7 +12,6 @@
     "@types/enzyme": "^3.1.13",
     "classnames": "^2.2.6",
     "firebase": "^5.5.5",
-    "firebase-admin": "^6.0.0",
     "firebase-functions": "^2.0.5",
     "isomorphic-unfetch": "^2.1.1",
     "next": "^6.1.1",
@@ -30,7 +29,7 @@
     "styled-jsx": "^2.2.7"
   },
   "scripts": {
-    "dev": "next \"src/app\"",
+    "dev": "node \"src/app/server/server.ts\"",
     "lint": "tslint -c tslint.json 'src/app/**/*.tsx' 'src/app/**/*.ts'",
     "lint:ci": "tslint -t json -o tslint-report.json -c tslint.json 'src/app/**/*.tsx' 'src/app/**/*.ts'",
     "prettier": "prettier --write **/*.ts --write **/*.tsx",
@@ -66,6 +65,7 @@
     "enzyme": "^3.4.1",
     "enzyme-adapter-react-16": "^1.2.0",
     "enzyme-to-json": "^3.3.4",
+    "firebase-admin": "^6.1.0",
     "firebase-tools": "^4.1.1",
     "jest": "^23.4.2",
     "prettier": "^1.14.0",

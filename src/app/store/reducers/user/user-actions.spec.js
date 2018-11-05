@@ -61,7 +61,6 @@ describe('actions', () => {
       await actions.userCreation()(dispatchSpy);
       expect(AuthSpy).toHaveBeenCalled();
       expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_CREATION_START});
-      expect(dispatchSpy).toHaveBeenNthCalledWith(2, {type: actions.TypeKeys.USER_CREATION_SUCCESS });
     });
 
 
