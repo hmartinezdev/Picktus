@@ -11,6 +11,7 @@
     "@material-ui/icons": "^2.0.3",
     "@types/enzyme": "^3.1.13",
     "classnames": "^2.2.6",
+    "cookie-parser": "^1.4.3",
     "firebase": "^5.5.5",
     "firebase-functions": "^2.0.5",
     "isomorphic-unfetch": "^2.1.1",
@@ -29,7 +30,7 @@
     "styled-jsx": "^2.2.7"
   },
   "scripts": {
-    "dev": "node \"src/app/server/server.ts\"",
+    "dev": "node \"src/app/server/server.js\"",
     "lint": "tslint -c tslint.json 'src/app/**/*.tsx' 'src/app/**/*.ts'",
     "lint:ci": "tslint -t json -o tslint-report.json -c tslint.json 'src/app/**/*.tsx' 'src/app/**/*.ts'",
     "prettier": "prettier --write **/*.ts --write **/*.tsx",

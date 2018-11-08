@@ -1,6 +1,6 @@
 /* tslint:disable: max-line-length */
 
-export default {
+module.exports = {
   auth_uri: 'https://accounts.google.com/o/oauth2/auth',
   client_email: 'firebase-adminsdk-vkv42@picktus-76101.iam.gserviceaccount.com',
   client_id: '106852938874480059583',
