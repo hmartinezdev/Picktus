@@ -1,4 +1,4 @@
-import Authentication from '@services/authentication';
+import Authentication, { SigninMethods } from '@services/authentication';
 import * as actions from './user-actions';
 ​
 describe('actions', () => {
@@ -77,100 +77,54 @@ describe('actions', () => {
 
   });
 
-  describe('facebookLogin', () => {
+  describe('signin', () => {
     it('should return an async function when called', () => {
-      expect(typeof actions.facebookLogin() === 'function').toEqual(true);
+      expect(typeof actions.signin() === 'function').toEqual(true);
     });
 
-    it('should dispatch nothing if facebook auth is successfull', async () => {
+    it('should dispatch userLoginStart and userLoginSuccess if signin method is CLASSIC', async () => {
       const dispatchSpy = jest.fn();
-      const AuthSpy = jest.spyOn(Authentication, 'facebookAuth').mockImplementation(() => undefined);
-      await actions.facebookLogin()(dispatchSpy);
-      expect(AuthSpy).toHaveBeenCalled();
-    });
-
-
-    it('should dispatch a userLoginFailed error if the authentication failed', async  () => {
-      const dispatchSpy = jest.fn();
-      const AuthSpy = jest.spyOn(Authentication, 'facebookAuth').mockImplementation(() => {
-        throw new Error('test');
-      });
-      await actions.facebookLogin()(dispatchSpy);
-      expect(AuthSpy).toHaveBeenCalled();
-      expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_FAILED, error: 'test'});
-    });
-  });
-
-  describe('googleLogin', () => {
-    it('should return an async function when called', () => {
-      expect(typeof actions.googleLogin() === 'function').toEqual(true);
-    });
-
-    it('should dispatch nothing if facebook auth is successfull', async () => {
-      const dispatchSpy = jest.fn();
-      const AuthSpy = jest.spyOn(Authentication, 'googleAuth').mockImplementation(() => undefined);
-      await actions.googleLogin()(dispatchSpy);
-      expect(AuthSpy).toHaveBeenCalled();
-    });
-
-
-    it('should dispatch a userLoginFailed error if the authentication failed', async  () => {
-      const dispatchSpy = jest.fn();
-      const AuthSpy = jest.spyOn(Authentication, 'googleAuth').mockImplementation(() => {
-        throw new Error('test');
-      });
-      await actions.googleLogin()(dispatchSpy);
-      expect(AuthSpy).toHaveBeenCalled();
-      expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_FAILED, error: 'test'});
-    });
-  });
-
-  describe('twitterLogin', () => {
-    it('should return an async function when called', () => {
-      expect(typeof actions.twitterLogin() === 'function').toEqual(true);
-    });
-
-    it('should dispatch nothing if facebook auth is successfull', async () => {
-      const dispatchSpy = jest.fn();
-      const AuthSpy = jest.spyOn(Authentication, 'twitterAuth').mockImplementation(() => undefined);
-      await actions.twitterLogin()(dispatchSpy);
-      expect(AuthSpy).toHaveBeenCalled();
-    });
-
-
-    it('should dispatch a userLoginFailed error if the authentication failed', async  () => {
-      const dispatchSpy = jest.fn();
-      const AuthSpy = jest.spyOn(Authentication, 'twitterAuth').mockImplementation(() => {
-        throw new Error('test');
-      });
-      await actions.twitterLogin()(dispatchSpy);
-      expect(AuthSpy).toHaveBeenCalled();
-      expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_FAILED, error: 'test'});
-    });
-  });
-
-  describe('classicLogin', () => {
-    it('should return an async function when called', () => {
-      expect(typeof actions.classicLogin() === 'function').toEqual(true);
-    });
-
-    it('should dispatch userLoginStart action and call signin Authentication method', async () => {
-      const dispatchSpy = jest.fn();
-      const AuthSpy = jest.spyOn(Authentication, 'signin').mockImplementation(() => undefined);
-      await actions.classicLogin()(dispatchSpy);
+      const AuthSpy = jest.spyOn(Authentication, 'signin').mockImplementation(() => ( {test: 'test'} ));
+      await actions.signin(SigninMethods.CLASSIC)(dispatchSpy);
       expect(AuthSpy).toHaveBeenCalled();
       expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_START});
+      expect(dispatchSpy).toHaveBeenNthCalledWith(2, {type: actions.TypeKeys.USER_LOGIN_SUCCESS, user: {test: 'test'}});
     });
 
-    it('should dispatch userCreationStart action and then a userCreationFailure if the user creation failed', async  () => {
+    describe('should dispatch userLoginSuccess if signin method is delegated', () => {
+      it('with google auth', async () => {
+        const dispatchSpy = jest.fn();
+        const AuthSpy = jest.spyOn(Authentication, 'signin').mockImplementation(() => ( {test: 'test'} ));
+        await actions.signin(SigninMethods.GOOGLE)(dispatchSpy);
+        expect(AuthSpy).toHaveBeenCalled();
+        expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_SUCCESS, user:{test: 'test'}});
+      });
+
+      it('with Facebook auth', async () => {
+        const dispatchSpy = jest.fn();
+        const AuthSpy = jest.spyOn(Authentication, 'signin').mockImplementation(() => ( {test: 'test'} ));
+        await actions.signin(SigninMethods.FACEBOOK)(dispatchSpy);
+        expect(AuthSpy).toHaveBeenCalled();
+        expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_SUCCESS, user:{test: 'test'}});
+      });
+
+      it('with twitter auth', async () => {
+        const dispatchSpy = jest.fn();
+        const AuthSpy = jest.spyOn(Authentication, 'signin').mockImplementation(() => ( {test: 'test'} ));
+        await actions.signin(SigninMethods.TWITTER)(dispatchSpy);
+        expect(AuthSpy).toHaveBeenCalled();
+        expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_SUCCESS, user:{test: 'test'}});
+      });
+    });
+
+    it('should dispatch userCreationFailure if the user creation failed', async  () => {
       const dispatchSpy = jest.fn();
       const AuthSpy = jest.spyOn(Authentication, 'signin').mockImplementation(() => {
         throw new Error('test');
       });
-      await actions.classicLogin()(dispatchSpy);
+      await actions.signin(SigninMethods.GOOGLE)(dispatchSpy);
       expect(AuthSpy).toHaveBeenCalled();
-      expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_START});
-      expect(dispatchSpy).toHaveBeenNthCalledWith(2, {type: actions.TypeKeys.USER_LOGIN_FAILED, "error": "test", });
+      expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_FAILED, "error": "test", });
     });
 
   });

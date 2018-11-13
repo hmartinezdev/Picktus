@@ -2,7 +2,9 @@ import { ActionTypes } from '../action.type';
 import { TypeKeys } from './user-actions';
 import { IUserState } from './user.type';
 
-export default function user(state: IUserState = { authenticated: false }, action: ActionTypes): IUserState {
+const initialState = { authenticated: false };
+
+export default function user(state: IUserState = initialState, action: ActionTypes): IUserState {
   switch (action.type) {
     case TypeKeys.USER_LOGIN_SUCCESS:
       return {
@@ -33,7 +35,7 @@ export default function user(state: IUserState = { authenticated: false }, actio
     case TypeKeys.USER_LOGIN_FAILED:
       return { ...state, authenticated: false };
     case TypeKeys.USER_LOGOUT: {
-      return { ...state, authenticated: false, user: undefined };
+      return initialState;
     }
     case TypeKeys.USER_CREATION_START:
       return { ...state, creationInProgress: true };

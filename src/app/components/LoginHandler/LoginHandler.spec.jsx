@@ -1,7 +1,7 @@
 import enzyme, { shallow, mount } from 'enzyme';
 import React from 'react';
 import LoginHandler from './LoginHandler';
-import { classicLogin } from '@store/reducers/user/user-actions';
+import { SigninMethods } from '@services/authentication';
 
 let wrapper;
 let mountWrapper;
@@ -35,14 +35,38 @@ describe('<LoginHandler />', () => {
     });
   });
 
-  describe('onLoginClick', () => {
-    test('it should change the input value in the component state', () => {
-      const spyLogin = jest.fn();
-      wrapper = setup({ classicLogin: spyLogin });
-      const instance = wrapper.instance();
+  describe('login', () => {
+    const spyLogin = jest.fn();
+    let instance;
+
+    beforeEach(() => {
+      wrapper = setup({ signin: spyLogin });
+      instance = wrapper.instance();
+    });
+
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
+
+    test('onLoginClick should call the signin method in props with methods.CLASSIC and password and email as options', () => {
       instance.setState({ inputs: { password: 'test', mail: 'mail' } });
       instance.onLoginClick();
-      expect(spyLogin).toHaveBeenCalledWith('mail', 'test');
+      expect(spyLogin).toHaveBeenCalledWith(SigninMethods.CLASSIC, { password: 'test', mail: 'mail' });
+    });
+
+    test('onGoogleClick should call the signin method in props with methods.GOOGLE ', () => {
+      instance.onGoogleClick();
+      expect(spyLogin).toHaveBeenCalledWith(SigninMethods.GOOGLE, {});
+    });
+
+    test('onFacebookClick should call the signin method in props with methods.FACEBOOK ', () => {
+      instance.onFacebookClick();
+      expect(spyLogin).toHaveBeenCalledWith(SigninMethods.FACEBOOK, {});
+    });
+
+    test('onTwitterClick should call the signin method in props with methods.TWITTER ', () => {
+      instance.onTwitterClick();
+      expect(spyLogin).toHaveBeenCalledWith(SigninMethods.TWITTER, {});
     });
   });
 });
