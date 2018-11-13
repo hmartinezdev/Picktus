@@ -16,6 +16,20 @@ export default function user(state: IUserState = { authenticated: false }, actio
           uid: action.user.uid,
         },
       };
+    case TypeKeys.USER_SERVER_AUTH:
+      return {
+        ...state,
+        authenticated: action.user ? true : false,
+        user: action.user
+          ? {
+              email: action.user.email || '',
+              emailVerified: action.user.emailVerified || false,
+              name: action.user.displayName || '',
+              photoUrl: action.user.photoURL || '',
+              uid: action.user.uid,
+            }
+          : undefined,
+      };
     case TypeKeys.USER_LOGIN_FAILED:
       return { ...state, authenticated: false };
     case TypeKeys.USER_LOGOUT: {

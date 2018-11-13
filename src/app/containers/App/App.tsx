@@ -1,7 +1,6 @@
 import Header from '@components/Header';
 import Loader from '@components/Loader';
 import colors from '@constants/colors';
-import Authentication from '@services/authentication';
 import firebase from 'firebase/app';
 import React, { Component } from 'react';
 import { IAppPropsType } from './App.type';
@@ -16,10 +15,6 @@ class App extends Component<IAppPropsType> {
     if (!firebase.apps.length) {
       firebase.initializeApp(config);
     }
-
-    Authentication.onUserStatusChange((user) => {
-      props.userLoginSuccess(user);
-    });
   }
 
   public render(): React.ReactElement<App> {

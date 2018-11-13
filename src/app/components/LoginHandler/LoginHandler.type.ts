@@ -1,3 +1,4 @@
+import { SigninMethods } from '@services/authentication';
 import { ThunkResult } from '@store/reducers/user/user-actions';
 
 export interface ILoginHandlerState {
@@ -5,10 +6,7 @@ export interface ILoginHandlerState {
 }
 
 export interface IDispatchProps {
-  googleLogin: () => ThunkResult<void>;
-  facebookLogin: () => ThunkResult<void>;
-  twitterLogin: () => ThunkResult<void>;
-  classicLogin: (email: string, password: string) => ThunkResult<void>;
+  signin: (method: SigninMethods, options: IStringMap) => ThunkResult<void>;
 }
 
 export type ILoginHandlerProps = IDispatchProps;

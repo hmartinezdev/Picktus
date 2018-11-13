@@ -1,6 +1,6 @@
 const admin = require('firebase-admin');
 
-async function isAuthenticated(req, res) {
+async function authenticate(req, res) {
   const sessionCookie = req.cookies.session || '';
   // Verify the session cookie. In this case an additional check is added to detect
   // if the user's Firebase session was revoked, user deleted/disabled, etc.
@@ -13,4 +13,4 @@ async function isAuthenticated(req, res) {
   }
 }
 
-module.exports = isAuthenticated;
+module.exports = authenticate;

@@ -27,6 +27,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
       className="socialButtons"
     >
       <Button
+        onClick={[Function]}
         text=""
       >
         <Component
@@ -34,6 +35,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
         />
       </Button>
       <Button
+        onClick={[Function]}
         text=""
       >
         <Component
@@ -41,6 +43,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
         />
       </Button>
       <Button
+        onClick={[Function]}
         text=""
       >
         <Component

@@ -50,6 +50,7 @@ app.prepare().then(() => {
 
   server.get('*', async (req, res) => {
     const user = await authenticate(req, res);
+    req.firebaseUser = user;
     return handle(req, res);
   });
 

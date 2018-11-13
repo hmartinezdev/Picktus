@@ -1,4 +1,4 @@
-import Authentication from '@services/authentication';
+import Authentication, { SigninMethods } from '@services/authentication';
 import firebase from 'firebase';
 import { ThunkAction } from 'redux-thunk';
 import { IUserState } from './user.type';
@@ -6,6 +6,7 @@ import { IUserState } from './user.type';
 export type ThunkResult<R> = ThunkAction<R, IUserState, undefined, UserActions>;
 
 export enum TypeKeys {
+  USER_SERVER_AUTH = 'USER_SERVER_ATUH',
   USER_LOGIN_FAILED = 'USER_LOGIN_FAILED',
   USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS',
   USER_LOGIN_START = 'USER_LOGIN_START',
@@ -14,6 +15,16 @@ export enum TypeKeys {
   USER_CREATION_FAILURE = 'USER_CREATION_FAILURE',
   USER_LOGOUT = 'USER_LOGOUT',
 }
+
+export interface UserServerAuth {
+  type: TypeKeys.USER_SERVER_AUTH;
+  user: firebase.User | undefined;
+}
+
+export const userServerAuth = (user: firebase.User | undefined): UserServerAuth => ({
+  type: TypeKeys.USER_SERVER_AUTH,
+  user,
+});
 
 export interface UserLoginStart {
   type: TypeKeys.USER_LOGIN_START;
@@ -82,40 +93,20 @@ export const userCreation = (mail: string, password: string): ThunkResult<void> 
 
   try {
     await Authentication.createUser(mail, password);
+    dispatch(UserCreationSuccess);
   } catch (e) {
     dispatch(UserCreationFailure(e.message));
   }
 };
 
-export const facebookLogin = (): ThunkResult<void> => async (dispatch) => {
-  try {
-    await Authentication.facebookAuth();
-  } catch (e) {
-    dispatch(userLoginFailed(e.message));
+export const signin = (method: SigninMethods, options: IStringMap): ThunkResult<void> => async (dispatch) => {
+  if (method === SigninMethods.CLASSIC) {
+    dispatch(userLoginStart());
   }
-};
-
-export const googleLogin = (): ThunkResult<void> => async (dispatch) => {
-  try {
-    await Authentication.googleAuth();
-  } catch (e) {
-    dispatch(userLoginFailed(e.message));
-  }
-};
-
-export const twitterLogin = (): ThunkResult<void> => async (dispatch) => {
-  try {
-    await Authentication.twitterAuth();
-  } catch (e) {
-    dispatch(userLoginFailed(e.message));
-  }
-};
-
-export const classicLogin = (mail: string, password: string): ThunkResult<void> => async (dispatch) => {
-  dispatch(userLoginStart());
 
   try {
-    await Authentication.signin(mail, password);
+    const user = await Authentication.signin(method, options);
+    dispatch(userLoginSuccess(user));
   } catch (e) {
     dispatch(userLoginFailed(e.message));
   }
@@ -128,4 +119,5 @@ export type UserActions =
   | UserCreationFailure
   | UserCreationSuccess
   | UserLogout
-  | UserLoginStart;
+  | UserLoginStart
+  | UserServerAuth;
