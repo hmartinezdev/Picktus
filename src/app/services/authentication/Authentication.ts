@@ -72,21 +72,19 @@ class Authentication {
 
     const user = userCredentials.user;
 
-    if (user) {
-      // Get the user's ID token as it is needed to exchange for a session cookie.
-      user.getIdToken().then((idToken) => {
-        // Session login endpoint is queried and the session cookie is set.
-        // CSRF protection should be taken into account.
-        // ...
-        return fetch('/sessionlogin', {
-          body: JSON.stringify({ idToken }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          method: 'POST',
-        });
+    // Get the user's ID token as it is needed to exchange for a session cookie.
+    user.getIdToken().then((idToken) => {
+      // Session login endpoint is queried and the session cookie is set.
+      // CSRF protection should be taken into account.
+      // ...
+      return fetch('/sessionlogin', {
+        body: JSON.stringify({ idToken }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
       });
-    }
+    });
 
     return user;
   }

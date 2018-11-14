@@ -1,5 +1,5 @@
 import * as firebase from 'firebase/app';
-import Authentication from './';
+import Authentication, { SigninMethods } from './';
 
 describe('Authentication service', () => {
   describe('createUser', () => {
@@ -41,32 +41,72 @@ describe('Authentication service', () => {
       jest.restoreAllMocks();
     });
 
-    test('it should call firebase to authenticate the user', async () => {
-      const spySignin = jest.fn().mockImplementation(() => new Promise((resolve) => resolve()));
-      jest.spyOn(firebase, 'auth').mockImplementation(() => ({ signInWithEmailAndPassword: spySignin }));
+    describe('with classic method', () => {
+      test('it should throw an error if password or email is not defined in the options', async () => {
+        let error;
 
-      await Authentication.signin('email', 'password');
-      expect(firebase.auth).toHaveBeenCalledTimes(1);
-      expect(spySignin).toBeCalledWith('email', 'password');
+        try {
+          await Authentication.signin(SigninMethods.CLASSIC, { password: 'test' });
+        } catch (e) {
+          error = e;
+        }
+
+        expect(error instanceof Error).toBe(true);
+        error = undefined;
+
+        try {
+          await Authentication.signin(SigninMethods.CLASSIC, {});
+        } catch (e) {
+          error = e;
+        }
+
+        expect(error instanceof Error).toBe(true);
+        error = undefined;
+
+        try {
+          await Authentication.signin(SigninMethods.CLASSIC, { email: 'test' });
+        } catch (e) {
+          error = e;
+        }
+
+        expect(error instanceof Error).toBe(true);
+      });
+
+      test('it should throw an error if the user login fails', async () => {
+        jest.spyOn(firebase, 'auth').mockImplementation(() => ({
+          signInWithEmailAndPassword: () =>
+            new Promise(() => {
+              throw new Error('test');
+            }),
+        }));
+
+        let error = null;
+
+        try {
+          await Authentication.signin(SigninMethods.CLASSIC, { email: 'email', password: '' });
+        } catch (e) {
+          error = e;
+        }
+
+        expect(error instanceof Error).toBe(true);
+      });
     });
 
-    test('it should throw an error if the user creation fails', async () => {
-      jest.spyOn(firebase, 'auth').mockImplementation(() => ({
-        signInWithEmailAndPassword: () =>
-          new Promise(() => {
-            throw new Error('test');
-          }),
-      }));
+    describe('General case', () => {
+      afterEach(() => {
+        jest.restoreAllMocks();
+      });
 
-      let error = null;
+      test('if no user is returned from auth, it should throw an error', async () => {
+        const spySignin = jest.fn().mockImplementation(() => new Promise((resolve) => resolve()));
+        jest.spyOn(firebase, 'auth').mockImplementation(() => ({ signInWithEmailAndPassword: spySignin }));
 
-      try {
-        await Authentication.signin('test', 'test');
-      } catch (e) {
-        error = e;
-      }
-
-      expect(error instanceof Error).toBe(true);
+        try {
+          await Authentication.signin(SigninMethods.CLASSIC, { email: 'email', password: 'password' });
+        } catch (e) {
+          expect(e instanceof Error).toBe(true);
+        }
+      });
     });
   });
 });
