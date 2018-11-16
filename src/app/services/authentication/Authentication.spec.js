@@ -1,5 +1,9 @@
 import * as firebase from 'firebase/app';
+import fetch from 'isomorphic-unfetch';
+import { incorrectUserCredentials, validUserCredentials } from './Authentication.mock';
 import Authentication, { SigninMethods } from './';
+
+jest.mock('isomorphic-unfetch');
 
 describe('Authentication service', () => {
   describe('createUser', () => {
@@ -83,12 +87,57 @@ describe('Authentication service', () => {
         let error = null;
 
         try {
-          await Authentication.signin(SigninMethods.CLASSIC, { email: 'email', password: '' });
+          await Authentication.signin(SigninMethods.CLASSIC, { email: 'email', password: 'password' });
         } catch (e) {
           error = e;
         }
 
         expect(error instanceof Error).toBe(true);
+      });
+
+      test('it should return the user if the authentication proceed correctly', async () => {
+        const spySignin = jest.fn().mockImplementation(() => new Promise((resolve) => resolve(validUserCredentials)));
+        jest.spyOn(firebase, 'auth').mockImplementation(() => ({ signInWithEmailAndPassword: spySignin }));
+
+        const result = await Authentication.signin(SigninMethods.CLASSIC, { email: 'email', password: 'password' });
+        fetch.mockResolvedValue(undefined);
+
+        expect(spySignin).toHaveBeenCalledWith('email', 'password');
+        expect(fetch).toHaveBeenCalledWith('/sessionlogin', {
+          body: JSON.stringify({ idToken: 'idToken' }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
+        });
+        expect(result).toEqual(validUserCredentials.user);
+      });
+    });
+
+    describe('Delegated authentication', () => {
+      let spyAuth;
+
+      afterEach(() => {
+        jest.restoreAllMocks();
+      });
+
+      beforeEach(() => {
+        spyAuth = jest.spyOn(Authentication, 'delegatedAuthentication').mockImplementation(() => validUserCredentials);
+        fetch.mockResolvedValue(undefined);
+      });
+
+      test('it should return the user if the facebook authentication proceed correctly', async () => {
+        const result = await Authentication.signin(SigninMethods.FACEBOOK);
+
+        expect(spyAuth).toHaveBeenCalledWith(SigninMethods.FACEBOOK);
+        expect(fetch).toHaveBeenCalledWith('/sessionlogin', {
+          body: JSON.stringify({ idToken: 'idToken' }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
+        });
+        expect(result).toEqual(validUserCredentials.user);
       });
     });
 
@@ -106,6 +155,25 @@ describe('Authentication service', () => {
         } catch (e) {
           expect(e instanceof Error).toBe(true);
         }
+      });
+
+      test('it should throw an error if the user credentials are incorrects', async () => {
+        jest.spyOn(firebase, 'auth').mockImplementation(() => ({
+          signInWithEmailAndPassword: () =>
+            new Promise((resolve) => {
+              resolve(incorrectUserCredentials);
+            }),
+        }));
+
+        let error = null;
+
+        try {
+          await Authentication.signin(SigninMethods.CLASSIC, { email: 'email', password: 'password' });
+        } catch (e) {
+          error = e;
+        }
+
+        expect(error instanceof Error).toBe(true);
       });
     });
   });

@@ -77,6 +77,7 @@ class Authentication {
       // Session login endpoint is queried and the session cookie is set.
       // CSRF protection should be taken into account.
       // ...
+
       return fetch('/sessionlogin', {
         body: JSON.stringify({ idToken }),
         headers: {
