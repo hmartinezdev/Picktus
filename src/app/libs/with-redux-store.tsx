@@ -1,3 +1,4 @@
+import { userServerAuth } from '@store/reducers/user/user-actions';
 import React, { Component } from 'react';
 import { Store } from 'redux';
 import { initializeStore } from '../store';
@@ -42,6 +43,8 @@ export default (App: ExtendedElement) => {
       // Get or Create the store with `undefined` as initialState
       // This allows you to set a custom default initialState
       const reduxStore = getOrCreateStore();
+
+      reduxStore.dispatch(userServerAuth(appContext.ctx.req.firebaseUser));
 
       // Provide the store to getInitialProps of pages
       appContext.ctx.reduxStore = reduxStore;

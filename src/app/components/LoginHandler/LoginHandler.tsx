@@ -5,6 +5,7 @@ import Button from '@components/Button';
 import Input from '@components/Input';
 import SubscribeHandler from '@components/SubscribeHandler';
 import colors from '@constants/colors';
+import { SigninMethods } from '@services/authentication';
 import React, { ChangeEvent, Component } from 'react';
 import { ILoginHandlerProps, ILoginHandlerState } from './LoginHandler.type';
 
@@ -24,14 +25,31 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
   };
 
   public onLoginClick = () => {
-    const { classicLogin } = this.props;
+    const { signin } = this.props;
     const { mail, password } = this.state.inputs;
 
-    classicLogin(mail, password);
+    signin(SigninMethods.CLASSIC, { mail, password });
+  };
+
+  public onFacebookClick = () => {
+    const { signin } = this.props;
+
+    signin(SigninMethods.FACEBOOK, {});
+  };
+
+  public onGoogleClick = () => {
+    const { signin } = this.props;
+
+    signin(SigninMethods.GOOGLE, {});
+  };
+
+  public onTwitterClick = () => {
+    const { signin } = this.props;
+
+    signin(SigninMethods.TWITTER, {});
   };
 
   public render(): React.ReactElement<LoginHandler> {
-    const { facebookLogin, googleLogin, twitterLogin } = this.props;
     return (
       <div className="container">
         <div className="login">
@@ -39,13 +57,13 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
           <Input placeholder="Password" type="password" onChange={this.onChange} name="password" />
           <Button text="Login" onClick={this.onLoginClick} />
           <div className="socialButtons">
-            <Button onClick={facebookLogin}>
+            <Button onClick={this.onFacebookClick}>
               <Facebook className="social" />
             </Button>
-            <Button onClick={googleLogin}>
+            <Button onClick={this.onGoogleClick}>
               <Google className="social" />
             </Button>
-            <Button onClick={twitterLogin}>
+            <Button onClick={this.onTwitterClick}>
               <Twitter className="social" />
             </Button>
           </div>
