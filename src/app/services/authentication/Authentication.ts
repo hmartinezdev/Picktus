@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import fetch from 'isomorphic-unfetch';
-import { ISigninMethodsMap, SigninMethods } from './Authentication.type';
+import { delegatedMethods, ISigninMethodsMap, SigninMethods } from './Authentication.type';
 import AuthenticationError from './AuthenticationError';
 import { FirebaseError } from './AuthenticationError/AuthenticationError.type';
 
@@ -15,7 +15,7 @@ class Authentication {
       });
   }
 
-  private async delegatedAuthentication(method: SigninMethods) {
+  private async delegatedAuthentication(method: delegatedMethods) {
     const providers: ISigninMethodsMap = {
       [SigninMethods.FACEBOOK]: new firebase.auth.FacebookAuthProvider(),
       [SigninMethods.GOOGLE]: new firebase.auth.GoogleAuthProvider(),

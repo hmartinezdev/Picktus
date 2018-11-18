@@ -2,7 +2,6 @@ import { userServerAuth } from '@store/reducers/user/user-actions';
 import React, { Component } from 'react';
 import { Store } from 'redux';
 import { initializeStore } from '../store';
-import { app } from 'firebase';
 
 const isServer = typeof window === 'undefined';
 const __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__';

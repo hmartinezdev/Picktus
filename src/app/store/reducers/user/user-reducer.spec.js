@@ -14,8 +14,9 @@ describe('todos reducer', () => {
     );
   });
 
-  it(`it should handle ${TypeKeys.USER_LOGIN_SUCCESS}`, () => {
-    const firebaseUser = { 
+  describe(`it should handle ${TypeKeys.USER_LOGIN_SUCCESS}`, () => {
+   it('with a valid user', () => {
+      const firebaseUser = { 
       email:'ok',
       emailVerified: true,
       displayName: 'hugo',
@@ -32,6 +33,23 @@ describe('todos reducer', () => {
     };
 
     expect(reducer(undefined, {type:TypeKeys.USER_LOGIN_SUCCESS, user:firebaseUser})).toEqual({authenticated: true, user});
+   });
+
+   it('with an empty user', () => {
+    const firebaseUser = { 
+   
+    };
+
+    const user = { 
+      email:'',
+      emailVerified: false,
+      name: '',
+      photoUrl: '',
+      uid: undefined,
+    };
+
+    expect(reducer(undefined, {type:TypeKeys.USER_LOGIN_SUCCESS, user:firebaseUser})).toEqual({authenticated: true, user});
+   });
   });
 
   describe(`it should handle ${TypeKeys.USER_SERVER_AUTH}`, () => {
@@ -50,6 +68,21 @@ describe('todos reducer', () => {
         name: 'hugo',
         photoUrl: 'url',
         uid: 'id'
+      };
+  
+      expect(reducer(undefined, {type:TypeKeys.USER_SERVER_AUTH, user:firebaseUser})).toEqual({authenticated: true, user});
+    });
+
+    it('with an empty user', () => {
+      const firebaseUser = { 
+      };
+  
+      const user = { 
+        email:'',
+        emailVerified: false,
+        name: '',
+        photoUrl: '',
+        uid: undefined,
       };
   
       expect(reducer(undefined, {type:TypeKeys.USER_SERVER_AUTH, user:firebaseUser})).toEqual({authenticated: true, user});

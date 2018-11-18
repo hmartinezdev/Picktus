@@ -177,4 +177,80 @@ describe('Authentication service', () => {
       });
     });
   });
+
+  describe('delegatedAuthentication', () => {
+    let spyUsedDevice = jest.fn();
+    let spySigninWP = jest.fn().mockImplementation(() => new Promise((resolve) => resolve()));
+    let spyCustomParm = jest.fn();
+    let authProvider;
+    beforeEach(() => {
+      const auth = function() {
+        return {
+          signInWithPopup: spySigninWP,
+          useDeviceLanguage: spyUsedDevice,
+        };
+      };
+
+      authProvider = jest.spyOn(firebase, 'auth').mockImplementation(auth);
+      authProvider.FacebookAuthProvider = class FacebookAuthProvider {
+        setCustomParameters = spyCustomParm;
+      };
+      authProvider.GoogleAuthProvider = class GoogleAuthProvider {};
+      authProvider.TwitterAuthProvider = class TwitterAuthProvider {};
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    test('it should work with facebook authentication', async () => {
+      await Authentication.delegatedAuthentication(SigninMethods.FACEBOOK);
+
+      expect(firebase.auth).toHaveBeenCalledTimes(2);
+      expect(spyUsedDevice).toHaveBeenCalled();
+      expect(spyCustomParm).toHaveBeenCalledWith({
+        display: 'popup',
+      });
+      expect(spySigninWP).toHaveBeenCalledWith(new authProvider.FacebookAuthProvider());
+    });
+
+    test('it should work with google authentication', async () => {
+      await Authentication.delegatedAuthentication(SigninMethods.GOOGLE);
+
+      expect(firebase.auth).toHaveBeenCalledTimes(2);
+      expect(spyUsedDevice).toHaveBeenCalled();
+      expect(spySigninWP).toHaveBeenCalledWith(new authProvider.GoogleAuthProvider());
+    });
+
+    test('it should work with twitter authentication', async () => {
+      await Authentication.delegatedAuthentication(SigninMethods.TWITTER);
+
+      expect(firebase.auth).toHaveBeenCalledTimes(2);
+      expect(spyUsedDevice).toHaveBeenCalled();
+      expect(spySigninWP).toHaveBeenCalledWith(new authProvider.TwitterAuthProvider());
+    });
+
+    test('it should throw an error if the user authentication fails', async () => {
+      spySigninWP.mockImplementation(
+        () =>
+          new Promise(() => {
+            throw new Error();
+          })
+      );
+
+      let error = null;
+
+      try {
+        await Authentication.delegatedAuthentication(SigninMethods.FACEBOOK);
+      } catch (e) {
+        error = e;
+      }
+
+      expect(spyUsedDevice).toHaveBeenCalledWith();
+      expect(spyCustomParm).toHaveBeenCalledWith({
+        display: 'popup',
+      });
+      expect(error instanceof Error).toBe(true);
+    });
+  });
 });
