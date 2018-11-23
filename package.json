@@ -35,7 +35,7 @@
     "styled-jsx": "^2.2.7"
   },
   "scripts": {
-    "dev": "next \"src/app\"",
+    "dev": "node --inspect devServer.js",
     "lint": "tslint -c tslint.json 'src/app/**/*.tsx' 'src/app/**/*.ts'",
     "lint:ci": "tslint -t json -o tslint-report.json -c tslint.json 'src/app/**/*.tsx' 'src/app/**/*.ts'",
     "prettier": "prettier --write **/*.ts --write **/*.tsx",
@@ -43,18 +43,20 @@
     "test:update": "jest -u",
     "test:ci": "jest --coverage",
     "clean": "rimraf \"dist/functions\" && rimraf \"dist/public\"",
-    "preserve": "npm run build:public && npm run build:funcs && npm run build:app && npm run deps:copy && npm run deps:install",
+    "preserve": "npm run server:copy && npm run build:public && npm run build:funcs && npm run build:app && npm run deps:copy && npm run deps:install",
     "serve": "NODE_ENV=production firebase serve --only functions,hosting",
     "deploy:all": "firebase deploy --token \"$FIREBASE_TOKEN\"",
     "build:public": "cpx \"src/public/**/*.*\" \"dist/public\" -C && cpx \"src/app/static/**/*.*\" \"dist/public/static\" -C",
     "build:funcs": "babel \"src/functions\" --out-dir \"dist/functions\"",
     "build:app": "NODE_ENV=production next build \"src/app\"",
     "deps:copy": "cpx \"*{package.json,package-lock.json}\" \"dist/functions\"",
+    "server:copy": "cpx \"src/server/**/*.*\" \"src/functions/app\"",
     "deps:install": "cd \"dist/functions\" && npm i"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-rc.1",
     "@babel/core": "^7.0.0-rc.1",
+    "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.0.0-rc.1",
     "@firebase/app-types": "^0.3.2",
     "@types/classnames": "^2.2.6",
@@ -66,6 +68,7 @@
     "babel-jest": "^23.6.0",
     "babel-plugin-inline-react-svg": "^0.5.4",
     "babel-plugin-module-resolver": "^3.1.1",
+    "babel-preset-env": "^1.7.0",
     "coveralls": "^3.0.2",
     "cpx": "^1.5.0",
     "enzyme": "^3.4.1",
