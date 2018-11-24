@@ -1,4 +1,4 @@
-import { server, app } from './server';
+import { server, app } from './server/server';
 import * as functions from 'firebase-functions';
 
 const dev = process.env.NODE_ENV !== 'production';

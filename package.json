@@ -50,7 +50,7 @@
     "build:funcs": "babel \"src/functions\" --out-dir \"dist/functions\"",
     "build:app": "NODE_ENV=production next build \"src/app\"",
     "deps:copy": "cpx \"*{package.json,package-lock.json}\" \"dist/functions\"",
-    "server:copy": "cpx \"src/server/**/*.*\" \"src/functions/app\"",
+    "server:copy": "cpx \"src/server/**/*.*\" \"src/functions/app/server\"",
     "deps:install": "cd \"dist/functions\" && npm i"
   },
   "devDependencies": {
