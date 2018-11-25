@@ -16,3 +16,24 @@ interface PicktusUser {
 interface IStringMap {
   [s: string]: string;
 }
+
+enum PicktusMessageDisplayType {
+  SNACKBAR = 'SNACKBAR',
+  NOTIFICATION = 'NOTIFICATION',
+}
+
+enum PicktusMessageLevel {
+  WARNING = 'WARNING',
+  SUCCES = 'SUCCESS',
+  INFO = 'INFO',
+  ERROR = 'ERROR',
+}
+
+interface IPicktusMessage {
+  display: PicktusMessageDisplayType;
+  level: PicktusMessageLevel;
+}
+
+interface IPicktusError extends IPicktusMessage {
+  level: PicktusMessageLevel.ERROR;
+}
