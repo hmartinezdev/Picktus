@@ -17,21 +17,19 @@ interface IStringMap {
   [s: string]: string;
 }
 
-enum PicktusMessageDisplayType {
-  SNACKBAR = 'SNACKBAR',
-  NOTIFICATION = 'NOTIFICATION',
-}
+type PicktusMessageLevelType =
+  | PicktusMessageLevel.WARNING
+  | PicktusMessageLevel.SUCCESS
+  | PicktusMessageLevel.INFO
+  | PicktusMessageLevel.ERROR;
 
-enum PicktusMessageLevel {
-  WARNING = 'WARNING',
-  SUCCES = 'SUCCESS',
-  INFO = 'INFO',
-  ERROR = 'ERROR',
-}
+type PicktusMessageDisplayType = PicktusMessageDisplay.SNACKBAR | PicktusMessageDisplay.NOTIFICATION;
 
 interface IPicktusMessage {
   display: PicktusMessageDisplayType;
   level: PicktusMessageLevel;
+  text: string;
+  id: string;
 }
 
 interface IPicktusError extends IPicktusMessage {

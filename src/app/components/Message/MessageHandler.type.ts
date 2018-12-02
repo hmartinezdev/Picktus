@@ -3,4 +3,9 @@ export interface IReduxStateProps {
   notifications: Array<IPicktusError | IPicktusMessage>;
 }
 
+export interface IMessageHandlerState {
+  notification: IPicktusError | IPicktusMessage | null;
+  snackbar: IPicktusError | IPicktusMessage | null;
+}
+
 export type IMessageHandlerProps = IReduxStateProps;
