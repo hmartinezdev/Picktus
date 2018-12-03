@@ -16,22 +16,3 @@ interface PicktusUser {
 interface IStringMap {
   [s: string]: string;
 }
-
-type PicktusMessageLevelType =
-  | PicktusMessageLevel.WARNING
-  | PicktusMessageLevel.SUCCESS
-  | PicktusMessageLevel.INFO
-  | PicktusMessageLevel.ERROR;
-
-type PicktusMessageDisplayType = PicktusMessageDisplay.SNACKBAR | PicktusMessageDisplay.NOTIFICATION;
-
-interface IPicktusMessage {
-  display: PicktusMessageDisplayType;
-  level: PicktusMessageLevel;
-  text: string;
-  id: string;
-}
-
-interface IPicktusError extends IPicktusMessage {
-  level: PicktusMessageLevel.ERROR;
-}

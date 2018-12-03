@@ -15,10 +15,13 @@ export enum PicktusMessageLevel {
   ERROR = 'ERROR',
 }
 
-export type PicktusMessageLevelType =
-  | PicktusMessageLevel.WARNING
-  | PicktusMessageLevel.SUCCESS
-  | PicktusMessageLevel.INFO
-  | PicktusMessageLevel.ERROR;
+export interface IPicktusMessage {
+  display: PicktusMessageDisplay;
+  level: PicktusMessageLevel;
+  text: string;
+  id: string;
+}
 
-export type PicktusMessageDisplayType = PicktusMessageDisplay.SNACKBAR | PicktusMessageDisplay.NOTIFICATION;
+export interface IPicktusError extends IPicktusMessage {
+  level: PicktusMessageLevel.ERROR;
+}

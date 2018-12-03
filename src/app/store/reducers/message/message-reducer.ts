@@ -8,7 +8,25 @@ export default function user(
       {
         display: PicktusMessageDisplay.NOTIFICATION,
         id: 'ok',
+        level: PicktusMessageLevel.SUCCESS,
+        text: 'erreur de test',
+      },
+      {
+        display: PicktusMessageDisplay.NOTIFICATION,
+        id: 'ok',
+        level: PicktusMessageLevel.ERROR,
+        text: 'erreur de test',
+      },
+      {
+        display: PicktusMessageDisplay.NOTIFICATION,
+        id: 'ok',
         level: PicktusMessageLevel.WARNING,
+        text: 'erreur de test',
+      },
+      {
+        display: PicktusMessageDisplay.NOTIFICATION,
+        id: 'ok',
+        level: PicktusMessageLevel.INFO,
         text: 'erreur de test',
       },
     ],
