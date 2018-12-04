@@ -1,8 +1,8 @@
 import { IReduxState } from '@store/reducers';
 import { connect } from 'react-redux';
 
-import MessageHandler from './MessageHandler';
-import { IReduxStateProps } from './MessageHandler.type';
+import Messages from './Messages';
+import { IReduxStateProps } from './Messages.type';
 
 const mapStateToProps = (state: IReduxState): IReduxStateProps => {
   return {
@@ -11,4 +11,4 @@ const mapStateToProps = (state: IReduxState): IReduxStateProps => {
   };
 };
 
-export default connect(mapStateToProps)(MessageHandler);
+export default connect(mapStateToProps)(Messages);

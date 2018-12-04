@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import MessageHandler from './MessageHandler';
+import Messages from './Messages';
 
 let wrapper;
 const baseProps = {
@@ -8,7 +8,7 @@ const baseProps = {
   snackbars: [],
 };
 
-const setup = (props = baseProps) => shallow(<MessageHandler {...props} />);
+const setup = (props = baseProps) => shallow(<Messages {...props} />);
 
 describe('<MessageHandler />', () => {
   test('should render properly', () => {

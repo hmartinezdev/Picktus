@@ -1,6 +1,6 @@
 import Header from '@components/Header';
 import Loader from '@components/Loader';
-import Message from '@components/Message';
+import Messages from '@components/Messages';
 import colors from '@constants/colors';
 import firebase from 'firebase/app';
 import React, { Component } from 'react';
@@ -23,7 +23,7 @@ class App extends Component<IAppPropsType> {
     return (
       <div className="page">
         <Header />
-        <Message />
+        <Messages />
         {showLoader && <Loader />}
         {children}
         <style jsx>{`

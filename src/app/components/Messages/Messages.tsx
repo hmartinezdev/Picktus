@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Transition, TransitionGroup } from 'react-transition-group';
-import { IMessageHandlerProps, IMessageHandlerState } from './MessageHandler.type';
+import { IMessageHandlerProps, IMessageHandlerState } from './Messages.type';
 import Notification from './Notification';
 
 class MessageHandler extends Component<IMessageHandlerProps, IMessageHandlerState> {

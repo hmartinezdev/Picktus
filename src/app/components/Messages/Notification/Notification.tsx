@@ -1,10 +1,10 @@
 import colors from '@constants/colors';
-import { PicktusMessageDisplay, PicktusMessageLevel } from '@store/reducers/message';
+import { PicktusMessageLevel } from '@store/reducers/message';
 import React, { Component } from 'react';
 
 export interface INotificationProps {
   text: string;
-  level: PicktusMessageDisplay;
+  level: PicktusMessageLevel;
 }
 
 class Notification extends Component<INotificationProps> {

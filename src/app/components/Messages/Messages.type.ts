@@ -1,3 +1,5 @@
+import { IPicktusError, IPicktusMessage } from '@store/reducers/message';
+
 export interface IReduxStateProps {
   snackbars: Array<IPicktusError | IPicktusMessage>;
   notifications: Array<IPicktusError | IPicktusMessage>;
