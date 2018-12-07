@@ -6,7 +6,6 @@ import { IReduxStateProps } from './Messages.type';
 
 const mapStateToProps = (state: IReduxState): IReduxStateProps => {
   return {
-    notifications: state.message.notifications,
     snackbars: state.message.snackbars,
   };
 };

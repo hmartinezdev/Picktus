@@ -1,3 +1,3 @@
-import NotificationsHandler from './NotificationsHandler';
+import NotificationsHandlerConnected from './NotificationsHandlerConnected';
 
-export default NotificationsHandler;
+export default NotificationsHandlerConnected;
