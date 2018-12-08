@@ -62,7 +62,10 @@ class NotificationHandler extends Component<INotificationHandlerProps> {
             z-index: 1000;
           }
 
-          .notification__container--entering,
+          .notification__container--entering {
+            animation: slideIn 700ms ease-out;
+          }
+
           .notification__container--entered {
             transform: translateX(0%);
           }
