@@ -5,7 +5,8 @@ import { PicktusMessageDisplay, PicktusMessageLevel } from './message.type';
 
 export default function user(
   state: IMessageState = {
-    notifications: [
+    notifications: [],
+    snackbars: [
       {
         display: PicktusMessageDisplay.NOTIFICATION,
         id: 'ok',
@@ -31,7 +32,6 @@ export default function user(
         text: 'erreur de test',
       },
     ],
-    snackbars: [],
   },
   action: ActionTypes
 ): IMessageState {
@@ -40,6 +40,11 @@ export default function user(
       return {
         ...state,
         notifications: state.notifications.slice(1),
+      };
+    case MessageTypeKeys.MESSAGE_DISMISS_SNACKBAR:
+      return {
+        ...state,
+        snackbars: state.snackbars.slice(1),
       };
     default:
       return state;

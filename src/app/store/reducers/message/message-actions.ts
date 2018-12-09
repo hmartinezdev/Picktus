@@ -5,6 +5,7 @@ export type ThunkResult<R> = ThunkAction<R, IMessageState, undefined, DismissNot
 
 export enum TypeKeys {
   MESSAGE_DISMISS_NOTIFICATION = 'MESSAGE_DISMISS_NOTIFICATION',
+  MESSAGE_DISMISS_SNACKBAR = 'MESSAGE_DISMISS_SNACKBAR',
 }
 
 export interface DismissNotification {
@@ -15,4 +16,12 @@ export const dismissNotification = (): DismissNotification => ({
   type: TypeKeys.MESSAGE_DISMISS_NOTIFICATION,
 });
 
-export type MessageActions = DismissNotification;
+export interface DismissSnackBar {
+  type: TypeKeys.MESSAGE_DISMISS_SNACKBAR;
+}
+
+export const dismissSnackBar = (): DismissSnackBar => ({
+  type: TypeKeys.MESSAGE_DISMISS_SNACKBAR,
+});
+
+export type MessageActions = DismissNotification | DismissSnackBar;
