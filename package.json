@@ -32,7 +32,8 @@
     "redux-observable": "^1.0.0",
     "redux-thunk": "^2.3.0",
     "rxjs": "^6.2.2",
-    "styled-jsx": "^2.2.7"
+    "styled-jsx": "^2.2.7",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "dev": "node --inspect devServer.js",

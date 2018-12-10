@@ -1,4 +1,5 @@
 export default {
+  black: '#151614',
   blue: '#9fcbe7',
   error: '#982649',
   green: '#75ab88',
