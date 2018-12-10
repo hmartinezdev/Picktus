@@ -1,12 +1,12 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import Notification from './Notification';
+import SnackBar from './SnackBar';
 
 let wrapper;
 
-const setup = () => shallow(<Notification />);
+const setup = () => shallow(<SnackBar />);
 
-describe('<Notification />', () => {
+describe('<SnackBar />', () => {
   test('should render properly', () => {
     wrapper = setup();
     expect(wrapper).toMatchSnapshot();

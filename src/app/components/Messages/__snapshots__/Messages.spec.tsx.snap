@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MessageHandler /> should render properly 1`] = `
+<div
+  className="container"
+>
+  <Connect(NotificationHandler) />
+  <Connect(SnackBarHandler) />
+</div>
+`;

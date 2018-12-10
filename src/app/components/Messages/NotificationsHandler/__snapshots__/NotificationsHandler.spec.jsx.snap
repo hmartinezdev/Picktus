@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NotificationHandler /> should render properly 1`] = `
+<div>
+  <TransitionGroup
+    appear={true}
+    childFactory={[Function]}
+    className="notifications"
+    component="div"
+  />
+  <style
+    jsx={true}
+  >
+    
+          .notification__container {
+            position: absolute;
+            top: 4vh;
+            right: -3px;
+            transition: all 700ms ease-out;
+            transform: translateX(120%);
+            z-index: 1000;
+          }
+
+          .notification__container--entering {
+            animation: slideIn 700ms ease-out;
+          }
+
+          .notification__container--entered {
+            transform: translateX(0%);
+          }
+
+          .notification__container--exiting,
+          .notification__container--exited {
+            transform: translateX(120%);
+          }
+
+          @keyframes slideIn {
+            from {
+              transform: translateX(120%);
+            }
+
+            to {
+              transform: translateX(0%);
+            }
+          }
+        
+  </style>
+</div>
+`;
+
+exports[`<NotificationHandler /> should render with snackbars defined 1`] = `
+<div>
+  <TransitionGroup
+    appear={true}
+    childFactory={[Function]}
+    className="notifications"
+    component="div"
+  >
+    <Transition
+      appear={false}
+      enter={true}
+      exit={true}
+      in={false}
+      key="ok"
+      mountOnEnter={true}
+      onEnter={[Function]}
+      onEntered={[Function]}
+      onEntering={[Function]}
+      onExit={[Function]}
+      onExited={[Function]}
+      onExiting={[Function]}
+      timeout={700}
+      unmountOnExit={true}
+    >
+      <Component />
+    </Transition>
+  </TransitionGroup>
+  <style
+    jsx={true}
+  >
+    
+          .notification__container {
+            position: absolute;
+            top: 4vh;
+            right: -3px;
+            transition: all 700ms ease-out;
+            transform: translateX(120%);
+            z-index: 1000;
+          }
+
+          .notification__container--entering {
+            animation: slideIn 700ms ease-out;
+          }
+
+          .notification__container--entered {
+            transform: translateX(0%);
+          }
+
+          .notification__container--exiting,
+          .notification__container--exited {
+            transform: translateX(120%);
+          }
+
+          @keyframes slideIn {
+            from {
+              transform: translateX(120%);
+            }
+
+            to {
+              transform: translateX(0%);
+            }
+          }
+        
+  </style>
+</div>
+`;

@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SnackBar /> should render properly 1`] = `
+<div>
+  <div
+    className="snackbar snackbar--undefined"
+  >
+    <p
+      className="text"
+    />
+  </div>
+  <style
+    jsx={true}
+  >
+    
+          .snackbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Josefin Sans', sans-serif;
+            background: #2d3047;
+            padding: 15px;
+            color: #F8F8F7;
+            font-size: 16px;
+            box-shadow: 0 0 25px rgba(33, 33, 33, 0.5);
+            border-radius: 3px;
+            box-sizing: border-box;
+            animation: 0.3s down ease 1;
+          }
+
+          .text {
+            height: 40px;
+            line-height: 40px;
+            padding: 0 10px;
+            text-align: center;
+          }
+
+          .snackbar--ERROR {
+            background-color: #982649;
+            color: #F8F8F7;
+          }
+
+          .snackbar--SUCCESS {
+            background-color: #75ab88;
+            color: #F8F8F7;
+          }
+
+          .snackbar--WARNING {
+            background-color: #F6BD60;
+            color: #151614;
+          }
+        
+  </style>
+</div>
+`;

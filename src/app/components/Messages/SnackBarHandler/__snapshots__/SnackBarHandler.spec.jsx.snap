@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SnackBarHandler /> should render properly 1`] = `
+<div>
+  <TransitionGroup
+    appear={true}
+    childFactory={[Function]}
+    className="snackbars"
+    component="div"
+  />
+  <style
+    jsx={true}
+  >
+    
+          .snackbar__container {
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            transition: all 350ms ease-out;
+            transform: translateY(120%);
+            z-index: 1000;
+          }
+
+          .snackbar__container--entering {
+            animation: slideUp 700ms ease-out;
+          }
+
+          .snackbar__container--entered {
+            transform: translateY(0%);
+          }
+
+          .snackbar__container--entered,
+          .snackbar__container--entering {
+            z-index: 2;
+          }
+
+          .snackbar__container--exiting,
+          .snackbar__container--exited {
+            transform: translateY(120%);
+            z-index: 1;
+          }
+
+          @keyframes slideUp {
+            from {
+              transform: translateY(120%);
+            }
+
+            to {
+              transform: translateY(0%);
+            }
+          }
+        
+  </style>
+</div>
+`;
+
+exports[`<SnackBarHandler /> should render with snackbars defined 1`] = `
+<div>
+  <TransitionGroup
+    appear={true}
+    childFactory={[Function]}
+    className="snackbars"
+    component="div"
+  >
+    <Transition
+      appear={false}
+      enter={true}
+      exit={true}
+      in={false}
+      key="ok"
+      mountOnEnter={true}
+      onEnter={[Function]}
+      onEntered={[Function]}
+      onEntering={[Function]}
+      onExit={[Function]}
+      onExited={[Function]}
+      onExiting={[Function]}
+      timeout={700}
+      unmountOnExit={true}
+    >
+      <Component />
+    </Transition>
+  </TransitionGroup>
+  <style
+    jsx={true}
+  >
+    
+          .snackbar__container {
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            transition: all 350ms ease-out;
+            transform: translateY(120%);
+            z-index: 1000;
+          }
+
+          .snackbar__container--entering {
+            animation: slideUp 700ms ease-out;
+          }
+
+          .snackbar__container--entered {
+            transform: translateY(0%);
+          }
+
+          .snackbar__container--entered,
+          .snackbar__container--entering {
+            z-index: 2;
+          }
+
+          .snackbar__container--exiting,
+          .snackbar__container--exited {
+            transform: translateY(120%);
+            z-index: 1;
+          }
+
+          @keyframes slideUp {
+            from {
+              transform: translateY(120%);
+            }
+
+            to {
+              transform: translateY(0%);
+            }
+          }
+        
+  </style>
+</div>
+`;
