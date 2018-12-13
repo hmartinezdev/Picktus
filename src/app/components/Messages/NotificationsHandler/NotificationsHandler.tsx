@@ -15,7 +15,7 @@ class NotificationHandler extends Component<INotificationHandlerProps> {
   private dismissNotification() {
     const { notifications, dismissNotification } = this.props;
     if (notifications.length > 0) {
-      setTimeout(dismissNotification, 2000);
+      setTimeout(dismissNotification, 3500);
     }
   }
 
@@ -27,7 +27,11 @@ class NotificationHandler extends Component<INotificationHandlerProps> {
     const currentNotification = this.props.notifications[0];
     const previousNotification = prevProps.notifications[0];
 
-    if (currentNotification && previousNotification && previousNotification.id !== currentNotification.id) {
+    if (!currentNotification) {
+      return;
+    }
+
+    if (!previousNotification || previousNotification.id !== currentNotification.id) {
       this.dismissNotification();
     }
   }
@@ -64,6 +68,7 @@ class NotificationHandler extends Component<INotificationHandlerProps> {
 
           .notification__container--entering {
             animation: slideIn 700ms ease-out;
+            animation-fill-mode: forwards;
           }
 
           .notification__container--entered {

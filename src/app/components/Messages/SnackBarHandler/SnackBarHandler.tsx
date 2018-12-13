@@ -27,7 +27,11 @@ class SnackBarHandler extends Component<ISnackBarHandlerProps> {
     const currentSnackBar = this.props.snackbars[0];
     const previousSnackBar = prevProps.snackbars[0];
 
-    if (currentSnackBar && previousSnackBar && previousSnackBar.id !== currentSnackBar.id) {
+    if (!currentSnackBar) {
+      return;
+    }
+
+    if (!previousSnackBar || previousSnackBar.id !== currentSnackBar.id) {
       this.dismissSnackBar();
     }
   }

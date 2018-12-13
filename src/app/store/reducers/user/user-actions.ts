@@ -1,4 +1,5 @@
 import Authentication, { SigninMethods } from '@services/authentication';
+import AuthenticationError from '@services/authentication/AuthenticationError';
 import firebase from 'firebase';
 import { ThunkAction } from 'redux-thunk';
 import { IUserState } from './user.type';
@@ -7,8 +8,8 @@ export type ThunkResult<R> = ThunkAction<R, IUserState, undefined, UserActions>;
 
 export enum TypeKeys {
   USER_SERVER_AUTH = 'USER_SERVER_ATUH',
-  USER_LOGIN_FAILED = 'USER_LOGIN_FAILED',
   USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS',
+  USER_LOGIN_FAILURE = 'USER_LOGIN_FAILURE',
   USER_LOGIN_START = 'USER_LOGIN_START',
   USER_CREATION_START = 'USER_CREATION_START',
   USER_CREATION_SUCCESS = 'USER_CREATION_SUCCESS',
@@ -45,13 +46,13 @@ export const userLoginSuccess = (user: firebase.User): UserLoginSuccess => ({
 });
 
 export interface UserLoginFailed {
-  type: TypeKeys.USER_LOGIN_FAILED;
-  error: string;
+  type: TypeKeys.USER_LOGIN_FAILURE;
+  error: AuthenticationError;
 }
 
-export const userLoginFailed = (error: string): UserLoginFailed => ({
+export const userLoginFailure = (error: AuthenticationError): UserLoginFailed => ({
   error,
-  type: TypeKeys.USER_LOGIN_FAILED,
+  type: TypeKeys.USER_LOGIN_FAILURE,
 });
 
 export interface UserLogout {
@@ -80,10 +81,10 @@ export const UserCreationSuccess = (): UserCreationSuccess => ({
 
 export interface UserCreationFailure {
   type: TypeKeys.USER_CREATION_FAILURE;
-  error: string;
+  error: AuthenticationError;
 }
 
-export const UserCreationFailure = (error: string): UserCreationFailure => ({
+export const userCreationFailure = (error: AuthenticationError): UserCreationFailure => ({
   error,
   type: TypeKeys.USER_CREATION_FAILURE,
 });
@@ -95,7 +96,7 @@ export const userCreation = (mail: string, password: string): ThunkResult<void> 
     await Authentication.createUser(mail, password);
     dispatch(UserCreationSuccess);
   } catch (e) {
-    dispatch(UserCreationFailure(e.message));
+    dispatch(userCreationFailure(e));
   }
 };
 
@@ -108,7 +109,7 @@ export const signin = (method: SigninMethods, options: IStringMap): ThunkResult<
     const user = await Authentication.signin(method, options);
     dispatch(userLoginSuccess(user));
   } catch (e) {
-    dispatch(userLoginFailed(e.message));
+    dispatch(userLoginFailure(e));
   }
 };
 

@@ -21,7 +21,7 @@ describe('actions', () => {
   it('should create an action to display an error when logging failed', () => {
     const error = 'test'
     const expectedAction = {
-      type: actions.TypeKeys.USER_LOGIN_FAILED,
+      type: actions.TypeKeys.USER_CREATION_FAILURE,
       error
     }
     expect(actions.userLoginFailed(error)).toEqual(expectedAction)
@@ -124,7 +124,7 @@ describe('actions', () => {
       });
       await actions.signin(SigninMethods.GOOGLE)(dispatchSpy);
       expect(AuthSpy).toHaveBeenCalled();
-      expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_FAILED, "error": "test", });
+      expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_CREATION_FAILURE, "error": "test", });
     });
 
   });
