@@ -10,7 +10,7 @@ export default function user(
       {
         display: PicktusMessageDisplay.NOTIFICATION,
         id: 'prout',
-        level: PicktusMessageLevel.WARNING,
+        level: PicktusMessageLevel.SUCCESS,
         text: 'ok',
       },
     ],

@@ -43,27 +43,24 @@ class Notification extends Component<INotificationProps> {
             padding: 1rem;
             font-size: 1.05rem;
             font-family: 'Josefin Sans', sans-serif;
-            color: ${colors.primary};
+            color: ${colors.white};
             width: 280px;
             min-height: 5rem;
-            background-color: ${colors.secondary};
+            background-color: ${colors.primary};
             border-radius: 3px;
             box-shadow: 11px 10px 34px -7px rgba(0, 0, 0, 0.49);
           }
 
           .notification--${PicktusMessageLevel.ERROR} {
             background-color: ${colors.error};
-            color: ${colors.white};
           }
 
           .notification--${PicktusMessageLevel.SUCCESS} {
             background-color: ${colors.green};
-            color: ${colors.white};
           }
 
           .notification--${PicktusMessageLevel.WARNING} {
             background-color: ${colors.warning};
-            color: ${colors.primary};
           }
 
           .iconContainer {
@@ -72,18 +69,6 @@ class Notification extends Component<INotificationProps> {
 
           .icon {
             fill: ${colors.secondary};
-          }
-
-          .notification--${PicktusMessageLevel.SUCCESS} .icon {
-            fill: ${colors.lightGreen};
-          }
-
-          .notification--${PicktusMessageLevel.INFO} .icon {
-            fill: ${colors.primary};
-          }
-
-          .notification--${PicktusMessageLevel.WARNING} .icon {
-            fill: ${colors.primary};
           }
         `}</style>
       </div>
