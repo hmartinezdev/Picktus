@@ -23,6 +23,7 @@ exports[`<NotificationHandler /> should render properly 1`] = `
 
           .notification__container--entering {
             animation: slideIn 700ms ease-out;
+            animation-fill-mode: forwards;
           }
 
           .notification__container--entered {
@@ -90,6 +91,7 @@ exports[`<NotificationHandler /> should render with snackbars defined 1`] = `
 
           .notification__container--entering {
             animation: slideIn 700ms ease-out;
+            animation-fill-mode: forwards;
           }
 
           .notification__container--entered {

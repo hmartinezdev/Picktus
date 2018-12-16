@@ -9,4 +9,9 @@ export enum SigninMethods {
   CLASSIC = 'CLASSIC',
 }
 
+export interface ISigninOptions {
+  email?: string;
+  password?: string;
+}
+
 export type ISigninMethodsMap = { [s in SigninMethods]: any };

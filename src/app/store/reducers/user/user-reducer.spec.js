@@ -93,10 +93,6 @@ describe('todos reducer', () => {
     });
   });
 
-  it(`it should handle ${TypeKeys.USER_LOGIN_SUCCESS}`, () => {
-    expect(reducer(undefined, {type:TypeKeys.USER_CREATION_FAILURE})).toEqual({authenticated: false});
-  });
-
   it(`it should handle ${TypeKeys.USER_CREATION_START}`, () => {
     expect(reducer(undefined, {type:TypeKeys.USER_CREATION_START})).toEqual({authenticated: false, creationInProgress: true});
   });

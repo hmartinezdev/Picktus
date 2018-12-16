@@ -1,4 +1,4 @@
-import Authentication, { SigninMethods } from '@services/authentication';
+import Authentication, { ISigninOptions, SigninMethods } from '@services/authentication';
 import AuthenticationError from '@services/authentication/AuthenticationError';
 import firebase from 'firebase';
 import { ThunkAction } from 'redux-thunk';
@@ -89,18 +89,18 @@ export const userCreationFailure = (error: AuthenticationError): UserCreationFai
   type: TypeKeys.USER_CREATION_FAILURE,
 });
 
-export const userCreation = (mail: string, password: string): ThunkResult<void> => async (dispatch) => {
+export const userCreation = (email: string, password: string): ThunkResult<void> => async (dispatch) => {
   dispatch(userCreationStart());
 
   try {
-    await Authentication.createUser(mail, password);
+    await Authentication.createUser(email, password);
     dispatch(UserCreationSuccess);
   } catch (e) {
     dispatch(userCreationFailure(e));
   }
 };
 
-export const signin = (method: SigninMethods, options: IStringMap): ThunkResult<void> => async (dispatch) => {
+export const signin = (method: SigninMethods, options: ISigninOptions): ThunkResult<void> => async (dispatch) => {
   if (method === SigninMethods.CLASSIC) {
     dispatch(userLoginStart());
   }

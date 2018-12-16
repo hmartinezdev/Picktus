@@ -24,7 +24,7 @@ describe('<NotificationHandler />', () => {
       const spyDissmiss = jest.fn();
       wrapper = setup({ notifications: [{ id: 'ok' }], dismissNotification: spyDissmiss });
 
-      expect(spyTimeOut).toHaveBeenCalledWith(spyDissmiss, 2000);
+      expect(spyTimeOut).toHaveBeenCalledWith(spyDissmiss, 3500);
       expect(spyDissmiss).toHaveBeenCalled();
     });
   });

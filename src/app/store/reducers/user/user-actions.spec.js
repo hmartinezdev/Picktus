@@ -19,12 +19,12 @@ describe('actions', () => {
   })
 
   it('should create an action to display an error when logging failed', () => {
-    const error = 'test'
+    const error = new Error();
     const expectedAction = {
-      type: actions.TypeKeys.USER_CREATION_FAILURE,
+      type: actions.TypeKeys.USER_LOGIN_FAILURE,
       error
     }
-    expect(actions.userLoginFailed(error)).toEqual(expectedAction)
+    expect(actions.userLoginFailure(error)).toEqual(expectedAction)
   })
 
   it('should create an action to indicate that user creation started', () => {
@@ -47,7 +47,7 @@ describe('actions', () => {
       type: actions.TypeKeys.USER_CREATION_FAILURE,
       error
     }
-    expect(actions.UserCreationFailure(error)).toEqual(expectedAction)
+    expect(actions.userCreationFailure(error)).toEqual(expectedAction)
   })
 
   describe('userCreation', () => {
@@ -66,13 +66,14 @@ describe('actions', () => {
 
     it('should dispatch userCreationStart action and then a userCreationFailure if the user creation failed', async  () => {
       const dispatchSpy = jest.fn();
+      const error = new Error('test');
       const AuthSpy = jest.spyOn(Authentication, 'createUser').mockImplementation(() => {
-        throw new Error('test');
+        throw error
       });
       await actions.userCreation()(dispatchSpy);
       expect(AuthSpy).toHaveBeenCalled();
       expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_CREATION_START});
-      expect(dispatchSpy).toHaveBeenNthCalledWith(2, {type: actions.TypeKeys.USER_CREATION_FAILURE, "error": "test", });
+      expect(dispatchSpy).toHaveBeenNthCalledWith(2, {type: actions.TypeKeys.USER_CREATION_FAILURE, error });
     });
 
   });
@@ -117,14 +118,15 @@ describe('actions', () => {
       });
     });
 
-    it('should dispatch userCreationFailure if the user creation failed', async  () => {
+    it('should dispatch userLoginFailure if the user login failed', async  () => {
       const dispatchSpy = jest.fn();
+      const error = new Error('test');
       const AuthSpy = jest.spyOn(Authentication, 'signin').mockImplementation(() => {
-        throw new Error('test');
+        throw error;
       });
       await actions.signin(SigninMethods.GOOGLE)(dispatchSpy);
       expect(AuthSpy).toHaveBeenCalled();
-      expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_CREATION_FAILURE, "error": "test", });
+      expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_LOGIN_FAILURE, error });
     });
 
   });

@@ -13,6 +13,7 @@ exports[`<App /> should render loader is showLoader is at true 1`] = `
   >
     
           .page {
+            overflow: hidden;
             min-height: 100vh;
             background-color: #2d3047;
           }
@@ -41,6 +42,7 @@ exports[`<App /> should render properly 1`] = `
   >
     
           .page {
+            overflow: hidden;
             min-height: 100vh;
             background-color: #2d3047;
           }

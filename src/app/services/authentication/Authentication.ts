@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import fetch from 'isomorphic-unfetch';
-import { delegatedMethods, ISigninMethodsMap, SigninMethods } from './Authentication.type';
+import { delegatedMethods, ISigninMethodsMap, ISigninOptions, SigninMethods } from './Authentication.type';
 import AuthenticationError from './AuthenticationError';
 import { FirebaseError } from './AuthenticationError/AuthenticationError.type';
 
@@ -53,10 +53,10 @@ class Authentication {
    * @param method - method of authentication, can be either classic or via social networks
    * @param options - options needed to signin with a specific method
    */
-  public async signin(method: SigninMethods, options: IStringMap = {}) {
+  public async signin(method: SigninMethods, options: ISigninOptions = {}) {
     let userCredentials: firebase.auth.UserCredential;
     if (method === SigninMethods.CLASSIC) {
-      if (!options.mail || !options.password) {
+      if (!options.email || !options.password) {
         throw new AuthenticationError(
           "Authentication::signin You can't use classic signin method without password or email passed as option",
           'A password and an email is necessary to signin'
@@ -65,7 +65,7 @@ class Authentication {
 
       userCredentials = await firebase
         .auth()
-        .signInWithEmailAndPassword(options.mail, options.password)
+        .signInWithEmailAndPassword(options.email, options.password)
         .catch((error) => {
           throw this.handleFirebaseError(error, 'signin');
         });

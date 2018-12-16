@@ -1,19 +1,12 @@
 import { ActionTypes } from '../action.type';
 import { TypeKeys as UserTypeKeys } from '../user/user-actions';
 import { TypeKeys as MessageTypeKeys } from './message-actions';
-import { IMessageState, PicktusMessageLevel, PicktusMessageDisplay } from './message.type';
+import { IMessageState } from './message.type';
 import UserMessageReducer from './user-message-reducer';
 
 export default function user(
   state: IMessageState = {
-    notifications: [
-      {
-        display: PicktusMessageDisplay.NOTIFICATION,
-        id: 'prout',
-        level: PicktusMessageLevel.SUCCESS,
-        text: 'ok',
-      },
-    ],
+    notifications: [],
     snackbars: [],
   },
   action: ActionTypes
