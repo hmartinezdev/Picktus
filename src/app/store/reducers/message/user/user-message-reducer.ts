@@ -1,8 +1,7 @@
-import { ActionTypes } from '../action.type';
-import { TypeKeys as UserTypeKeys } from '../user/user-actions';
-import messageGenerator from './message-generator';
-
-import { IMessageState, PicktusMessageDisplay, PicktusMessageLevel } from './message.type';
+import { ActionTypes } from '../../action.type';
+import { TypeKeys as UserTypeKeys } from '../../user/user-actions';
+import messageGenerator from '../message-generator';
+import { IMessageState, PicktusMessageDisplay, PicktusMessageLevel } from '../message.type';
 
 export default function user(
   state: IMessageState = {
@@ -60,7 +59,6 @@ export default function user(
           ),
         ],
       };
-      return state;
     default:
       return state;
   }

@@ -2,7 +2,7 @@ import { ActionTypes } from '../action.type';
 import { TypeKeys as UserTypeKeys } from '../user/user-actions';
 import { TypeKeys as MessageTypeKeys } from './message-actions';
 import { IMessageState } from './message.type';
-import UserMessageReducer from './user-message-reducer';
+import UserMessageReducer from './user';
 
 export default function user(
   state: IMessageState = {

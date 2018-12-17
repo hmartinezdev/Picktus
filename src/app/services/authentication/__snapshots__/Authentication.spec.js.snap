@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Authentication service handleFirebaseError error message to fit the error code 1`] = `[Error: Authentication::undefined Unknown error: undefined::undefined]`;
+
+exports[`Authentication service handleFirebaseError error message to fit the error code 2`] = `[Error: Authentication::undefined too many requests]`;
+
+exports[`Authentication service handleFirebaseError error message to fit the error code 3`] = `[Error: Authentication::undefined network error]`;
+
+exports[`Authentication service handleFirebaseError error message to fit the error code 4`] = `[Error: Authentication::undefined invalid API provided]`;
+
+exports[`Authentication service handleFirebaseError error message to fit the error code 5`] = `[Error: Authentication::undefined invalid email provided by the user]`;
+
+exports[`Authentication service handleFirebaseError error message to fit the error code 6`] = `[Error: Authentication::undefined email was not associated with an account]`;
+
+exports[`Authentication service handleFirebaseError error message to fit the error code 7`] = `[Error: Authentication::undefined password provided did not correspond with the email]`;
+
+exports[`Authentication service handleFirebaseError error message to fit the error code 8`] = `[Error: Authentication::undefined an account already exists with the user email]`;
+
+exports[`Authentication service handleFirebaseError error message to fit the error code 9`] = `[Error: Authentication::undefined popin blocked by navigator]`;
+
+exports[`Authentication service handleFirebaseError error message to fit the error code 10`] = `[Error: Authentication::undefined popin blocked by navigator]`;
+
+exports[`Authentication service handleFirebaseError error message to fit the error code 11`] = `[Error: Authentication::undefined Unknown error: random::undefined]`;

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { IReduxStateProps } from './SubscribeHander.type';
 import SubscribeHandler from './SubscribeHandler';
 
-const mapStateToProps = (state: IReduxState): IReduxStateProps => {
+export const mapStateToProps = (state: IReduxState): IReduxStateProps => {
   return {
     loading: !!state.user.creationInProgress,
   };

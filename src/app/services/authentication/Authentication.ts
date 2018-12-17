@@ -1,7 +1,13 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import fetch from 'isomorphic-unfetch';
-import { delegatedMethods, ISigninMethodsMap, ISigninOptions, SigninMethods } from './Authentication.type';
+import {
+  delegatedMethods,
+  FirebaseErrorCodes,
+  ISigninMethodsMap,
+  ISigninOptions,
+  SigninMethods,
+} from './Authentication.type';
 import AuthenticationError from './AuthenticationError';
 import { FirebaseError } from './AuthenticationError/AuthenticationError.type';
 
@@ -108,48 +114,48 @@ class Authentication {
    */
   public handleFirebaseError(error: FirebaseError, func: string) {
     switch (error.code) {
-      case 'auth/too-many-requests':
+      case FirebaseErrorCodes.TOO_MANY_REQUEST:
         return new AuthenticationError(
           `Authentication::${func} too many requests`,
           'You tried too many time to signin, please try again later'
         );
-      case 'auth/network-request-failed':
+      case FirebaseErrorCodes.NETWOR_REQUEST_FAILED:
         return new AuthenticationError(
           `Authentication::${func} network error`,
           'You are currently in a slow network area, please try again later'
         );
-      case 'auth/invalid-api-key':
+      case FirebaseErrorCodes.INVALID_API_KEY:
         return new AuthenticationError(
           `Authentication::${func} invalid API provided`,
           'A client error has occured, please contact the consumer service'
         );
-      case 'auth/invalid-email':
+      case FirebaseErrorCodes.INVALID_EMAIL:
         return new AuthenticationError(
           `Authentication::${func} invalid email provided by the user`,
           'The email you provided is not a valid email address'
         );
-      case 'auth/user-not-found':
+      case FirebaseErrorCodes.USER_NOT_FOUND:
         return new AuthenticationError(
           `Authentication::${func} email was not associated with an account`,
           'The email you provided is not associated with an existing account'
         );
-      case 'auth/wrong-password':
+      case FirebaseErrorCodes.WRONG_PASSWORD:
         return new AuthenticationError(
           `Authentication::${func} password provided did not correspond with the email`,
           'The password and email combination is not associated with an existing account'
         );
-      case 'auth/account-exists-with-different-credential':
-      case 'auth/email-already-in-use':
+      case FirebaseErrorCodes.ACCOUNT_ALREADY_EXIST_WITH_DIFFERENT_CREDENTIAL:
+      case FirebaseErrorCodes.EMAIL_ALREADY_USED:
         return new AuthenticationError(
           `Authentication::${func} an account already exists with the user email`,
           'An account is already associated with this email'
         );
-      case 'auth/popup-blocked':
+      case FirebaseErrorCodes.POPUP_BLOCKED:
         return new AuthenticationError(
           `Authentication::${func} popin blocked by navigator`,
           'The authentication popin has been blocked by your navigator'
         );
-      case 'auth/weak-password':
+      case FirebaseErrorCodes.WEAK_PASSWORD:
         return new AuthenticationError(
           `Authentication::${func} popin blocked by navigator`,
           'The authentication popin has been blocked by your navigator'
