@@ -1,3 +1,3 @@
-import MessagesConnected from './MessagesConnected';
+import Message from './Messages';
 
-export default MessagesConnected;
+export default Message;

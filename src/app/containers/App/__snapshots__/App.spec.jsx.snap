@@ -5,7 +5,7 @@ exports[`<App /> should render loader is showLoader is at true 1`] = `
   className="page"
 >
   <Header />
-  <Connect(MessageHandler) />
+  <MessageHandler />
   <Loader />
   <div />
   <style
@@ -35,7 +35,7 @@ exports[`<App /> should render properly 1`] = `
   className="page"
 >
   <Header />
-  <Connect(MessageHandler) />
+  <MessageHandler />
   <div />
   <style
     jsx={true}
