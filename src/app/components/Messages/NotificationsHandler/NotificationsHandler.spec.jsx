@@ -12,7 +12,7 @@ describe('<NotificationHandler />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test('should render with snackbars defined', () => {
+  test('should render with notifications defined', () => {
     const spyDissmiss = jest.fn();
     wrapper = setup({ notifications: [{ id: 'ok' }], dismissNotification: spyDissmiss });
     expect(wrapper).toMatchSnapshot();
@@ -24,7 +24,7 @@ describe('<NotificationHandler />', () => {
       const spyDissmiss = jest.fn();
       wrapper = setup({ notifications: [{ id: 'ok' }], dismissNotification: spyDissmiss });
 
-      expect(spyTimeOut).toHaveBeenCalledWith(spyDissmiss, 2000);
+      expect(spyTimeOut).toHaveBeenCalledWith(spyDissmiss, 3500);
       expect(spyDissmiss).toHaveBeenCalled();
     });
   });

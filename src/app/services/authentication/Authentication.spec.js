@@ -2,6 +2,7 @@ import * as firebase from 'firebase/app';
 import fetch from 'isomorphic-unfetch';
 import { incorrectUserCredentials, validUserCredentials } from './Authentication.mock';
 import Authentication, { SigninMethods } from './';
+import { FirebaseErrorCodes } from './Authentication.type';
 
 jest.mock('isomorphic-unfetch');
 
@@ -251,6 +252,24 @@ describe('Authentication service', () => {
         display: 'popup',
       });
       expect(error instanceof Error).toBe(true);
+    });
+  });
+
+  describe('handleFirebaseError', () => {
+    test('error message to fit the error code', () => {
+      expect(
+        Authentication.handleFirebaseError(FirebaseErrorCodes.ACCOUNT_ALREADY_EXIST_WITH_DIFFERENT_CREDENTIAL)
+      ).toMatchSnapshot();
+      expect(Authentication.handleFirebaseError({ code: FirebaseErrorCodes.TOO_MANY_REQUEST })).toMatchSnapshot();
+      expect(Authentication.handleFirebaseError({ code: FirebaseErrorCodes.NETWOR_REQUEST_FAILED })).toMatchSnapshot();
+      expect(Authentication.handleFirebaseError({ code: FirebaseErrorCodes.INVALID_API_KEY })).toMatchSnapshot();
+      expect(Authentication.handleFirebaseError({ code: FirebaseErrorCodes.INVALID_EMAIL })).toMatchSnapshot();
+      expect(Authentication.handleFirebaseError({ code: FirebaseErrorCodes.USER_NOT_FOUND })).toMatchSnapshot();
+      expect(Authentication.handleFirebaseError({ code: FirebaseErrorCodes.WRONG_PASSWORD })).toMatchSnapshot();
+      expect(Authentication.handleFirebaseError({ code: FirebaseErrorCodes.EMAIL_ALREADY_USED })).toMatchSnapshot();
+      expect(Authentication.handleFirebaseError({ code: FirebaseErrorCodes.POPUP_BLOCKED })).toMatchSnapshot();
+      expect(Authentication.handleFirebaseError({ code: FirebaseErrorCodes.WEAK_PASSWORD })).toMatchSnapshot();
+      expect(Authentication.handleFirebaseError({ code: 'random' })).toMatchSnapshot();
     });
   });
 });

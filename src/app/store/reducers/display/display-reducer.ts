@@ -12,7 +12,7 @@ export default function user(state: IDisplayState = { loader: false }, action: A
       return { ...state, loader: true };
     case UserTypeKeys.USER_CREATION_FAILURE:
     case UserTypeKeys.USER_CREATION_SUCCESS:
-    case UserTypeKeys.USER_LOGIN_FAILED:
+    case UserTypeKeys.USER_LOGIN_FAILURE:
     case UserTypeKeys.USER_LOGIN_SUCCESS:
       return { ...state, loader: false };
     default:

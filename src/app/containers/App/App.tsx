@@ -28,6 +28,7 @@ class App extends Component<IAppPropsType> {
         {children}
         <style jsx>{`
           .page {
+            overflow: hidden;
             min-height: 100vh;
             background-color: ${colors.primary};
           }

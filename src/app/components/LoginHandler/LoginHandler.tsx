@@ -26,9 +26,9 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
 
   public onLoginClick = () => {
     const { signin } = this.props;
-    const { mail, password } = this.state.inputs;
+    const { email, password } = this.state.inputs;
 
-    signin(SigninMethods.CLASSIC, { mail, password });
+    signin(SigninMethods.CLASSIC, { email, password });
   };
 
   public onFacebookClick = () => {
@@ -53,7 +53,7 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
     return (
       <div className="container">
         <div className="login">
-          <Input placeholder="Mail" onChange={this.onChange} name="mail" />
+          <Input placeholder="Mail" onChange={this.onChange} name="email" />
           <Input placeholder="Password" type="password" onChange={this.onChange} name="password" />
           <Button text="Login" onClick={this.onLoginClick} />
           <div className="socialButtons">

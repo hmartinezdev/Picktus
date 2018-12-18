@@ -32,7 +32,7 @@ export default function user(state: IUserState = initialState, action: ActionTyp
             }
           : undefined,
       };
-    case TypeKeys.USER_LOGIN_FAILED:
+    case TypeKeys.USER_LOGIN_FAILURE:
       return { ...state, authenticated: false };
     case TypeKeys.USER_LOGOUT: {
       return initialState;

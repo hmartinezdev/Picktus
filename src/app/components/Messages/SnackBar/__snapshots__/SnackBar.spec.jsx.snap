@@ -46,7 +46,7 @@ exports[`<SnackBar /> should render properly 1`] = `
           }
 
           .snackbar--WARNING {
-            background-color: #F6BD60;
+            background-color: #E37E5B;
             color: #151614;
           }
         

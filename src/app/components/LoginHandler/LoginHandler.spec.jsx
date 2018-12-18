@@ -49,9 +49,9 @@ describe('<LoginHandler />', () => {
     });
 
     test('onLoginClick should call the signin method in props with methods.CLASSIC and password and email as options', () => {
-      instance.setState({ inputs: { password: 'test', mail: 'mail' } });
+      instance.setState({ inputs: { password: 'test', email: 'mail' } });
       instance.onLoginClick();
-      expect(spyLogin).toHaveBeenCalledWith(SigninMethods.CLASSIC, { password: 'test', mail: 'mail' });
+      expect(spyLogin).toHaveBeenCalledWith(SigninMethods.CLASSIC, { password: 'test', email: 'mail' });
     });
 
     test('onGoogleClick should call the signin method in props with methods.GOOGLE ', () => {

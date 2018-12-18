@@ -2,6 +2,7 @@ import reducer from './message-reducer'
 import { TypeKeys as DisplayType } from '../display/display-actions'
 import { TypeKeys as UserType } from '../user/user-actions';
 import { TypeKeys as MessageType } from './message-actions';
+import * as UserMessageReducer from './user';
 ​
 describe('todos reducer', () => {
   it('should return the initial state', () => {
@@ -22,5 +23,20 @@ describe('todos reducer', () => {
 
   it(`it should handle ${MessageType.MESSAGE_DISMISS_SNACKBAR}`, () => {
     expect(reducer({snackbars:[1 ,2 ,3]}, {type:MessageType.MESSAGE_DISMISS_SNACKBAR})).toEqual({snackbars: [2,3]});
+  });
+
+  it(`it should handle all User actions type`, () => {
+    const fakereturn = {reduced: true};
+    const spy = jest.spyOn(UserMessageReducer, 'default').mockImplementation(() => fakereturn);
+
+    expect(reducer({}, {type: UserType.USER_CREATION_FAILURE})).toEqual(fakereturn);
+    expect(reducer({}, {type: UserType.USER_CREATION_START})).toEqual(fakereturn);
+    expect(reducer({}, {type: UserType.USER_CREATION_SUCCESS})).toEqual(fakereturn);
+    expect(reducer({}, {type: UserType.USER_LOGIN_FAILURE})).toEqual(fakereturn);
+    expect(reducer({}, {type: UserType.USER_LOGIN_START})).toEqual(fakereturn);
+    expect(reducer({}, {type: UserType.USER_LOGIN_SUCCESS})).toEqual(fakereturn);
+    expect(reducer({}, {type: UserType.USER_LOGOUT})).toEqual(fakereturn);
+    expect(reducer({}, {type: UserType.USER_SERVER_AUTH})).toEqual(fakereturn);
+    
   });
 })

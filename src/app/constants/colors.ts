@@ -6,6 +6,6 @@ export default {
   lightGreen: '#b3e099',
   primary: '#2d3047',
   secondary: '#FAC9B8',
-  warning: '#F6BD60',
+  warning: '#E37E5B',
   white: '#F8F8F7',
 };
