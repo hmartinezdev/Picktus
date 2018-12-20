@@ -1,6 +1,7 @@
 import colors from '@constants/colors';
 import { PicktusMessageLevel } from '@store/reducers/message';
 import React, { Component } from 'react';
+import MessageIcon from '../MessageIcon';
 
 export interface ISnackBarProps {
   text: string;
@@ -13,6 +14,7 @@ class SnackBar extends Component<ISnackBarProps> {
     return (
       <div>
         <div className={`snackbar snackbar--${level}`}>
+          <MessageIcon level={level} />
           <p className="text">{text}</p>
         </div>
         <style jsx>{`

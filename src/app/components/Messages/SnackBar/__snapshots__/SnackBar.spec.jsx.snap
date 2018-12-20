@@ -5,6 +5,10 @@ exports[`<SnackBar /> should render properly 1`] = `
   <div
     className="snackbar snackbar--undefined"
   >
+    <MessageIcon
+      height={32}
+      width={32}
+    />
     <p
       className="text"
     />

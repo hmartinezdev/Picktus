@@ -1,10 +1,7 @@
-import ErrorSvg from '@assets/svg/error.svg';
-import InfoSvg from '@assets/svg/info.svg';
-import SuccessSvg from '@assets/svg/sucess.svg';
-import WarningSvg from '@assets/svg/warning.svg';
 import colors from '@constants/colors';
 import { PicktusMessageLevel } from '@store/reducers/message';
 import React, { Component } from 'react';
+import MessageIcon from '../MessageIcon';
 
 export interface INotificationProps {
   text: string;
@@ -12,27 +9,12 @@ export interface INotificationProps {
 }
 
 class Notification extends Component<INotificationProps> {
-  public renderIcon() {
-    const { level } = this.props;
-
-    switch (level) {
-      case PicktusMessageLevel.ERROR:
-        return <ErrorSvg height="32" width="32" className="icon" />;
-      case PicktusMessageLevel.WARNING:
-        return <WarningSvg height="32" width="32" className="icon" />;
-      case PicktusMessageLevel.SUCCESS:
-        return <SuccessSvg height="32" width="32" className="icon" />;
-      default:
-        return <InfoSvg height="32" width="32" className="icon" />;
-    }
-  }
-
   public render(): React.ReactElement<Notification> {
     const { text, level } = this.props;
     return (
       <div>
         <div className={`notification notification--${level}`}>
-          <div className="iconContainer">{this.renderIcon()}</div>
+          <MessageIcon level={level} />
           <p>{text}</p>
         </div>
         <style jsx>{`
@@ -61,14 +43,6 @@ class Notification extends Component<INotificationProps> {
 
           .notification--${PicktusMessageLevel.WARNING} {
             background-color: ${colors.warning};
-          }
-
-          .iconContainer {
-            margin-right: 1rem;
-          }
-
-          .icon {
-            fill: ${colors.secondary};
           }
         `}</style>
       </div>

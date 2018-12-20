@@ -5,15 +5,10 @@ exports[`<Notification /> should render properly 1`] = `
   <div
     className="notification notification--undefined"
   >
-    <div
-      className="iconContainer"
-    >
-      <Component
-        className="icon"
-        height="32"
-        width="32"
-      />
-    </div>
+    <MessageIcon
+      height={32}
+      width={32}
+    />
     <p />
   </div>
   <style
@@ -46,14 +41,6 @@ exports[`<Notification /> should render properly 1`] = `
           .notification--WARNING {
             background-color: #E37E5B;
           }
-
-          .iconContainer {
-            margin-right: 1rem;
-          }
-
-          .icon {
-            fill: #FAC9B8;
-          }
         
   </style>
 </div>
@@ -64,15 +51,11 @@ exports[`<Notification /> should render with different icon 1`] = `
   <div
     className="notification notification--ERROR"
   >
-    <div
-      className="iconContainer"
-    >
-      <Component
-        className="icon"
-        height="32"
-        width="32"
-      />
-    </div>
+    <MessageIcon
+      height={32}
+      level="ERROR"
+      width={32}
+    />
     <p>
       error
     </p>
@@ -106,14 +89,6 @@ exports[`<Notification /> should render with different icon 1`] = `
 
           .notification--WARNING {
             background-color: #E37E5B;
-          }
-
-          .iconContainer {
-            margin-right: 1rem;
-          }
-
-          .icon {
-            fill: #FAC9B8;
           }
         
   </style>
@@ -125,15 +100,11 @@ exports[`<Notification /> should render with different icon 2`] = `
   <div
     className="notification notification--SUCCESS"
   >
-    <div
-      className="iconContainer"
-    >
-      <Component
-        className="icon"
-        height="32"
-        width="32"
-      />
-    </div>
+    <MessageIcon
+      height={32}
+      level="SUCCESS"
+      width={32}
+    />
     <p>
       error
     </p>
@@ -167,14 +138,6 @@ exports[`<Notification /> should render with different icon 2`] = `
 
           .notification--WARNING {
             background-color: #E37E5B;
-          }
-
-          .iconContainer {
-            margin-right: 1rem;
-          }
-
-          .icon {
-            fill: #FAC9B8;
           }
         
   </style>
@@ -186,15 +149,11 @@ exports[`<Notification /> should render with different icon 3`] = `
   <div
     className="notification notification--WARNING"
   >
-    <div
-      className="iconContainer"
-    >
-      <Component
-        className="icon"
-        height="32"
-        width="32"
-      />
-    </div>
+    <MessageIcon
+      height={32}
+      level="WARNING"
+      width={32}
+    />
     <p>
       error
     </p>
@@ -228,14 +187,6 @@ exports[`<Notification /> should render with different icon 3`] = `
 
           .notification--WARNING {
             background-color: #E37E5B;
-          }
-
-          .iconContainer {
-            margin-right: 1rem;
-          }
-
-          .icon {
-            fill: #FAC9B8;
           }
         
   </style>
@@ -247,15 +198,11 @@ exports[`<Notification /> should render with different icon 4`] = `
   <div
     className="notification notification--INFO"
   >
-    <div
-      className="iconContainer"
-    >
-      <Component
-        className="icon"
-        height="32"
-        width="32"
-      />
-    </div>
+    <MessageIcon
+      height={32}
+      level="INFO"
+      width={32}
+    />
     <p>
       error
     </p>
@@ -289,14 +236,6 @@ exports[`<Notification /> should render with different icon 4`] = `
 
           .notification--WARNING {
             background-color: #E37E5B;
-          }
-
-          .iconContainer {
-            margin-right: 1rem;
-          }
-
-          .icon {
-            fill: #FAC9B8;
           }
         
   </style>

@@ -62,7 +62,7 @@ class SnackBarHandler extends Component<ISnackBarHandlerProps> {
             bottom: 0px;
             left: 50%;
             transition: all 350ms ease-out;
-            transform: translateY(120%);
+            transform: translate(-50%, 120%);
             z-index: 1000;
           }
 
@@ -71,7 +71,7 @@ class SnackBarHandler extends Component<ISnackBarHandlerProps> {
           }
 
           .snackbar__container--entered {
-            transform: translateY(0%);
+            transform: translate(-50%, 0%);
           }
 
           .snackbar__container--entered,
@@ -81,17 +81,17 @@ class SnackBarHandler extends Component<ISnackBarHandlerProps> {
 
           .snackbar__container--exiting,
           .snackbar__container--exited {
-            transform: translateY(120%);
+            transform: translate(-50%, 120%);
             z-index: 1;
           }
 
           @keyframes slideUp {
             from {
-              transform: translateY(120%);
+              transform: translate(-50%, 120%);
             }
 
             to {
-              transform: translateY(0%);
+              transform: translate(-50%, 0%);
             }
           }
         `}</style>

@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MessageIcon /> should render properly 1`] = `
+Array [
+  <Component
+    className="icon"
+    height={32}
+    key="icon"
+    width={32}
+  />,
+  <style
+    jsx={true}
+    key="style"
+  >
+    
+        .icon {
+          fill: #FAC9B8;
+          margin-right: 0.3rem;
+        }
+      
+  </style>,
+]
+`;
+
+exports[`<MessageIcon /> should render with different icon 1`] = `
+Array [
+  <Component
+    className="icon"
+    height={32}
+    key="icon"
+    width={32}
+  />,
+  <style
+    jsx={true}
+    key="style"
+  >
+    
+        .icon {
+          fill: #FAC9B8;
+          margin-right: 0.3rem;
+        }
+      
+  </style>,
+]
+`;
+
+exports[`<MessageIcon /> should render with different icon 2`] = `
+Array [
+  <Component
+    className="icon"
+    height={32}
+    key="icon"
+    width={32}
+  />,
+  <style
+    jsx={true}
+    key="style"
+  >
+    
+        .icon {
+          fill: #FAC9B8;
+          margin-right: 0.3rem;
+        }
+      
+  </style>,
+]
+`;
+
+exports[`<MessageIcon /> should render with different icon 3`] = `
+Array [
+  <Component
+    className="icon"
+    height={32}
+    key="icon"
+    width={32}
+  />,
+  <style
+    jsx={true}
+    key="style"
+  >
+    
+        .icon {
+          fill: #FAC9B8;
+          margin-right: 0.3rem;
+        }
+      
+  </style>,
+]
+`;
+
+exports[`<MessageIcon /> should render with different icon 4`] = `
+Array [
+  <Component
+    className="icon"
+    height={32}
+    key="icon"
+    width={32}
+  />,
+  <style
+    jsx={true}
+    key="style"
+  >
+    
+        .icon {
+          fill: #FAC9B8;
+          margin-right: 0.3rem;
+        }
+      
+  </style>,
+]
+`;
