@@ -1,4 +1,4 @@
-import Login from '@containers/Login';
+import Home from '@containers/Home';
 import React from 'react';
 
-export default (): React.ReactElement<Login> => <Login />;
+export default (): React.ReactElement<Home> => <Home />;
