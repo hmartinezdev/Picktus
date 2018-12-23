@@ -1,4 +1,5 @@
 import Home from '@containers/Home';
 import React from 'react';
+import { IPageProps } from './page.type';
 
-export default (): React.ReactElement<Home> => <Home />;
+export default (props: IPageProps): React.ReactElement<Home> => <Home {...props} />;

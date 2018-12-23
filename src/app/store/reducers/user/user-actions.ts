@@ -1,6 +1,7 @@
 import Authentication, { ISigninOptions, SigninMethods } from '@services/authentication';
 import AuthenticationError from '@services/authentication/AuthenticationError';
 import firebase from 'firebase';
+import Router from 'next/router';
 import { ThunkAction } from 'redux-thunk';
 import { IUserState } from './user.type';
 
@@ -108,6 +109,7 @@ export const signin = (method: SigninMethods, options: ISigninOptions): ThunkRes
   try {
     const user = await Authentication.signin(method, options);
     dispatch(userLoginSuccess(user));
+    Router.replace('/');
   } catch (e) {
     dispatch(userLoginFailure(e));
   }
