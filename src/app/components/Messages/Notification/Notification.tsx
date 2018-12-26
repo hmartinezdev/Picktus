@@ -14,7 +14,9 @@ class Notification extends Component<INotificationProps> {
     return (
       <div>
         <div className={`notification notification--${level}`}>
-          <MessageIcon level={level} />
+          <div className="iconContainer">
+            <MessageIcon level={level} />
+          </div>
           <p>{text}</p>
         </div>
         <style jsx>{`
@@ -26,7 +28,7 @@ class Notification extends Component<INotificationProps> {
             font-size: 1.05rem;
             font-family: 'Josefin Sans', sans-serif;
             color: ${colors.white};
-            width: 280px;
+            width: 100%;
             min-height: 5rem;
             background-color: ${colors.primary};
             border-radius: 3px;
@@ -43,6 +45,11 @@ class Notification extends Component<INotificationProps> {
 
           .notification--${PicktusMessageLevel.WARNING} {
             background-color: ${colors.warning};
+          }
+
+          .iconContainer {
+            min-width: 32px;
+            margin-right: 0.6rem;
           }
         `}</style>
       </div>

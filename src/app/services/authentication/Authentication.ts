@@ -106,6 +106,10 @@ class Authentication {
     return user;
   }
 
+  public disconnect() {
+    return;
+  }
+
   /**
    * Handle the generation of formated error
    *
@@ -159,6 +163,11 @@ class Authentication {
         return new AuthenticationError(
           `Authentication::${func} popin blocked by navigator`,
           'The authentication popin has been blocked by your navigator'
+        );
+      case FirebaseErrorCodes.CANCELLED_POPUP:
+        return new AuthenticationError(
+          `Authentication::${func} popin cancelled because a new one has been opened`,
+          'The previous authentication popup has been closed because you opened a new one'
         );
       default:
         return new AuthenticationError(

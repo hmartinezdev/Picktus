@@ -64,6 +64,7 @@ class NotificationHandler extends Component<INotificationHandlerProps> {
             transition: all 700ms ease-out;
             transform: translateX(120%);
             z-index: 1000;
+            max-width: 340px;
           }
 
           .notification__container--entering {

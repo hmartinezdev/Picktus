@@ -12,10 +12,10 @@ class Login extends Component<ILoginPropsType> {
     const { status } = this.props;
     return (
       <div className={`container container--${status}`}>
-        <div className={`login login--${status}`}>
+        <div className="login">
           <Logo />
         </div>
-        <div className={`form form--${status}`}>
+        <div className="form">
           <LoginHandler />
         </div>
         <style jsx>{`
@@ -35,8 +35,7 @@ class Login extends Component<ILoginPropsType> {
           .container--exiting,
           .container--exited {
             position: absolute;
-            left: 0;
-            top: 0;
+            opacity: 0;
           }
 
           .form {
@@ -51,14 +50,6 @@ class Login extends Component<ILoginPropsType> {
             transition: opacity 130ms ease-out;
           }
 
-          .form--exiting {
-            opacity: 0;
-          }
-
-          .form--exited {
-            opacity: 0;
-          }
-
           .login {
             background-color: ${colors.primary};
             box-shadow: 11px 10px 34px -7px rgba(0, 0, 0, 0.49);
@@ -68,49 +59,6 @@ class Login extends Component<ILoginPropsType> {
             transition: all 300ms ease-out;
             min-height: 8.5rem;
             max-height: 8.5rem;
-          }
-
-          .login--exiting {
-            animation: loginAnimation 600ms ease-out;
-          }
-
-          .logo-exit {
-            opacity: 1;
-          }
-          .logo-exit-active {
-            opacity: 0;
-            transition: all 130ms ease-out;
-          }
-
-          @keyframes loginAnimation {
-            0% {
-              position: initial;
-            }
-
-            24% {
-              position: initial;
-            }
-
-            25% {
-              position: absolute;
-              top: 0;
-            }
-
-            65% {
-              position: absolute;
-              top: 50%;
-              transform: translateY(-50%);
-              max-height: 100vh;
-            }
-
-            100% {
-              height: 100vh;
-              max-height: 100vh;
-              width: 100vw;
-              position: absolute;
-              top: 50%;
-              transform: translateY(-50%);
-            }
           }
         `}</style>
       </div>

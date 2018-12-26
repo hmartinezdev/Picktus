@@ -20,6 +20,7 @@ export enum FirebaseErrorCodes {
   EMAIL_ALREADY_USED = 'auth/email-already-in-use',
   POPUP_BLOCKED = 'auth/popup-blocked',
   WEAK_PASSWORD = 'auth/weak-password',
+  CANCELLED_POPUP = 'auth/cancelled-popup-request',
 }
 
 export interface ISigninOptions {
