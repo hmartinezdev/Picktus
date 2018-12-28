@@ -69,5 +69,5 @@ class App extends Component<IAppPropsType> {
     );
   }
 }
-
+export const test = App;
 export default withRouter(App);

@@ -1,17 +1,21 @@
 import Button from '@components/Button';
 import colors from '@constants/colors';
-import Authentication from '@services/authentication';
 import React, { Component } from 'react';
+import { IToolBarProps } from './ToolBar.type';
 
-class ToolBar extends Component {
+class ToolBar extends Component<IToolBarProps> {
   public render(): React.ReactElement<ToolBar> {
+    const { signout } = this.props;
+
     return (
       <div className="toolbar">
-        <Button text="disconnect" onClick={Authentication.disconnect} />
+        <Button text="disconnect" onClick={signout} />
         <style jsx>{`
           .toolbar {
-            height: 100vh;
-            width: 4rem;
+            display: flex;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
             background-color: ${colors.primary};
           }
         `}</style>

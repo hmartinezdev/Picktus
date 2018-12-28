@@ -3,6 +3,7 @@ import fetch from 'isomorphic-unfetch';
 import { incorrectUserCredentials, validUserCredentials } from './Authentication.mock';
 import Authentication, { SigninMethods } from './';
 import { FirebaseErrorCodes } from './Authentication.type';
+import Cookies from 'js-cookie';
 
 jest.mock('isomorphic-unfetch');
 
@@ -255,6 +256,52 @@ describe('Authentication service', () => {
     });
   });
 
+  describe('disconnect', () => {
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    let signOutSpy;
+
+    test('it should call firebase to create the new user', async () => {
+      const spyCook = jest.spyOn(Cookies, 'remove').mockImplementation(() => undefined);
+      const spyWindow = jest.spyOn(window.location, 'reload').mockImplementation(() => undefined);
+      signOutSpy = jest.fn(() => new Promise((resolve) => resolve()));
+      jest.spyOn(firebase, 'auth').mockImplementation(() => ({ signOut: signOutSpy }));
+
+      await Authentication.disconnect();
+      expect(firebase.auth).toHaveBeenCalledTimes(1);
+      expect(signOutSpy).toHaveBeenCalledTimes(1);
+      expect(spyCook).toHaveBeenCalledWith('session');
+      expect(spyWindow).toHaveBeenCalled();
+    });
+
+    test('it should throw an error if the user creation fails', async () => {
+      signOutSpy = jest.fn(
+        () =>
+          new Promise(() => {
+            throw new Error('test');
+          })
+      );
+
+      jest.spyOn(firebase, 'auth').mockImplementation(() => ({
+        signOut: signOutSpy,
+      }));
+
+      let error = null;
+
+      try {
+        await Authentication.disconnect();
+      } catch (e) {
+        error = e;
+      }
+
+      expect(firebase.auth).toHaveBeenCalledTimes(1);
+      expect(signOutSpy).toHaveBeenCalledTimes(1);
+      expect(error instanceof Error).toBe(true);
+    });
+  });
+
   describe('handleFirebaseError', () => {
     test('error message to fit the error code', () => {
       expect(
@@ -269,6 +316,7 @@ describe('Authentication service', () => {
       expect(Authentication.handleFirebaseError({ code: FirebaseErrorCodes.EMAIL_ALREADY_USED })).toMatchSnapshot();
       expect(Authentication.handleFirebaseError({ code: FirebaseErrorCodes.POPUP_BLOCKED })).toMatchSnapshot();
       expect(Authentication.handleFirebaseError({ code: FirebaseErrorCodes.WEAK_PASSWORD })).toMatchSnapshot();
+      expect(Authentication.handleFirebaseError({ code: FirebaseErrorCodes.CANCELLED_POPUP })).toMatchSnapshot();
       expect(Authentication.handleFirebaseError({ code: 'random' })).toMatchSnapshot();
     });
   });

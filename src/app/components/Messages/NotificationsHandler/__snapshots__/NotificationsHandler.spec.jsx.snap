@@ -19,6 +19,7 @@ exports[`<NotificationHandler /> should render properly 1`] = `
             transition: all 700ms ease-out;
             transform: translateX(120%);
             z-index: 1000;
+            max-width: 340px;
           }
 
           .notification__container--entering {
@@ -87,6 +88,7 @@ exports[`<NotificationHandler /> should render with notifications defined 1`] = 
             transition: all 700ms ease-out;
             transform: translateX(120%);
             z-index: 1000;
+            max-width: 340px;
           }
 
           .notification__container--entering {

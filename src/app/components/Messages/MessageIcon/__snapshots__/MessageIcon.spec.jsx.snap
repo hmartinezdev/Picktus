@@ -16,6 +16,8 @@ Array [
         .icon {
           fill: #FAC9B8;
           margin-right: 0.3rem;
+          min-height: 32;
+          min-width: 32;
         }
       
   </style>,
@@ -38,6 +40,8 @@ Array [
         .icon {
           fill: #FAC9B8;
           margin-right: 0.3rem;
+          min-height: 32;
+          min-width: 32;
         }
       
   </style>,
@@ -60,6 +64,8 @@ Array [
         .icon {
           fill: #FAC9B8;
           margin-right: 0.3rem;
+          min-height: 32;
+          min-width: 32;
         }
       
   </style>,
@@ -82,6 +88,8 @@ Array [
         .icon {
           fill: #FAC9B8;
           margin-right: 0.3rem;
+          min-height: 32;
+          min-width: 32;
         }
       
   </style>,
@@ -104,6 +112,8 @@ Array [
         .icon {
           fill: #FAC9B8;
           margin-right: 0.3rem;
+          min-height: 32;
+          min-width: 32;
         }
       
   </style>,

@@ -1,60 +1,138 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<App /> should render loader is showLoader is at true 1`] = `
-<div
-  className="page"
->
-  <Header />
-  <MessageHandler />
-  <Loader />
-  <div />
-  <style
-    jsx={true}
+<Background>
+  <div
+    className="page"
   >
-    
-          .page {
-            overflow: hidden;
-            min-height: 100vh;
-            background-color: #2d3047;
-          }
-          :global(*) {
-            padding: 0;
-            margin: 0;
-          }
+    <Header />
+    <MessageHandler />
+    <Loader />
+    <TransitionGroup
+      appear={false}
+      childFactory={[Function]}
+      className="app_transitiongroup"
+      component="div"
+    >
+      <Transition
+        appear={false}
+        enter={true}
+        exit={true}
+        in={false}
+        key="route/.0"
+        mountOnEnter={true}
+        onEnter={[Function]}
+        onEntered={[Function]}
+        onEntering={[Function]}
+        onExit={[Function]}
+        onExited={[Function]}
+        onExiting={[Function]}
+        timeout={600}
+        unmountOnExit={true}
+      >
+        <Component />
+      </Transition>
+    </TransitionGroup>
+    <style
+      jsx={true}
+    >
+      
+            .page {
+              overflow: hidden;
+              min-height: 100vh;
+              display: flex;
+              align-self: stretch;
+              overflow: hidden;
+              width: 100%;
+            }
 
-          :global(html) {
-            font-size: 100%;
-          }
-        
-  </style>
-</div>
+            :global(.app_transitiongroup) {
+              overflow: hidden;
+              min-height: 100vh;
+              display: flex;
+              align-self: stretch;
+              overflow: hidden;
+              width: 100%;
+            }
+
+            :global(*) {
+              padding: 0;
+              margin: 0;
+            }
+
+            :global(html) {
+              font-size: 100%;
+            }
+          
+    </style>
+  </div>
+</Background>
 `;
 
 exports[`<App /> should render properly 1`] = `
-<div
-  className="page"
->
-  <Header />
-  <MessageHandler />
-  <div />
-  <style
-    jsx={true}
+<Background>
+  <div
+    className="page"
   >
-    
-          .page {
-            overflow: hidden;
-            min-height: 100vh;
-            background-color: #2d3047;
-          }
-          :global(*) {
-            padding: 0;
-            margin: 0;
-          }
+    <Header />
+    <MessageHandler />
+    <TransitionGroup
+      appear={false}
+      childFactory={[Function]}
+      className="app_transitiongroup"
+      component="div"
+    >
+      <Transition
+        appear={false}
+        enter={true}
+        exit={true}
+        in={false}
+        key="route/.0"
+        mountOnEnter={true}
+        onEnter={[Function]}
+        onEntered={[Function]}
+        onEntering={[Function]}
+        onExit={[Function]}
+        onExited={[Function]}
+        onExiting={[Function]}
+        timeout={600}
+        unmountOnExit={true}
+      >
+        <Component />
+      </Transition>
+    </TransitionGroup>
+    <style
+      jsx={true}
+    >
+      
+            .page {
+              overflow: hidden;
+              min-height: 100vh;
+              display: flex;
+              align-self: stretch;
+              overflow: hidden;
+              width: 100%;
+            }
 
-          :global(html) {
-            font-size: 100%;
-          }
-        
-  </style>
-</div>
+            :global(.app_transitiongroup) {
+              overflow: hidden;
+              min-height: 100vh;
+              display: flex;
+              align-self: stretch;
+              overflow: hidden;
+              width: 100%;
+            }
+
+            :global(*) {
+              padding: 0;
+              margin: 0;
+            }
+
+            :global(html) {
+              font-size: 100%;
+            }
+          
+    </style>
+  </div>
+</Background>
 `;

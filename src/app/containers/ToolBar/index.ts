@@ -1,3 +1,3 @@
-import ToolBar from './ToolBar';
+import ToolBarConnected from './ToolBarConnected';
 
-export default ToolBar;
+export default ToolBarConnected;

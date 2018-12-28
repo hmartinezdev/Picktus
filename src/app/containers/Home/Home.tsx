@@ -17,7 +17,7 @@ class Home extends Component {
             display: flex;
             flex-direction: column;
             width: 100%;
-            height: 100vh;
+            height: 100%;
             display: flex;
             align-items: center;
             flex-direction: column;
@@ -34,6 +34,15 @@ class Home extends Component {
           }
 
           .toolbarContainer {
+            display: flex;
+            align-items: flex-start;
+            height: 100%;
+            width: 12.5rem;
+          }
+
+          .toolbarAnimation {
+            height: 100%;
+            width: 100%;
           }
         `}</style>
       </div>

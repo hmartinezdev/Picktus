@@ -1,6 +1,8 @@
+import { session } from '@constants/cookies';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import fetch from 'isomorphic-unfetch';
+import Cookies from 'js-cookie';
 import {
   delegatedMethods,
   FirebaseErrorCodes,
@@ -106,8 +108,21 @@ class Authentication {
     return user;
   }
 
-  public disconnect() {
-    return;
+  public async disconnect() {
+    await firebase
+      .auth()
+      .signOut()
+      .catch((error) => {
+        throw this.handleFirebaseError(error, 'signout');
+      });
+
+    // Remove the cookie set in session
+    Cookies.remove(session);
+
+    // reloading page to ensure the user is disconnected
+    if ((window || {}).location) {
+      window.location.reload();
+    }
   }
 
   /**
