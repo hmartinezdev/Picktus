@@ -1,15 +1,16 @@
 import { mount, shallow } from 'enzyme';
 import firebase, { initializeApp } from 'firebase/app';
 import React from 'react';
-import App from './App';
+import { test as App } from './App';
 import { config } from './constants';
 
 let wrapper;
 let spy;
+const baseProps = { router: { route: 'route' } };
 
-const setup = (props = {}) =>
+const setup = (props = baseProps) =>
   shallow(
-    <App {...props}>
+    <App {...baseProps} {...props}>
       <div />
     </App>
   );

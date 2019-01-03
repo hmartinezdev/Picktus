@@ -1,5 +1,6 @@
 import ErrorSvg from '@assets/svg/error.svg';
 import colors from '@constants/colors';
+import { borderRadius, fontFamily } from '@constants/styles';
 import React, { Component } from 'react';
 
 export interface IFormErrorPropsType {
@@ -23,7 +24,7 @@ class FormError extends Component<IFormErrorPropsType> {
           .container {
             display: flex;
             align-items: center;
-            font-family: 'Josefin Sans', sans-serif;
+            font-family: ${fontFamily};
             font-size: 0.7rem;
             color: ${colors.white};
             width: 100%;
@@ -33,7 +34,7 @@ class FormError extends Component<IFormErrorPropsType> {
             transition: 0.4s;
             outline: none;
             background-color: ${colors.error}cd;
-            border-radius: 3px;
+            border-radius: ${borderRadius};
             margin: 0.5rem 0;
           }
 

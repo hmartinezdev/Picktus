@@ -1,67 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Login /> should render properly 1`] = `
-<Background>
+<div
+  className="container container--undefined"
+>
   <div
-    className="container"
+    className="login"
   >
-    <div
-      className="login"
-    >
-      <Logo />
-    </div>
-    <div
-      className="form"
-    >
-      <Connect(LoginHandler) />
-    </div>
-    <style
-      jsx={true}
-    >
-      
-            .container {
-              width: 100%;
-              height: 100vh;
-              display: flex;
-              align-items: center;
-              flex-direction: column;
-              padding: 2rem 0;
-              box-sizing: border-box;
-              overflow: auto;
-            }
-
-            .form {
-              height: 100%;
-              width: 100%;
-              display: flex;
-              flex-direction: column;
-              justify-content: flex-start;
-              align-items: center;
-              margin-top: 2.5rem;
-            }
-
-            .login {
-              background-color: #2d3047cd;
-              box-shadow: 11px 10px 34px -7px rgba(0, 0, 0, 0.49);
-              display: flex;
-              position: relative;
-              border-radius: 3px;
-            }
-
-            .login::after {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              content: '';
-              width: calc(100% + 1.2rem);
-              height: calc(100% + 1.2rem);
-              border: 2px solid transparent;
-              border-image: linear-gradient(to bottom, #2d3047 60%, #FAC9B8 100%);
-              border-image-slice: 1;
-            }
-          
-    </style>
+    <Logo />
   </div>
-</Background>
+  <div
+    className="form"
+  >
+    <Connect(LoginHandler) />
+  </div>
+  <style
+    jsx={true}
+  >
+    
+          .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 2rem 0;
+            box-sizing: border-box;
+            overflow: auto;
+            opacity: 1;
+            transition: opacity 300ms ease-out;
+          }
+
+          .container--exiting,
+          .container--exited {
+            position: absolute;
+            opacity: 0;
+          }
+
+          .form {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 2.5rem;
+            opacity: 1;
+            transition: opacity 130ms ease-out;
+          }
+
+          .login {
+            background-color: #2d3047;
+            box-shadow: 11px 10px 34px -7px rgba(0, 0, 0, 0.49);
+            display: flex;
+            position: relative;
+            border-radius: 3px;
+            transition: all 300ms ease-out;
+            min-height: 8.5rem;
+            max-height: 8.5rem;
+          }
+        
+  </style>
+</div>
 `;

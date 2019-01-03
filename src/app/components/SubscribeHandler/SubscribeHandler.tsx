@@ -3,6 +3,7 @@ import FormError from '@components/FormError';
 import Input from '@components/Input';
 import TextSwitchButton from '@components/TextSwitchButton';
 import colors from '@constants/colors';
+import { borderRadius } from '@constants/styles';
 import classnames from 'classnames';
 import React, { ChangeEvent, PureComponent } from 'react';
 import Transition from 'react-transition-group/Transition';
@@ -166,7 +167,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border-radius: 3px;
+            border-radius: ${borderRadius};
             min-height: calc(100% - 4.3rem);
             padding: 1.5rem 0;
             background-color: ${colors.primary};

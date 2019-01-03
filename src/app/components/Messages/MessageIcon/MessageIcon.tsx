@@ -44,6 +44,8 @@ class MessageIcon extends Component<IMessageIconProps> {
         .icon {
           fill: ${colors.secondary};
           margin-right: 0.3rem;
+          min-height: ${rest.height};
+          min-width: ${rest.width};
         }
       `}</style>,
     ];

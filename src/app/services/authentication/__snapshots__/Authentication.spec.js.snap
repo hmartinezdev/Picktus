@@ -20,4 +20,6 @@ exports[`Authentication service handleFirebaseError error message to fit the err
 
 exports[`Authentication service handleFirebaseError error message to fit the error code 10`] = `[Error: Authentication::undefined popin blocked by navigator]`;
 
-exports[`Authentication service handleFirebaseError error message to fit the error code 11`] = `[Error: Authentication::undefined Unknown error: random::undefined]`;
+exports[`Authentication service handleFirebaseError error message to fit the error code 11`] = `[Error: Authentication::undefined popin cancelled because a new one has been opened]`;
+
+exports[`Authentication service handleFirebaseError error message to fit the error code 12`] = `[Error: Authentication::undefined Unknown error: random::undefined]`;

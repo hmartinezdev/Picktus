@@ -1,9 +1,11 @@
+import Background from '@components/Background';
 import Header from '@components/Header';
 import Loader from '@components/Loader';
 import Messages from '@components/Messages';
-import colors from '@constants/colors';
 import firebase from 'firebase/app';
+import { withRouter } from 'next/router';
 import React, { Component } from 'react';
+import { Transition, TransitionGroup } from 'react-transition-group';
 import { IAppPropsType } from './App.type';
 import { config } from './constants';
 
@@ -19,31 +21,53 @@ class App extends Component<IAppPropsType> {
   }
 
   public render(): React.ReactElement<App> {
-    const { children, showLoader } = this.props;
-    return (
-      <div className="page">
-        <Header />
-        <Messages />
-        {showLoader && <Loader />}
-        {children}
-        <style jsx>{`
-          .page {
-            overflow: hidden;
-            min-height: 100vh;
-            background-color: ${colors.primary};
-          }
-          :global(*) {
-            padding: 0;
-            margin: 0;
-          }
+    const { children, showLoader, router } = this.props;
 
-          :global(html) {
-            font-size: 100%;
-          }
-        `}</style>
-      </div>
+    return (
+      <Background>
+        <div className="page">
+          <Header />
+          <Messages />
+          {showLoader && <Loader />}
+          <TransitionGroup className="app_transitiongroup" appear={false}>
+            {React.Children.map(children, (child) => (
+              <Transition key={router.route} timeout={600} mountOnEnter={true} unmountOnExit={true} appear={false}>
+                {(status) => React.cloneElement(child as React.ReactElement<any>, { status })}
+              </Transition>
+            ))}
+          </TransitionGroup>
+          <style jsx>{`
+            .page {
+              overflow: hidden;
+              min-height: 100vh;
+              display: flex;
+              align-self: stretch;
+              overflow: hidden;
+              width: 100%;
+            }
+
+            :global(.app_transitiongroup) {
+              overflow: hidden;
+              min-height: 100vh;
+              display: flex;
+              align-self: stretch;
+              overflow: hidden;
+              width: 100%;
+            }
+
+            :global(*) {
+              padding: 0;
+              margin: 0;
+            }
+
+            :global(html) {
+              font-size: 100%;
+            }
+          `}</style>
+        </div>
+      </Background>
     );
   }
 }
-
-export default App;
+export const test = App;
+export default withRouter(App);

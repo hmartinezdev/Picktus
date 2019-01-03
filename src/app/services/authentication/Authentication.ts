@@ -1,6 +1,8 @@
+import { session } from '@constants/cookies';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import fetch from 'isomorphic-unfetch';
+import Cookies from 'js-cookie';
 import {
   delegatedMethods,
   FirebaseErrorCodes,
@@ -106,6 +108,23 @@ class Authentication {
     return user;
   }
 
+  public async disconnect() {
+    await firebase
+      .auth()
+      .signOut()
+      .catch((error) => {
+        throw this.handleFirebaseError(error, 'signout');
+      });
+
+    // Remove the cookie set in session
+    Cookies.remove(session);
+
+    // reloading page to ensure the user is disconnected
+    if ((window || {}).location) {
+      window.location.reload();
+    }
+  }
+
   /**
    * Handle the generation of formated error
    *
@@ -159,6 +178,11 @@ class Authentication {
         return new AuthenticationError(
           `Authentication::${func} popin blocked by navigator`,
           'The authentication popin has been blocked by your navigator'
+        );
+      case FirebaseErrorCodes.CANCELLED_POPUP:
+        return new AuthenticationError(
+          `Authentication::${func} popin cancelled because a new one has been opened`,
+          'The previous authentication popup has been closed because you opened a new one'
         );
       default:
         return new AuthenticationError(

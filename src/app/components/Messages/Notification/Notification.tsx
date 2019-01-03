@@ -1,4 +1,5 @@
 import colors from '@constants/colors';
+import { borderRadius, boxShadow, fontFamily } from '@constants/styles';
 import { PicktusMessageLevel } from '@store/reducers/message';
 import React, { Component } from 'react';
 import MessageIcon from '../MessageIcon';
@@ -14,7 +15,9 @@ class Notification extends Component<INotificationProps> {
     return (
       <div>
         <div className={`notification notification--${level}`}>
-          <MessageIcon level={level} />
+          <div className="iconContainer">
+            <MessageIcon level={level} />
+          </div>
           <p>{text}</p>
         </div>
         <style jsx>{`
@@ -24,13 +27,13 @@ class Notification extends Component<INotificationProps> {
             box-sizing: border-box;
             padding: 1rem;
             font-size: 1.05rem;
-            font-family: 'Josefin Sans', sans-serif;
+            font-family: ${fontFamily};
             color: ${colors.white};
-            width: 280px;
+            width: 100%;
             min-height: 5rem;
             background-color: ${colors.primary};
-            border-radius: 3px;
-            box-shadow: 11px 10px 34px -7px rgba(0, 0, 0, 0.49);
+            border-radius: ${borderRadius};
+            box-shadow: ${boxShadow};
           }
 
           .notification--${PicktusMessageLevel.ERROR} {
@@ -43,6 +46,11 @@ class Notification extends Component<INotificationProps> {
 
           .notification--${PicktusMessageLevel.WARNING} {
             background-color: ${colors.warning};
+          }
+
+          .iconContainer {
+            min-width: 32px;
+            margin-right: 0.6rem;
           }
         `}</style>
       </div>

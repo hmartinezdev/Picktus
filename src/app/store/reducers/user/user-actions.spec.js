@@ -38,7 +38,7 @@ describe('actions', () => {
     const expectedAction = {
       type: actions.TypeKeys.USER_CREATION_SUCCESS,
     }
-    expect(actions.UserCreationSuccess()).toEqual(expectedAction)
+    expect(actions.userCreationSuccess()).toEqual(expectedAction)
   })
 
   it('should create an action to display an error when user creation failed', () => {
@@ -130,5 +130,35 @@ describe('actions', () => {
     });
 
   });
+
+  describe('signout', () => {
+    it('should return an async function when called', () => {
+      expect(typeof actions.userCreation() === 'function').toEqual(true);
+    });
+
+    it('should dispatch userSignOutStart action and then a userSignOutSuccess if the user signout worked', async () => {
+      const dispatchSpy = jest.fn();
+      const AuthSpy = jest.spyOn(Authentication, 'disconnect').mockImplementation(() => undefined);
+      await actions.signout()(dispatchSpy);
+      expect(AuthSpy).toHaveBeenCalled();
+      expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_SIGNOUT_START});
+      expect(dispatchSpy).toHaveBeenNthCalledWith(2, {type: actions.TypeKeys.USER_SIGNOUT_SUCCESS});
+    });
+
+
+    it('should dispatch userSignOutStart action and then a userSignOutFailure if the user signout failed', async  () => {
+      const dispatchSpy = jest.fn();
+      const error = new Error('test');
+      const AuthSpy = jest.spyOn(Authentication, 'disconnect').mockImplementation(() => {
+        throw error
+      });
+      await actions.signout()(dispatchSpy);
+      expect(AuthSpy).toHaveBeenCalled();
+      expect(dispatchSpy).toHaveBeenNthCalledWith(1, {type: actions.TypeKeys.USER_SIGNOUT_START});
+      expect(dispatchSpy).toHaveBeenNthCalledWith(2, {type: actions.TypeKeys.USER_SIGNOUT_FAILURE, error });
+    });
+
+  });
+
 
 })

@@ -1,4 +1,5 @@
 import colors from '@constants/colors';
+import { borderRadius, fontFamily } from '@constants/styles';
 import { PicktusMessageLevel } from '@store/reducers/message';
 import React, { Component } from 'react';
 import MessageIcon from '../MessageIcon';
@@ -22,13 +23,13 @@ class SnackBar extends Component<ISnackBarProps> {
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Josefin Sans', sans-serif;
+            font-family: ${fontFamily};
             background: ${colors.primary};
             padding: 15px;
             color: ${colors.white};
             font-size: 16px;
             box-shadow: 0 0 25px rgba(33, 33, 33, 0.5);
-            border-radius: 3px;
+            border-radius: ${borderRadius};
             box-sizing: border-box;
             animation: 0.3s down ease 1;
           }

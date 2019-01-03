@@ -62,7 +62,12 @@ server.post('/sessionlogin', (req, res) => {
 server.get('*', async (req, res) => {
   const user = await authenticate(req, res);
   req.firebaseUser = user;
-  return handle(req, res);
+
+  if (!user) {
+    app.render(req, res, '/login');
+  } else {
+    handle(req, res);
+  }
 });
 
 module.exports = { server, app };

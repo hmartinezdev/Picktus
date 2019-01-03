@@ -1,4 +1,5 @@
 import colors from '@constants/colors';
+import { borderRadius, fontFamily } from '@constants/styles';
 import React, { ChangeEvent, Component } from 'react';
 
 export interface IInputPropTypes {
@@ -37,7 +38,7 @@ class Input extends Component<IInputPropTypes, InputState> {
           }
 
           .input {
-            font-family: 'Josefin Sans', sans-serif;
+            font-family: ${fontFamily};
             font-size: 0.75rem;
             color: ${colors.secondary};
             width: 100%;
@@ -48,7 +49,7 @@ class Input extends Component<IInputPropTypes, InputState> {
             transition: 0.4s;
             outline: none;
             background-color: ${colors.primary}00;
-            border-radius: 3px;
+            border-radius: ${borderRadius};
           }
 
           .input::placeholder {

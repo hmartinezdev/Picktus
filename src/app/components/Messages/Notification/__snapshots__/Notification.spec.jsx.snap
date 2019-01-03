@@ -5,10 +5,14 @@ exports[`<Notification /> should render properly 1`] = `
   <div
     className="notification notification--undefined"
   >
-    <MessageIcon
-      height={32}
-      width={32}
-    />
+    <div
+      className="iconContainer"
+    >
+      <MessageIcon
+        height={32}
+        width={32}
+      />
+    </div>
     <p />
   </div>
   <style
@@ -23,7 +27,7 @@ exports[`<Notification /> should render properly 1`] = `
             font-size: 1.05rem;
             font-family: 'Josefin Sans', sans-serif;
             color: #F8F8F7;
-            width: 280px;
+            width: 100%;
             min-height: 5rem;
             background-color: #2d3047;
             border-radius: 3px;
@@ -40,6 +44,11 @@ exports[`<Notification /> should render properly 1`] = `
 
           .notification--WARNING {
             background-color: #E37E5B;
+          }
+
+          .iconContainer {
+            min-width: 32px;
+            margin-right: 0.6rem;
           }
         
   </style>
@@ -51,11 +60,15 @@ exports[`<Notification /> should render with different icon 1`] = `
   <div
     className="notification notification--ERROR"
   >
-    <MessageIcon
-      height={32}
-      level="ERROR"
-      width={32}
-    />
+    <div
+      className="iconContainer"
+    >
+      <MessageIcon
+        height={32}
+        level="ERROR"
+        width={32}
+      />
+    </div>
     <p>
       error
     </p>
@@ -72,7 +85,7 @@ exports[`<Notification /> should render with different icon 1`] = `
             font-size: 1.05rem;
             font-family: 'Josefin Sans', sans-serif;
             color: #F8F8F7;
-            width: 280px;
+            width: 100%;
             min-height: 5rem;
             background-color: #2d3047;
             border-radius: 3px;
@@ -89,6 +102,11 @@ exports[`<Notification /> should render with different icon 1`] = `
 
           .notification--WARNING {
             background-color: #E37E5B;
+          }
+
+          .iconContainer {
+            min-width: 32px;
+            margin-right: 0.6rem;
           }
         
   </style>
@@ -100,11 +118,15 @@ exports[`<Notification /> should render with different icon 2`] = `
   <div
     className="notification notification--SUCCESS"
   >
-    <MessageIcon
-      height={32}
-      level="SUCCESS"
-      width={32}
-    />
+    <div
+      className="iconContainer"
+    >
+      <MessageIcon
+        height={32}
+        level="SUCCESS"
+        width={32}
+      />
+    </div>
     <p>
       error
     </p>
@@ -121,7 +143,7 @@ exports[`<Notification /> should render with different icon 2`] = `
             font-size: 1.05rem;
             font-family: 'Josefin Sans', sans-serif;
             color: #F8F8F7;
-            width: 280px;
+            width: 100%;
             min-height: 5rem;
             background-color: #2d3047;
             border-radius: 3px;
@@ -138,6 +160,11 @@ exports[`<Notification /> should render with different icon 2`] = `
 
           .notification--WARNING {
             background-color: #E37E5B;
+          }
+
+          .iconContainer {
+            min-width: 32px;
+            margin-right: 0.6rem;
           }
         
   </style>
@@ -149,11 +176,15 @@ exports[`<Notification /> should render with different icon 3`] = `
   <div
     className="notification notification--WARNING"
   >
-    <MessageIcon
-      height={32}
-      level="WARNING"
-      width={32}
-    />
+    <div
+      className="iconContainer"
+    >
+      <MessageIcon
+        height={32}
+        level="WARNING"
+        width={32}
+      />
+    </div>
     <p>
       error
     </p>
@@ -170,7 +201,7 @@ exports[`<Notification /> should render with different icon 3`] = `
             font-size: 1.05rem;
             font-family: 'Josefin Sans', sans-serif;
             color: #F8F8F7;
-            width: 280px;
+            width: 100%;
             min-height: 5rem;
             background-color: #2d3047;
             border-radius: 3px;
@@ -187,6 +218,11 @@ exports[`<Notification /> should render with different icon 3`] = `
 
           .notification--WARNING {
             background-color: #E37E5B;
+          }
+
+          .iconContainer {
+            min-width: 32px;
+            margin-right: 0.6rem;
           }
         
   </style>
@@ -198,11 +234,15 @@ exports[`<Notification /> should render with different icon 4`] = `
   <div
     className="notification notification--INFO"
   >
-    <MessageIcon
-      height={32}
-      level="INFO"
-      width={32}
-    />
+    <div
+      className="iconContainer"
+    >
+      <MessageIcon
+        height={32}
+        level="INFO"
+        width={32}
+      />
+    </div>
     <p>
       error
     </p>
@@ -219,7 +259,7 @@ exports[`<Notification /> should render with different icon 4`] = `
             font-size: 1.05rem;
             font-family: 'Josefin Sans', sans-serif;
             color: #F8F8F7;
-            width: 280px;
+            width: 100%;
             min-height: 5rem;
             background-color: #2d3047;
             border-radius: 3px;
@@ -236,6 +276,11 @@ exports[`<Notification /> should render with different icon 4`] = `
 
           .notification--WARNING {
             background-color: #E37E5B;
+          }
+
+          .iconContainer {
+            min-width: 32px;
+            margin-right: 0.6rem;
           }
         
   </style>

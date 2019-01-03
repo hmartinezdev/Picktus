@@ -1,5 +1,6 @@
 import SvgLogo from '@assets/svg/logo.svg';
 import colors from '@constants/colors';
+import { fontFamily } from '@constants/styles';
 import React, { Component } from 'react';
 
 class Logo extends Component {
@@ -19,7 +20,7 @@ class Logo extends Component {
             font-family: 'Caveat', cursive;
             font-size: 5rem;
             line-height: 4rem;
-            font-family: 'Josefin Sans', sans-serif;
+            font-family: ${fontFamily};
           }
 
           .logoContainer {
