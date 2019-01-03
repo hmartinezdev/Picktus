@@ -1,6 +1,7 @@
 import LoginHandler from '@components/LoginHandler';
 import Logo from '@components/Logo';
 import colors from '@constants/colors';
+import { borderRadius, boxShadow } from '@constants/styles';
 import React, { Component } from 'react';
 
 export interface ILoginPropsType {
@@ -52,10 +53,10 @@ class Login extends Component<ILoginPropsType> {
 
           .login {
             background-color: ${colors.primary};
-            box-shadow: 11px 10px 34px -7px rgba(0, 0, 0, 0.49);
+            box-shadow: ${boxShadow};
             display: flex;
             position: relative;
-            border-radius: 3px;
+            border-radius: ${borderRadius};
             transition: all 300ms ease-out;
             min-height: 8.5rem;
             max-height: 8.5rem;

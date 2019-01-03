@@ -1,4 +1,5 @@
 import colors from '@constants/colors';
+import { borderRadius, fontFamily } from '@constants/styles';
 import React, { Component } from 'react';
 import { Transition } from 'react-transition-group';
 
@@ -53,8 +54,8 @@ class Button extends Component<ITextSwitchButtonPropTypes, ITextSwitchButtonStat
             position: relative;
             text-align: center;
             cursor: pointer;
-            font-family: 'Josefin Sans', sans-serif;
-            border-radius: 3px;
+            font-family: ${fontFamily};
+            border-radius: ${borderRadius};
             padding: 0 0.7rem;
             width: 100%;
             height: 2.35rem;
@@ -78,7 +79,7 @@ class Button extends Component<ITextSwitchButtonPropTypes, ITextSwitchButtonStat
             background-color: ${colors.secondary};
             transition-property: transform, opacity;
             transition: 0.3s ease-out;
-            border-radius: 3px;
+            border-radius: ${borderRadius};
             cursor: pointer;
           }
 
@@ -100,7 +101,7 @@ class Button extends Component<ITextSwitchButtonPropTypes, ITextSwitchButtonStat
             transition: 0.3s ease-out;
             transform: scale(0.7, 0.7);
             background-color: ${colors.primary};
-            border-radius: 3px;
+            border-radius: ${borderRadius};
             cursor: pointer;
           }
 

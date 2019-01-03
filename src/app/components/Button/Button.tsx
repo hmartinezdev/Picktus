@@ -1,4 +1,5 @@
 import colors from '@constants/colors';
+import { borderRadius, fontFamily } from '@constants/styles';
 import React, { Component } from 'react';
 
 export interface IButtonPropTypes {
@@ -28,8 +29,8 @@ class Button extends Component<IButtonPropTypes, {}> {
             position: relative;
             text-align: center;
             cursor: pointer;
-            font-family: 'Josefin Sans', sans-serif;
-            border-radius: 3px;
+            font-family: ${fontFamily};
+            border-radius: ${borderRadius};
             padding: 0 0.7rem;
             width: 75%;
             height: 2.35rem;
@@ -79,7 +80,7 @@ class Button extends Component<IButtonPropTypes, {}> {
             height: 100%;
             background-color: ${colors.blue}45;
             transition: all 0.3s;
-            border-radius: 3px;
+            border-radius: ${borderRadius};
             cursor: pointer;
           }
           .button:hover::before {
@@ -98,7 +99,7 @@ class Button extends Component<IButtonPropTypes, {}> {
             transition: all 0.3s;
             border: 1px solid ${colors.lightGreen}ca;
             transform: scale(0.7, 0.7);
-            border-radius: 3px;
+            border-radius: ${borderRadius};
             cursor: pointer;
           }
 

@@ -5,6 +5,7 @@ import Button from '@components/Button';
 import Input from '@components/Input';
 import SubscribeHandler from '@components/SubscribeHandler';
 import colors from '@constants/colors';
+import { borderRadius, boxShadow } from '@constants/styles';
 import { SigninMethods } from '@services/authentication';
 import React, { ChangeEvent, Component } from 'react';
 import { ILoginHandlerProps, ILoginHandlerState } from './LoginHandler.type';
@@ -82,8 +83,8 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
             min-width: 22rem;
             padding: 1.5rem 0;
             box-sizing: border-box;
-            border-radius: 3px;
-            box-shadow: 11px 10px 34px -7px rgba(0, 0, 0, 0.49);
+            border-radius: ${borderRadius};
+            box-shadow: ${boxShadow};
           }
 
           .socialButtons {
