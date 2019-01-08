@@ -2,4 +2,8 @@ import Login from '@containers/Login';
 import React from 'react';
 import { IPageProps } from '../page.type';
 
-export default (props: IPageProps): React.ReactElement<Login> => <Login {...props} />;
+const LoginPage = (props: IPageProps): React.ReactElement<Login> => <Login {...props} />;
+
+LoginPage.displayName = 'LoginPage';
+
+export default LoginPage;

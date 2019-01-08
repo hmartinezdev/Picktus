@@ -2,7 +2,7 @@
 
 exports[`<Home /> should render properly 1`] = `
 <div
-  className="container"
+  className="container container--undefined"
 >
   <div
     className="toolbarContainer"
@@ -25,6 +25,8 @@ exports[`<Home /> should render properly 1`] = `
             overflow: auto;
             opacity: 1;
             align-items: flex-start;
+            transition: opacity 300ms ease-out;
+            background-color: #2d3047cd;
           }
 
           .container--exiting,

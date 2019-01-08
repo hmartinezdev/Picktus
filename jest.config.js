@@ -3,6 +3,7 @@ module.exports = {
   preset: 'ts-jest/presets/js-with-ts',
   moduleNameMapper: {
     '^@containers(.*)$': '<rootDir>/src/app/containers$1',
+    '^@pages(.*)$': '<rootDir>/src/app/pages$1',
     '^@components(.*)$': '<rootDir>/src/app/components$1',
     '^@constants(.*)$': '<rootDir>/src/app/constants$1',
     '^@libs(.*)$': '<rootDir>/src/app/libs$1',

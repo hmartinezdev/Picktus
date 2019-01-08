@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<App /> should render properly 1`] = `
-<withRouter(App)
+<App
   showLoader={false}
   store={
     Object {
@@ -37,5 +37,5 @@ exports[`<App /> should render properly 1`] = `
   userLoginSuccess={[Function]}
 >
   <div />
-</withRouter(App)>
+</App>
 `;

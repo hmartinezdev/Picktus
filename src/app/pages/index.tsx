@@ -2,4 +2,8 @@ import Home from '@containers/Home';
 import React from 'react';
 import { IPageProps } from './page.type';
 
-export default (props: IPageProps): React.ReactElement<Home> => <Home {...props} />;
+const HomePage = (props: IPageProps): React.ReactElement<Home> => <Home {...props} />;
+
+HomePage.displayName = 'HomePage';
+
+export default HomePage;

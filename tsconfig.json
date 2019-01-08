@@ -6,6 +6,7 @@
       "@components/*": ["./src/app/components/*"],
       "@constants/*": ["./src/app/constants/*"],
       "@libs/*": ["./src/app/libs/*"],
+      "@pages/*": ["./src/app/pages/*"],
       "@services/*": ["./src/app/services/*"],
       "@assets/*": ["./src/app/assets/*"],
       "@store/*": ["./src/app/store/*"]

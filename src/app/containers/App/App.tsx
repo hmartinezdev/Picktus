@@ -2,8 +2,8 @@ import Background from '@components/Background';
 import Header from '@components/Header';
 import Loader from '@components/Loader';
 import Messages from '@components/Messages';
+import { Page } from '@pages/page.type';
 import firebase from 'firebase/app';
-import { withRouter } from 'next/router';
 import React, { Component } from 'react';
 import { Transition, TransitionGroup } from 'react-transition-group';
 import { IAppPropsType } from './App.type';
@@ -21,7 +21,7 @@ class App extends Component<IAppPropsType> {
   }
 
   public render(): React.ReactElement<App> {
-    const { children, showLoader, router } = this.props;
+    const { children, showLoader } = this.props;
 
     return (
       <Background>
@@ -31,8 +31,14 @@ class App extends Component<IAppPropsType> {
           {showLoader && <Loader />}
           <TransitionGroup className="app_transitiongroup" appear={false}>
             {React.Children.map(children, (child) => (
-              <Transition key={router.route} timeout={600} mountOnEnter={true} unmountOnExit={true} appear={false}>
-                {(status) => React.cloneElement(child as React.ReactElement<any>, { status })}
+              <Transition
+                key={(child as Page).type.displayName || ''}
+                timeout={600}
+                mountOnEnter={true}
+                unmountOnExit={true}
+                appear={false}
+              >
+                {(status) => React.cloneElement(child as Page, { status })}
               </Transition>
             ))}
           </TransitionGroup>
@@ -69,5 +75,5 @@ class App extends Component<IAppPropsType> {
     );
   }
 }
-export const test = App;
-export default withRouter(App);
+
+export default App;

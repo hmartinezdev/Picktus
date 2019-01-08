@@ -1,3 +1,4 @@
+import colors from '@constants/colors';
 import ToolBar from '@containers/ToolBar';
 import React, { Component } from 'react';
 
@@ -5,10 +6,12 @@ export interface IHomePropsType {
   status: string;
 }
 
-class Home extends Component {
+class Home extends Component<IHomePropsType> {
   public render(): React.ReactElement<Home> {
+    const { status } = this.props;
+
     return (
-      <div className="container">
+      <div className={`container container--${status}`}>
         <div className="toolbarContainer">
           <ToolBar />
         </div>
@@ -25,6 +28,8 @@ class Home extends Component {
             overflow: auto;
             opacity: 1;
             align-items: flex-start;
+            transition: opacity 300ms ease-out;
+            background-color: ${colors.primary}cd;
           }
 
           .container--exiting,

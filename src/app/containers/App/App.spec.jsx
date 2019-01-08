@@ -1,7 +1,7 @@
 import { mount, shallow } from 'enzyme';
 import firebase, { initializeApp } from 'firebase/app';
 import React from 'react';
-import { test as App } from './App';
+import App from './App';
 import { config } from './constants';
 
 let wrapper;
