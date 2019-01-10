@@ -33,7 +33,7 @@ class Input extends Component<IInputPropTypes, InputState> {
         <style jsx>{`
           .container {
             position: relative;
-            width: 75%;
+            width: 100%;
             margin: 0.7rem 0;
           }
 

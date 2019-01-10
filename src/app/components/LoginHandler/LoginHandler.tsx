@@ -3,10 +3,10 @@ import Google from '@assets/svg/googleplus.svg';
 import Twitter from '@assets/svg/twitter.svg';
 import Button from '@components/Button';
 import Input from '@components/Input';
-import SubscribeHandler from '@components/SubscribeHandler';
 import colors from '@constants/colors';
 import { borderRadius, boxShadow } from '@constants/styles';
 import { SigninMethods } from '@services/authentication';
+import Router from 'next/router';
 import React, { ChangeEvent, Component } from 'react';
 import { ILoginHandlerProps, ILoginHandlerState } from './LoginHandler.type';
 
@@ -50,13 +50,19 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
     signin(SigninMethods.TWITTER, {});
   };
 
+  public onSubscribeClick = () => {
+    Router.push('/subscribe');
+  };
+
   public render(): React.ReactElement<LoginHandler> {
     return (
       <div className="container">
         <div className="login">
-          <Input placeholder="Mail" onChange={this.onChange} name="email" />
-          <Input placeholder="Password" type="password" onChange={this.onChange} name="password" />
-          <Button text="Login" onClick={this.onLoginClick} />
+          <form className="form">
+            <Input placeholder="Mail" onChange={this.onChange} name="email" />
+            <Input placeholder="Password" type="password" onChange={this.onChange} name="password" />
+            <Button text="Login" onClick={this.onLoginClick} />
+          </form>
           <div className="socialButtons">
             <Button onClick={this.onFacebookClick}>
               <Facebook className="social" />
@@ -69,7 +75,7 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
             </Button>
           </div>
         </div>
-        <SubscribeHandler />
+        <Button text="I don't have an account!" onClick={this.onSubscribeClick} dark />
         <style jsx>{`
           .container {
             position: relative;
@@ -85,6 +91,13 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
             box-sizing: border-box;
             border-radius: ${borderRadius};
             box-shadow: ${boxShadow};
+          }
+
+          .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 75%;
           }
 
           .socialButtons {

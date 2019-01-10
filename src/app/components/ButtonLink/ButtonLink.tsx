@@ -1,25 +1,26 @@
 import colors from '@constants/colors';
 import { borderRadius, fontFamily } from '@constants/styles';
-import React, { Component } from 'react';
+import Link from 'next/link';
+import React, { Component, ReactElement } from 'react';
 
-export interface IButtonPropTypes {
+export interface IButtonLinkPropsType {
   text?: string;
-  children?: JSX.Element[] | JSX.Element;
-  onClick(): void;
+  children?: ReactElement<any>;
+  href: string;
   dark: boolean;
 }
 
-class Button extends Component<IButtonPropTypes, {}> {
+class ButtonLink extends Component<IButtonLinkPropsType, {}> {
   public static defaultProps = {
     dark: false,
     text: '',
   };
 
-  public render(): React.ReactElement<Button> {
-    const { onClick, text, children, dark } = this.props;
+  public render(): React.ReactElement<ButtonLink> {
+    const { href, text, children, dark } = this.props;
 
     return (
-      <button onClick={onClick} className={`button ${dark ? 'button--dark' : ''}`}>
+      <Link href={href} className={`button ${dark ? 'button--dark' : ''}`}>
         {children ? children : <p className="text">{text}</p>}
         <style jsx>{`
           .button {
@@ -161,9 +162,9 @@ class Button extends Component<IButtonPropTypes, {}> {
             z-index: 1;
           }
         `}</style>
-      </button>
+      </Link>
     );
   }
 }
 
-export default Button;
+export default ButtonLink;
