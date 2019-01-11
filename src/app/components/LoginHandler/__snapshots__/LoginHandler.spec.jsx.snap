@@ -7,26 +7,32 @@ exports[`<LoginHandler /> should render properly 1`] = `
   <div
     className="login"
   >
-    <Input
-      name="email"
-      onChange={[Function]}
-      placeholder="Mail"
-      type="text"
-    />
-    <Input
-      name="password"
-      onChange={[Function]}
-      placeholder="Password"
-      type="password"
-    />
-    <Button
-      onClick={[Function]}
-      text="Login"
-    />
+    <form
+      className="form"
+    >
+      <Input
+        name="email"
+        onChange={[Function]}
+        placeholder="Mail"
+        type="text"
+      />
+      <Input
+        name="password"
+        onChange={[Function]}
+        placeholder="Password"
+        type="password"
+      />
+      <Button
+        dark={false}
+        onClick={[Function]}
+        text="Login"
+      />
+    </form>
     <div
       className="socialButtons"
     >
       <Button
+        dark={false}
         onClick={[Function]}
         text=""
       >
@@ -35,6 +41,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
         />
       </Button>
       <Button
+        dark={false}
         onClick={[Function]}
         text=""
       >
@@ -43,6 +50,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
         />
       </Button>
       <Button
+        dark={false}
         onClick={[Function]}
         text=""
       >
@@ -52,7 +60,11 @@ exports[`<LoginHandler /> should render properly 1`] = `
       </Button>
     </div>
   </div>
-  <Connect(SubscribeHandler) />
+  <Button
+    dark={true}
+    onClick={[Function]}
+    text="I don't have an account!"
+  />
   <style
     jsx={true}
   >
@@ -71,6 +83,13 @@ exports[`<LoginHandler /> should render properly 1`] = `
             box-sizing: border-box;
             border-radius: 3px;
             box-shadow: 11px 10px 34px -7px rgba(0, 0, 0, 0.49);
+          }
+
+          .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 75%;
           }
 
           .socialButtons {

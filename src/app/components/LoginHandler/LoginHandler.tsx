@@ -2,6 +2,7 @@ import Facebook from '@assets/svg/facebook.svg';
 import Google from '@assets/svg/googleplus.svg';
 import Twitter from '@assets/svg/twitter.svg';
 import Button from '@components/Button';
+import ButtonLink from '@components/ButtonLink';
 import Input from '@components/Input';
 import colors from '@constants/colors';
 import { borderRadius, boxShadow } from '@constants/styles';
@@ -75,7 +76,7 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
             </Button>
           </div>
         </div>
-        <Button text="I don't have an account!" onClick={this.onSubscribeClick} dark />
+        <ButtonLink prefetch text="I don't have an account!" href="/subscribe" dark />
         <style jsx>{`
           .container {
             position: relative;

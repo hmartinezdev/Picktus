@@ -6,6 +6,7 @@ import React, { Component, ReactElement } from 'react';
 export interface IButtonLinkPropsType {
   text?: string;
   children?: ReactElement<any>;
+  prefetch?: boolean;
   href: string;
   dark: boolean;
 }
@@ -13,17 +14,22 @@ export interface IButtonLinkPropsType {
 class ButtonLink extends Component<IButtonLinkPropsType, {}> {
   public static defaultProps = {
     dark: false,
+    prefecth: false,
     text: '',
   };
 
   public render(): React.ReactElement<ButtonLink> {
-    const { href, text, children, dark } = this.props;
-
+    const { href, text, children, dark, prefetch } = this.props;
     return (
-      <Link href={href} className={`button ${dark ? 'button--dark' : ''}`}>
-        {children ? children : <p className="text">{text}</p>}
+      <div>
+        <Link prefetch={prefetch} href={href}>
+          <div className={`button ${dark ? 'button--dark' : ''}`}>
+            {children ? children : <p className="text">{text}</p>}
+          </div>
+        </Link>
         <style jsx>{`
           .button {
+            box-sizing: border-box;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -162,7 +168,7 @@ class ButtonLink extends Component<IButtonLinkPropsType, {}> {
             z-index: 1;
           }
         `}</style>
-      </Link>
+      </div>
     );
   }
 }

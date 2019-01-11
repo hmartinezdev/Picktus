@@ -1,13 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Button /> should put the onClick props on the button 1`] = `
-<button
-  className="button "
-  onClick={[Function]}
->
-  <p
-    className="text"
-  />
+exports[`<Button /> should put the href props on the button 1`] = `
+<div>
+  <Link
+    href="/test"
+  >
+    <div
+      className="button "
+    >
+      <p
+        className="text"
+      />
+    </div>
+  </Link>
   <style
     jsx={true}
   >
@@ -152,19 +157,24 @@ exports[`<Button /> should put the onClick props on the button 1`] = `
           }
         
   </style>
-</button>
+</div>
 `;
 
 exports[`<Button /> should put the text props inside the button 1`] = `
-<button
-  className="button "
-  onClick={[Function]}
->
-  <p
-    className="text"
+<div>
+  <Link
+    href=""
   >
-    test
-  </p>
+    <div
+      className="button "
+    >
+      <p
+        className="text"
+      >
+        test
+      </p>
+    </div>
+  </Link>
   <style
     jsx={true}
   >
@@ -309,17 +319,20 @@ exports[`<Button /> should put the text props inside the button 1`] = `
           }
         
   </style>
-</button>
+</div>
 `;
 
 exports[`<Button /> should render properly 1`] = `
-<button
-  className="button "
-  onClick={[Function]}
->
-  <p
-    className="text"
-  />
+<div>
+  <Link>
+    <div
+      className="button "
+    >
+      <p
+        className="text"
+      />
+    </div>
+  </Link>
   <style
     jsx={true}
   >
@@ -464,5 +477,5 @@ exports[`<Button /> should render properly 1`] = `
           }
         
   </style>
-</button>
+</div>
 `;
