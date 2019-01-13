@@ -6,7 +6,7 @@ let wrapper;
 
 const setup = () => shallow(<SubscribePage />);
 
-describe('<LoginPage />', () => {
+describe('<SubscribePage />', () => {
   test('should render properly', () => {
     wrapper = setup();
     expect(wrapper).toMatchSnapshot();
