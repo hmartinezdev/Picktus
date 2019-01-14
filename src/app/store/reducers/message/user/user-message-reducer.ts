@@ -1,7 +1,7 @@
 import { ActionTypes } from '../../action.type';
 import { TypeKeys as UserTypeKeys } from '../../user/user-actions';
 import messageGenerator from '../message-generator';
-import { IMessageState, PicktusMessageDisplay, PicktusMessageLevel } from '../message.type';
+import { IMessageState, PicktusMessageLevel } from '../message.type';
 
 export default function user(
   state: IMessageState = {
@@ -20,7 +20,7 @@ export default function user(
         ...state,
         notifications: [
           ...state.notifications,
-          messageGenerator(action.error.formatedMessage, PicktusMessageLevel.ERROR, PicktusMessageDisplay.NOTIFICATION),
+          messageGenerator(action.error.formatedMessage, PicktusMessageLevel.ERROR),
         ],
       };
     case UserTypeKeys.USER_CREATION_SUCCESS:
@@ -28,11 +28,7 @@ export default function user(
         ...state,
         notifications: [
           ...state.notifications,
-          messageGenerator(
-            'You have successfully created your account!',
-            PicktusMessageLevel.SUCCESS,
-            PicktusMessageDisplay.NOTIFICATION
-          ),
+          messageGenerator('You have successfully created your account!', PicktusMessageLevel.SUCCESS),
         ],
       };
     case UserTypeKeys.USER_LOGIN_SUCCESS:
@@ -40,11 +36,7 @@ export default function user(
         ...state,
         notifications: [
           ...state.notifications,
-          messageGenerator(
-            'You have successfully logged in!',
-            PicktusMessageLevel.SUCCESS,
-            PicktusMessageDisplay.NOTIFICATION
-          ),
+          messageGenerator('You have successfully logged in!', PicktusMessageLevel.SUCCESS),
         ],
       };
     case UserTypeKeys.USER_LOGOUT:
@@ -52,11 +44,7 @@ export default function user(
         ...state,
         notifications: [
           ...state.notifications,
-          messageGenerator(
-            'You have successfully logged out!',
-            PicktusMessageLevel.SUCCESS,
-            PicktusMessageDisplay.NOTIFICATION
-          ),
+          messageGenerator('You have successfully logged out!', PicktusMessageLevel.SUCCESS),
         ],
       };
     default:

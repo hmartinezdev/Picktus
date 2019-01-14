@@ -18,23 +18,6 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
       open: false,
     };
   }
-
-  private pushError = (key: string, error: string): void => {
-    if (!this.state.errors[key]) {
-      this.setState({
-        errors: { ...this.state.errors, [key]: error },
-      });
-    }
-  };
-
-  private removeError = (key: string): void => {
-    if (this.state.errors[key]) {
-      this.setState({
-        errors: { ...this.state.errors, [key]: '' },
-      });
-    }
-  };
-
   public onChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { value, name } = e.target;
     if (name !== 'open') {
@@ -42,47 +25,9 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
     }
   };
 
-  public validity(errorKey: string, valid: boolean, error: string): boolean {
-    if (valid) {
-      this.removeError(errorKey);
-      return valid;
-    }
-
-    this.pushError(errorKey, error);
-    return valid;
-  }
-
   public onSubscribeClick = (): void => {
     const { password, comfirmPassword, mail } = this.state.inputs;
     const { userCreation } = this.props;
-
-    const mailRegex = new RegExp( // tslint:disable-next-line
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
-    const passwordRegex = new RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$');
-
-    if (
-      !this.validity(
-        'missingValue',
-        Boolean(password && comfirmPassword && mail),
-        'Every field is required to subscribe'
-      )
-    ) {
-      return;
-    }
-
-    const valid =
-      this.validity('comfirmPassword', comfirmPassword === password, 'Password comfirmation does not match password') &&
-      this.validity('mail', !!mail.match(mailRegex), 'You must use a valid mail address') &&
-      this.validity(
-        'password',
-        !!password.match(passwordRegex),
-        'Password must be minimum eight characters,  at least one letter, one number and one special character'
-      );
-
-    if (valid) {
-      userCreation(mail, password);
-    }
   };
 
   public onTriggerClick = (): void => {
