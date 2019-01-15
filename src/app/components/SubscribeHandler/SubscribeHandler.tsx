@@ -26,7 +26,6 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
   };
 
   public onSubscribeClick = (): void => {
-    const { password, comfirmPassword, mail } = this.state.inputs;
     const { userCreation } = this.props;
   };
 

@@ -1,5 +1,5 @@
 import { ThunkAction } from 'redux-thunk';
-import { IMessageState, IPicktusError, IPicktusMessage } from './message.type';
+import { IMessageState, PicktusMessageLevel } from './message.type';
 
 export type ThunkResult<R> = ThunkAction<R, IMessageState, undefined, DismissNotification>;
 
@@ -12,20 +12,24 @@ export enum TypeKeys {
 
 export interface DisplaySnackBar {
   type: TypeKeys.MESSAGE_DISPLAY_SNACKBAR;
-  message: IPicktusError | IPicktusMessage;
+  level: PicktusMessageLevel;
+  message: string;
 }
 
-export const displaySnackBar = (message: IPicktusError | IPicktusMessage): DisplaySnackBar => ({
+export const displaySnackBar = (message: string, level: PicktusMessageLevel): DisplaySnackBar => ({
+  level,
   message,
   type: TypeKeys.MESSAGE_DISPLAY_SNACKBAR,
 });
 
 export interface DisplayNotification {
   type: TypeKeys.MESSAGE_DISPLAY_NOTIFICATION;
-  message: IPicktusError | IPicktusMessage;
+  level: PicktusMessageLevel;
+  message: string;
 }
 
-export const DisplayNotification = (message: IPicktusError | IPicktusMessage): DisplayNotification => ({
+export const DisplayNotification = (message: string, level: PicktusMessageLevel): DisplayNotification => ({
+  level,
   message,
   type: TypeKeys.MESSAGE_DISPLAY_NOTIFICATION,
 });
