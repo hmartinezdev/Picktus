@@ -4,7 +4,7 @@ import { PicktusMessageLevel } from '@store/reducers/message';
 import React, { ChangeEvent, Component } from 'react';
 
 export interface ISubscribeStepPropsType {
-  onValidate: (param: string) => void;
+  onValidate: (value: string, key: string) => void;
   control: (param: any) => boolean;
   errorMessage: string;
   name: string;
@@ -33,7 +33,7 @@ class SubscribeStep extends Component<ISubscribeStepPropsType, IStringMap> {
     const value = this.state[name];
 
     if (control(value)) {
-      onValidate(value);
+      onValidate(value, name);
     } else {
       displaySnackBar(errorMessage, PicktusMessageLevel.ERROR);
     }
