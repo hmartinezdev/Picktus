@@ -1,3 +1,3 @@
-import SubscribeStep from './SubscribeStep';
+import SubscribeStepConnected from './SubscribeStepConnected';
 
-export default SubscribeStep;
+export default SubscribeStepConnected;
