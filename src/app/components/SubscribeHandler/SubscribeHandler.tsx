@@ -1,3 +1,4 @@
+import { boxShadow } from '@constants/styles';
 import React, { PureComponent } from 'react';
 import { isMail } from './controls';
 import { ISubscribeHandlerProps } from './SubscribeHander.type';
@@ -29,11 +30,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, IStringMap>
         />
         <style jsx>{`
           .container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            box-shadow: ${boxShadow};
           }
         `}</style>
       </div>

@@ -1,9 +1,9 @@
 import Button from '@components/Button';
 import Input from '@components/Input';
-import { fontFamily, borderRadius } from '@constants/styles';
+import colors from '@constants/colors';
+import { borderRadius, fontFamily } from '@constants/styles';
 import { PicktusMessageLevel } from '@store/reducers/message';
 import React, { ChangeEvent, Component } from 'react';
-import colors from '@constants/colors';
 
 export interface ISubscribeStepPropsType {
   onValidate: (value: string, key: string) => void;
@@ -45,7 +45,7 @@ class SubscribeStep extends Component<ISubscribeStepPropsType, IStringMap> {
     const { name, title } = this.props;
     return (
       <div className="container">
-        <h2>{title}</h2>
+        <h3>{title}</h3>
         <Input name={name} onChange={this.onChange} />
         <Button onClick={this.onSubmit} text="Next" />
         <style jsx>{`
