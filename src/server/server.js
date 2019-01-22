@@ -59,12 +59,24 @@ server.post('/sessionlogin', (req, res) => {
     );
 });
 
+server.get('/_next/*', async (req, res) => {
+  handle(req, res);
+});
+
+server.get('/static/*', async (req, res) => {
+  handle(req, res);
+});
+
+server.get('/auth', async (req, res) => {
+  res.redirect('/auth/login');
+});
+
 server.get('*', async (req, res) => {
   const user = await authenticate(req, res);
   req.firebaseUser = user;
 
-  if (!user) {
-    app.render(req, res, '/login');
+  if (!user && req.originalUrl !== '/auth/login' && req.originalUrl !== '/auth/subscribe') {
+    res.redirect('/auth/login');
   } else {
     handle(req, res);
   }

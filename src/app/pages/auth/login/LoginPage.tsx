@@ -1,6 +1,6 @@
 import Login from '@containers/Login';
 import React from 'react';
-import { IPageProps } from '../page.type';
+import { IPageProps } from '../../page.type';
 
 const LoginPage = (props: IPageProps): React.ReactElement<Login> => <Login {...props} />;
 
