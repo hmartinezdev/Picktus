@@ -3,10 +3,11 @@ import { borderRadius, fontFamily } from '@constants/styles';
 import React, { ChangeEvent, Component } from 'react';
 
 export interface IInputPropTypes {
-  type?: string;
-  placeholder?: string;
+  type: string;
+  placeholder: string;
   onChange(e: ChangeEvent<HTMLInputElement>): void;
-  name?: string;
+  name: string;
+  autoFocus: boolean;
 }
 
 export interface InputState {
@@ -14,6 +15,7 @@ export interface InputState {
 }
 class Input extends Component<IInputPropTypes, InputState> {
   public static defaultProps = {
+    autoFocus: false,
     name: '',
     placeholder: '',
     type: 'text',
@@ -23,10 +25,10 @@ class Input extends Component<IInputPropTypes, InputState> {
   }
 
   public render(): React.ReactElement<Input> {
-    const { placeholder, type, name, onChange } = this.props;
+    const { name, ...rest } = this.props;
     return (
       <div className="container">
-        <input name={name} className="input" type={type} placeholder={placeholder} onChange={onChange} />
+        <input name={name} className="input" {...rest} />
         <span className="focus-border">
           <i />
         </span>

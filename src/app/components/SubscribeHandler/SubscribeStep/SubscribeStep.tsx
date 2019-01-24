@@ -46,7 +46,7 @@ class SubscribeStep extends Component<ISubscribeStepPropsType, IStringMap> {
     return (
       <div className="container">
         <h3>{title}</h3>
-        <Input name={name} onChange={this.onChange} />
+        <Input name={name} onChange={this.onChange} autoFocus={true} />
         <Button onClick={this.onSubmit} text="Next" />
         <style jsx>{`
           .container {

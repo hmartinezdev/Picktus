@@ -13,7 +13,7 @@ class Login extends Component<ILoginPropsType> {
     const { status } = this.props;
     return (
       <div className={`container container--${status}`}>
-        <div className="login">
+        <div className={`login login--${status}`}>
           <Logo />
         </div>
         <div className="form">
@@ -57,9 +57,11 @@ class Login extends Component<ILoginPropsType> {
             display: flex;
             position: relative;
             border-radius: ${borderRadius};
-            transition: all 300ms ease-out;
-            min-height: 8.5rem;
-            max-height: 8.5rem;
+          }
+
+          .login--exiting,
+          .login--exited {
+            box-shadow: none;
           }
         `}</style>
       </div>

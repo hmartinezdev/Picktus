@@ -76,7 +76,7 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
             </Button>
           </div>
         </div>
-        <ButtonLink prefetch text="I don't have an account!" href="/subscribe" dark />
+        <ButtonLink prefetch text="I don't have an account!" href="/auth/subscribe" dark />
         <style jsx>{`
           .container {
             position: relative;
@@ -87,9 +87,7 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
             flex-direction: column;
             align-items: center;
             background-color: ${colors.primary};
-            min-width: 22rem;
-            padding: 1.5rem 0;
-            box-sizing: border-box;
+            padding: 1.5rem 1.5rem;
             border-radius: ${borderRadius};
             box-shadow: ${boxShadow};
           }
@@ -98,17 +96,17 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 75%;
+            width: 16rem;
           }
 
           .socialButtons {
             display: flex;
             justify-content: space-between;
-            width: 75%;
+            width: 16rem;
           }
 
           :global(.socialButtons.socialButtons > button:nth-child(2)) {
-            margin: 0.7rem 1.4rem;
+            margin: 0.7rem 1.1rem;
           }
         `}</style>
       </div>

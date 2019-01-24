@@ -27,7 +27,7 @@ class Logo extends Component {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1.7rem 1rem 1.7rem 0.8rem;
+            padding: 2rem 1rem 2rem 0.8rem;
             box-sizing: border-box;
           }
 

@@ -34,9 +34,6 @@ class Subscribe extends Component {
             display: flex;
             position: relative;
             border-radius: ${borderRadius};
-            transition: all 300ms ease-out;
-            min-height: 8.5rem;
-            max-height: 8.5rem;
           }
 
           .form {
