@@ -1,4 +1,12 @@
 import { ThunkResult } from '@store/reducers/user/user-actions';
+import { Component } from 'react';
+
+export interface ISubscribeStepInfos {
+  control: (value: string, key: string) => boolean;
+  name: string;
+  errorMessage: string;
+  title: string;
+}
 
 export interface IReduxStateProps {
   loading?: boolean;

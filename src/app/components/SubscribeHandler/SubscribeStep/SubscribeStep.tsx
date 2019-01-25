@@ -1,4 +1,3 @@
-import Button from '@components/Button';
 import Input from '@components/Input';
 import colors from '@constants/colors';
 import { borderRadius, fontFamily } from '@constants/styles';
@@ -45,9 +44,7 @@ class SubscribeStep extends Component<ISubscribeStepPropsType, IStringMap> {
     const { name, title } = this.props;
     return (
       <div className="container">
-        <h3>{title}</h3>
-        <Input name={name} onChange={this.onChange} autoFocus={true} />
-        <Button onClick={this.onSubmit} text="Next" />
+        <Input name={name} onChange={this.onChange} autoFocus={true} placeholder={title} />
         <style jsx>{`
           .container {
             font-family: ${fontFamily};
