@@ -14,6 +14,8 @@ export interface InputState {
   changeTimeout?: number;
 }
 class Input extends Component<IInputPropTypes, InputState> {
+  public input: HTMLInputElement | null = null;
+
   public static defaultProps = {
     autoFocus: false,
     name: '',
@@ -28,7 +30,7 @@ class Input extends Component<IInputPropTypes, InputState> {
     const { name, ...rest } = this.props;
     return (
       <div className="container">
-        <input name={name} className="input" {...rest} />
+        <input ref={(node) => (this.input = node)} name={name} className="input" {...rest} />
         <span className="focus-border">
           <i />
         </span>
