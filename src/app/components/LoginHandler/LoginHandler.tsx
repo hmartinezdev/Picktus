@@ -76,7 +76,7 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
             </Button>
           </div>
         </div>
-        <ButtonLink prefetch text="I don't have an account!" href="/auth/subscribe" dark />
+        <ButtonLink prefetch={true} text="I don't have an account!" href="/auth/subscribe" dark />
         <style jsx>{`
           .container {
             position: relative;

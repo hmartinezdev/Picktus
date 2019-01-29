@@ -23,7 +23,7 @@ class Subscribe extends Component {
             flex-direction: column;
             padding: 2rem 0;
             box-sizing: border-box;
-            overflow: auto;
+            overflow: hidden;
             opacity: 1;
             transition: opacity 300ms ease-out;
           }

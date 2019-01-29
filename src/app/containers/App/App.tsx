@@ -50,6 +50,7 @@ class App extends Component<IAppPropsType> {
               align-self: stretch;
               overflow: hidden;
               width: 100%;
+              position: relative;
             }
 
             :global(.app_transitiongroup) {
