@@ -1,6 +1,6 @@
 import Input from '@components/Input';
 import colors from '@constants/colors';
-import { borderRadius, fontFamily } from '@constants/styles';
+import { fontFamily } from '@constants/styles';
 import { PicktusMessageLevel } from '@store/reducers/message';
 import React, { ChangeEvent, Component } from 'react';
 
@@ -68,11 +68,6 @@ class SubscribeStep extends Component<ISubscribeStepPropsType, IStringMap> {
           .container {
             font-family: ${fontFamily};
             color: ${colors.secondary};
-            background-color: ${colors.primary};
-            width: 20rem;
-            padding: 1rem;
-            box-sizing: border-box;
-            border-radius: ${borderRadius};
           }
         `}</style>
       </div>

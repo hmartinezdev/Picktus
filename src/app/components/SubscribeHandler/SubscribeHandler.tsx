@@ -1,4 +1,6 @@
-import { boxShadow } from '@constants/styles';
+import FormPagination from '@components/FormPagination/FormPagination';
+import colors from '@constants/colors';
+import { borderRadius, boxShadow } from '@constants/styles';
 import React, { PureComponent } from 'react';
 import { isMail, isPasswordSecure } from './controls';
 import { ISubscribeHandlerProps, ISubscribeStepInfos } from './SubscribeHander.type';
@@ -46,6 +48,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, IStringMap>
   public render(): React.ReactElement<SubscribeHandler> {
     return (
       <div className="container">
+        <FormPagination steps={this.form.reduce((accumulator: string[], value) => [...accumulator, value.name], [])} />
         <SubscribeStep
           onValidate={this.onValidate}
           control={isMail}
@@ -56,6 +59,11 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, IStringMap>
         <style jsx>{`
           .container {
             box-shadow: ${boxShadow};
+            background-color: ${colors.primary};
+            width: 20rem;
+            padding: 1rem;
+            box-sizing: border-box;
+            border-radius: ${borderRadius};
           }
         `}</style>
       </div>
