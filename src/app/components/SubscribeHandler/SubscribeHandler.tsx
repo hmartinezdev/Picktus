@@ -7,30 +7,32 @@ import { ISubscribeHandlerProps, ISubscribeStepInfos } from './SubscribeHander.t
 import SubscribeStep from './SubscribeStep';
 
 class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, IStringMap> {
-  private form: ISubscribeStepInfos[] = [
-    {
-      control: isMail,
-      errorMessage: 'You need to user a valid email address',
-      name: 'mail',
-      title: 'Email address',
-    },
-    {
-      control: isPasswordSecure,
-      errorMessage: 'You need a secured password',
-      name: 'password',
-      title: 'Email address',
-    },
-    {
-      control: isMail,
-      errorMessage: 'You need to user a valid email address',
-      name: 'mail',
-      title: 'Email address',
-    },
-  ];
+  public form: ISubscribeStepInfos[] = [];
 
   constructor(props: ISubscribeHandlerProps) {
     super(props);
     this.state = {};
+
+    this.form = [
+      {
+        control: isMail,
+        errorMessage: 'You need to user a valid email address',
+        name: 'mail',
+        title: 'Email address',
+      },
+      {
+        control: isPasswordSecure,
+        errorMessage: 'You need a secured password',
+        name: 'password',
+        title: 'Password',
+      },
+      {
+        control: this.confirmPassword,
+        errorMessage: 'You need to user a valid email address',
+        name: 'confirm',
+        title: 'Confirmation',
+      },
+    ];
   }
 
   public confirmPassword = (passwordConfirmation: string): boolean => passwordConfirmation === this.state.password;
@@ -48,7 +50,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, IStringMap>
   public render(): React.ReactElement<SubscribeHandler> {
     return (
       <div className="container">
-        <FormPagination steps={this.form.reduce((accumulator: string[], value) => [...accumulator, value.name], [])} />
+        <FormPagination steps={this.form.reduce((accumulator: string[], value) => [...accumulator, value.title], [])} />
         <SubscribeStep
           onValidate={this.onValidate}
           control={isMail}
@@ -60,7 +62,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, IStringMap>
           .container {
             box-shadow: ${boxShadow};
             background-color: ${colors.primary};
-            width: 20rem;
+            width: 30rem;
             padding: 1rem;
             box-sizing: border-box;
             border-radius: ${borderRadius};

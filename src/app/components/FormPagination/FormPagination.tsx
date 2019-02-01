@@ -1,6 +1,8 @@
+import ValidatedSvg from '@assets/svg/validated.svg';
 import colors from '@constants/colors';
 import { borderRadius, fontFamily } from '@constants/styles';
 import React, { Component } from 'react';
+import { Transition } from 'react-transition-group';
 
 export interface IFormPaginationPropTypes {
   steps: string[];
@@ -9,29 +11,38 @@ export interface IFormPaginationPropTypes {
 
 class FormPagination extends Component<IFormPaginationPropTypes> {
   public static defaultProps = {
-    current: 0,
+    current: 1,
   };
 
   public render(): React.ReactElement<FormPagination> {
-    const { steps } = this.props;
+    const { steps, current } = this.props;
     return (
       <div className="formPagination">
         {steps.map((step, index) => {
-          if (index === steps.length - 1) {
-            return (
-              <div className="step" key={step}>
-                <div className="tag">{step}</div>
-              </div>
+          const ret = [];
+          const stepClassName = ['step'];
+
+          if (current >= index) {
+            stepClassName.push('step--active');
+          }
+
+          ret.push(
+            <div className={stepClassName.join(' ')} key={step}>
+              <Transition timeout={200} in={current > index} mountOnEnter unmountOnExit>
+                {(status) => <ValidatedSvg className={`validated validated--${status}`} />}
+              </Transition>
+              <div className="tag">{step}</div>
+            </div>
+          );
+
+          if (index !== steps.length - 1) {
+            ret.push(
+              <div className={`separator ${current > index ? 'separator--active' : ''}`} key={`${step}-separator`} />
             );
           }
-          return [
-            <div className="step" key={step}>
-              <div className="tag">{step}</div>
-            </div>,
-            <div className="separator" key={`${step}-separator`} />,
-          ];
-        })}
 
+          return ret;
+        })}
         <style jsx>{`
           .formPagination {
             max-width: 900px;
@@ -44,20 +55,33 @@ class FormPagination extends Component<IFormPaginationPropTypes> {
           }
 
           .step {
-            width: 25px;
-            height: 25px;
-            border: 3px solid ${colors.blue};
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 1.8rem;
+            height: 1.8rem;
+            border: 3px solid ${colors.white};
             border-radius: ${borderRadius};
             display: inline-block;
             transition: all 0.3s;
             position: relative;
+            transition: border 200ms ease-in;
+          }
+
+          .step--active {
+            border-color: ${colors.secondary};
           }
 
           .separator {
-            width: ${100 / steps.length}%;
+            width: 30%;
             height: 3px;
             display: inline-block;
-            background-color: ${colors.blue};
+            background-color: ${colors.white};
+            transition: border 200ms ease-in;
+          }
+
+          .separator--active {
+            background-color: ${colors.secondary};
           }
 
           .tag {
@@ -69,6 +93,19 @@ class FormPagination extends Component<IFormPaginationPropTypes> {
             transform: translateX(-50%);
             color: ${colors.secondary};
             white-space: nowrap;
+            font-size: 0.9rem;
+          }
+
+          .validated {
+            opacity: 0;
+            width: 1.8rem;
+            height: 1.8rem;
+            transition: opacity 200ms ease-in;
+          }
+
+          .validated--entered,
+          .validated--entering {
+            opacity: 1;
           }
         `}</style>
       </div>
