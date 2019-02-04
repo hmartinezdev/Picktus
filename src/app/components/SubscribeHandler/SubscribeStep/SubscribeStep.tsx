@@ -11,9 +11,14 @@ export interface ISubscribeStepPropsType {
   name: string;
   title: string;
   displaySnackBar: (message: string, level: PicktusMessageLevel) => void;
+  type: string;
 }
 
 class SubscribeStep extends Component<ISubscribeStepPropsType, IStringMap> {
+  public static defaultProps = {
+    type: 'text',
+  };
+
   private input: Input | null = null;
 
   constructor(props: ISubscribeStepPropsType) {
@@ -53,7 +58,7 @@ class SubscribeStep extends Component<ISubscribeStepPropsType, IStringMap> {
   };
 
   public render(): React.ReactElement<SubscribeStep> {
-    const { name, title } = this.props;
+    const { name, title, type } = this.props;
     return (
       <div className="container">
         <Input
@@ -62,6 +67,7 @@ class SubscribeStep extends Component<ISubscribeStepPropsType, IStringMap> {
           onChange={this.onChange}
           autoFocus={true}
           placeholder={title}
+          type={type}
         />
 
         <style jsx>{`

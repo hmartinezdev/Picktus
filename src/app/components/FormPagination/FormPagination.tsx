@@ -11,7 +11,7 @@ export interface IFormPaginationPropTypes {
 
 class FormPagination extends Component<IFormPaginationPropTypes> {
   public static defaultProps = {
-    current: 1,
+    current: 0,
   };
 
   public render(): React.ReactElement<FormPagination> {
