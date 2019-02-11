@@ -10,24 +10,14 @@ class Loader extends Component {
         <Photo className="photo photo--second" />
         <style jsx>{`
           .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 8rem;
-            height: 8rem;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate3D(-50%, -50%, 0);
-            z-index: 1000;
+            position: relative;
             width: 100%;
-            min-height: 100%;
-            background-color: ${colors.primary}cd;
+            height: 100%;
           }
 
           .photo {
-            max-width: 10rem;
-            max-height: 10rem;
+            max-width: 100%;
+            max-height: 100%;
             position: absolute;
           }
 

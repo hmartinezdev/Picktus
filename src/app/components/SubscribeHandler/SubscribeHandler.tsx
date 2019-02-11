@@ -2,6 +2,7 @@ import FormPagination from '@components/FormPagination/FormPagination';
 import colors from '@constants/colors';
 import { borderRadius, boxShadow } from '@constants/styles';
 import React, { PureComponent } from 'react';
+import { Transition, TransitionGroup } from 'react-transition-group';
 import { isMail, isPasswordSecure } from './controls';
 import { ISubscribeHandlerProps, ISubscribeHandlerState, ISubscribeStepInfos } from './SubscribeHander.type';
 import SubscribeStep from './SubscribeStep';
@@ -58,24 +59,40 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
     userCreation(this.state.values.mail, this.state.values.password);
   };
 
+  public onStepClick = (step: number): void => {
+    this.setState({ current: step });
+  };
+
   public render(): React.ReactElement<SubscribeHandler> {
     return (
       <div className="container">
         <FormPagination
           current={this.state.current}
           steps={this.form.reduce((accumulator: string[], value) => [...accumulator, value.title], [])}
+          onStepClick={this.onStepClick}
         />
-        {this.form.filter((value, index) => index === this.state.current).map((value) => (
-          <SubscribeStep
-            key={value.name}
-            onValidate={this.onValidate}
-            control={value.control}
-            errorMessage={value.errorMessage}
-            name={value.name}
-            title={value.title}
-            type={value.type}
-          />
-        ))}
+        <TransitionGroup>
+          {this.state.current <= this.form.length - 1 ? (
+            this.form.filter((value, index) => index === this.state.current).map((value) => (
+              <Transition timeout={300} mountOnEnter unmountOnExit in appear>
+                {(status) => (
+                  <div key={value.name} className={`stepContainer stepContainer--${status}`}>
+                    <SubscribeStep
+                      onValidate={this.onValidate}
+                      control={value.control}
+                      errorMessage={value.errorMessage}
+                      name={value.name}
+                      title={value.title}
+                      type={value.type}
+                    />
+                  </div>
+                )}
+              </Transition>
+            ))[0]
+          ) : (
+            <div key="loader" />
+          )}
+        </TransitionGroup>
 
         <style jsx>{`
           .container {
@@ -85,6 +102,16 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
             padding: 1rem;
             box-sizing: border-box;
             border-radius: ${borderRadius};
+          }
+
+          .stepContainer {
+            opacity: 0;
+            transition: opacity 300ms ease-in;
+          }
+
+          .stepContainer--entered,
+          .stepContainer--entering {
+            opacity: 1;
           }
         `}</style>
       </div>

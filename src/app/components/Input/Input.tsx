@@ -8,6 +8,7 @@ export interface IInputPropTypes {
   onChange(e: ChangeEvent<HTMLInputElement>): void;
   name: string;
   autoFocus: boolean;
+  disabled: boolean;
 }
 
 export interface InputState {
@@ -18,19 +19,20 @@ class Input extends Component<IInputPropTypes, InputState> {
 
   public static defaultProps = {
     autoFocus: false,
+    disabled: false,
     name: '',
     placeholder: '',
     type: 'text',
   };
+
   constructor(props: IInputPropTypes) {
     super(props);
   }
 
   public render(): React.ReactElement<Input> {
-    const { name, ...rest } = this.props;
     return (
       <div className="container">
-        <input ref={(node) => (this.input = node)} name={name} className="input" {...rest} />
+        <input ref={(node) => (this.input = node)} className="input" {...this.props} />
         <span className="focus-border">
           <i />
         </span>

@@ -1,12 +1,14 @@
 import ValidatedSvg from '@assets/svg/validated.svg';
 import colors from '@constants/colors';
 import { borderRadius, fontFamily } from '@constants/styles';
+import classnames from 'classnames';
 import React, { Component } from 'react';
 import { Transition } from 'react-transition-group';
 
 export interface IFormPaginationPropTypes {
   steps: string[];
   current: number;
+  onStepClick: (step: number) => void;
 }
 
 class FormPagination extends Component<IFormPaginationPropTypes> {
@@ -20,17 +22,19 @@ class FormPagination extends Component<IFormPaginationPropTypes> {
       <div className="formPagination">
         {steps.map((step, index) => {
           const ret = [];
-          const stepClassName = ['step'];
-
-          if (current >= index) {
-            stepClassName.push('step--active');
-          }
-
           ret.push(
-            <div className={stepClassName.join(' ')} key={step}>
-              <Transition timeout={200} in={current > index} mountOnEnter unmountOnExit>
-                {(status) => <ValidatedSvg className={`validated validated--${status}`} />}
-              </Transition>
+            <div className="stepContainer">
+              <div
+                className={classnames('step', {
+                  ['step--active']: current >= index,
+                  ['step--validated']: current > index,
+                })}
+                key={step}
+              >
+                <Transition timeout={200} in={current > index} mountOnEnter unmountOnExit>
+                  {(status) => <ValidatedSvg className={`validated validated--${status}`} />}
+                </Transition>
+              </div>
               <div className="tag">{step}</div>
             </div>
           );
@@ -51,7 +55,11 @@ class FormPagination extends Component<IFormPaginationPropTypes> {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 85px;
+            height: 6.5rem;
+          }
+
+          .stepContainer {
+            position: relative;
           }
 
           .step {
@@ -64,12 +72,17 @@ class FormPagination extends Component<IFormPaginationPropTypes> {
             border-radius: ${borderRadius};
             display: inline-block;
             transition: all 0.3s;
-            position: relative;
-            transition: border 200ms ease-in;
+            transition: all 200ms ease-in;
+            overflow: hidden;
           }
 
           .step--active {
             border-color: ${colors.secondary};
+          }
+
+          .step--validated:hover {
+            transform: scale(1.1, 1.1);
+            cursor: pointer;
           }
 
           .separator {
