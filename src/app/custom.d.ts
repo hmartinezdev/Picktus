@@ -16,3 +16,8 @@ interface PicktusUser {
 interface IStringMap {
   [s: string]: string;
 }
+
+interface IAsyncInformation {
+  inProgress: boolean;
+  error?: boolean;
+}

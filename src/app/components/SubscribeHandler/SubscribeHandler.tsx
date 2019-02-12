@@ -59,7 +59,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
     userCreation(this.state.values.mail, this.state.values.password);
   };
 
-  public onStepClick = (step: number): void => {
+  public onValidatedStepClick = (step: number): void => {
     this.setState({ current: step });
   };
 
@@ -69,31 +69,32 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
         <FormPagination
           current={this.state.current}
           steps={this.form.reduce((accumulator: string[], value) => [...accumulator, value.title], [])}
-          onStepClick={this.onStepClick}
+          onValidatedStepClick={this.onValidatedStepClick}
         />
-        <TransitionGroup>
-          {this.state.current <= this.form.length - 1 ? (
-            this.form.filter((value, index) => index === this.state.current).map((value) => (
-              <Transition timeout={300} mountOnEnter unmountOnExit in appear>
-                {(status) => (
-                  <div key={value.name} className={`stepContainer stepContainer--${status}`}>
-                    <SubscribeStep
-                      onValidate={this.onValidate}
-                      control={value.control}
-                      errorMessage={value.errorMessage}
-                      name={value.name}
-                      title={value.title}
-                      type={value.type}
-                    />
-                  </div>
-                )}
-              </Transition>
-            ))[0]
-          ) : (
-            <div key="loader" />
-          )}
-        </TransitionGroup>
-
+        <div className="form">
+          <TransitionGroup component={null}>
+            {this.state.current <= this.form.length - 1 ? (
+              this.form.filter((value, index) => index === this.state.current).map((value) => (
+                <Transition timeout={300} mountOnEnter unmountOnExit in appear>
+                  {(status) => (
+                    <div key={value.name} className={`stepContainer stepContainer--${status}`}>
+                      <SubscribeStep
+                        onValidate={this.onValidate}
+                        control={value.control}
+                        errorMessage={value.errorMessage}
+                        name={value.name}
+                        title={value.title}
+                        type={value.type}
+                      />
+                    </div>
+                  )}
+                </Transition>
+              ))[0]
+            ) : (
+              <div key="loader" />
+            )}
+          </TransitionGroup>
+        </div>
         <style jsx>{`
           .container {
             box-shadow: ${boxShadow};
@@ -102,16 +103,31 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
             padding: 1rem;
             box-sizing: border-box;
             border-radius: ${borderRadius};
+            display: flex;
+            align-items: center;
+            flex-direction: column;
           }
 
           .stepContainer {
             opacity: 0;
             transition: opacity 300ms ease-in;
+            width: 100%;
           }
 
           .stepContainer--entered,
           .stepContainer--entering {
             opacity: 1;
+          }
+
+          .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 16rem;
+          }
+
+          .inputTransition {
+            width: 100%;
           }
         `}</style>
       </div>

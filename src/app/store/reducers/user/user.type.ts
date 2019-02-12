@@ -1,5 +1,5 @@
 export interface IUserState {
   authenticated: boolean;
-  creationInProgress?: boolean;
+  userCreation?: IAsyncInformation;
   user?: PicktusUser;
 }

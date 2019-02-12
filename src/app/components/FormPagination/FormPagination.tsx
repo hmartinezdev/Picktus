@@ -8,7 +8,7 @@ import { Transition } from 'react-transition-group';
 export interface IFormPaginationPropTypes {
   steps: string[];
   current: number;
-  onStepClick: (step: number) => void;
+  onValidatedStepClick: (step: number) => void;
 }
 
 class FormPagination extends Component<IFormPaginationPropTypes> {
@@ -17,19 +17,24 @@ class FormPagination extends Component<IFormPaginationPropTypes> {
   };
 
   public render(): React.ReactElement<FormPagination> {
-    const { steps, current } = this.props;
+    const { steps, current, onValidatedStepClick } = this.props;
     return (
       <div className="formPagination">
         {steps.map((step, index) => {
+          const validated = current > index;
+          const active = current >= index;
+          const onClick = () => {
+            onValidatedStepClick(index);
+          };
           const ret = [];
+
           ret.push(
-            <div className="stepContainer">
+            <div className="stepContainer" onClick={validated ? onClick : undefined} key={step}>
               <div
                 className={classnames('step', {
-                  ['step--active']: current >= index,
-                  ['step--validated']: current > index,
+                  ['step--active']: active,
+                  ['step--validated']: validated,
                 })}
-                key={step}
               >
                 <Transition timeout={200} in={current > index} mountOnEnter unmountOnExit>
                   {(status) => <ValidatedSvg className={`validated validated--${status}`} />}
