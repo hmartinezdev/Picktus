@@ -9,7 +9,7 @@ export interface ISubscribeStepInfos {
 }
 
 export interface IReduxStateProps {
-  loading?: boolean;
+  requestStatus: IAsyncInformation | null;
 }
 
 export interface IDispatchProps {

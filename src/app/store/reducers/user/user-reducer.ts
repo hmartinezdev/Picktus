@@ -40,9 +40,9 @@ export default function user(state: IUserState = initialState, action: ActionTyp
     case TypeKeys.USER_CREATION_START:
       return { ...state, userCreation: { inProgress: true } };
     case TypeKeys.USER_CREATION_FAILURE:
-      return { ...state, userCreation: { inProgress: false, error: true } };
+      return { ...state, userCreation: { inProgress: false, error: action.type } };
     case TypeKeys.USER_CREATION_SUCCESS:
-      return { ...state, userCreation: { inProgress: false, error: false } };
+      return { ...state, userCreation: { inProgress: false } };
     default:
       return state;
   }

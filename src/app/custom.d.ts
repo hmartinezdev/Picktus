@@ -19,5 +19,5 @@ interface IStringMap {
 
 interface IAsyncInformation {
   inProgress: boolean;
-  error?: boolean;
+  error?: string;
 }

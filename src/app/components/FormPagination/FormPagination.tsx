@@ -40,7 +40,14 @@ class FormPagination extends Component<IFormPaginationPropTypes> {
                   {(status) => <ValidatedSvg className={`validated validated--${status}`} />}
                 </Transition>
               </div>
-              <div className="tag">{step}</div>
+              <div
+                className={classnames('tag', {
+                  ['tag--active']: active,
+                  ['tag--validated']: validated,
+                })}
+              >
+                {step}
+              </div>
             </div>
           );
 
@@ -86,7 +93,7 @@ class FormPagination extends Component<IFormPaginationPropTypes> {
           }
 
           .step--validated:hover {
-            transform: scale(1.1, 1.1);
+            transform: scale(1.3, 1.3);
             cursor: pointer;
           }
 
@@ -105,13 +112,28 @@ class FormPagination extends Component<IFormPaginationPropTypes> {
           .tag {
             font-family: ${fontFamily};
             position: absolute;
-            top: -30px;
+            top: -1.8rem;
             left: 50%;
             -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
             color: ${colors.secondary};
             white-space: nowrap;
             font-size: 0.9rem;
+            transform: translate(-50%, 0.6rem) scale(0.6, 0.6);
+            transition: all 200ms ease-in;
+            opacity: 1;
+          }
+
+          .tag--active {
+            transform: translate(-50%, 0) scale(1, 1);
+          }
+
+          .tag--validated {
+            transform: translate(-50%, 0.6rem) scale(0.6, 0.6);
+          }
+
+          .step--validated:hover + .tag--validated {
+            transform: translate(-50%, 0) scale(1, 1);
           }
 
           .validated {

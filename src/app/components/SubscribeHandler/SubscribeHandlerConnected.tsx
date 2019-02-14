@@ -6,7 +6,7 @@ import SubscribeHandler from './SubscribeHandler';
 
 export const mapStateToProps = (state: IReduxState): IReduxStateProps => {
   return {
-    loading: !!state.user.creationInProgress,
+    requestStatus: state.user.userCreation,
   };
 };
 

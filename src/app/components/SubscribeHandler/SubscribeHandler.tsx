@@ -1,4 +1,5 @@
 import FormPagination from '@components/FormPagination/FormPagination';
+import Loader from '@components/Loader';
 import colors from '@constants/colors';
 import { borderRadius, boxShadow } from '@constants/styles';
 import React, { PureComponent } from 'react';
@@ -8,6 +9,10 @@ import { ISubscribeHandlerProps, ISubscribeHandlerState, ISubscribeStepInfos } f
 import SubscribeStep from './SubscribeStep';
 
 class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeHandlerState> {
+  public static defaultProps = {
+    requestStatus: null,
+  };
+
   public form: ISubscribeStepInfos[] = [];
 
   constructor(props: ISubscribeHandlerProps) {
@@ -91,7 +96,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
                 </Transition>
               ))[0]
             ) : (
-              <div key="loader" />
+              <Loader />
             )}
           </TransitionGroup>
         </div>
@@ -124,6 +129,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
             flex-direction: column;
             align-items: center;
             width: 16rem;
+            height: 5rem;
           }
 
           .inputTransition {
