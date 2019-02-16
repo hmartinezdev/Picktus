@@ -125,6 +125,7 @@ export const userCreation = (email: string, password: string): ThunkResult<void>
   try {
     await Authentication.createUser(email, password);
     dispatch(userCreationSuccess);
+    Router.replace('/');
   } catch (e) {
     dispatch(userCreationFailure(e));
   }

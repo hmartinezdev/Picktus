@@ -6,7 +6,7 @@ import SubscribeHandler from './SubscribeHandler';
 
 export const mapStateToProps = (state: IReduxState): IReduxStateProps => {
   return {
-    requestStatus: state.user.userCreation,
+    requestStatus: state.user.userCreation || null,
   };
 };
 

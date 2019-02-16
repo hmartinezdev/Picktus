@@ -98,7 +98,7 @@ class FormPagination extends Component<IFormPaginationPropTypes> {
           }
 
           .separator {
-            width: 30%;
+            width: 20%;
             height: 3px;
             display: inline-block;
             background-color: ${colors.white};

@@ -38,17 +38,34 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
         control: this.confirmPassword,
         errorMessage: 'You need to user a valid email address',
         name: 'confirm',
-        title: 'Confirmation',
+        title: 'Password confirmation',
         type: 'password',
       },
+      {
+        control: this.confirmPassword,
+        errorMessage: '',
+        name: '',
+        title: 'Account creation',
+        type: '',
+      },
     ];
+  }
+
+  public componentWillReceiveProps(nextProps: ISubscribeHandlerProps) {
+    const { requestStatus } = this.props;
+    const nextRequestStatus = nextProps.requestStatus;
+    if (requestStatus && nextRequestStatus) {
+      if (requestStatus.inProgress && !nextRequestStatus.inProgress) {
+        this.setState({ current: 0 });
+      }
+    }
   }
 
   public confirmPassword = (passwordConfirmation: string): boolean =>
     passwordConfirmation === this.state.values.password;
 
   public onValidate = (value: string): void => {
-    if (this.state.current === this.form.length - 1) {
+    if (this.state.current === this.form.length - 2) {
       this.onLastValueSubmitted();
     }
 
@@ -78,7 +95,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
         />
         <div className="form">
           <TransitionGroup component={null}>
-            {this.state.current <= this.form.length - 1 ? (
+            {this.state.current <= this.form.length - 2 ? (
               this.form.filter((value, index) => index === this.state.current).map((value) => (
                 <Transition timeout={300} mountOnEnter unmountOnExit in appear>
                   {(status) => (
