@@ -68,7 +68,13 @@ class App extends Component<IAppPropsType> {
             }
 
             :global(html) {
-              font-size: 100%;
+              font-size: 90%;
+            }
+
+            @media (min-width: 720px) {
+              :global(html) {
+                font-size: 100%;
+              }
             }
           `}</style>
         </div>

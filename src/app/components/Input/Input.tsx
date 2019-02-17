@@ -6,6 +6,7 @@ export interface IInputPropTypes {
   type: string;
   placeholder: string;
   onChange(e: ChangeEvent<HTMLInputElement>): void;
+  onEnter?(): void;
   name: string;
   autoFocus: boolean;
   disabled: boolean;
@@ -14,6 +15,7 @@ export interface IInputPropTypes {
 export interface InputState {
   changeTimeout?: number;
 }
+
 class Input extends Component<IInputPropTypes, InputState> {
   public input: HTMLInputElement | null = null;
 
@@ -21,12 +23,24 @@ class Input extends Component<IInputPropTypes, InputState> {
     autoFocus: false,
     disabled: false,
     name: '',
+    onEnter: () => undefined,
     placeholder: '',
     type: 'text',
   };
 
   constructor(props: IInputPropTypes) {
     super(props);
+  }
+
+  public componentDidMount() {
+    const { onEnter } = this.props;
+    if (this.input && onEnter) {
+      this.input.addEventListener('keyup', (ev: KeyboardEvent) => {
+        if (ev.keyCode === 13) {
+          onEnter();
+        }
+      });
+    }
   }
 
   public render(): React.ReactElement<Input> {

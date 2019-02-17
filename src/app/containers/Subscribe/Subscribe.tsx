@@ -4,11 +4,16 @@ import colors from '@constants/colors';
 import { borderRadius, boxShadow } from '@constants/styles';
 import React, { Component } from 'react';
 
-class Subscribe extends Component {
+export interface ISubscribePropsType {
+  status: string;
+}
+
+class Subscribe extends Component<ISubscribePropsType> {
   public render(): React.ReactElement<Subscribe> {
+    const { status } = this.props;
     return (
-      <div className="container">
-        <div className="logo">
+      <div className={`container container--${status}`}>
+        <div className={`logo logo--${status}`}>
           <Logo />
         </div>
         <div className="form">
@@ -28,12 +33,23 @@ class Subscribe extends Component {
             transition: opacity 300ms ease-out;
           }
 
+          .container--exiting,
+          .container--exited {
+            position: absolute;
+            opacity: 0;
+          }
+
           .logo {
             background-color: ${colors.primary};
             box-shadow: ${boxShadow};
             display: flex;
             position: relative;
             border-radius: ${borderRadius};
+          }
+
+          .logo--exiting,
+          .logo--exited {
+            box-shadow: none;
           }
 
           .form {

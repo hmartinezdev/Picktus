@@ -14,8 +14,8 @@ export interface IMessageIconProps {
 
 class MessageIcon extends Component<IMessageIconProps> {
   public static defaultProps = {
-    height: 32,
-    width: 32,
+    height: 1.5,
+    width: 1.5,
   };
 
   public render(): React.ReactFragment {
@@ -44,8 +44,8 @@ class MessageIcon extends Component<IMessageIconProps> {
         .icon {
           fill: ${colors.secondary};
           margin-right: 0.3rem;
-          min-height: ${rest.height};
-          min-width: ${rest.width};
+          min-height: ${rest.height}rem;
+          min-width: ${rest.width}rem;
         }
       `}</style>,
     ];

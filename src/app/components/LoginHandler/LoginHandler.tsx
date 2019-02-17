@@ -59,11 +59,11 @@ class LoginHandler extends Component<ILoginHandlerProps, ILoginHandlerState> {
     return (
       <div className="container">
         <div className="login">
-          <form className="form">
+          <div className="form">
             <Input placeholder="Mail" onChange={this.onChange} name="email" />
             <Input placeholder="Password" type="password" onChange={this.onChange} name="password" />
             <Button text="Login" onClick={this.onLoginClick} />
-          </form>
+          </div>
           <div className="socialButtons">
             <Button onClick={this.onFacebookClick}>
               <Facebook className="social" />
