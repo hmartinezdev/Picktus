@@ -67,6 +67,12 @@ class SnackBarHandler extends Component<ISnackBarHandlerProps> {
             width: 90%;
           }
 
+          @media (min-width: 720px) {
+            .snackbar__container {
+              width: initial;
+            }
+          }
+
           .snackbar__container--entering {
             animation: slideUp 700ms ease-out;
           }

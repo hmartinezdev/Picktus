@@ -29,14 +29,15 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
       },
       {
         control: isPasswordSecure,
-        errorMessage: 'You need a secured password',
+        errorMessage:
+          'Password must be minimum eight characters,  at least one letter, one number and one special character',
         name: 'password',
         title: 'Password',
         type: 'password',
       },
       {
         control: this.confirmPassword,
-        errorMessage: 'You need to user a valid email address',
+        errorMessage: 'The password confirmation must be identical to the password',
         name: 'confirm',
         title: 'Password confirmation',
         type: 'password',

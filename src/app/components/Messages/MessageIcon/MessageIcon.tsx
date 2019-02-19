@@ -14,8 +14,8 @@ export interface IMessageIconProps {
 
 class MessageIcon extends Component<IMessageIconProps> {
   public static defaultProps = {
-    height: 1.5,
-    width: 1.5,
+    height: 1.8,
+    width: 1.8,
   };
 
   public render(): React.ReactFragment {

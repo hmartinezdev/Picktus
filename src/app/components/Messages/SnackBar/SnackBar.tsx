@@ -25,7 +25,7 @@ class SnackBar extends Component<ISnackBarProps> {
             align-items: center;
             font-family: ${fontFamily};
             background: ${colors.primary};
-            padding: 1rem;
+            padding: 0.8rem;
             color: ${colors.white};
             font-size: 1rem;
             box-shadow: 0 0 25px rgba(33, 33, 33, 0.5);
@@ -35,9 +35,8 @@ class SnackBar extends Component<ISnackBarProps> {
           }
 
           .text {
-            height: 40px;
-            line-height: 40px;
-            padding: 0 10px;
+            line-height: 1rem;
+            padding: 0 1rem;
             text-align: center;
           }
 
