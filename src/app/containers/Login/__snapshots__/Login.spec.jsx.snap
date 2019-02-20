@@ -5,7 +5,7 @@ exports[`<Login /> should render properly 1`] = `
   className="container container--undefined"
 >
   <div
-    className="login"
+    className="login login--undefined"
   >
     <Logo />
   </div>
@@ -55,9 +55,11 @@ exports[`<Login /> should render properly 1`] = `
             display: flex;
             position: relative;
             border-radius: 3px;
-            transition: all 300ms ease-out;
-            min-height: 8.5rem;
-            max-height: 8.5rem;
+          }
+
+          .login--exiting,
+          .login--exited {
+            box-shadow: none;
           }
         
   </style>

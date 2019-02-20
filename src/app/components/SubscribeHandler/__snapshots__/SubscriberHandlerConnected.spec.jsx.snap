@@ -2,7 +2,7 @@
 
 exports[`<SubscribeHandlerConnected /> should render properly 1`] = `
 <SubscribeHandler
-  loading={false}
+  requestStatus={null}
   store={
     Object {
       "clearActions": [Function],

@@ -5,7 +5,7 @@ import Button from '@components/Button';
 import ButtonLink from '@components/ButtonLink';
 import Input from '@components/Input';
 import colors from '@constants/colors';
-import { borderRadius, boxShadow, fontFamily } from '@constants/styles';
+import { borderRadius, boxShadow } from '@constants/styles';
 import { SigninMethods } from '@services/authentication';
 import Router from 'next/router';
 import React, { ChangeEvent, Component } from 'react';
