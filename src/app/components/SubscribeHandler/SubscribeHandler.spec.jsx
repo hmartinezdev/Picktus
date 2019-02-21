@@ -6,13 +6,11 @@ import SubscribeHandler from './SubscribeHandler';
 let wrapper;
 let mountWrapper;
 
-const mountSetup = (props = {}) => mount(<SubscribeHandler {...props} />);
 const setup = (props = {}) => shallow(<SubscribeHandler {...props} />);
 
 describe('<SubscribeHandler />', () => {
   beforeEach(() => {
     wrapper = setup();
-    mountWrapper = mountSetup();
   });
 
   afterEach(() => {

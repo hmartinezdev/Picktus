@@ -312,9 +312,317 @@ exports[`<Button /> should put the text props inside the button 1`] = `
 </button>
 `;
 
+exports[`<Button /> should render children if there is one 1`] = `
+<button
+  className="button "
+  onClick={[Function]}
+>
+  <div />
+  <style
+    jsx={true}
+  >
+    
+          .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #F8F8F7;
+            transition: all 0.5s;
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+            font-family: 'Josefin Sans', sans-serif;
+            border-radius: 3px;
+            padding: 0 0.7rem;
+            width: 100%;
+            height: 2.35rem;
+            min-width: 28%;
+            margin: 0.7rem 0;
+            background: none;
+            border: none;
+            outline: none;
+          }
+
+          .button--dark {
+            color: #2d3047;
+          }
+
+          :global(.button svg) {
+            fill: #F8F8F7;
+            transition: all 0.5s;
+          }
+
+          .button:hover {
+            color: #9fcbe7;
+          }
+
+          :global(.button:hover svg) {
+            fill: #9fcbe7;
+          }
+
+          .text {
+            line-height: 2.35rem;
+            font-size: 0.75rem;
+            z-index: 2;
+          }
+
+          .button:active::after {
+            background-color: #75ab88ca;
+          }
+
+          .button a {
+            color: rgba(51, 51, 51, 1);
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+          }
+
+          .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #9fcbe745;
+            transition: all 0.3s;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+          .button:hover::before {
+            opacity: 0;
+            transform: scale(0.5, 0.5);
+          }
+          .button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0;
+            transition: all 0.3s;
+            border: 1px solid #b3e099ca;
+            transform: scale(0.7, 0.7);
+            border-radius: 3px;
+            cursor: pointer;
+          }
+
+          .button:hover::after {
+            opacity: 1;
+            transform: scale(1, 1);
+          }
+
+          .button--dark:hover {
+            color: #FAC9B8;
+          }
+
+          .button--dark::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #FAC9B8;
+            transition-property: transform, opacity;
+            transition: 0.3s ease-out;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+
+          .button--dark:hover::before {
+            opacity: 0;
+            transform: scale(0.5, 0.5);
+          }
+
+          .button--dark::after {
+            content: '';
+            position: absolute;
+            border: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0;
+            transition-property: transform, opacity;
+            transition: 0.3s ease-out;
+            transform: scale(0.7, 0.7);
+            background-color: #2d3047;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+
+          .button--dark:hover::after {
+            opacity: 1;
+            transform: scale(1, 1);
+            z-index: 1;
+          }
+        
+  </style>
+</button>
+`;
+
 exports[`<Button /> should render properly 1`] = `
 <button
   className="button "
+  onClick={[Function]}
+>
+  <p
+    className="text"
+  />
+  <style
+    jsx={true}
+  >
+    
+          .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #F8F8F7;
+            transition: all 0.5s;
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+            font-family: 'Josefin Sans', sans-serif;
+            border-radius: 3px;
+            padding: 0 0.7rem;
+            width: 100%;
+            height: 2.35rem;
+            min-width: 28%;
+            margin: 0.7rem 0;
+            background: none;
+            border: none;
+            outline: none;
+          }
+
+          .button--dark {
+            color: #2d3047;
+          }
+
+          :global(.button svg) {
+            fill: #F8F8F7;
+            transition: all 0.5s;
+          }
+
+          .button:hover {
+            color: #9fcbe7;
+          }
+
+          :global(.button:hover svg) {
+            fill: #9fcbe7;
+          }
+
+          .text {
+            line-height: 2.35rem;
+            font-size: 0.75rem;
+            z-index: 2;
+          }
+
+          .button:active::after {
+            background-color: #75ab88ca;
+          }
+
+          .button a {
+            color: rgba(51, 51, 51, 1);
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+          }
+
+          .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #9fcbe745;
+            transition: all 0.3s;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+          .button:hover::before {
+            opacity: 0;
+            transform: scale(0.5, 0.5);
+          }
+          .button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0;
+            transition: all 0.3s;
+            border: 1px solid #b3e099ca;
+            transform: scale(0.7, 0.7);
+            border-radius: 3px;
+            cursor: pointer;
+          }
+
+          .button:hover::after {
+            opacity: 1;
+            transform: scale(1, 1);
+          }
+
+          .button--dark:hover {
+            color: #FAC9B8;
+          }
+
+          .button--dark::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #FAC9B8;
+            transition-property: transform, opacity;
+            transition: 0.3s ease-out;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+
+          .button--dark:hover::before {
+            opacity: 0;
+            transform: scale(0.5, 0.5);
+          }
+
+          .button--dark::after {
+            content: '';
+            position: absolute;
+            border: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0;
+            transition-property: transform, opacity;
+            transition: 0.3s ease-out;
+            transform: scale(0.7, 0.7);
+            background-color: #2d3047;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+
+          .button--dark:hover::after {
+            opacity: 1;
+            transform: scale(1, 1);
+            z-index: 1;
+          }
+        
+  </style>
+</button>
+`;
+
+exports[`<Button /> should render with dark mode 1`] = `
+<button
+  className="button button--dark"
   onClick={[Function]}
 >
   <p

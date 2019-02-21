@@ -3,9 +3,8 @@ import React from 'react';
 import ButtonLink from './ButtonLink';
 
 let wrapper;
-const baseProps = { onClick: () => undefined };
-const setup = (props = baseProps) => shallow(<ButtonLink {...props} />);
-const mountSetup = (props = baseProps) => mount(<ButtonLink {...props} />);
+const baseProps = { onClick: () => undefined, href: '' };
+const setup = (props = {}) => shallow(<ButtonLink {...baseProps} {...props} />);
 
 describe('<Button />', () => {
   test('should render properly', () => {
@@ -20,6 +19,20 @@ describe('<Button />', () => {
 
   test('should put the href props on the button', () => {
     wrapper = setup({ href: '/test' });
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  test('should render with dark mode', () => {
+    wrapper = setup({ dark: true });
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  test('should render children if there is one', () => {
+    wrapper = shallow(
+      <ButtonLink {...baseProps}>
+        <div />
+      </ButtonLink>
+    );
     expect(wrapper).toMatchSnapshot();
   });
 });

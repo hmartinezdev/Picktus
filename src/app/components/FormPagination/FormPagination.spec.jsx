@@ -4,7 +4,11 @@ import FormPagination from './FormPagination';
 
 let wrapper;
 
-const setup = () => shallow(<FormPagination />);
+const baseProps = {
+  steps: ['mail', 'password'],
+};
+
+const setup = (props = {}) => shallow(<FormPagination {...baseProps} {...props} />);
 
 describe('<FormPagination />', () => {
   test('should render properly', () => {

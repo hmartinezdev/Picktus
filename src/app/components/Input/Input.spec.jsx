@@ -33,4 +33,9 @@ describe('<Input />', () => {
     wrapper.find('input').simulate('change', event);
     expect(onChange).toHaveBeenCalled();
   });
+
+  test('should have a default function onEnter', () => {
+    wrapper = setup();
+    expect(wrapper.instance().props.onEnter()).toEqual(undefined);
+  });
 });

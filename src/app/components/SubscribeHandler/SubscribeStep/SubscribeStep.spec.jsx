@@ -4,7 +4,7 @@ import SubscribeStep from './SubscribeStep';
 
 let wrapper;
 
-const setup = () => shallow(<Header />);
+const setup = () => shallow(<SubscribeStep />);
 
 describe('<SubscribeStep />', () => {
   test('should render properly', () => {

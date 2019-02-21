@@ -32,14 +32,16 @@ class Input extends Component<IInputPropTypes, InputState> {
     super(props);
   }
 
-  public componentDidMount() {
+  private addEnterListener = (ev: KeyboardEvent) => {
     const { onEnter } = this.props;
-    if (this.input && onEnter) {
-      this.input.addEventListener('keyup', (ev: KeyboardEvent) => {
-        if (ev.keyCode === 13) {
-          onEnter();
-        }
-      });
+    if (ev.keyCode === 13 && onEnter) {
+      onEnter();
+    }
+  };
+
+  public componentDidMount() {
+    if (this.input) {
+      this.input.addEventListener('keyup', this.addEnterListener);
     }
   }
 

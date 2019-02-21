@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SubscribeStep /> should render properly 1`] = `
+<div
+  className="container"
+>
+  <Input
+    autoFocus={true}
+    disabled={false}
+    name=""
+    onChange={[Function]}
+    onEnter={[Function]}
+    placeholder=""
+    type="text"
+  />
+  <style
+    jsx={true}
+  >
+    
+          .container {
+            font-family: 'Josefin Sans', sans-serif;
+            color: #FAC9B8;
+          }
+        
+  </style>
+</div>
+`;

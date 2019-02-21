@@ -5,12 +5,11 @@ import uuid from 'uuid';
 describe('message-generator', () => {
   it('should generate a message', () => {
     const spyId = jest.spyOn(uuid, 'v4').mockImplementation(() => 'id');
-    const message = messageGenerator('ok', PicktusMessageLevel.SUCCESS, PicktusMessageDisplay.NOTIFICATION);
+    const message = messageGenerator('ok', PicktusMessageLevel.SUCCESS);
     expect(spyId).toHaveBeenCalled();
     expect(message).toEqual({
       id: 'id',
       text: 'ok',
-      display: PicktusMessageDisplay.NOTIFICATION,
       level: PicktusMessageLevel.SUCCESS,
     });
   });

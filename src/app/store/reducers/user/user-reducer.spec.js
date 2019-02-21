@@ -1,7 +1,7 @@
 import reducer from './user-reducer'
 import { TypeKeys } from './user-actions'
 ​
-describe('todos reducer', () => {
+describe('user reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(
         { authenticated: false }
@@ -98,15 +98,15 @@ describe('todos reducer', () => {
   });
 
   it(`it should handle ${TypeKeys.USER_CREATION_START}`, () => {
-    expect(reducer(undefined, {type:TypeKeys.USER_CREATION_START})).toEqual({authenticated: false, creationInProgress: true});
+    expect(reducer(undefined, {type:TypeKeys.USER_CREATION_START})).toEqual({authenticated: false, userCreation: { inProgress: true } });
   });
 
   it(`it should handle ${TypeKeys.USER_CREATION_SUCCESS}`, () => {
-    expect(reducer(undefined, {type:TypeKeys.USER_CREATION_SUCCESS})).toEqual({authenticated: false, creationInProgress: false});
+    expect(reducer(undefined, {type:TypeKeys.USER_CREATION_SUCCESS})).toEqual({authenticated: false,  userCreation: { inProgress: false }});
   });
 
   it(`it should handle ${TypeKeys.USER_CREATION_FAILURE}`, () => {
-    expect(reducer(undefined, {type:TypeKeys.USER_CREATION_FAILURE})).toEqual({authenticated: false, creationInProgress: false});
+    expect(reducer(undefined, {type:TypeKeys.USER_CREATION_FAILURE, error: new Error()})).toEqual({authenticated: false,  userCreation: { inProgress: false, error: 'Error' }});
   });
 
   it(`it should handle ${TypeKeys.USER_LOGOUT}`, () => {
