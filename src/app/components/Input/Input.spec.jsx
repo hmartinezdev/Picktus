@@ -1,15 +1,20 @@
-import enzyme, { shallow } from 'enzyme';
+import enzyme, { mount, shallow } from 'enzyme';
 import React from 'react';
 import Input from './Input';
 
 let wrapper;
 
 const baseProps = { onChange: () => undefined };
-const setup = (props = baseProps) => shallow(<Input {...props} />);
+const setup = (props = {}) => shallow(<Input {...baseProps} {...props} />);
+const mountSetup = (props = {}) => mount(<Input {...baseProps} {...props} />);
 
 describe('<Input />', () => {
   beforeEach(() => {
     wrapper = setup();
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 
   test('should render properly', () => {
@@ -37,5 +42,33 @@ describe('<Input />', () => {
   test('should have a default function onEnter', () => {
     wrapper = setup();
     expect(wrapper.instance().props.onEnter()).toEqual(undefined);
+  });
+
+  describe('componentDidMount', () => {
+    test('it should call window.addEventListener with the correct parameters', () => {
+      wrapper = mountSetup();
+      const instance = wrapper.instance();
+      const spy = jest.spyOn(instance.input, 'addEventListener').mockImplementation(() => undefined);
+      instance.componentDidMount();
+      expect(spy).toBeCalledWith('keyup', instance.enterCallBack);
+    });
+  });
+
+  describe('enterCallBack', () => {
+    test('it should call onEnter props if the enter key has been pushed', () => {
+      const onEnter = jest.fn();
+      wrapper = setup({ onEnter });
+      const instance = wrapper.instance();
+      instance.enterCallBack({ keyCode: 13 });
+      expect(onEnter).toHaveBeenCalled();
+    });
+
+    test("it should not call onEnter props if the enter key hasn't been pushed", () => {
+      const onEnter = jest.fn();
+      wrapper = setup({ onEnter });
+      const instance = wrapper.instance();
+      instance.enterCallBack({ keyCode: 3 });
+      expect(onEnter).toHaveBeenCalledTimes(0);
+    });
   });
 });

@@ -19,8 +19,6 @@ class SubscribeStep extends Component<ISubscribeStepPropsType, IStringMap> {
     type: 'text',
   };
 
-  private input: Input | null = null;
-
   constructor(props: ISubscribeStepPropsType) {
     super(props);
     const { name } = props;
@@ -28,16 +26,6 @@ class SubscribeStep extends Component<ISubscribeStepPropsType, IStringMap> {
     this.state = {
       [name]: '',
     };
-  }
-
-  public componentDidMount() {
-    if (this.input && this.input.input) {
-      this.input.input.addEventListener('keyup', (ev: KeyboardEvent) => {
-        if (ev.keyCode === 13) {
-          this.onSubmit();
-        }
-      });
-    }
   }
 
   public onChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -62,12 +50,12 @@ class SubscribeStep extends Component<ISubscribeStepPropsType, IStringMap> {
     return (
       <div className="container">
         <Input
-          ref={(node) => (this.input = node)}
           name={name}
           onChange={this.onChange}
           autoFocus={true}
           placeholder={title}
           type={type}
+          onEnter={this.onSubmit}
         />
 
         <style jsx>{`

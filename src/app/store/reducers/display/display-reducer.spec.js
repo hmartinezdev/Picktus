@@ -18,4 +18,28 @@ describe('display reducer', () => {
   it(`it should handle ${DisplayType.DISPLAY_LOADER}`, () => {
     expect(reducer(undefined, {type:DisplayType.DISPLAY_LOADER, show: true})).toEqual({loader: true});
   });
+
+  it(`it should handle ${UserType.USER_LOGIN_START}`, () => {
+    expect(reducer(undefined, {type:UserType.USER_LOGIN_START})).toEqual({loader: true});
+  });
+
+  it(`it should handle ${UserType.USER_SIGNOUT_START}`, () => {
+    expect(reducer(undefined, {type:UserType.USER_SIGNOUT_START})).toEqual({loader: true});
+  });
+
+  it(`it should handle ${UserType.USER_SIGNOUT_SUCCESS}`, () => {
+    expect(reducer(undefined, {type:UserType.USER_SIGNOUT_SUCCESS})).toEqual({loader: false});
+  });
+
+  it(`it should handle ${UserType.USER_SIGNOUT_FAILURE}`, () => {
+    expect(reducer(undefined, {type:UserType.USER_SIGNOUT_FAILURE})).toEqual({loader: false});
+  });
+
+  it(`it should handle ${UserType.USER_LOGIN_SUCCESS}`, () => {
+    expect(reducer(undefined, {type:UserType.USER_LOGIN_SUCCESS})).toEqual({loader: false});
+  });
+
+  it(`it should handle ${UserType.USER_LOGIN_FAILURE}`, () => {
+    expect(reducer(undefined, {type:UserType.USER_LOGIN_FAILURE})).toEqual({loader: false});
+  });
 })
