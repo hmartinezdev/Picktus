@@ -7,10 +7,10 @@ exports[`<SubscribeStep /> should render properly 1`] = `
   <Input
     autoFocus={true}
     disabled={false}
-    name=""
+    name="step"
     onChange={[Function]}
     onEnter={[Function]}
-    placeholder=""
+    placeholder="stepTitle"
     type="text"
   />
   <style
