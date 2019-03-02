@@ -13,7 +13,7 @@ export interface ITextSwitchButtonState {
   active: boolean;
 }
 
-class Button extends Component<ITextSwitchButtonPropTypes, ITextSwitchButtonState> {
+class TextSwitchButton extends Component<ITextSwitchButtonPropTypes, ITextSwitchButtonState> {
   public static defaultProps = {
     activeText: '',
     initialText: '',
@@ -32,7 +32,7 @@ class Button extends Component<ITextSwitchButtonPropTypes, ITextSwitchButtonStat
     this.props.onClick();
   };
 
-  public render(): React.ReactElement<Button> {
+  public render(): React.ReactElement<TextSwitchButton> {
     const { initialText, activeText } = this.props;
     const { active } = this.state;
 
@@ -152,4 +152,4 @@ class Button extends Component<ITextSwitchButtonPropTypes, ITextSwitchButtonStat
   }
 }
 
-export default Button;
+export default TextSwitchButton;

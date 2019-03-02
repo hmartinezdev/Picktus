@@ -38,11 +38,11 @@ export default function user(state: IUserState = initialState, action: ActionTyp
       return initialState;
     }
     case TypeKeys.USER_CREATION_START:
-      return { ...state, creationInProgress: true };
+      return { ...state, userCreation: { inProgress: true } };
     case TypeKeys.USER_CREATION_FAILURE:
-      return { ...state, creationInProgress: false };
+      return { ...state, userCreation: { inProgress: false, error: action.error.name } };
     case TypeKeys.USER_CREATION_SUCCESS:
-      return { ...state, creationInProgress: false };
+      return { ...state, userCreation: { inProgress: false } };
     default:
       return state;
   }

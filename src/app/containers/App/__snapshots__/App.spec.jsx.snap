@@ -7,7 +7,7 @@ exports[`<App /> should render loader is showLoader is at true 1`] = `
   >
     <Header />
     <MessageHandler />
-    <Loader />
+    <Header />
     <TransitionGroup
       appear={false}
       childFactory={[Function]}
@@ -44,6 +44,7 @@ exports[`<App /> should render loader is showLoader is at true 1`] = `
               align-self: stretch;
               overflow: hidden;
               width: 100%;
+              position: relative;
             }
 
             :global(.app_transitiongroup) {
@@ -61,7 +62,13 @@ exports[`<App /> should render loader is showLoader is at true 1`] = `
             }
 
             :global(html) {
-              font-size: 100%;
+              font-size: 90%;
+            }
+
+            @media (min-width: 720px) {
+              :global(html) {
+                font-size: 100%;
+              }
             }
           
     </style>
@@ -112,6 +119,7 @@ exports[`<App /> should render properly 1`] = `
               align-self: stretch;
               overflow: hidden;
               width: 100%;
+              position: relative;
             }
 
             :global(.app_transitiongroup) {
@@ -129,7 +137,13 @@ exports[`<App /> should render properly 1`] = `
             }
 
             :global(html) {
-              font-size: 100%;
+              font-size: 90%;
+            }
+
+            @media (min-width: 720px) {
+              :global(html) {
+                font-size: 100%;
+              }
             }
           
     </style>

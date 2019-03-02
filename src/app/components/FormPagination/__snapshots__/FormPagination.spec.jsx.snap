@@ -1,0 +1,167 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormPagination /> should render properly 1`] = `
+<div
+  className="formPagination"
+>
+  <div
+    className="stepContainer"
+    key="mail"
+  >
+    <div
+      className="step step--active"
+    >
+      <Transition
+        appear={false}
+        enter={true}
+        exit={true}
+        in={false}
+        mountOnEnter={true}
+        onEnter={[Function]}
+        onEntered={[Function]}
+        onEntering={[Function]}
+        onExit={[Function]}
+        onExited={[Function]}
+        onExiting={[Function]}
+        timeout={200}
+        unmountOnExit={true}
+      >
+        <Component />
+      </Transition>
+    </div>
+    <div
+      className="tag tag--active"
+    >
+      mail
+    </div>
+  </div>
+  <div
+    className="separator "
+    key="mail-separator"
+  />
+  <div
+    className="stepContainer"
+    key="password"
+  >
+    <div
+      className="step"
+    >
+      <Transition
+        appear={false}
+        enter={true}
+        exit={true}
+        in={false}
+        mountOnEnter={true}
+        onEnter={[Function]}
+        onEntered={[Function]}
+        onEntering={[Function]}
+        onExit={[Function]}
+        onExited={[Function]}
+        onExiting={[Function]}
+        timeout={200}
+        unmountOnExit={true}
+      >
+        <Component />
+      </Transition>
+    </div>
+    <div
+      className="tag"
+    >
+      password
+    </div>
+  </div>
+  <style
+    jsx={true}
+  >
+    
+          .formPagination {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 6.5rem;
+          }
+
+          .stepContainer {
+            position: relative;
+          }
+
+          .step {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 1.8rem;
+            height: 1.8rem;
+            border: 3px solid #F8F8F7;
+            border-radius: 3px;
+            display: inline-block;
+            transition: all 0.3s;
+            transition: all 200ms ease-in;
+            overflow: hidden;
+          }
+
+          .step--active {
+            border-color: #FAC9B8;
+          }
+
+          .step--validated:hover {
+            transform: scale(1.3, 1.3);
+            cursor: pointer;
+          }
+
+          .separator {
+            width: 20%;
+            height: 3px;
+            display: inline-block;
+            background-color: #F8F8F7;
+            transition: border 200ms ease-in;
+          }
+
+          .separator--active {
+            background-color: #FAC9B8;
+          }
+
+          .tag {
+            font-family: 'Josefin Sans', sans-serif;
+            position: absolute;
+            top: -1.8rem;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            color: #FAC9B8;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            transform: translate(-50%, 0.6rem) scale(0.6, 0.6);
+            transition: all 200ms ease-in;
+            opacity: 1;
+          }
+
+          .tag--active {
+            transform: translate(-50%, 0) scale(1, 1);
+          }
+
+          .tag--validated {
+            transform: translate(-50%, 0.6rem) scale(0.6, 0.6);
+          }
+
+          .step--validated:hover + .tag--validated {
+            transform: translate(-50%, 0) scale(1, 1);
+          }
+
+          .validated {
+            opacity: 0;
+            width: 1.8rem;
+            height: 1.8rem;
+            transition: opacity 200ms ease-in;
+          }
+
+          .validated--entered,
+          .validated--entering {
+            opacity: 1;
+          }
+        
+  </style>
+</div>
+`;

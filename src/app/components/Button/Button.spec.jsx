@@ -4,8 +4,8 @@ import Button, { ButtonPropTypes } from './Button';
 
 let wrapper;
 const baseProps = { onClick: () => undefined };
-const setup = (props = baseProps) => shallow(<Button {...props} />);
-const mountSetup = (props = baseProps) => mount(<Button {...props} />);
+const setup = (props = {}) => shallow(<Button {...baseProps} {...props} />);
+const mountSetup = (props = {}) => mount(<Button {...baseProps} {...props} />);
 
 describe('<Button />', () => {
   test('should render properly', () => {
@@ -20,6 +20,20 @@ describe('<Button />', () => {
 
   test('should put the onClick props on the button', () => {
     wrapper = setup({ onClick: () => undefined });
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  test('should render with dark mode', () => {
+    wrapper = setup({ dark: true });
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  test('should render children if there is one', () => {
+    wrapper = shallow(
+      <Button {...baseProps}>
+        <div />
+      </Button>
+    );
     expect(wrapper).toMatchSnapshot();
   });
 

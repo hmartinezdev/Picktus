@@ -64,6 +64,13 @@ class SnackBarHandler extends Component<ISnackBarHandlerProps> {
             transition: all 350ms ease-out;
             transform: translate(-50%, 120%);
             z-index: 1000;
+            width: 90%;
+          }
+
+          @media (min-width: 720px) {
+            .snackbar__container {
+              width: initial;
+            }
           }
 
           .snackbar__container--entering {

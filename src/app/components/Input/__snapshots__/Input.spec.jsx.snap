@@ -5,9 +5,12 @@ exports[`<Input /> should display the correct placeholder 1`] = `
   className="container"
 >
   <input
+    autoFocus={false}
     className="input"
+    disabled={false}
     name=""
     onChange={[Function]}
+    onEnter={[Function]}
     placeholder="placeholder"
     type="text"
   />
@@ -22,7 +25,7 @@ exports[`<Input /> should display the correct placeholder 1`] = `
     
           .container {
             position: relative;
-            width: 75%;
+            width: 100%;
             margin: 0.7rem 0;
           }
 
@@ -100,9 +103,12 @@ exports[`<Input /> should display the correct text 1`] = `
   className="container"
 >
   <input
+    autoFocus={false}
     className="input"
+    disabled={false}
     name=""
     onChange={[Function]}
+    onEnter={[Function]}
     placeholder=""
     type="password"
   />
@@ -117,7 +123,7 @@ exports[`<Input /> should display the correct text 1`] = `
     
           .container {
             position: relative;
-            width: 75%;
+            width: 100%;
             margin: 0.7rem 0;
           }
 
@@ -195,9 +201,12 @@ exports[`<Input /> should render properly 1`] = `
   className="container"
 >
   <input
+    autoFocus={false}
     className="input"
+    disabled={false}
     name=""
     onChange={[Function]}
+    onEnter={[Function]}
     placeholder=""
     type="text"
   />
@@ -212,7 +221,7 @@ exports[`<Input /> should render properly 1`] = `
     
           .container {
             position: relative;
-            width: 75%;
+            width: 100%;
             margin: 0.7rem 0;
           }
 

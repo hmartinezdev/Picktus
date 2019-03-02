@@ -2,7 +2,7 @@ import reducer from './display-reducer'
 import { TypeKeys as DisplayType } from './display-actions'
 import { TypeKeys as UserType } from '../user/user-actions';
 ​
-describe('todos reducer', () => {
+describe('display reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(
         { loader: false }
@@ -19,15 +19,27 @@ describe('todos reducer', () => {
     expect(reducer(undefined, {type:DisplayType.DISPLAY_LOADER, show: true})).toEqual({loader: true});
   });
 
-  it(`it should handle ${UserType.USER_CREATION_START}`, () => {
-    expect(reducer(undefined, {type:UserType.USER_CREATION_START, show: true})).toEqual({loader: true});
+  it(`it should handle ${UserType.USER_LOGIN_START}`, () => {
+    expect(reducer(undefined, {type:UserType.USER_LOGIN_START})).toEqual({loader: true});
   });
 
-  it(`it should handle ${UserType.USER_CREATION_FAILURE}`, () => {
-    expect(reducer(undefined, {type:UserType.USER_CREATION_FAILURE, show: true})).toEqual({loader: false});
+  it(`it should handle ${UserType.USER_SIGNOUT_START}`, () => {
+    expect(reducer(undefined, {type:UserType.USER_SIGNOUT_START})).toEqual({loader: true});
   });
 
-  it(`it should handle ${UserType.USER_CREATION_FAILURE}`, () => {
-    expect(reducer(undefined, {type:UserType.USER_CREATION_FAILURE, show: true})).toEqual({loader: false});
+  it(`it should handle ${UserType.USER_SIGNOUT_SUCCESS}`, () => {
+    expect(reducer(undefined, {type:UserType.USER_SIGNOUT_SUCCESS})).toEqual({loader: false});
+  });
+
+  it(`it should handle ${UserType.USER_SIGNOUT_FAILURE}`, () => {
+    expect(reducer(undefined, {type:UserType.USER_SIGNOUT_FAILURE})).toEqual({loader: false});
+  });
+
+  it(`it should handle ${UserType.USER_LOGIN_SUCCESS}`, () => {
+    expect(reducer(undefined, {type:UserType.USER_LOGIN_SUCCESS})).toEqual({loader: false});
+  });
+
+  it(`it should handle ${UserType.USER_LOGIN_FAILURE}`, () => {
+    expect(reducer(undefined, {type:UserType.USER_LOGIN_FAILURE})).toEqual({loader: false});
   });
 })

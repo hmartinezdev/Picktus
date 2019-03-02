@@ -7,26 +7,38 @@ exports[`<LoginHandler /> should render properly 1`] = `
   <div
     className="login"
   >
-    <Input
-      name="email"
-      onChange={[Function]}
-      placeholder="Mail"
-      type="text"
-    />
-    <Input
-      name="password"
-      onChange={[Function]}
-      placeholder="Password"
-      type="password"
-    />
-    <Button
-      onClick={[Function]}
-      text="Login"
-    />
+    <div
+      className="form"
+    >
+      <Input
+        autoFocus={false}
+        disabled={false}
+        name="email"
+        onChange={[Function]}
+        onEnter={[Function]}
+        placeholder="Mail"
+        type="text"
+      />
+      <Input
+        autoFocus={false}
+        disabled={false}
+        name="password"
+        onChange={[Function]}
+        onEnter={[Function]}
+        placeholder="Password"
+        type="password"
+      />
+      <Button
+        dark={false}
+        onClick={[Function]}
+        text="Login"
+      />
+    </div>
     <div
       className="socialButtons"
     >
       <Button
+        dark={false}
         onClick={[Function]}
         text=""
       >
@@ -35,6 +47,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
         />
       </Button>
       <Button
+        dark={false}
         onClick={[Function]}
         text=""
       >
@@ -43,6 +56,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
         />
       </Button>
       <Button
+        dark={false}
         onClick={[Function]}
         text=""
       >
@@ -52,7 +66,13 @@ exports[`<LoginHandler /> should render properly 1`] = `
       </Button>
     </div>
   </div>
-  <Connect(SubscribeHandler) />
+  <ButtonLink
+    dark={true}
+    href="/auth/subscribe"
+    prefecth={false}
+    prefetch={true}
+    text="I don't have an account!"
+  />
   <style
     jsx={true}
   >
@@ -66,21 +86,26 @@ exports[`<LoginHandler /> should render properly 1`] = `
             flex-direction: column;
             align-items: center;
             background-color: #2d3047;
-            min-width: 22rem;
-            padding: 1.5rem 0;
-            box-sizing: border-box;
+            padding: 1.5rem 1.5rem;
             border-radius: 3px;
             box-shadow: 11px 10px 34px -7px rgba(0, 0, 0, 0.49);
+          }
+
+          .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 16rem;
           }
 
           .socialButtons {
             display: flex;
             justify-content: space-between;
-            width: 75%;
+            width: 16rem;
           }
 
           :global(.socialButtons.socialButtons &gt; button:nth-child(2)) {
-            margin: 0.7rem 1.4rem;
+            margin: 0.7rem 1.1rem;
           }
         
   </style>

@@ -1,13 +1,15 @@
 import uuid from 'uuid';
-import { IPicktusError, IPicktusMessage, PicktusMessageDisplay, PicktusMessageLevel } from './message.type';
+import { IPicktusError, IPicktusMessage, PicktusMessageLevel } from './message.type';
 
-export default function(
-  text: string,
-  level: PicktusMessageLevel,
-  display: PicktusMessageDisplay
-): IPicktusError | IPicktusMessage {
+/**
+ * Function formating error and message and adding an unique ID
+ *
+ * @param  {string} text
+ * @param  {PicktusMessageLevel} level
+ * @returns IPicktusError
+ */
+export default function(text: string, level: PicktusMessageLevel): IPicktusError | IPicktusMessage {
   return {
-    display,
     id: uuid.v4(),
     level,
     text,

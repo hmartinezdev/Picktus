@@ -2,6 +2,7 @@ import enzyme, { shallow, mount } from 'enzyme';
 import React from 'react';
 import LoginHandler from './LoginHandler';
 import { SigninMethods } from '@services/authentication';
+import Router from 'next/router';
 
 let wrapper;
 let mountWrapper;
@@ -12,6 +13,10 @@ const mountSetup = (props = {}) => mount(<LoginHandler {...props} />);
 describe('<LoginHandler />', () => {
   beforeEach(() => {
     wrapper = setup();
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 
   test('should render properly', () => {
@@ -67,6 +72,15 @@ describe('<LoginHandler />', () => {
     test('onTwitterClick should call the signin method in props with methods.TWITTER ', () => {
       instance.onTwitterClick();
       expect(spyLogin).toHaveBeenCalledWith(SigninMethods.TWITTER, {});
+    });
+  });
+
+  describe('onSubscribeClick', () => {
+    test('it should call router.push with the subscribe url', () => {
+      const spy = jest.spyOn(Router, 'push').mockImplementation(() => undefined);
+      const instance = wrapper.instance();
+      instance.onSubscribeClick();
+      expect(spy).toHaveBeenCalledWith('/subscribe');
     });
   });
 });

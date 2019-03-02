@@ -44,9 +44,10 @@ export default (App: ExtendedElement) => {
       // This allows you to set a custom default initialState
       const reduxStore = getOrCreateStore();
 
-      const user = (appContext.ctx.req || {}).firebaseUser;
-
-      reduxStore.dispatch(userServerAuth(user));
+      if (isServer) {
+        const user = (appContext.ctx.req || {}).firebaseUser;
+        reduxStore.dispatch(userServerAuth(user));
+      }
 
       // Provide the store to getInitialProps of pages
       appContext.ctx.reduxStore = reduxStore;

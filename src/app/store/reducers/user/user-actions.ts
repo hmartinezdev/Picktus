@@ -125,6 +125,7 @@ export const userCreation = (email: string, password: string): ThunkResult<void>
   try {
     await Authentication.createUser(email, password);
     dispatch(userCreationSuccess);
+    Router.push('/');
   } catch (e) {
     dispatch(userCreationFailure(e));
   }
@@ -138,7 +139,7 @@ export const signin = (method: SigninMethods, options: ISigninOptions): ThunkRes
   try {
     const user = await Authentication.signin(method, options);
     dispatch(userLoginSuccess(user));
-    Router.replace('/');
+    Router.push('/');
   } catch (e) {
     dispatch(userLoginFailure(e));
   }

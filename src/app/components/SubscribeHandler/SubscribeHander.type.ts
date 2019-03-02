@@ -1,20 +1,24 @@
 import { ThunkResult } from '@store/reducers/user/user-actions';
 
-export interface IStringMap {
-  [s: string]: string;
-}
-export interface ISubscribeHandlerState {
-  open: boolean;
-  inputs: IStringMap;
-  errors: IStringMap;
+export interface ISubscribeStepInfos {
+  control: (value: string) => boolean;
+  name: string;
+  errorMessage: string;
+  title: string;
+  type: string;
 }
 
 export interface IReduxStateProps {
-  loading?: boolean;
+  requestStatus: IAsyncInformation | null;
 }
 
 export interface IDispatchProps {
   userCreation: (mail: string, password: string) => ThunkResult<void>;
+}
+
+export interface ISubscribeHandlerState {
+  values: IStringMap;
+  current: number;
 }
 
 export type ISubscribeHandlerProps = IReduxStateProps & IDispatchProps;

@@ -4,15 +4,22 @@ import React from 'react';
 import SubscribeHandler from './SubscribeHandler';
 
 let wrapper;
+let instance;
 let mountWrapper;
 
-const mountSetup = (props = {}) => mount(<SubscribeHandler {...props} />);
-const setup = (props = {}) => shallow(<SubscribeHandler {...props} />);
+const baseProps = {
+  requestStatus: {
+    inProgress: false,
+    error: 'error',
+  },
+};
+
+const setup = (props = {}) => shallow(<SubscribeHandler {...baseProps} {...props} />);
 
 describe('<SubscribeHandler />', () => {
   beforeEach(() => {
     wrapper = setup();
-    mountWrapper = mountSetup();
+    instance = wrapper.instance();
   });
 
   afterEach(() => {
@@ -23,144 +30,62 @@ describe('<SubscribeHandler />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test('onTriggerClick', () => {
-    const instance = mountWrapper.instance();
-    const spy = jest.spyOn(instance, 'setState');
-    instance.onTriggerClick();
-    expect(spy).toBeCalledWith({ open: true, errors: {} });
+  describe('componentWillReceiveProps', () => {
+    test('it should call setState with current at 0 if the user creation progress has finished', () => {
+      wrapper = setup({ requestStatus: { inProgress: true } });
+      const spy = jest.spyOn(wrapper, 'setState');
+      wrapper.setProps({ requestStatus: { inProgress: false } });
+      expect(spy).toHaveBeenCalledWith({ current: 0 });
+    });
   });
 
-  describe('pushError', () => {
-    test('it should add an error to the state', () => {
-      const instance = mountWrapper.instance();
-      const spy = jest.spyOn(instance, 'setState');
-      instance.pushError('test', 'test');
+  describe('confirmPassWord', () => {
+    test('it should return true if the password value is equal to the confirmation', () => {
+      wrapper.setState({ values: { password: 'test' } });
+      instance = wrapper.instance();
+      expect(instance.confirmPassword('test')).toBe(true);
+    });
+
+    test('it should return false if not', () => {
+      wrapper.setState({ values: { password: 'test' } });
+      instance = wrapper.instance();
+      expect(instance.confirmPassword('test1')).toBe(false);
+    });
+  });
+
+  describe('onValidate', () => {
+    test('it should call onLastValueSubmitted if current is equal to the number of steps minus 1', () => {
+      wrapper = setup({ userCreation: () => undefined });
+      instance = wrapper.instance();
+      instance.setState({ current: instance.form.length - 1 });
+      const spy = jest.spyOn(instance, 'onLastValueSubmitted');
+      instance.onValidate();
       expect(spy).toHaveBeenCalled();
-      expect(spy).toHaveBeenLastCalledWith({ errors: { test: 'test' } });
     });
 
-    test('if error already exist, it should do nothing', () => {
-      const instance = mountWrapper.instance();
-      instance.setState({ errors: { test: 'test' } });
+    test("it should increment current value and store the value in the component state if it's not", () => {
       const spy = jest.spyOn(instance, 'setState');
-      instance.pushError('test', 'test');
-      expect(spy).toHaveBeenCalledTimes(0);
+      instance.onValidate('test');
+      expect(spy).toBeCalledWith({ current: 1, values: { [instance.form[0].name]: 'test' } });
     });
   });
 
-  describe('removeError', () => {
-    test('it should remove an error from the component state', () => {
-      const instance = mountWrapper.instance();
-      instance.setState({ errors: { test: 'test' } });
-      const spy = jest.spyOn(instance, 'setState');
-      instance.removeError('test');
-      expect(spy).toHaveBeenCalled();
-      expect(spy).toHaveBeenCalledWith({ errors: { test: '' } });
-    });
-
-    test('it should do nothing if the error does not exist', () => {
-      const instance = mountWrapper.instance();
-      const spy = jest.spyOn(instance, 'setState');
-      instance.removeError('test');
-      expect(spy).toHaveBeenCalledTimes(0);
-    });
-  });
-
-  describe('onChange', () => {
-    test('it should change the input value in the component state', () => {
-      const instance = mountWrapper.instance();
-      const spy = jest.spyOn(instance, 'setState');
-      instance.onChange({ target: { name: 'test', value: 'test' } });
-      expect(spy).toHaveBeenCalled();
-      expect(spy).toHaveBeenCalledWith({ inputs: { test: 'test' } });
-    });
-
-    test('it should not change the input value if the name is open', () => {
-      const instance = mountWrapper.instance();
-      const spy = jest.spyOn(instance, 'setState');
-      instance.onChange({ target: { name: 'open', value: 'test' } });
-      expect(spy).toHaveBeenCalledTimes(0);
-    });
-  });
-
-  describe('validity', () => {
-    test('it should add an error if the input value is not valid', () => {
-      const instance = mountWrapper.instance();
-      const spyPush = jest.spyOn(instance, 'pushError');
-      const spyRemove = jest.spyOn(instance, 'removeError');
-      const ret = instance.validity('test', false, 'error');
-      expect(spyPush).toHaveBeenCalled();
-      expect(spyRemove).toHaveBeenCalledTimes(0);
-      expect(spyPush).toBeCalledWith('test', 'error');
-      expect(ret).toEqual(false);
-    });
-
-    test('it should remove an error if the input value is valid', () => {
-      const instance = mountWrapper.instance();
-      const spyPush = jest.spyOn(instance, 'pushError');
-      const spyRemove = jest.spyOn(instance, 'removeError');
-      const ret = instance.validity('test', true, 'error');
-      expect(spyRemove).toHaveBeenCalled();
-      expect(spyPush).toHaveBeenCalledTimes(0);
-      expect(spyRemove).toBeCalledWith('test');
-      expect(ret).toEqual(true);
-    });
-  });
-
-  describe('onSubscribeClick', () => {
-    test('it should call userCreation if all input values are correct', () => {
+  describe('onLastValueSubmitted', () => {
+    test('it should call userCreation with the defined password and email', () => {
       const userCreation = jest.fn();
-      const mountWrapper = mountSetup({ userCreation });
-      const instance = mountWrapper.instance();
-      const spyValidity = jest.spyOn(instance, 'validity');
-      instance.setState({ inputs: { password: 'Kako1234!', comfirmPassword: 'Kako1234!', mail: 'hugo@mail.com' } });
-      instance.onSubscribeClick();
-      expect(userCreation).toHaveBeenCalled();
-      expect(spyValidity).toHaveBeenCalledTimes(4);
-    });
-
-    test('if there is one or more error, it should not call userCreation', () => {
-      const userCreation = jest.fn();
-      const mountWrapper = mountSetup({ userCreation });
-      const instance = mountWrapper.instance();
-      const spyValidity = jest.spyOn(instance, 'validity');
-      instance.setState({ inputs: { password: 'k!', comfirmPassword: 'Kako1234!', mail: 'hugo@mail.com' } });
-      instance.onSubscribeClick();
-      expect(userCreation).toHaveBeenCalledTimes(0);
-      expect(spyValidity).toHaveBeenCalledTimes(2);
-    });
-
-    test('if there is a missing value it should only check that and return immediatly', () => {
-      const userCreation = jest.fn();
-      const mountWrapper = mountSetup({ userCreation });
-      const instance = mountWrapper.instance();
-      const spyValidity = jest.spyOn(instance, 'validity');
-      instance.setState({ inputs: { comfirmPassword: 'Kako1234!', mail: 'hugo@mail.com' } });
-      instance.onSubscribeClick();
-      expect(userCreation).toHaveBeenCalledTimes(0);
-      expect(spyValidity).toHaveBeenCalledTimes(1);
+      wrapper = setup({ userCreation });
+      wrapper.setState({ values: { password: 'password', mail: 'mail' } });
+      instance = wrapper.instance();
+      instance.onLastValueSubmitted();
+      expect(userCreation).toHaveBeenCalledWith('mail', 'password');
     });
   });
 
-  describe('renderErrors', () => {
-    test('it should return an array of element if there are errors', () => {
-      const instance = mountWrapper.instance();
-      instance.setState({ errors: { missingValues: 'test' } });
-      const result = instance.renderErrors();
-      expect(result).toHaveLength(1);
-    });
-
-    test('it should return an empty array if there are no errors', () => {
-      const instance = mountWrapper.instance();
-      const result = instance.renderErrors();
-      expect(result).toHaveLength(0);
-    });
-
-    test('it should return an empty array if an error is not defined anymore', () => {
-      const instance = mountWrapper.instance();
-      instance.setState({ errors: { missingValues: undefined } });
-      const result = instance.renderErrors();
-      expect(result).toEqual([undefined]);
+  describe('onValidatedStepClick', () => {
+    test('it should set the state to the clicked step', () => {
+      const spy = jest.spyOn(instance, 'setState');
+      instance.onValidatedStepClick(1);
+      expect(spy).toHaveBeenCalledWith({ current: 1 });
     });
   });
 });

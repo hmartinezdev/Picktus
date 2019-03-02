@@ -6,18 +6,20 @@ export interface IButtonPropTypes {
   text?: string;
   children?: JSX.Element[] | JSX.Element;
   onClick(): void;
+  dark: boolean;
 }
 
 class Button extends Component<IButtonPropTypes, {}> {
   public static defaultProps = {
+    dark: false,
     text: '',
   };
 
   public render(): React.ReactElement<Button> {
-    const { onClick, text, children } = this.props;
+    const { onClick, text, children, dark } = this.props;
 
     return (
-      <button onClick={onClick} className="button">
+      <button onClick={onClick} className={`button ${dark ? 'button--dark' : ''}`}>
         {children ? children : <p className="text">{text}</p>}
         <style jsx>{`
           .button {
@@ -32,13 +34,17 @@ class Button extends Component<IButtonPropTypes, {}> {
             font-family: ${fontFamily};
             border-radius: ${borderRadius};
             padding: 0 0.7rem;
-            width: 75%;
+            width: 100%;
             height: 2.35rem;
             min-width: 28%;
             margin: 0.7rem 0;
             background: none;
             border: none;
             outline: none;
+          }
+
+          .button--dark {
+            color: ${colors.primary};
           }
 
           :global(.button svg) {
@@ -106,6 +112,53 @@ class Button extends Component<IButtonPropTypes, {}> {
           .button:hover::after {
             opacity: 1;
             transform: scale(1, 1);
+          }
+
+          .button--dark:hover {
+            color: ${colors.secondary};
+          }
+
+          .button--dark::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: ${colors.secondary};
+            transition-property: transform, opacity;
+            transition: 0.3s ease-out;
+            border-radius: ${borderRadius};
+            cursor: pointer;
+          }
+
+          .button--dark:hover::before {
+            opacity: 0;
+            transform: scale(0.5, 0.5);
+          }
+
+          .button--dark::after {
+            content: '';
+            position: absolute;
+            border: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0;
+            transition-property: transform, opacity;
+            transition: 0.3s ease-out;
+            transform: scale(0.7, 0.7);
+            background-color: ${colors.primary};
+            border-radius: ${borderRadius};
+            cursor: pointer;
+          }
+
+          .button--dark:hover::after {
+            opacity: 1;
+            transform: scale(1, 1);
+            z-index: 1;
           }
         `}</style>
       </button>

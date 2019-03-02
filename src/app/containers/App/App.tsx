@@ -1,6 +1,6 @@
 import Background from '@components/Background';
+import GlobalLoader from '@components/GlobalLoader';
 import Header from '@components/Header';
-import Loader from '@components/Loader';
 import Messages from '@components/Messages';
 import { Page } from '@pages/page.type';
 import firebase from 'firebase/app';
@@ -28,7 +28,7 @@ class App extends Component<IAppPropsType> {
         <div className="page">
           <Header />
           <Messages />
-          {showLoader && <Loader />}
+          {showLoader && <GlobalLoader />}
           <TransitionGroup className="app_transitiongroup" appear={false}>
             {React.Children.map(children, (child) => (
               <Transition
@@ -50,6 +50,7 @@ class App extends Component<IAppPropsType> {
               align-self: stretch;
               overflow: hidden;
               width: 100%;
+              position: relative;
             }
 
             :global(.app_transitiongroup) {
@@ -67,7 +68,13 @@ class App extends Component<IAppPropsType> {
             }
 
             :global(html) {
-              font-size: 100%;
+              font-size: 90%;
+            }
+
+            @media (min-width: 720px) {
+              :global(html) {
+                font-size: 100%;
+              }
             }
           `}</style>
         </div>

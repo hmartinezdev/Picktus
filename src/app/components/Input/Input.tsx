@@ -3,37 +3,59 @@ import { borderRadius, fontFamily } from '@constants/styles';
 import React, { ChangeEvent, Component } from 'react';
 
 export interface IInputPropTypes {
-  type?: string;
-  placeholder?: string;
+  type: string;
+  placeholder: string;
   onChange(e: ChangeEvent<HTMLInputElement>): void;
-  name?: string;
+  onEnter?(): void;
+  name: string;
+  autoFocus: boolean;
+  disabled: boolean;
 }
 
 export interface InputState {
   changeTimeout?: number;
 }
+
 class Input extends Component<IInputPropTypes, InputState> {
+  public input: HTMLInputElement | null = null;
+
   public static defaultProps = {
+    autoFocus: false,
+    disabled: false,
     name: '',
+    onEnter: () => undefined,
     placeholder: '',
     type: 'text',
   };
+
   constructor(props: IInputPropTypes) {
     super(props);
   }
 
+  private enterCallBack = (ev: KeyboardEvent) => {
+    const { onEnter } = this.props;
+    if (ev.keyCode === 13 && onEnter) {
+      onEnter();
+    }
+  };
+
+  public componentDidMount() {
+    if (this.input) {
+      this.input.addEventListener('keyup', this.enterCallBack);
+    }
+  }
+
   public render(): React.ReactElement<Input> {
-    const { placeholder, type, name, onChange } = this.props;
     return (
       <div className="container">
-        <input name={name} className="input" type={type} placeholder={placeholder} onChange={onChange} />
+        <input ref={(node) => (this.input = node)} className="input" {...this.props} />
         <span className="focus-border">
           <i />
         </span>
         <style jsx>{`
           .container {
             position: relative;
-            width: 75%;
+            width: 100%;
             margin: 0.7rem 0;
           }
 

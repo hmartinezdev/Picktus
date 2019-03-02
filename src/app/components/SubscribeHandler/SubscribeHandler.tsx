@@ -1,188 +1,150 @@
-import Button from '@components/Button';
-import FormError from '@components/FormError';
-import Input from '@components/Input';
-import TextSwitchButton from '@components/TextSwitchButton';
+import FormPagination from '@components/FormPagination/FormPagination';
+import Loader from '@components/Loader';
 import colors from '@constants/colors';
-import { borderRadius } from '@constants/styles';
-import classnames from 'classnames';
-import React, { ChangeEvent, PureComponent } from 'react';
-import Transition from 'react-transition-group/Transition';
-import { ISubscribeHandlerProps, ISubscribeHandlerState } from './SubscribeHander.type';
+import { borderRadius, boxShadow } from '@constants/styles';
+import React, { PureComponent } from 'react';
+import { Transition, TransitionGroup } from 'react-transition-group';
+import { isMail, isPasswordSecure } from './controls';
+import { ISubscribeHandlerProps, ISubscribeHandlerState, ISubscribeStepInfos } from './SubscribeHander.type';
+import SubscribeStep from './SubscribeStep';
+
 class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeHandlerState> {
+  public static defaultProps = {
+    requestStatus: null,
+  };
+
+  public form: ISubscribeStepInfos[] = [];
+
   constructor(props: ISubscribeHandlerProps) {
     super(props);
+    this.state = { current: 0, values: {} };
 
-    this.state = {
-      errors: {},
-      inputs: {},
-      open: false,
-    };
+    this.form = [
+      {
+        control: isMail,
+        errorMessage: 'You need to user a valid email address',
+        name: 'mail',
+        title: 'Email address',
+        type: 'text',
+      },
+      {
+        control: isPasswordSecure,
+        errorMessage:
+          'Password must be minimum eight characters,  at least one letter, one number and one special character',
+        name: 'password',
+        title: 'Password',
+        type: 'password',
+      },
+      {
+        control: this.confirmPassword,
+        errorMessage: 'The password confirmation must be identical to the password',
+        name: 'confirm',
+        title: 'Password confirmation',
+        type: 'password',
+      },
+    ];
   }
 
-  private pushError = (key: string, error: string): void => {
-    if (!this.state.errors[key]) {
-      this.setState({
-        errors: { ...this.state.errors, [key]: error },
-      });
-    }
-  };
-
-  private removeError = (key: string): void => {
-    if (this.state.errors[key]) {
-      this.setState({
-        errors: { ...this.state.errors, [key]: '' },
-      });
-    }
-  };
-
-  public onChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    const { value, name } = e.target;
-    if (name !== 'open') {
-      this.setState({ inputs: { ...this.state.inputs, [name]: value } });
-    }
-  };
-
-  public validity(errorKey: string, valid: boolean, error: string): boolean {
-    if (valid) {
-      this.removeError(errorKey);
-      return valid;
-    }
-
-    this.pushError(errorKey, error);
-    return valid;
-  }
-
-  public onSubscribeClick = (): void => {
-    const { password, comfirmPassword, mail } = this.state.inputs;
-    const { userCreation } = this.props;
-
-    const mailRegex = new RegExp( // tslint:disable-next-line
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
-    const passwordRegex = new RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$');
-
-    if (
-      !this.validity(
-        'missingValue',
-        Boolean(password && comfirmPassword && mail),
-        'Every field is required to subscribe'
-      )
-    ) {
-      return;
-    }
-
-    const valid =
-      this.validity('comfirmPassword', comfirmPassword === password, 'Password comfirmation does not match password') &&
-      this.validity('mail', !!mail.match(mailRegex), 'You must use a valid mail address') &&
-      this.validity(
-        'password',
-        !!password.match(passwordRegex),
-        'Password must be minimum eight characters,  at least one letter, one number and one special character'
-      );
-
-    if (valid) {
-      userCreation(mail, password);
-    }
-  };
-
-  public onTriggerClick = (): void => {
-    this.setState({ open: !this.state.open, errors: {} });
-  };
-
-  public renderErrors = (): Array<JSX.Element | undefined> => {
-    return Object.keys(this.state.errors).map((key) => {
-      const value = this.state.errors[key];
-
-      if (value) {
-        return <FormError key={key} text={value} />;
+  public componentWillReceiveProps(nextProps: ISubscribeHandlerProps) {
+    const { requestStatus } = this.props;
+    const nextRequestStatus = nextProps.requestStatus;
+    if (requestStatus && nextRequestStatus) {
+      if (requestStatus.inProgress && !nextRequestStatus.inProgress) {
+        this.setState({ current: 0 });
       }
+    }
+  }
+
+  public confirmPassword = (passwordConfirmation: string): boolean =>
+    passwordConfirmation === this.state.values.password;
+
+  public onValidate = (value: string): void => {
+    if (this.state.current === this.form.length - 1) {
+      this.onLastValueSubmitted();
+    }
+
+    this.setState({
+      current: this.state.current + 1,
+      values: { ...this.state.values, [this.form[this.state.current].name]: value },
     });
   };
 
+  public onLastValueSubmitted = (): void => {
+    const { userCreation } = this.props;
+
+    userCreation(this.state.values.mail, this.state.values.password);
+  };
+
+  public onValidatedStepClick = (step: number): void => {
+    this.setState({ current: step });
+  };
+
   public render(): React.ReactElement<SubscribeHandler> {
-    const { loading } = this.props;
     return (
       <div className="container">
-        <TextSwitchButton
-          initialText="You don't have an account?"
-          activeText="I have an account!"
-          onClick={this.onTriggerClick}
+        <FormPagination
+          current={this.state.current}
+          steps={this.form.reduce((accumulator: string[], value) => [...accumulator, value.title], [])}
+          onValidatedStepClick={this.onValidatedStepClick}
         />
-        <Transition in={this.state.open} timeout={200} mountOnEnter={true} unmountOnExit={true}>
-          {(state) => (
-            <div
-              className={classnames(`formContainer formContainer--${state}`, {
-                'formContainer--loading': loading,
-              })}
-            >
-              <div className="form">
-                <Input name="mail" placeholder="Mail" onChange={this.onChange} />
-                <Input name="password" placeholder="Password" type="password" onChange={this.onChange} />
-                <Input name="comfirmPassword" placeholder="Confirm password" type="password" onChange={this.onChange} />
-                <Button text="Subscribe" onClick={this.onSubscribeClick} />
-              </div>
-            </div>
-          )}
-        </Transition>
+        <div className="form">
+          <TransitionGroup component={null}>
+            {this.state.current <= this.form.length - 1 ? (
+              this.form.filter((_value, index) => index === this.state.current).map((value) => (
+                <Transition timeout={300} mountOnEnter unmountOnExit in appear>
+                  {(status) => (
+                    <div key={value.name} className={`stepContainer stepContainer--${status}`}>
+                      <SubscribeStep
+                        onValidate={this.onValidate}
+                        control={value.control}
+                        errorMessage={value.errorMessage}
+                        name={value.name}
+                        title={value.title}
+                        type={value.type}
+                      />
+                    </div>
+                  )}
+                </Transition>
+              ))[0]
+            ) : (
+              <Loader />
+            )}
+          </TransitionGroup>
+        </div>
         <style jsx>{`
-          .errorContainer {
-            position: absolute;
+          .container {
+            box-shadow: ${boxShadow};
+            background-color: ${colors.primary};
+            width: 24rem;
+            padding: 0.7rem;
+            box-sizing: border-box;
+            border-radius: ${borderRadius};
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+          }
+
+          .stepContainer {
+            opacity: 0;
+            transition: opacity 300ms ease-in;
             width: 100%;
           }
 
-          .formContainer {
-            left: 0;
-            bottom: 3.3rem;
-            position: absolute;
-            width: 100%;
-            z-index: 3;
-            opacity: 0;
-            transform: scale(1.2, 1.2);
-          }
-
-          .formContainer--loading::after {
-            position: absolute;
-          }
-
-          .formContainer--entering {
-            animation: fadein 200ms;
+          .stepContainer--entered,
+          .stepContainer--entering {
             opacity: 1;
-            transform: scale(1, 1);
           }
 
-          .formContainer--entered {
-            opacity: 1;
-            transform: scale(1, 1);
-          }
-
-          .formContainer--exiting,
-          .formContainer--exited {
-            transition: all 200ms ease-in;
-            opacity: 0;
-            transform: scale(1.2, 1.2);
-          }
-
-          .formContainer .form {
+          .form {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            border-radius: ${borderRadius};
-            min-height: calc(100% - 4.3rem);
-            padding: 1.5rem 0;
-            background-color: ${colors.primary};
+            width: 16rem;
+            height: 5rem;
           }
 
-          @keyframes fadein {
-            0% {
-              opacity: 0;
-              transform: scale(1.2, 1.2);
-            }
-
-            100% {
-              opacity: 1;
-              transform: scale(1, 1);
-            }
+          .inputTransition {
+            width: 100%;
           }
         `}</style>
       </div>
