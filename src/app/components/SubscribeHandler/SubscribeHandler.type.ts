@@ -1,5 +1,3 @@
-import { ThunkResult } from '@store/reducers/user/user-actions';
-
 export interface ISubscribeStepInfos {
   control: (value: string) => boolean;
   name: string;
@@ -13,7 +11,7 @@ export interface IReduxStateProps {
 }
 
 export interface IDispatchProps {
-  userCreation: (mail: string, password: string) => ThunkResult<void>;
+  userCreation: (mail: string, password: string) => any;
 }
 
 export interface ISubscribeHandlerState {

@@ -1,8 +1,8 @@
 import { IReduxState } from '@store/reducers';
 import { userCreation } from '@store/reducers/user/user-actions';
 import { connect } from 'react-redux';
-import { IReduxStateProps } from './SubscribeHander.type';
 import SubscribeHandler from './SubscribeHandler';
+import { IReduxStateProps } from './SubscribeHandler.type';
 
 export const mapStateToProps = (state: IReduxState): IReduxStateProps => {
   return {

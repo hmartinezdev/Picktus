@@ -5,7 +5,7 @@ import { borderRadius, boxShadow } from '@constants/styles';
 import React, { PureComponent } from 'react';
 import { Transition, TransitionGroup } from 'react-transition-group';
 import { isMail, isPasswordSecure } from './controls';
-import { ISubscribeHandlerProps, ISubscribeHandlerState, ISubscribeStepInfos } from './SubscribeHander.type';
+import { ISubscribeHandlerProps, ISubscribeHandlerState, ISubscribeStepInfos } from './SubscribeHandler.type';
 import SubscribeStep from './SubscribeStep';
 
 class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeHandlerState> {
@@ -90,22 +90,24 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
         <div className="form">
           <TransitionGroup component={null}>
             {this.state.current <= this.form.length - 1 ? (
-              this.form.filter((_value, index) => index === this.state.current).map((value) => (
-                <Transition timeout={300} mountOnEnter unmountOnExit in appear>
-                  {(status) => (
-                    <div key={value.name} className={`stepContainer stepContainer--${status}`}>
-                      <SubscribeStep
-                        onValidate={this.onValidate}
-                        control={value.control}
-                        errorMessage={value.errorMessage}
-                        name={value.name}
-                        title={value.title}
-                        type={value.type}
-                      />
-                    </div>
-                  )}
-                </Transition>
-              ))[0]
+              this.form
+                .filter((_value, index) => index === this.state.current)
+                .map((value) => (
+                  <Transition timeout={300} mountOnEnter unmountOnExit in appear>
+                    {(status) => (
+                      <div key={value.name} className={`stepContainer stepContainer--${status}`}>
+                        <SubscribeStep
+                          onValidate={this.onValidate}
+                          control={value.control}
+                          errorMessage={value.errorMessage}
+                          name={value.name}
+                          title={value.title}
+                          type={value.type}
+                        />
+                      </div>
+                    )}
+                  </Transition>
+                ))[0]
             ) : (
               <Loader />
             )}
