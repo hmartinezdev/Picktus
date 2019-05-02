@@ -16,7 +16,7 @@ module.exports = {
   },
   globals: {
     'ts-jest': {
-      tsConfigFile: './tsconfig.json',
+      tsConfigFile: './jest.tsconfig.json',
     },
   },
   setupFiles: ['<rootDir>/config/spec.setup.ts'],
