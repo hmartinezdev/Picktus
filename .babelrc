@@ -12,7 +12,8 @@
           "@pages": "./src/app/pages",
           "@services": "./src/app/services",
           "@assets": "./src/app/assets",
-          "@store": "./src/app/store"
+          "@store": "./src/app/store",
+          "@mocks": "./src/app/mocks"
         }
       }
     ],
