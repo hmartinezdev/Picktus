@@ -4,7 +4,7 @@ import firebase from 'firebase/app';
 import React from 'react';
 import App from './App';
 
-let wrapper: any;
+let wrapper;
 const baseProps = { router: { route: 'route' }, showLoader: false, userLoginSuccess };
 
 const setup = (props = baseProps) =>

@@ -10,7 +10,7 @@ describe('display reducer', () => {
   });
 
   it('should return the initial state set in the parameters', () => {
-    expect(reducer({ loader: false }, { type: OtherTypeKeys.OTHER_ACTION })).toEqual({});
+    expect(reducer({ loader: false }, { type: OtherTypeKeys.OTHER_ACTION })).toEqual({ loader: false });
   });
 
   it(`it should handle ${DisplayType.DISPLAY_LOADER}`, () => {
