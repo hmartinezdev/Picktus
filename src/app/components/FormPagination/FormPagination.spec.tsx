@@ -5,6 +5,7 @@ import FormPagination from './FormPagination';
 let wrapper;
 
 const baseProps = {
+  onValidatedStepClick: () => true,
   steps: ['mail', 'password'],
 };
 
