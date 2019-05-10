@@ -1,12 +1,11 @@
-import { mount, shallow } from 'enzyme';
-import firebase, { initializeApp } from 'firebase/app';
+import { userLoginSuccess } from '@store/reducers/user/user-actions';
+import { shallow } from 'enzyme';
+import firebase from 'firebase/app';
 import React from 'react';
 import App from './App';
-import { config } from './constants';
 
 let wrapper;
-let spy;
-const baseProps = { router: { route: 'route' } };
+const baseProps = { router: { route: 'route' }, showLoader: false, userLoginSuccess };
 
 const setup = (props = baseProps) =>
   shallow(
@@ -16,7 +15,7 @@ const setup = (props = baseProps) =>
   );
 describe('<App />', () => {
   beforeAll(() => {
-    spy = jest.spyOn(firebase, 'initializeApp').mockImplementation(() => {
+    jest.spyOn(firebase, 'initializeApp').mockImplementation(() => {
       return;
     });
     wrapper = setup();
@@ -37,7 +36,7 @@ describe('<App />', () => {
 
   describe('componentDidMount', () => {
     beforeEach(() => {
-      spy = jest.spyOn(firebase, 'initializeApp').mockImplementation(() => {
+      jest.spyOn(firebase, 'initializeApp').mockImplementation(() => {
         return;
       });
     });

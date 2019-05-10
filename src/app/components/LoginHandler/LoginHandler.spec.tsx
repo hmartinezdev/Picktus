@@ -1,14 +1,14 @@
-import enzyme, { shallow, mount } from 'enzyme';
+import { SigninMethods } from '@services/authentication';
+import { shallow } from 'enzyme';
+import Router from 'next/router';
 import React from 'react';
 import LoginHandler from './LoginHandler';
-import { SigninMethods } from '@services/authentication';
-import Router from 'next/router';
 
-let wrapper;
-let mountWrapper;
-
-const setup = (props = {}) => shallow(<LoginHandler {...props} />);
-const mountSetup = (props = {}) => mount(<LoginHandler {...props} />);
+let wrapper: any;
+const baseProps = {
+  signin: () => ({}),
+};
+const setup = (props = baseProps) => shallow(<LoginHandler {...props} />);
 
 describe('<LoginHandler />', () => {
   beforeEach(() => {
@@ -42,7 +42,7 @@ describe('<LoginHandler />', () => {
 
   describe('login', () => {
     const spyLogin = jest.fn();
-    let instance;
+    let instance: LoginHandler;
 
     beforeEach(() => {
       wrapper = setup({ signin: spyLogin });
@@ -53,7 +53,7 @@ describe('<LoginHandler />', () => {
       jest.resetAllMocks();
     });
 
-    test('onLoginClick should call the signin method in props with methods.CLASSIC and password and email as options', () => {
+    test('onLoginClick should call the signin method with methods.CLASSIC and password and email as options', () => {
       instance.setState({ inputs: { password: 'test', email: 'mail' } });
       instance.onLoginClick();
       expect(spyLogin).toHaveBeenCalledWith(SigninMethods.CLASSIC, { password: 'test', email: 'mail' });
@@ -77,7 +77,11 @@ describe('<LoginHandler />', () => {
 
   describe('onSubscribeClick', () => {
     test('it should call router.push with the subscribe url', () => {
-      const spy = jest.spyOn(Router, 'push').mockImplementation(() => undefined);
+      const spy = jest.spyOn(Router, 'push').mockReturnValue(
+        new Promise<boolean>((resolve) => {
+          resolve(true);
+        })
+      );
       const instance = wrapper.instance();
       instance.onSubscribeClick();
       expect(spy).toHaveBeenCalledWith('/subscribe');

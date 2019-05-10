@@ -1,8 +1,8 @@
-import enzyme, { mount, shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import React from 'react';
 import Input from './Input';
 
-let wrapper;
+let wrapper: any;
 
 const baseProps = { onChange: () => undefined };
 const setup = (props = {}) => shallow(<Input {...baseProps} {...props} />);

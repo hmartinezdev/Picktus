@@ -3,17 +3,20 @@
 exports[`<Notification /> should render properly 1`] = `
 <div>
   <div
-    className="notification notification--undefined"
+    className="notification notification--INFO"
   >
     <div
       className="iconContainer"
     >
       <MessageIcon
         height={1.8}
+        level="INFO"
         width={1.8}
       />
     </div>
-    <p />
+    <p>
+      test
+    </p>
   </div>
   <style
     jsx={true}

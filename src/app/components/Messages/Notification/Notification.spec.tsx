@@ -1,11 +1,12 @@
+import { PicktusMessageLevel } from '@store/reducers/message';
 import { shallow } from 'enzyme';
 import React from 'react';
 import Notification from './Notification';
-import { PicktusMessageLevel } from '@store/reducers/message';
 
 let wrapper;
+const baseProps = { text: 'test', level: PicktusMessageLevel.INFO };
 
-const setup = (props = {}) => shallow(<Notification {...props} />);
+const setup = (props = baseProps) => shallow(<Notification {...props} />);
 
 describe('<Notification />', () => {
   beforeEach(() => {

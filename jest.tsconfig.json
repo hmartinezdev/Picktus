@@ -22,7 +22,6 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "skipLibCheck": true,
-    "strict": true,
     "noResolve": false,
     "lib": ["dom", "es2016"]
   },

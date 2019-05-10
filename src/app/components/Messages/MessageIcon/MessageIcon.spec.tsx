@@ -1,11 +1,11 @@
+import { PicktusMessageLevel } from '@store/reducers/message';
 import { shallow } from 'enzyme';
 import React from 'react';
 import MessageIcon from './MessageIcon';
-import { PicktusMessageLevel } from '@store/reducers/message';
 
 let wrapper;
 
-const setup = (props = {}) => shallow(<MessageIcon {...props} />);
+const setup = (props = {}) => shallow(<MessageIcon level={PicktusMessageLevel.ERROR} {...props} />);
 
 describe('<MessageIcon />', () => {
   beforeEach(() => {

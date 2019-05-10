@@ -120,7 +120,7 @@ class Authentication {
     Cookies.remove(session);
 
     // reloading page to ensure the user is disconnected
-    if ((window || {}).location) {
+    if (window && window.location) {
       window.location.reload();
     }
   }

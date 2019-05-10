@@ -1,11 +1,10 @@
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
-import Button, { ButtonPropTypes } from './Button';
+import Button from './Button';
 
 let wrapper;
 const baseProps = { onClick: () => undefined };
 const setup = (props = {}) => shallow(<Button {...baseProps} {...props} />);
-const mountSetup = (props = {}) => mount(<Button {...baseProps} {...props} />);
 
 describe('<Button />', () => {
   test('should render properly', () => {

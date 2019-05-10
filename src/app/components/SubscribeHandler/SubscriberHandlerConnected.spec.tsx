@@ -1,11 +1,9 @@
-import { mount, shallow } from 'enzyme';
-import firebase, { initializeApp } from 'firebase/app';
+import { shallow } from 'enzyme';
 import React from 'react';
 import configureStore from 'redux-mock-store';
 import SubscribeHandlerConnected from './';
-import { config } from './constants';
 
-let wrapper;
+let wrapper: any;
 let store;
 
 // create any initial state needed
