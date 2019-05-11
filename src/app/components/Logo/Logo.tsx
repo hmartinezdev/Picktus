@@ -7,7 +7,7 @@ class Logo extends Component {
   public render(): React.ReactElement<Logo> {
     return (
       <div className="logoContainer">
-        <SvgLogo className="logo" />
+        <SvgLogo className="home_logo" />
         <h1 className="title">Picktus</h1>
         <style jsx>{`
           .title {
@@ -31,7 +31,7 @@ class Logo extends Component {
             box-sizing: border-box;
           }
 
-          .logo {
+          :global(.home_logo) {
             width: 6rem;
             height: 6rem;
           }

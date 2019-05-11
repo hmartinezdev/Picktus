@@ -17,7 +17,6 @@
         }
       }
     ],
-    ["styled-jsx/babel", { "optimizeForSpeed": true }],
     "inline-react-svg"
   ]
 }
