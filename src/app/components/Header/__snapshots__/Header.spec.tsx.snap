@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Header /> should render properly 1`] = `
-<SideEffect(Head)>
+<Head>
   <title>
     Picktus
   </title>
@@ -55,5 +55,5 @@ exports[`<Header /> should render properly 1`] = `
     content="#2d3047"
     name="theme-color"
   />
-</SideEffect(Head)>
+</Head>
 `;

@@ -1,41 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<App /> should render properly 1`] = `
-<App
-  showLoader={false}
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
-  storeSubscription={
-    Subscription {
-      "listeners": Object {
-        "clear": [Function],
-        "get": [Function],
-        "notify": [Function],
-        "subscribe": [Function],
-      },
-      "onStateChange": [Function],
-      "parentSub": undefined,
-      "store": Object {
+<ContextProvider
+  value={null}
+>
+  <App
+    showLoader={false}
+    store={
+      Object {
         "clearActions": [Function],
         "dispatch": [Function],
         "getActions": [Function],
         "getState": [Function],
         "replaceReducer": [Function],
         "subscribe": [Function],
-      },
-      "unsubscribe": [Function],
+      }
     }
-  }
-  userLoginSuccess={[Function]}
->
-  <div />
-</App>
+    userLoginSuccess={[Function]}
+  >
+    <div />
+  </App>
+</ContextProvider>
 `;

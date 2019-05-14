@@ -93,8 +93,8 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
               this.form
                 .filter((_value, index) => index === this.state.current)
                 .map((value) => (
-                  <Transition timeout={300} mountOnEnter unmountOnExit in appear>
-                    {(status) => (
+                  <Transition timeout={300} key={`${value.name}-container`} mountOnEnter unmountOnExit in appear>
+                    {(status: string) => (
                       <div key={value.name} className={`stepContainer stepContainer--${status}`}>
                         <SubscribeStep
                           onValidate={this.onValidate}

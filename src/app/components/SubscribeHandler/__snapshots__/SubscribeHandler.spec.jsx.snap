@@ -27,6 +27,7 @@ exports[`<SubscribeHandler /> should render properly 1`] = `
         enter={true}
         exit={true}
         in={true}
+        key="mail-container"
         mountOnEnter={true}
         onEnter={[Function]}
         onEntered={[Function]}

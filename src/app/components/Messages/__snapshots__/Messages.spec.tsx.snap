@@ -4,7 +4,7 @@ exports[`<MessageHandler /> should render properly 1`] = `
 <div
   className="container"
 >
-  <Connect(NotificationHandler) />
-  <Connect(SnackBarHandler) />
+  <ConnectFunction />
+  <ConnectFunction />
 </div>
 `;

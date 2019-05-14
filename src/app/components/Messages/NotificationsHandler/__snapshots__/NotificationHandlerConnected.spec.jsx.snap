@@ -1,39 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<NotificationHandlerConnected /> should render properly 1`] = `
-<NotificationHandler
-  dismissNotification={[Function]}
-  notifications={Array []}
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
-  storeSubscription={
-    Subscription {
-      "listeners": Object {
-        "clear": [Function],
-        "get": [Function],
-        "notify": [Function],
-        "subscribe": [Function],
-      },
-      "onStateChange": [Function],
-      "parentSub": undefined,
-      "store": Object {
+<ContextProvider
+  value={null}
+>
+  <NotificationHandler
+    dismissNotification={[Function]}
+    notifications={Array []}
+    store={
+      Object {
         "clearActions": [Function],
         "dispatch": [Function],
         "getActions": [Function],
         "getState": [Function],
         "replaceReducer": [Function],
         "subscribe": [Function],
-      },
-      "unsubscribe": [Function],
+      }
     }
-  }
-/>
+  />
+</ContextProvider>
 `;

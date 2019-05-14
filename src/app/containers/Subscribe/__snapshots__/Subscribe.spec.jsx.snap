@@ -12,7 +12,7 @@ exports[`<Subscribe /> should render properly 1`] = `
   <div
     className="form"
   >
-    <Connect(SubscribeHandler) />
+    <ConnectFunction />
   </div>
   <style
     jsx={true}
