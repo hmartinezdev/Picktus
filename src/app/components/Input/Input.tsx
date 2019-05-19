@@ -1,6 +1,6 @@
 import colors from '@constants/colors';
 import { borderRadius, fontFamily } from '@constants/styles';
-import React, { ChangeEvent, Component } from 'react';
+import React, { ChangeEvent, Component, KeyboardEvent } from 'react';
 
 export interface IInputPropTypes {
   type: string;
@@ -32,23 +32,18 @@ class Input extends Component<IInputPropTypes, InputState> {
     super(props);
   }
 
-  private enterCallBack = (ev: KeyboardEvent) => {
+  private enterCallBack = (ev: KeyboardEvent<HTMLDivElement>) => {
     const { onEnter } = this.props;
     if (ev.keyCode === 13 && onEnter) {
       onEnter();
     }
   };
 
-  public componentDidMount() {
-    if (this.input) {
-      this.input.addEventListener('keyup', this.enterCallBack);
-    }
-  }
-
   public render(): React.ReactElement<Input> {
+    const { onEnter, ...rest } = this.props;
     return (
-      <div className="container">
-        <input ref={(node) => (this.input = node)} className="input" {...this.props} />
+      <div className="container" onKeyUp={this.enterCallBack}>
+        <input ref={(node) => (this.input = node)} className="input" {...rest} />
         <span className="focus-border">
           <i />
         </span>

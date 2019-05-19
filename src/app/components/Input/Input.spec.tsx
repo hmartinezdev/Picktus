@@ -1,4 +1,4 @@
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
 import Input from './Input';
 
@@ -6,7 +6,6 @@ let wrapper: any;
 
 const baseProps = { onChange: () => undefined };
 const setup = (props = {}) => shallow(<Input {...baseProps} {...props} />);
-const mountSetup = (props = {}) => mount(<Input {...baseProps} {...props} />);
 
 describe('<Input />', () => {
   beforeEach(() => {
@@ -42,16 +41,6 @@ describe('<Input />', () => {
   test('should have a default function onEnter', () => {
     wrapper = setup();
     expect(wrapper.instance().props.onEnter()).toEqual(undefined);
-  });
-
-  describe('componentDidMount', () => {
-    test('it should call window.addEventListener with the correct parameters', () => {
-      wrapper = mountSetup();
-      const instance = wrapper.instance();
-      const spy = jest.spyOn(instance.input, 'addEventListener').mockImplementation(() => undefined);
-      instance.componentDidMount();
-      expect(spy).toBeCalledWith('keyup', instance.enterCallBack);
-    });
   });
 
   describe('enterCallBack', () => {
