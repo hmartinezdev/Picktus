@@ -15,17 +15,17 @@ class Loader extends Component {
             height: 100%;
           }
 
-          .photo {
+          :global(.photo) {
             max-width: 100%;
             max-height: 100%;
             position: absolute;
           }
 
-          .photo--second {
+          :global(.photo--second) {
             animation: photo 3000ms ease-out infinite;
           }
 
-          .photo--second .check {
+          :global(.photo--second .check) {
             stroke-dasharray: 1000;
             stroke-dashoffset: 1000;
             stroke-width: 22;

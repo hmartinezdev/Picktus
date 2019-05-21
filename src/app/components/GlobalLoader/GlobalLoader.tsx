@@ -9,7 +9,6 @@ class Header extends Component {
         <div className="loaderContainer">
           <Loader />
         </div>
-
         <style jsx>{`
           .container {
             display: flex;

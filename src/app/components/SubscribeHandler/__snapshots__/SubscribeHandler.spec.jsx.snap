@@ -69,12 +69,18 @@ exports[`<SubscribeHandler /> should render properly 1`] = `
             opacity: 1;
           }
 
+          .stepContainer--exiting,
+          .stepContainer--exited {
+            position: absolute;
+          }
+
           .form {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 16rem;
             height: 5rem;
+            position: relative;
           }
 
           .inputTransition {

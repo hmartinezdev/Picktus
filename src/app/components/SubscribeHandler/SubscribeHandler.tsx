@@ -109,7 +109,13 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
                   </Transition>
                 ))[0]
             ) : (
-              <Loader />
+              <Transition timeout={300} key={'loader-container'} mountOnEnter unmountOnExit in appear>
+              {(status: string) => (
+                <div key="loader" className={`stepContainer stepContainer--${status}`}>
+                  <Loader />
+                </div>
+              )}
+              </Transition>
             )}
           </TransitionGroup>
         </div>
@@ -130,11 +136,17 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
             opacity: 0;
             transition: opacity 300ms ease-in;
             width: 100%;
+            height: 100%;
           }
 
           .stepContainer--entered,
           .stepContainer--entering {
             opacity: 1;
+          }
+
+          .stepContainer--exiting,
+          .stepContainer--exited {
+            position: absolute;
           }
 
           .form {
@@ -143,6 +155,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
             align-items: center;
             width: 16rem;
             height: 5rem;
+            position: relative;
           }
 
           .inputTransition {
