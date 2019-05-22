@@ -1,17 +1,17 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import Login from './Login';
+import Authentication from './Authentication';
 
 let wrapper;
 
 const setup = () =>
   shallow(
-    <Login>
+    <Authentication>
       <div />
-    </Login>
+    </Authentication>
   );
 
-describe('<Login />', () => {
+describe('<Home />', () => {
   test('should render properly', () => {
     wrapper = setup();
     expect(wrapper).toMatchSnapshot();
