@@ -1,5 +1,5 @@
-import LoginHandler from '@components/LoginHandler';
-import Authentication from '@containers/Authentication';
+import LoginHandler from '@containers/LoginHandler';
+import Authentication from '@layouts/Authentication';
 import React from 'react';
 import { IPageProps } from '../../page.type';
 
@@ -9,6 +9,6 @@ const LoginPage = (props: IPageProps): React.ReactElement<Authentication> => (
   </Authentication>
 );
 
-LoginPage.displayName = 'LoginPage';
+LoginPage.displayName = 'Auth';
 
 export default LoginPage;

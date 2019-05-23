@@ -1,4 +1,4 @@
-import Home from '@containers/Home';
+import Home from '@layouts/Home';
 import React from 'react';
 import { IPageProps } from './page.type';
 

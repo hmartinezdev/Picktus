@@ -36,6 +36,7 @@ class Authentication extends Component<IAuthenticationPropsType> {
             .container--exiting,
             .container--exited {
               position: absolute;
+              z-index: 0;
             }
 
             .logo {
@@ -44,11 +45,12 @@ class Authentication extends Component<IAuthenticationPropsType> {
               display: flex;
               position: relative;
               border-radius: ${borderRadius};
+              transition: opacity 300ms ease-out;
             }
 
             .logo--exiting,
             .logo--exited {
-              box-shadow: none;
+              opacity: 0;
             }
 
             .content {
