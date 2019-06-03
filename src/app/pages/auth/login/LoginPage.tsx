@@ -5,7 +5,7 @@ import { IPageProps } from '../../page.type';
 
 const LoginPage = (props: IPageProps): React.ReactElement<Authentication> => (
   <Authentication {...props}>
-    <LoginHandler />
+    <LoginHandler key="LoginHandler" />
   </Authentication>
 );
 

@@ -5,7 +5,7 @@ import { IPageProps } from '../../page.type';
 
 const SubscribePage = (props: IPageProps): React.ReactElement<Authentication> => (
   <Authentication {...props}>
-    <SubscribeHandler />
+    <SubscribeHandler key="SubscribeHandler" />
   </Authentication>
 );
 

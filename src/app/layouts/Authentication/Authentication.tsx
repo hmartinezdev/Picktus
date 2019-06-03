@@ -2,6 +2,7 @@ import Logo from '@components/Logo';
 import colors from '@constants/colors';
 import { borderRadius, boxShadow } from '@constants/styles';
 import React, { Component } from 'react';
+import { Transition, TransitionGroup } from 'react-transition-group';
 
 export interface IAuthenticationPropsType {
   status: string;
@@ -14,10 +15,16 @@ class Authentication extends Component<IAuthenticationPropsType> {
 
     return (
       <div className={`container container--${status}`}>
-        <div className={`logo logo--${status}`}>
+        <div className={`logo`}>
           <Logo />
         </div>
-        <div className={`content content--${status}`}>{children}</div>
+        <TransitionGroup className="authentication__content" appear={true}>
+          {React.Children.map(children, (child: JSX.Element) => (
+            <Transition key={child.key || ''} timeout={300} mountOnEnter={true} unmountOnExit={true} appear={true}>
+              {(contentStatus) => <div className={`contentContainer contentContainer--${contentStatus}`}>{child}</div>}
+            </Transition>
+          ))}
+        </TransitionGroup>
         <style jsx>
           {`
             .container {
@@ -39,6 +46,24 @@ class Authentication extends Component<IAuthenticationPropsType> {
               z-index: 0;
             }
 
+            .contentContainer {
+              transition: opacity 300ms ease-out;
+            }
+
+            .contentContainer--entering {
+              animation: opacity 300ms ease-in;
+            }
+
+            .contentContainer--entered {
+              opacity: 1;
+            }
+
+            .contentContainer--exiting,
+            .contentContainer--exited {
+              position: absolute;
+              opacity: 0;
+            }
+
             .logo {
               background-color: ${colors.primary};
               box-shadow: ${boxShadow};
@@ -48,12 +73,7 @@ class Authentication extends Component<IAuthenticationPropsType> {
               transition: opacity 300ms ease-out;
             }
 
-            .logo--exiting,
-            .logo--exited {
-              opacity: 0;
-            }
-
-            .content {
+            :global(.authentication__content) {
               height: 100%;
               width: 100%;
               display: flex;
@@ -61,13 +81,16 @@ class Authentication extends Component<IAuthenticationPropsType> {
               justify-content: flex-start;
               align-items: center;
               margin-top: 2.5rem;
-              opacity: 1;
-              transition: opacity 130ms ease-out;
             }
 
-            .content--exiting,
-            .content--exited {
-              opacity: 0;
+            @keyframes opacity {
+              0% {
+                opacity: 0;
+              }
+
+              100% {
+                opacity: 1;
+              }
             }
           `}
         </style>
