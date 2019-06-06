@@ -34,6 +34,7 @@ module.exports = {
     '/src/app/pages/_app.tsx',
     '/src/app/.*/*.type.ts',
     '/src/app/.*/index.*',
+    '/src/app/.*/*.mock.ts',
   ],
   testURL: 'http://localhost',
 };

@@ -1,3 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<SubscribePage /> should render properly 1`] = `<Subscribe />`;
+exports[`<SubscribePage /> should render properly 1`] = `
+<Authentication>
+  <ConnectFunction
+    key="SubscribeHandler"
+  />
+</Authentication>
+`;

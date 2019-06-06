@@ -35,6 +35,11 @@ exports[`<Home /> should render properly 1`] = `
             opacity: 0;
           }
 
+          .container--entering {
+            animation: opacity 300ms ease-in;
+            z-index: 1;
+          }
+
           .toolbarContainer {
             display: flex;
             align-items: flex-start;
@@ -45,6 +50,16 @@ exports[`<Home /> should render properly 1`] = `
           .toolbarAnimation {
             height: 100%;
             width: 100%;
+          }
+
+          @keyframes opacity {
+            0% {
+              opacity: 0;
+            }
+
+            100% {
+              opacity: 1;
+            }
           }
         
   </style>
