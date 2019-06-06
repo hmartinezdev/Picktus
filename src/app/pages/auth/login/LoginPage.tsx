@@ -9,6 +9,6 @@ const LoginPage = (props: IPageProps): React.ReactElement<Authentication> => (
   </Authentication>
 );
 
-LoginPage.displayName = 'Auth';
+LoginPage.displayName = 'AuthLogin';
 
 export default LoginPage;

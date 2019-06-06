@@ -9,6 +9,6 @@ const SubscribePage = (props: IPageProps): React.ReactElement<Authentication> =>
   </Authentication>
 );
 
-SubscribePage.displayName = 'Auth';
+SubscribePage.displayName = 'AuthSubscribe';
 
 export default SubscribePage;
