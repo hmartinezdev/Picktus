@@ -1,4 +1,4 @@
-import PicktusApp from '@containers/App';
+import PicktusApp from '@layouts/App';
 import withReduxStore from '@libs/with-redux-store';
 import App, { Container } from 'next/app';
 import React from 'react';

@@ -6,7 +6,7 @@
   "author": "Hugo Martinez",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "^7.0.0",
+    "@babel/runtime": "^7.4.5",
     "@firebase/util": "^0.2.15",
     "@types/react-transition-group": "^2.9.1",
     "body-parser": "^1.18.3",
@@ -54,14 +54,14 @@
     "deps:install": "cd \"dist/functions\" && npm i"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-rc.1",
-    "@babel/core": "^7.0.0-rc.1",
-    "@babel/node": "^7.0.0",
-    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
     "@firebase/app-types": "^0.4.0",
     "@types/classnames": "^2.2.7",
     "@types/enzyme": "^3.9.2",
-    "@types/jest": "^23.3.1",
+    "@types/jest": "^24.0.13",
     "@types/js-cookie": "^2.2.2",
     "@types/next": "^8.0.5",
     "@types/react": "^16.8.17",

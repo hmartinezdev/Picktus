@@ -13,7 +13,8 @@
           "@services": "./src/app/services",
           "@assets": "./src/app/assets",
           "@store": "./src/app/store",
-          "@mocks": "./src/app/mocks"
+          "@mocks": "./src/app/mocks",
+          "@layouts": "./src/app/layouts"
         }
       }
     ],

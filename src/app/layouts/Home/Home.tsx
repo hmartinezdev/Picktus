@@ -38,6 +38,11 @@ class Home extends Component<IHomePropsType> {
             opacity: 0;
           }
 
+          .container--entering {
+            animation: opacity 300ms ease-in;
+            z-index: 1;
+          }
+
           .toolbarContainer {
             display: flex;
             align-items: flex-start;
@@ -48,6 +53,16 @@ class Home extends Component<IHomePropsType> {
           .toolbarAnimation {
             height: 100%;
             width: 100%;
+          }
+
+          @keyframes opacity {
+            0% {
+              opacity: 0;
+            }
+
+            100% {
+              opacity: 1;
+            }
           }
         `}</style>
       </div>

@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> should render properly 1`] = `
+<div
+  className="container container--undefined"
+>
+  <div
+    className="logo logo--undefined"
+  >
+    <Logo />
+  </div>
+  <div
+    className="content"
+  >
+    <div
+      className="contentContainer contentContainer--undefined"
+    >
+      <div />
+    </div>
+  </div>
+  <style
+    jsx={true}
+  >
+    
+            .container {
+              width: 100%;
+              height: 100vh;
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+              padding: 2rem 0;
+              box-sizing: border-box;
+              overflow: hidden;
+              opacity: 1;
+              transition: opacity 300ms ease-out;
+            }
+
+            .container--exiting,
+            .container--exited {
+              position: absolute;
+              z-index: 0;
+            }
+
+            .contentContainer {
+              transform: translateX(0%);
+              transition: all 300ms ease-out;
+            }
+
+            .contentContainer--entering {
+              animation: opacity 300ms ease-in;
+            }
+
+            .contentContainer--entered {
+              opacity: 1;
+            }
+
+            .contentContainer--exiting,
+            .contentContainer--exited {
+              position: absolute;
+              opacity: 0;
+              transform: translateX(100%);
+            }
+
+            .logo {
+              background-color: #2d3047;
+              box-shadow: 11px 10px 34px -7px rgba(0, 0, 0, 0.49);
+              display: flex;
+              position: relative;
+              border-radius: 3px;
+              transition: opacity 300ms ease-out;
+            }
+
+            .logo--exiting {
+              box-shadow: initial;
+            }
+
+            .content {
+              height: 100%;
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-start;
+              align-items: center;
+              margin-top: 2.5rem;
+            }
+
+            @keyframes opacity {
+              0% {
+                opacity: 0;
+                transform: translateX(-100%);
+              }
+
+              100% {
+                opacity: 1;
+                transform: translateX(0);
+              }
+            }
+          
+  </style>
+</div>
+`;
