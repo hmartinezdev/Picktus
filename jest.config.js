@@ -31,7 +31,7 @@ module.exports = {
   testEnvironmentOptions: { resources: 'usable' },
   coveragePathIgnorePatterns: [
     '/src/app/libs/.*',
-    '/src/app/pages/_app.tsx',
+    '/src/app/pages/.*',
     '/src/app/.*/*.type.ts',
     '/src/app/.*/index.*',
     '/src/app/.*/*.mock.ts',

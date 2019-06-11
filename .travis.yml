@@ -1,32 +1,37 @@
 language: node_js
+
 node_js:
   - '8'
 
 cache:
+  yarn: true
   directories:
-    - 'node_modules'
+    - node_modules
     - '$HOME/.sonar/cache'
-
 install:
-  - npm install
+  - yarn install
 
 before_script:
-  - npm run test:ci
-  - npm run lint:ci
-  - sonar-scanner
+  - yarn run test:ci
+  - yarn run lint:ci
+  - sonar-scanner -X
 
 addons:
   sonarcloud:
-    organization: "hmartinezdev-github" # the key of the org you chose at step #3
-script:
-  
-
-script:
-  - npm run server:copy && npm run build:public && npm run build:funcs && npm run build:app && npm run deps:copy
+    organization: hmartinezdev-github
+    token:
+      secure: 'vA7LEda4kdHpAvewTAQGNu1Baw0F6Lv28ZXMt8lbtuo7FNRZjEr5tzM+tIkpElMolxoGq28AmGvFFAFZcWoDs+FpZLe37PiMrREJyMFv9x+bY2BVak65f6TkQwydyRB2ahoFrepm5mfsFZ599FlKLYbcaUhcffsqT9rIr8m6UBXM2StpQXD2zq/YsS3EfxaubLRyFEsVDZK5uSzgCaFCYu05qzzvRZZuvMES0UDvwYHJD4nHNZQUH2MN/R/kVtklNMt8sC2/ue1Y3OR8jQF4ZDC//Wf+0FF2gWp06/zMI0Jmvv3JgWQ7cjzflmS9VqcWoLWFz1P8DltuAacrEe7KGQlyPRfracww9khKXHQakYKAF5VwmgzBbx4bkCmqbbks2d951iNueGYHcnDFvGa5lJLzDcwEUpn72vcqgwaoVKeaXHTdtRel8kOAmVwmrgbu31XPGKBEi1dZPFxZG5td6uGpYgckg0UNEWl83QmbyuzsqBFy8573F7MMrt+uZtECTi5Za7b9NoZlDwdBL6M0VaxhyBuA8B1mr8QKeRkJAfZIvZHgFuEGQNuwMXjfUBwIXbR0rKoXLXLOl28zBA6vl89Zh2+qSNBcc3kD1B+CA/xDxMzMyx+y16y8Y4IvQ9gjoAkZrEMaHYkrMCOZwv4RpNG8d4/jgWEgKK8RQNOailA='
+cript:
+  - yarn run server:copy && yarn run build:public && yarn run build:funcs && yarn run
+    build:app && yarn run deps:copy
 
 deploy:
   skip_cleanup: true
   provider: script
-  script: npm run deploy:all
+  script: yarn run deploy:all
   on:
     branch: master
+
+env:
+  global:
+    secure: WvsF+KH4CXO3azepUkhpeEcpLc4u8XYsiHt2FrfX3TC2QD30HhgsQL6k4mCiQsQbQWzZv3MR9o7mod+EXvKcdzj6OWgEZtMvQpbbgAJFcc7MTZx3746ikPeuwaND/2HxS/0+a50CkpSy8YwHU33McWQ2O3Tig9W4ZG5nbarf3IG5owQsxpYH8UYFT/8KBZLmnQSAs+iNIpE4qfvubeFAct/mT0MaoisImsNib+AbAa+vC93Pu69WdOfkc/Lgeezxnb4GgGGm+qjJDcBZYPDcoqNyUJT5uehHmyLGFz9IAk4myTvdOA2M3X68+KQMJfCs/+yDyRvlu/VB+tu9tGXETETAJlYQeJHjZkaOPYyZWcNLgI160NgPcy3i/5lDwR+bYu+4CN8BIJoub3NkhSDdbxYi9nF/DRJ8yuBUC1QpJXihDWLne7deieq53AmIU+B8gkV71WL7X2DzNEuVRHpkSDdmGrjMiUo+C+cNsXnVDekqzfscpFG3hZb/4iuFwgc3CDjib3FOQ8Dznr+5EFri6AEqnKTx92Cz6atBpLr559cjuIir+r/lU5bLZqRlBlhMTHG7DtFfeKFeUF94C4cyF6E59ygr8+uCN6qye4crHXtI/LyC0POffCGb1R8SlTT0CaoE3P355OWZTpYTjuRcEaR5v2kTyf6T5OJdo3hnPxY=

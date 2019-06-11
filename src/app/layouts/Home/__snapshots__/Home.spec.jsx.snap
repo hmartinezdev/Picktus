@@ -7,7 +7,7 @@ exports[`<Home /> should render properly 1`] = `
   <div
     className="toolbarContainer"
   >
-    <ConnectFunction />
+    <Connect(ToolBar) />
   </div>
   <style
     jsx={true}
