@@ -21,7 +21,7 @@ addons:
     organization: hmartinezdev-github
     token:
       secure: 'vA7LEda4kdHpAvewTAQGNu1Baw0F6Lv28ZXMt8lbtuo7FNRZjEr5tzM+tIkpElMolxoGq28AmGvFFAFZcWoDs+FpZLe37PiMrREJyMFv9x+bY2BVak65f6TkQwydyRB2ahoFrepm5mfsFZ599FlKLYbcaUhcffsqT9rIr8m6UBXM2StpQXD2zq/YsS3EfxaubLRyFEsVDZK5uSzgCaFCYu05qzzvRZZuvMES0UDvwYHJD4nHNZQUH2MN/R/kVtklNMt8sC2/ue1Y3OR8jQF4ZDC//Wf+0FF2gWp06/zMI0Jmvv3JgWQ7cjzflmS9VqcWoLWFz1P8DltuAacrEe7KGQlyPRfracww9khKXHQakYKAF5VwmgzBbx4bkCmqbbks2d951iNueGYHcnDFvGa5lJLzDcwEUpn72vcqgwaoVKeaXHTdtRel8kOAmVwmrgbu31XPGKBEi1dZPFxZG5td6uGpYgckg0UNEWl83QmbyuzsqBFy8573F7MMrt+uZtECTi5Za7b9NoZlDwdBL6M0VaxhyBuA8B1mr8QKeRkJAfZIvZHgFuEGQNuwMXjfUBwIXbR0rKoXLXLOl28zBA6vl89Zh2+qSNBcc3kD1B+CA/xDxMzMyx+y16y8Y4IvQ9gjoAkZrEMaHYkrMCOZwv4RpNG8d4/jgWEgKK8RQNOailA='
-cript:
+script:
   - yarn run server:copy && yarn run build:public && yarn run build:funcs && yarn run
     build:app && yarn run deps:copy
 
