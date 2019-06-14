@@ -1,3 +1,4 @@
+import ButtonLink from '@components/ButtonLink';
 import FormPagination from '@components/FormPagination/FormPagination';
 import Loader from '@components/Loader';
 import colors from '@constants/colors';
@@ -82,45 +83,49 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
   public render(): React.ReactElement<SubscribeHandler> {
     return (
       <div className="container">
-        <FormPagination
-          current={this.state.current}
-          steps={this.form.reduce((accumulator: string[], value) => [...accumulator, value.title], [])}
-          onValidatedStepClick={this.onValidatedStepClick}
-        />
-        <div className="form">
-          <TransitionGroup component={null}>
-            {this.state.current <= this.form.length - 1 ? (
-              this.form
-                .filter((_value, index) => index === this.state.current)
-                .map((value) => (
-                  <Transition timeout={300} key={`${value.name}-container`} mountOnEnter unmountOnExit in appear>
-                    {(status: string) => (
-                      <div key={value.name} className={`stepContainer stepContainer--${status}`}>
-                        <SubscribeStep
-                          onValidate={this.onValidate}
-                          control={value.control}
-                          errorMessage={value.errorMessage}
-                          name={value.name}
-                          title={value.title}
-                          type={value.type}
-                        />
-                      </div>
-                    )}
-                  </Transition>
-                ))[0]
-            ) : (
-              <Transition timeout={300} key={'loader-container'} mountOnEnter unmountOnExit in appear>
-              {(status: string) => (
-                <div key="loader" className={`stepContainer stepContainer--${status}`}>
-                  <Loader />
-                </div>
+        <div className="formContainer">
+          <FormPagination
+            current={this.state.current}
+            steps={this.form.reduce((accumulator: string[], value) => [...accumulator, value.title], [])}
+            onValidatedStepClick={this.onValidatedStepClick}
+          />
+          <div className="form">
+            <TransitionGroup component={null}>
+              {this.state.current <= this.form.length - 1 ? (
+                this.form
+                  .filter((_value, index) => index === this.state.current)
+                  .map((value) => (
+                    <Transition timeout={300} key={`${value.name}-container`} mountOnEnter unmountOnExit in appear>
+                      {(status: string) => (
+                        <div key={value.name} className={`stepContainer stepContainer--${status}`}>
+                          <SubscribeStep
+                            onValidate={this.onValidate}
+                            control={value.control}
+                            errorMessage={value.errorMessage}
+                            name={value.name}
+                            title={value.title}
+                            type={value.type}
+                          />
+                        </div>
+                      )}
+                    </Transition>
+                  ))[0]
+              ) : (
+                <Transition timeout={300} key={'loader-container'} mountOnEnter unmountOnExit in appear>
+                  {(status: string) => (
+                    <div key="loader" className={`stepContainer stepContainer--${status}`}>
+                      <Loader />
+                    </div>
+                  )}
+                </Transition>
               )}
-              </Transition>
-            )}
-          </TransitionGroup>
+            </TransitionGroup>
+          </div>
         </div>
+
+        <ButtonLink prefetch={true} text="I have an account!" href="/auth/login" dark />
         <style jsx>{`
-          .container {
+          .formContainer {
             box-shadow: ${boxShadow};
             background-color: ${colors.primary};
             width: 24rem;
