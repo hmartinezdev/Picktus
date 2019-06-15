@@ -30,6 +30,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
       />
       <Button
         dark={false}
+        disabled={false}
         onClick={[Function]}
         text="Login"
       />
@@ -39,6 +40,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
     >
       <Button
         dark={false}
+        disabled={false}
         onClick={[Function]}
         text=""
       >
@@ -48,6 +50,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
       </Button>
       <Button
         dark={false}
+        disabled={false}
         onClick={[Function]}
         text=""
       >
@@ -57,6 +60,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
       </Button>
       <Button
         dark={false}
+        disabled={false}
         onClick={[Function]}
         text=""
       >

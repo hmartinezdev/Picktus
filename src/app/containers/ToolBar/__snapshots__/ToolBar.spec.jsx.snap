@@ -6,6 +6,7 @@ exports[`<ToolBar /> should render properly 1`] = `
 >
   <Button
     dark={false}
+    disabled={false}
     text="disconnect"
   />
   <style

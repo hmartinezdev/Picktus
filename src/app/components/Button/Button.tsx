@@ -1,5 +1,6 @@
 import colors from '@constants/colors';
 import { borderRadius, fontFamily } from '@constants/styles';
+import classnames from 'classnames';
 import React, { Component } from 'react';
 
 export interface IButtonPropTypes {
@@ -7,19 +8,24 @@ export interface IButtonPropTypes {
   children?: JSX.Element[] | JSX.Element;
   onClick(): void;
   dark: boolean;
+  disabled?: boolean;
 }
 
 class Button extends Component<IButtonPropTypes, {}> {
   public static defaultProps = {
     dark: false,
+    disabled: false,
     text: '',
   };
 
   public render(): React.ReactElement<Button> {
-    const { onClick, text, children, dark } = this.props;
+    const { onClick, text, children, dark, disabled } = this.props;
 
     return (
-      <button onClick={onClick} className={`button ${dark ? 'button--dark' : ''}`}>
+      <button
+        onClick={disabled ? undefined : onClick}
+        className={classnames('button', { ['button--dark']: dark, ['button--disabled']: disabled })}
+      >
         {children ? children : <p className="text">{text}</p>}
         <style jsx>{`
           .button {
@@ -47,13 +53,14 @@ class Button extends Component<IButtonPropTypes, {}> {
             color: ${colors.primary};
           }
 
+          .button--disabled {
+            color: ${colors.white}95;
+            opacity: 0.5;
+          }
+
           :global(.button svg) {
             fill: ${colors.white};
             transition: all 0.5s;
-          }
-
-          .button:hover {
-            color: ${colors.blue};
           }
 
           :global(.button:hover svg) {
@@ -89,10 +96,7 @@ class Button extends Component<IButtonPropTypes, {}> {
             border-radius: ${borderRadius};
             cursor: pointer;
           }
-          .button:hover::before {
-            opacity: 0;
-            transform: scale(0.5, 0.5);
-          }
+
           .button::after {
             content: '';
             position: absolute;
@@ -109,15 +113,6 @@ class Button extends Component<IButtonPropTypes, {}> {
             cursor: pointer;
           }
 
-          .button:hover::after {
-            opacity: 1;
-            transform: scale(1, 1);
-          }
-
-          .button--dark:hover {
-            color: ${colors.secondary};
-          }
-
           .button--dark::before {
             content: '';
             position: absolute;
@@ -130,11 +125,6 @@ class Button extends Component<IButtonPropTypes, {}> {
             transition: 0.3s ease-out;
             border-radius: ${borderRadius};
             cursor: pointer;
-          }
-
-          .button--dark:hover::before {
-            opacity: 0;
-            transform: scale(0.5, 0.5);
           }
 
           .button--dark::after {
@@ -155,10 +145,50 @@ class Button extends Component<IButtonPropTypes, {}> {
             cursor: pointer;
           }
 
+          .button:hover {
+            color: ${colors.blue};
+          }
+
+          .button:hover::before {
+            opacity: 0;
+            transform: scale(0.5, 0.5);
+          }
+
+          .button:hover::after {
+            opacity: 1;
+            transform: scale(1, 1);
+          }
+
+          .button--dark:hover {
+            color: ${colors.secondary};
+          }
+
+          .button--dark:hover::before {
+            opacity: 0;
+            transform: scale(0.5, 0.5);
+          }
+
           .button--dark:hover::after {
             opacity: 1;
             transform: scale(1, 1);
             z-index: 1;
+          }
+
+          .button:hover {
+            color: ${colors.white}95;
+            cursor: initial;
+          }
+
+          .button--disabled:hover::before {
+            opacity: initial;
+            transform: initial;
+            cursor: initial;
+          }
+
+          .button--disabled:hover::after {
+            opacity: 0;
+            transform: initial;
+            cursor: initial;
           }
         `}</style>
       </button>
