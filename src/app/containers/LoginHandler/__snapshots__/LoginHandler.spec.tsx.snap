@@ -12,6 +12,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
     >
       <Input
         autoFocus={false}
+        defaultValue=""
         disabled={false}
         name="email"
         onChange={[Function]}
@@ -21,6 +22,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
       />
       <Input
         autoFocus={false}
+        defaultValue=""
         disabled={false}
         name="password"
         onChange={[Function]}

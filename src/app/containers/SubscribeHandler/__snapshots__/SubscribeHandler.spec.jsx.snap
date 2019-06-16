@@ -7,6 +7,7 @@ exports[`<SubscribeHandler /> should render properly 1`] = `
   <div
     className="formContainer"
   >
+     
     <FormPagination
       current={0}
       onValidatedStepClick={[Function]}
@@ -44,22 +45,6 @@ exports[`<SubscribeHandler /> should render properly 1`] = `
           <Component />
         </Transition>
       </TransitionGroup>
-      <div
-        className="navigationButtons"
-      >
-        <Button
-          dark={false}
-          disabled={true}
-          onClick={[Function]}
-          text="previous"
-        />
-        <Button
-          dark={false}
-          disabled={true}
-          onClick={[Function]}
-          text="next"
-        />
-      </div>
     </div>
   </div>
   <ButtonLink
@@ -83,6 +68,7 @@ exports[`<SubscribeHandler /> should render properly 1`] = `
             display: flex;
             align-items: center;
             flex-direction: column;
+            height: 16rem;
           }
 
           .stepContainer {
@@ -112,20 +98,6 @@ exports[`<SubscribeHandler /> should render properly 1`] = `
 
           .inputTransition {
             width: 100%;
-          }
-
-          .navigationButtons {
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-          }
-
-          :global(.navigationButtons.navigationButtons &gt; button:nth-child(1)) {
-            margin-right: 0.5rem;
-          }
-
-          :global(.navigationButtons.navigationButtons &gt; button:nth-child(2)) {
-            margin-left: 0.5rem;
           }
         
   </style>

@@ -6,6 +6,7 @@ exports[`<SubscribeStep /> should render properly 1`] = `
 >
   <Input
     autoFocus={true}
+    defaultValue=""
     disabled={false}
     name="step"
     onChange={[Function]}
@@ -13,6 +14,22 @@ exports[`<SubscribeStep /> should render properly 1`] = `
     placeholder="stepTitle"
     type="text"
   />
+  <div
+    className="navigationButtons"
+  >
+    <Button
+      dark={false}
+      disabled={false}
+      onClick={[Function]}
+      text="previous"
+    />
+    <Button
+      dark={false}
+      disabled={true}
+      onClick={[Function]}
+      text="next"
+    />
+  </div>
   <style
     jsx={true}
   >
@@ -20,6 +37,20 @@ exports[`<SubscribeStep /> should render properly 1`] = `
           .container {
             font-family: 'Josefin Sans', sans-serif;
             color: #FAC9B8;
+          }
+
+          :global(.navigationButtons.navigationButtons &gt; button:nth-child(1)) {
+            margin-right: 0.5rem;
+          }
+
+          :global(.navigationButtons.navigationButtons &gt; button:nth-child(2)) {
+            margin-left: 0.5rem;
+          }
+
+          .navigationButtons {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
           }
         
   </style>

@@ -1,3 +1,4 @@
+import Button from '@components/Button';
 import Input from '@components/Input';
 import colors from '@constants/colors';
 import { fontFamily } from '@constants/styles';
@@ -12,21 +13,23 @@ export interface ISubscribeStepPropsType {
   title: string;
   displaySnackBar: (message: string, level: PicktusMessageLevel) => void;
   type?: string;
-  default?: string;
+  defaultValue: string;
+  current: number;
+  onPreviousClick: () => void;
 }
 
 class SubscribeStep extends Component<ISubscribeStepPropsType, IStringMap> {
   public static defaultProps = {
-    default: '',
+    defaultValue: '',
     type: 'text',
   };
 
   constructor(props: ISubscribeStepPropsType) {
     super(props);
-    const { name } = props;
+    const { name, defaultValue } = props;
 
     this.state = {
-      [name]: '',
+      [name]: defaultValue,
     };
   }
 
@@ -47,8 +50,19 @@ class SubscribeStep extends Component<ISubscribeStepPropsType, IStringMap> {
     }
   };
 
+  public onNextClick = () => {
+    this.onSubmit();
+  };
+
+  public onPreviousClick = () => {
+    const { current, onPreviousClick } = this.props;
+    if (current >= 1) {
+      onPreviousClick();
+    }
+  };
+
   public render(): React.ReactElement<SubscribeStep> {
-    const { name, title, type, default } = this.props;
+    const { name, title, type, defaultValue, current } = this.props;
     return (
       <div className="container">
         <Input
@@ -58,13 +72,32 @@ class SubscribeStep extends Component<ISubscribeStepPropsType, IStringMap> {
           placeholder={title}
           type={type}
           onEnter={this.onSubmit}
-          default={default}
+          defaultValue={defaultValue}
         />
+
+        <div className="navigationButtons">
+          <Button disabled={current < 1} onClick={this.onPreviousClick} text="previous" />
+          <Button disabled={this.state[name] === ''} onClick={this.onNextClick} text="next" />
+        </div>
 
         <style jsx>{`
           .container {
             font-family: ${fontFamily};
             color: ${colors.secondary};
+          }
+
+          :global(.navigationButtons.navigationButtons > button:nth-child(1)) {
+            margin-right: 0.5rem;
+          }
+
+          :global(.navigationButtons.navigationButtons > button:nth-child(2)) {
+            margin-left: 0.5rem;
+          }
+
+          .navigationButtons {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
           }
         `}</style>
       </div>

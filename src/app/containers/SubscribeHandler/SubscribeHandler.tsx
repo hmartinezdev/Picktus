@@ -1,4 +1,3 @@
-import Button from '@components/Button';
 import ButtonLink from '@components/ButtonLink';
 import FormPagination from '@components/FormPagination/FormPagination';
 import Loader from '@components/Loader';
@@ -9,14 +8,12 @@ import { Transition, TransitionGroup } from 'react-transition-group';
 import { isMail, isPasswordSecure } from './controls';
 import { ISubscribeHandlerProps, ISubscribeHandlerState, ISubscribeStepInfos } from './SubscribeHandler.type';
 import SubscribeStepConnected from './SubscribeStep';
-import SubscribeStep from './SubscribeStep/SubscribeStep';
 
 class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeHandlerState> {
   public static defaultProps = {
     requestStatus: null,
   };
 
-  private step: SubscribeStep | undefined;
   public form: ISubscribeStepInfos[] = [];
 
   constructor(props: ISubscribeHandlerProps) {
@@ -83,12 +80,6 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
     this.setState({ current: step });
   };
 
-  public onNextClick = () => {
-    if (this.step) {
-      this.step.onSubmit();
-    }
-  };
-
   public onPreviousClick = () => {
     const { current } = this.state;
     if (current >= 1) {
@@ -97,9 +88,11 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
   };
 
   public render(): React.ReactElement<SubscribeHandler> {
+    const currentStep = this.form[this.state.current];
     return (
       <div className="container">
         <div className="formContainer">
+          {' '}
           <FormPagination
             current={this.state.current}
             steps={this.form.reduce((accumulator: string[], value) => [...accumulator, value.title], [])}
@@ -121,8 +114,9 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
                             name={value.name}
                             title={value.title}
                             type={value.type}
-                            default={}
-                            ref={(node: SubscribeStep) => (this.step = node)}
+                            defaultValue={currentStep ? this.state.values[currentStep.name] : ''}
+                            current={this.state.current}
+                            onPreviousClick={this.onPreviousClick}
                           />
                         </div>
                       )}
@@ -138,10 +132,6 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
                 </Transition>
               )}
             </TransitionGroup>
-            <div className="navigationButtons">
-              <Button disabled={this.state.current < 1} onClick={this.onPreviousClick} text="previous" />
-              <Button disabled={this.state.current === this.form.length - 1} onClick={this.onNextClick} text="next" />
-            </div>
           </div>
         </div>
 
@@ -157,6 +147,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
             display: flex;
             align-items: center;
             flex-direction: column;
+            height: 16rem;
           }
 
           .stepContainer {
@@ -186,20 +177,6 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
 
           .inputTransition {
             width: 100%;
-          }
-
-          .navigationButtons {
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-          }
-
-          :global(.navigationButtons.navigationButtons > button:nth-child(1)) {
-            margin-right: 0.5rem;
-          }
-
-          :global(.navigationButtons.navigationButtons > button:nth-child(2)) {
-            margin-left: 0.5rem;
           }
         `}</style>
       </div>
