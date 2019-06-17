@@ -56,7 +56,7 @@ class SubscribeStep extends Component<ISubscribeStepPropsType, IStringMap> {
 
   public onPreviousClick = () => {
     const { current, onPreviousClick } = this.props;
-    if (current >= 1) {
+    if (current > 0) {
       onPreviousClick();
     }
   };

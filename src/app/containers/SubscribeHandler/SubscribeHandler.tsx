@@ -82,7 +82,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
 
   public onPreviousClick = () => {
     const { current } = this.state;
-    if (current >= 1) {
+    if (current > 0) {
       this.setState({ current: current - 1 });
     }
   };

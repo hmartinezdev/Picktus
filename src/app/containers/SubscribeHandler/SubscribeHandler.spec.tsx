@@ -1,20 +1,20 @@
-import Authentication from '@services/authentication';
-import { mount, shallow } from 'enzyme';
+import { shallow, ShallowWrapper } from 'enzyme';
 import React from 'react';
 import SubscribeHandler from './SubscribeHandler';
 
-let wrapper;
-let instance;
-let mountWrapper;
+let wrapper: ShallowWrapper<{}, {}, SubscribeHandler>;
+let instance: SubscribeHandler;
 
 const baseProps = {
   requestStatus: {
-    inProgress: false,
     error: 'error',
+    inProgress: false,
   },
+  userCreation: () => undefined,
 };
 
-const setup = (props = {}) => shallow(<SubscribeHandler {...baseProps} {...props} />);
+const setup = (props = {}): ShallowWrapper<{}, {}, SubscribeHandler> =>
+  shallow(<SubscribeHandler {...baseProps} {...props} />);
 
 describe('<SubscribeHandler />', () => {
   beforeEach(() => {
@@ -59,7 +59,7 @@ describe('<SubscribeHandler />', () => {
       instance = wrapper.instance();
       instance.setState({ current: instance.form.length - 1 });
       const spy = jest.spyOn(instance, 'onLastValueSubmitted');
-      instance.onValidate();
+      instance.onValidate('ok');
       expect(spy).toHaveBeenCalled();
     });
 
@@ -86,6 +86,26 @@ describe('<SubscribeHandler />', () => {
       const spy = jest.spyOn(instance, 'setState');
       instance.onValidatedStepClick(1);
       expect(spy).toHaveBeenCalledWith({ current: 1 });
+    });
+  });
+
+  describe('onPreviousClick', () => {
+    test('it should do nothing if current < 1', () => {
+      wrapper = setup();
+      instance = wrapper.instance();
+      instance.setState({ current: 0 });
+      const spy = jest.spyOn(instance, 'setState');
+      instance.onPreviousClick();
+      expect(spy).toHaveBeenCalledTimes(0);
+    });
+
+    test('it should decrement current if current >= 1', () => {
+      wrapper = setup();
+      instance = wrapper.instance();
+      instance.setState({ current: 1 });
+      const spy = jest.spyOn(instance, 'setState');
+      instance.onPreviousClick();
+      expect(spy).toHaveBeenCalledWith({ current: 0 });
     });
   });
 });

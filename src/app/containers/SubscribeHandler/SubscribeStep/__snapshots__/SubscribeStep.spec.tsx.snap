@@ -19,7 +19,7 @@ exports[`<SubscribeStep /> should render properly 1`] = `
   >
     <Button
       dark={false}
-      disabled={false}
+      disabled={true}
       onClick={[Function]}
       text="previous"
     />
