@@ -91,13 +91,12 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
     const currentStep = this.form[this.state.current];
     return (
       <div className="container">
+        <FormPagination
+          current={this.state.current}
+          steps={this.form.reduce((accumulator: string[], value) => [...accumulator, value.title], [])}
+          onValidatedStepClick={this.onValidatedStepClick}
+        />
         <div className="formContainer">
-          {' '}
-          <FormPagination
-            current={this.state.current}
-            steps={this.form.reduce((accumulator: string[], value) => [...accumulator, value.title], [])}
-            onValidatedStepClick={this.onValidatedStepClick}
-          />
           <div className="form">
             <TransitionGroup component={null}>
               {this.state.current <= this.form.length - 1 ? (
@@ -140,14 +139,12 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
           .formContainer {
             box-shadow: ${boxShadow};
             background-color: ${colors.primary};
-            width: 24rem;
-            padding: 0.7rem;
+            padding: 1.5rem 1.5rem;
             box-sizing: border-box;
             border-radius: ${borderRadius};
             display: flex;
             align-items: center;
             flex-direction: column;
-            height: 16rem;
           }
 
           .stepContainer {

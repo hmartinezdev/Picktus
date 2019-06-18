@@ -1,3 +1,4 @@
+import colors from '@constants/colors';
 import React, { Component } from 'react';
 
 interface IBackgroundPropsType {
@@ -20,6 +21,17 @@ class Background extends Component<IBackgroundPropsType, {}> {
             width: 100%;
             background: url('/static/background.svg') no-repeat center center fixed;
             background-size: cover;
+            position: relative;
+          }
+
+          .background:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: ${colors.primary}80;
+            content: '';
           }
         `}</style>
       </div>
