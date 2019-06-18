@@ -26,7 +26,6 @@ exports[`<Home /> should render properly 1`] = `
             opacity: 1;
             align-items: flex-start;
             transition: opacity 300ms ease-out;
-            background-color: #2d3047cd;
           }
 
           .container--exiting,
