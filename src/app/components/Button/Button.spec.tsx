@@ -27,6 +27,11 @@ describe('<Button />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  test('should render with disabled mode', () => {
+    wrapper = setup({ disabled: true });
+    expect(wrapper).toMatchSnapshot();
+  });
+
   test('should render children if there is one', () => {
     wrapper = shallow(
       <Button {...baseProps}>

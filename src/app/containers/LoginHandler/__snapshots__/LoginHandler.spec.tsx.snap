@@ -12,6 +12,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
     >
       <Input
         autoFocus={false}
+        defaultValue=""
         disabled={false}
         name="email"
         onChange={[Function]}
@@ -21,6 +22,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
       />
       <Input
         autoFocus={false}
+        defaultValue=""
         disabled={false}
         name="password"
         onChange={[Function]}
@@ -30,6 +32,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
       />
       <Button
         dark={false}
+        disabled={false}
         onClick={[Function]}
         text="Login"
       />
@@ -39,6 +42,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
     >
       <Button
         dark={false}
+        disabled={false}
         onClick={[Function]}
         text=""
       >
@@ -48,6 +52,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
       </Button>
       <Button
         dark={false}
+        disabled={false}
         onClick={[Function]}
         text=""
       >
@@ -57,6 +62,7 @@ exports[`<LoginHandler /> should render properly 1`] = `
       </Button>
       <Button
         dark={false}
+        disabled={false}
         onClick={[Function]}
         text=""
       >

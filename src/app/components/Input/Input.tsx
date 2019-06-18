@@ -10,6 +10,7 @@ export interface IInputPropTypes {
   name: string;
   autoFocus: boolean;
   disabled: boolean;
+  defaultValue: string;
 }
 
 export interface InputState {
@@ -21,6 +22,7 @@ class Input extends Component<IInputPropTypes, InputState> {
 
   public static defaultProps = {
     autoFocus: false,
+    defaultValue: '',
     disabled: false,
     name: '',
     onEnter: () => undefined,

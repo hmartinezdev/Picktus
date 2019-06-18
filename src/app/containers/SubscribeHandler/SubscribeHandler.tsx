@@ -1,3 +1,4 @@
+import ButtonLink from '@components/ButtonLink';
 import FormPagination from '@components/FormPagination/FormPagination';
 import Loader from '@components/Loader';
 import colors from '@constants/colors';
@@ -6,7 +7,7 @@ import React, { PureComponent } from 'react';
 import { Transition, TransitionGroup } from 'react-transition-group';
 import { isMail, isPasswordSecure } from './controls';
 import { ISubscribeHandlerProps, ISubscribeHandlerState, ISubscribeStepInfos } from './SubscribeHandler.type';
-import SubscribeStep from './SubscribeStep';
+import SubscribeStepConnected from './SubscribeStep';
 
 class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeHandlerState> {
   public static defaultProps = {
@@ -79,48 +80,64 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
     this.setState({ current: step });
   };
 
+  public onPreviousClick = () => {
+    const { current } = this.state;
+    if (current > 0) {
+      this.setState({ current: current - 1 });
+    }
+  };
+
   public render(): React.ReactElement<SubscribeHandler> {
+    const currentStep = this.form[this.state.current];
     return (
       <div className="container">
-        <FormPagination
-          current={this.state.current}
-          steps={this.form.reduce((accumulator: string[], value) => [...accumulator, value.title], [])}
-          onValidatedStepClick={this.onValidatedStepClick}
-        />
-        <div className="form">
-          <TransitionGroup component={null}>
-            {this.state.current <= this.form.length - 1 ? (
-              this.form
-                .filter((_value, index) => index === this.state.current)
-                .map((value) => (
-                  <Transition timeout={300} key={`${value.name}-container`} mountOnEnter unmountOnExit in appear>
-                    {(status: string) => (
-                      <div key={value.name} className={`stepContainer stepContainer--${status}`}>
-                        <SubscribeStep
-                          onValidate={this.onValidate}
-                          control={value.control}
-                          errorMessage={value.errorMessage}
-                          name={value.name}
-                          title={value.title}
-                          type={value.type}
-                        />
-                      </div>
-                    )}
-                  </Transition>
-                ))[0]
-            ) : (
-              <Transition timeout={300} key={'loader-container'} mountOnEnter unmountOnExit in appear>
-              {(status: string) => (
-                <div key="loader" className={`stepContainer stepContainer--${status}`}>
-                  <Loader />
-                </div>
+        <div className="formContainer">
+          {' '}
+          <FormPagination
+            current={this.state.current}
+            steps={this.form.reduce((accumulator: string[], value) => [...accumulator, value.title], [])}
+            onValidatedStepClick={this.onValidatedStepClick}
+          />
+          <div className="form">
+            <TransitionGroup component={null}>
+              {this.state.current <= this.form.length - 1 ? (
+                this.form
+                  .filter((_value, index) => index === this.state.current)
+                  .map((value) => (
+                    <Transition timeout={300} key={`${value.name}-container`} mountOnEnter unmountOnExit in appear>
+                      {(status: string) => (
+                        <div key={value.name} className={`stepContainer stepContainer--${status}`}>
+                          <SubscribeStepConnected
+                            onValidate={this.onValidate}
+                            control={value.control}
+                            errorMessage={value.errorMessage}
+                            name={value.name}
+                            title={value.title}
+                            type={value.type}
+                            defaultValue={currentStep ? this.state.values[currentStep.name] : ''}
+                            current={this.state.current}
+                            onPreviousClick={this.onPreviousClick}
+                          />
+                        </div>
+                      )}
+                    </Transition>
+                  ))[0]
+              ) : (
+                <Transition timeout={300} key={'loader-container'} mountOnEnter unmountOnExit in appear>
+                  {(status: string) => (
+                    <div key="loader" className={`stepContainer stepContainer--${status}`}>
+                      <Loader />
+                    </div>
+                  )}
+                </Transition>
               )}
-              </Transition>
-            )}
-          </TransitionGroup>
+            </TransitionGroup>
+          </div>
         </div>
+
+        <ButtonLink prefetch={true} text="I have an account!" href="/auth/login" dark />
         <style jsx>{`
-          .container {
+          .formContainer {
             box-shadow: ${boxShadow};
             background-color: ${colors.primary};
             width: 24rem;
@@ -130,6 +147,7 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
             display: flex;
             align-items: center;
             flex-direction: column;
+            height: 16rem;
           }
 
           .stepContainer {
@@ -154,7 +172,6 @@ class SubscribeHandler extends PureComponent<ISubscribeHandlerProps, ISubscribeH
             flex-direction: column;
             align-items: center;
             width: 16rem;
-            height: 5rem;
             position: relative;
           }
 
