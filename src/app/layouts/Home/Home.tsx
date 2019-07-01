@@ -1,4 +1,3 @@
-import colors from '@constants/colors';
 import ToolBar from '@containers/ToolBar';
 import React, { Component } from 'react';
 
@@ -29,7 +28,6 @@ class Home extends Component<IHomePropsType> {
             opacity: 1;
             align-items: flex-start;
             transition: opacity 300ms ease-out;
-            background-color: ${colors.primary}cd;
           }
 
           .container--exiting,
